@@ -44,3 +44,23 @@ th {
   background-color: #FFEEDD;
   border-bottom: 3px solid #777777;
 }
+/* Display Tag */
+/* START:odd_even */
+tr.odd {
+  background-color: #E5F5E5;
+}
+tr.even {
+  background-color: #FFFFFF;
+}
+/* END:odd_even */
+/* START:sortable_headers */
+th.sorted {
+  background-color: #EECCAA;
+}
+th.order1 {
+  background-image: url(../images/gradient_asc.png);
+}
+th.order2 {
+  background-image: url(../images/gradient_desc.png);
+}
+/* END:sortable_headers */
