@@ -46,7 +46,7 @@ public class HelloActionBean implements ActionBean
   }
 
   public Resolution randomDate()
-  {
+  {    
     long max = System.currentTimeMillis();
     long random = new Random().nextLong() % max;
     date = new Date(random);
