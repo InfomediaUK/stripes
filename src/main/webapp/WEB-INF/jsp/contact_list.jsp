@@ -6,7 +6,7 @@
  ! We make no guarantees that this code is fit for any purpose. 
  ! Visit http://www.pragmaticprogrammer.com/titles/fdstr for more book information.
 -->
-<%@include file="/WEB-INF/jsp/common/taglibs.jsp"%>
+<%@ include file="/WEB-INF/jsp/common/taglibs.jsp" %>
 
 <s:layout-render name="/WEB-INF/jsp/common/layout_main.jsp"
   title="Contact List">
