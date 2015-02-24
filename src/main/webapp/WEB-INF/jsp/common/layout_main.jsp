@@ -35,10 +35,12 @@
           <s:param name="filename" value="<%= request.getRequestURI() %>"/>
           JSP
         </s:link> |
+<%-- 
         <s:link beanclass="stripesbook.action.ViewSourceActionBean">
           <s:param name="filename" value="${actionBean.class.name}"/>
           Action Bean
         </s:link>
+--%>
       </div>
 <%-- START:this --%>
     </body>
