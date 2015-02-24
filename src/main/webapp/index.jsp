@@ -7,6 +7,6 @@
 <title>Stripes!</title>
 </head>
 <body>
-
+  <h3>Stripes!</h3>
 </body>
 </html>
