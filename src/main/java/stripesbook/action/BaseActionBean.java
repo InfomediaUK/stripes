@@ -83,10 +83,17 @@ public abstract class BaseActionBean implements ActionBean
     return file;
   }
   
+  /**
+   * Note that OPENSHIFT_DATA_DIR must be set as an environment variable in run configurations.
+   * It must correspond to the tomcat deployment folder.
+   * Eg. /Users/infomedia/Documents/Eclipse/Luna/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/stripes/WEB-INF/files
+   * 
+   * @return
+   */
   protected String getHtmlPageFilesFolder()
   {
 //    String path = actionBeanContext.getServletContext().getRealPath("/WEB-INF/files");
-    String path = System.getenv("OPENSHIFT_DATA_DIR") + "/files";
+    String path = System.getenv("OPENSHIFT_DATA_DIR") + "/files/static";
     return path;
   }
   
