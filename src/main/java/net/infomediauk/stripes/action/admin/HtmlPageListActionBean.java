@@ -28,30 +28,30 @@ public class HtmlPageListActionBean extends BaseActionBean
   @DefaultHandler
   public Resolution view() throws Exception
   {
-    String folderName = getHtmlPageFilesFolder();
-    File folder = new File(folderName);
-    File[] listOfFiles = folder.listFiles();
-    for (File file : listOfFiles)
-    {
-      if (file.isFile() && !file.isHidden())
-      {
-        // Is File and NOT hidden.
-        String pageName = file.getName();
-        HtmlPageFile htmlPageFile = null;
-        if (pageName.lastIndexOf(".") > -1)
-        {
-          // File has an extension.
-          if (pageName.substring(pageName.lastIndexOf(".")).equals(".xml"))
-          {
-            // It's an xml file.
-            htmlPageFile = new HtmlPageFile();
-            htmlPageFile.setFileName(file.getName());
-            htmlPageFile.setHtmlPage(loadPage(pageName));
-            htmlPageFileList.add(htmlPageFile);
-          }
-        }
-      }
-    }
+//    String folderName = getHtmlPageFilesFolder();
+//    File folder = new File(folderName);
+//    File[] listOfFiles = folder.listFiles();
+//    for (File file : listOfFiles)
+//    {
+//      if (file.isFile() && !file.isHidden())
+//      {
+//        // Is File and NOT hidden.
+//        String pageName = file.getName();
+//        HtmlPageFile htmlPageFile = null;
+//        if (pageName.lastIndexOf(".") > -1)
+//        {
+//          // File has an extension.
+//          if (pageName.substring(pageName.lastIndexOf(".")).equals(".xml"))
+//          {
+//            // It's an xml file.
+//            htmlPageFile = new HtmlPageFile();
+//            htmlPageFile.setFileName(file.getName());
+//            htmlPageFile.setHtmlPage(loadPage(pageName));
+//            htmlPageFileList.add(htmlPageFile);
+//          }
+//        }
+//      }
+//    }
     return new ForwardResolution(LIST);
   }  
 
