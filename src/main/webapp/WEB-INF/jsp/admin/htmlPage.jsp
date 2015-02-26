@@ -22,7 +22,7 @@
       <tr>
         <td>
           Title<br />
-          <s:text name="htmlPageToEdit.title" size="103" />
+          <s:text name="htmlPageToEdit.title" size="103" /> 
         </td>
       </tr>
       <tr>

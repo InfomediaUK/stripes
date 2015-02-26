@@ -53,7 +53,6 @@ public class HtmlPageListActionBean extends BaseActionBean
       }
     }
     return new ForwardResolution(LIST);
-  }
-  
+  }  
 
 }

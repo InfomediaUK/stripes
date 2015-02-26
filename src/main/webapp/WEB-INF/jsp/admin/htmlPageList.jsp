@@ -8,7 +8,7 @@
       <s:param name="htmlPageFileName" value="" />
       New
     </s:link>
-    <table border="1" >
+    <table border="1">
       <tr>
         <th>
           File
