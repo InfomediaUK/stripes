@@ -18,7 +18,7 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 
 public class HelloActionBean implements ActionBean
-{/* (1) */
+{
   private ActionBeanContext ctx;
 
   public ActionBeanContext getContext()

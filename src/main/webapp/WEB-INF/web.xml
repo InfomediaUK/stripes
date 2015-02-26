@@ -14,7 +14,7 @@
     </filter-class>
     <init-param>
       <param-name>ActionResolver.Packages</param-name><!-- (2) -->
-      <param-value>stripesbook.action</param-value>
+      <param-value>stripesbook.action,net.infomediauk.stripes.action</param-value>
     </init-param>
   </filter>
 

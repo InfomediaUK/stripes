@@ -7,5 +7,5 @@
  ! Visit http://www.pragmaticprogrammer.com/titles/fdstr for more book information.
 <jsp:forward page="/Hello.action"/>
 -->
-<jsp:forward page="/ContactList.action" />
+<jsp:forward page="/Home.action" />
 
