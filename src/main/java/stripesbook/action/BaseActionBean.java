@@ -86,7 +86,7 @@ public abstract class BaseActionBean implements ActionBean
   protected String getHtmlPageFilesFolder()
   {
 //    String path = actionBeanContext.getServletContext().getRealPath("/WEB-INF/files");
-    String path = System.getenv("OPENSHIFT_DATA_DIR");
+    String path = System.getenv("OPENSHIFT_DATA_DIR") + "/files";
     return path;
   }
   
