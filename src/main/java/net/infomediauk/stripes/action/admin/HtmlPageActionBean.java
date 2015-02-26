@@ -3,10 +3,6 @@ package net.infomediauk.stripes.action.admin;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.OutputStream;
-
-import javax.servlet.http.HttpServletResponse;
 
 import stripesbook.action.BaseActionBean;
 import net.infomediauk.xml.jaxb.model.HtmlPage;
@@ -14,6 +10,7 @@ import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
+import net.sourceforge.stripes.action.StreamingResolution;
 
 public class HtmlPageActionBean extends BaseActionBean
 {
@@ -55,47 +52,25 @@ public class HtmlPageActionBean extends BaseActionBean
     return new ForwardResolution(FORM);
   }
   
+  /**
+   * See http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/action/StreamingResolution.html
+   * @return
+   */
   public Resolution download()
   {
     File file = getFile(htmlPageFileName);
-    HttpServletResponse response = getContext().getResponse();
     String mimeType = getContext().getServletContext().getMimeType(htmlPageFileName);
-    response.setContentType(mimeType);
-    response.setContentLength((int)file.length());
-    String headerKey = "Content-Disposition";
-    String headerValue = String.format("attachment; filename=\"%s\"", file.getName());
-    response.setHeader(headerKey, headerValue);
+    FileInputStream inputStream = null;
     try
     {
-      FileInputStream inputStream = new FileInputStream(file);
-      int read=0;
-      byte[] bytes = new byte[4096];
-      OutputStream outputStream = response.getOutputStream();
-      try
-      {
-        while((read = inputStream.read(bytes))!= -1)
-        {
-          outputStream.write(bytes, 0, read);
-        }
-      }
-      finally
-      {
-        inputStream.close();
-        outputStream.flush();
-        outputStream.close();
-      }
+      inputStream = new FileInputStream(file);
     }
     catch (FileNotFoundException e)
     {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    catch (IOException e)
-    {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-    return new ForwardResolution(FORM);
+    return new StreamingResolution(mimeType, inputStream).setFilename("htmlPageFileName");
   }
   
   public Resolution delete()
@@ -107,6 +82,7 @@ public class HtmlPageActionBean extends BaseActionBean
   
   public Resolution save()
   {
+    System.out.println(System.getenv("OPENSHIFT_DATA_DIR"));
     savePage(htmlPageToEdit, htmlPageFileName);
     return new RedirectResolution(HtmlPageListActionBean.class);
   }
