@@ -30,6 +30,10 @@ public class HtmlPageListActionBean extends BaseActionBean
   {
     String folderName = getHtmlPageFilesFolder();
     File folder = new File(folderName);
+    if (!folder.exists())
+    {
+      folder.mkdirs();
+    }
     File[] listOfFiles = folder.listFiles();
     for (File file : listOfFiles)
     {
