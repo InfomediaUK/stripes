@@ -20,7 +20,7 @@
           </div>
           <div id="right_sidebar" style="float:right; width:200px;">
             <s:layout-component name="right">
-              Right Oh!
+            <jsp:include page="/WEB-INF/jsp/layout/right.jsp"/>
             </s:layout-component>
           </div>
         </div>
@@ -39,7 +39,7 @@
         </div>
         <div id="footer" style="clear:both; padding-top:10px;">
           <s:layout-component name="footer">
-            Footer
+            <jsp:include page="/WEB-INF/jsp/layout/footer.jsp"/>
           </s:layout-component>
         </div>
       </div>

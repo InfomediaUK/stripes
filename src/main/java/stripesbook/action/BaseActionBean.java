@@ -86,7 +86,7 @@ public abstract class BaseActionBean implements ActionBean
   /**
    * Note that OPENSHIFT_DATA_DIR must be set as an environment variable in run configurations.
    * It must correspond to the tomcat deployment folder.
-   * Eg. /Users/infomedia/Documents/Eclipse/Luna/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/stripes/WEB-INF/files
+   * Eg. /Users/infomedia/Documents/Eclipse/Luna/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/stripes/WEB-INF
    * 
    * @return
    */
