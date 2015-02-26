@@ -45,11 +45,11 @@
       </tr>
       <tr>
         <td>
-          <s:submit name="save" value="save"  />
-          <s:submit name="cancel" value="cancel"  />
+          <s:submit name="save" value="Save"  />
+          <s:submit name="cancel" value="Cancel"  />
         <c:if test="${actionBean.htmlPageFileName!=null}">
-          <s:submit name="delete" value="delete"  />
-          <s:submit name="download" value="download"  />
+          <s:submit name="delete" value="Delete"  />
+          <s:submit name="download" value="Download"  />
         </c:if>
         </td>
       </tr>

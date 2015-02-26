@@ -34,7 +34,16 @@
             <s:link beanclass="net.infomediauk.stripes.action.HomeActionBean" event="view">
                  <img src="${contextPath}/images/logo.gif" alt="pj locums" width="141" height="72" title="pj locums" />
             </s:link>
-          </div>
+         </div>
+         <div>
+            <s:link beanclass="net.infomediauk.stripes.action.FaqsActionBean" event="view">
+              FAQs
+            </s:link>
+            &nbsp;
+            <s:link beanclass="net.infomediauk.stripes.action.AboutUsActionBean" event="view">
+              About Us
+            </s:link>
+         </div>
           <div id="tagline"><h1>UK locum recruitment agency for overseas staff to the NHS<br />and private sector market</h1></div>
         </div>
         <div id="footer" style="clear:both; padding-top:10px;">
