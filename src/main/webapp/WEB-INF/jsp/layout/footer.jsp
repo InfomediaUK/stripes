@@ -1,6 +1,6 @@
 <%@ include file="/WEB-INF/jsp/common/pagedirectives.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/taglibs.jsp" %>
-
+<jsp:useBean id="date" class="java.util.Date" />
 <fieldset>
   <table width="900">
     <tr>
@@ -25,3 +25,4 @@
     </tr>
   </table>
 </fieldset>
+<p>&copy; <fmt:formatDate value="${date}" pattern="yyyy" /> P J Locums</p>
