@@ -3,6 +3,38 @@
 
 <fieldset>
   <h3>Register with us</h3>
-  <label for="ex1">A text field</label>
-  <input type="text" name="ex1" id="ex1" />
+  <s:form beanclass="net.infomediauk.stripes.action.RegisterActionBean">
+    <s:errors/>
+    <table class="form" >
+      <tr>
+        <td>
+          <label for="fullName">Full Name</label><br />
+          <s:text name="prospectShort.fullName" size="23" /> 
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Contact Tel no (incl code)<br />
+          <s:text name="prospectShort.contactTelephone"  size="23" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Email Address<br />
+          <s:text name="prospectShort.email"  size="23" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Profession<br />
+          <s:text name="prospectShort.profession" size="23" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <s:submit name="start" value="Register"  />
+        </td>
+      </tr>
+    </table>
+  </s:form>
 </fieldset>
