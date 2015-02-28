@@ -7,22 +7,30 @@ import java.io.FileNotFoundException;
 import stripesbook.action.BaseActionBean;
 import net.infomediauk.xml.jaxb.model.HtmlPage;
 import net.sourceforge.stripes.action.DefaultHandler;
+import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.StreamingResolution;
+import net.sourceforge.stripes.validation.Validate;
+import net.sourceforge.stripes.validation.ValidateNestedProperties;
 
 public class HtmlPageActionBean extends BaseActionBean
 {
   private static final String FORM = "/WEB-INF/jsp/admin/htmlPage.jsp";
-  private String htmlPageFileName;
+  @ValidateNestedProperties({
+    @Validate(field="title", required=true),
+    @Validate(field="metaDescription", required=true)
+  })
   private HtmlPage htmlPageToEdit;
+  private String htmlPageFileName;
 
   public String getHtmlPageFileName()
   {
     return htmlPageFileName;
   }
 
+  @Validate(required=true)
   public void setHtmlPageFileName(String htmlPageFileName)
   {
     this.htmlPageFileName = htmlPageFileName;
@@ -39,6 +47,7 @@ public class HtmlPageActionBean extends BaseActionBean
   }
 
   @DefaultHandler
+  @DontValidate
   public Resolution view() throws Exception
   {
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
@@ -46,16 +55,18 @@ public class HtmlPageActionBean extends BaseActionBean
     return new ForwardResolution(FORM);
   }
   
-  public Resolution create()
-  {
-    htmlPageToEdit = new HtmlPage();
-    return new ForwardResolution(FORM);
-  }
+//  @DontValidate
+//  public Resolution create()
+//  {
+//    htmlPageToEdit = new HtmlPage();
+//    return new ForwardResolution(FORM);
+//  }
   
   /**
    * See http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/action/StreamingResolution.html
    * @return
    */
+  @DontValidate
   public Resolution download()
   {
     File file = getFile(htmlPageFileName);
@@ -73,6 +84,7 @@ public class HtmlPageActionBean extends BaseActionBean
     return new StreamingResolution(mimeType, inputStream).setFilename("htmlPageFileName");
   }
   
+  @DontValidate
   public Resolution delete()
   {
     File file = getFile(htmlPageFileName);
@@ -87,6 +99,7 @@ public class HtmlPageActionBean extends BaseActionBean
     return new RedirectResolution(HtmlPageListActionBean.class);
   }
   
+  @DontValidate
   public Resolution cancel()
   {
     return new RedirectResolution(HtmlPageListActionBean.class);

@@ -28,6 +28,7 @@ public class HtmlPageListActionBean extends BaseActionBean
   @DefaultHandler
   public Resolution view() throws Exception
   {
+    setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
     String folderName = getHtmlPageFilesFolder();
     File folder = new File(folderName);
     if (!folder.exists())

@@ -62,3 +62,16 @@ fieldset {
     -moz-border-radius: 8px;
     border-radius: 8px;
 }
+
+input.required {
+  border-width: 2px;
+}
+th.sorted {
+  background-color: #eeccaa;
+}
+tr.odd {
+  background-color: #e5f5e5;
+}
+tr.even {
+  background-color: #ffffff;
+}

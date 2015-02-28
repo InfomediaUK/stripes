@@ -7,16 +7,26 @@
   <html>
     <head>
       <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
-      <title>Admin</title>
-      <meta name="description" content="Admin description" />
-      <meta name="keywords" content="admin" />
+      <title>${title}</title>
+      <meta name="description" content="${metaDescription}" />
+      <meta name="keywords" content="${metaKeywords}" />
       <link rel="stylesheet" type="text/css" href="${contextPath}/css/pjlocums.css">
     </head>
     <body>
       <table>
         <tr>
           <td>
-            Menu Bar x
+            <s:link beanclass="net.infomediauk.stripes.action.admin.DisciplineListActionBean" event="view">
+              Discipline List
+            </s:link>
+            &nbsp;
+            <s:link beanclass="net.infomediauk.stripes.action.admin.VisaListActionBean" event="view">
+              Visa List
+            </s:link>
+            &nbsp;
+            <s:link beanclass="net.infomediauk.stripes.action.admin.HtmlPageListActionBean" event="view">
+              HTML Page List
+            </s:link>
           </td>
         </tr>
         <tr>

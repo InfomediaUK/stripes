@@ -29,6 +29,15 @@
       <param-name>ActionResolver.Packages</param-name>
       <param-value>stripesbook.action,net.infomediauk.stripes.action</param-value>
     </init-param>
+    <!-- Register Form on right would not clear until the following <init-param> was added. -->
+    <init-param>
+      <param-name>PopulationStrategy.Class</param-name>
+      <param-value>net.sourceforge.stripes.tag.BeanFirstPopulationStrategy</param-value>
+    </init-param>
+	<init-param>
+	  <param-name>Stripes.EncryptionKey</param-name>
+	  <param-value>Don't Copy/Paste Me! Make up your own encryption key and keep it secret!</param-value>
+	</init-param>
   </filter>
   <servlet>
     <servlet-name>DispatcherServlet</servlet-name>

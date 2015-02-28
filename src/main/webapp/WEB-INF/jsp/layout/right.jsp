@@ -9,12 +9,12 @@
       <tr>
         <td>
           <label for="fullName">Full Name</label><br />
-          <s:text name="prospectShort.fullName" size="23" /> 
+          <s:text name="prospectShort.fullName" value ="" size="23" /> 
         </td>
       </tr>
       <tr>
         <td>
-          Contact Tel no (incl code)<br />
+          Contact Tele (incl code)<br />
           <s:text name="prospectShort.contactTelephone"  size="23" />
         </td>
       </tr>
@@ -32,7 +32,7 @@
       </tr>
       <tr>
         <td>
-          <s:submit name="start" value="Register"  />
+          <s:submit name="start" value="Register" />
         </td>
       </tr>
     </table>

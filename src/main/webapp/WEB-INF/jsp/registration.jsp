@@ -11,34 +11,54 @@
     <table class="form" >
       <tr>
         <td>
-          <label for="prospectShort.fullName">Full Name</label>
+          <s:label for="prospect.fullName" />
         </td>
         <td>
-          <s:text name="prospectShort.fullName" size="50" /> 
-        </td>
-      </tr>
-      <tr>
-        <td>
-         <label for="prospectShort.fullName">Contact Telephone</label> 
-        </td>
-        <td>
-         <s:text name="prospectShort.contactTelephone" size="50" /> 
+          <s:text name="prospect.fullName" size="50" /> 
         </td>
       </tr>
       <tr>
         <td>
-         <label for="prospectShort.email">Email</label> 
+         <s:label for="prospect.contactTelephone" /> 
         </td>
         <td>
-         <s:text name="prospectShort.email" size="50" /> 
+         <s:text name="prospect.contactTelephone" size="50" /> 
         </td>
       </tr>
       <tr>
         <td>
-         <label for="prospectShort.profession">Email</label> 
+         <s:label for="prospect.email" /> 
         </td>
         <td>
-         <s:text name="prospectShort.profession" size="50" /> 
+         <s:text name="prospect.email" size="50" /> 
+        </td>
+      </tr>
+      <tr>
+        <td>
+         <s:label for="prospect.profession" />
+        </td>
+        <td>
+         <s:text name="prospect.profession" size="50" /> 
+        </td>
+      </tr>
+      <tr>
+        <td>
+         <s:label for="prospect.discipline" />
+        </td>
+        <td>
+         <s:select name="discipline" >
+           <s:options-collection collection="${actionBean.disciplineList}" value="id" sort="name" />
+         </s:select> 
+        </td>
+      </tr>
+      <tr>
+        <td>
+         <s:label for="prospect.visa" />
+        </td>
+        <td>
+         <s:select name="visa" >
+           <s:options-collection collection="${actionBean.visaList}" value="id" sort="name" />
+         </s:select> 
         </td>
       </tr>
       <tr>
