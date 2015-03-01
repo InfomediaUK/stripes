@@ -5,6 +5,11 @@ public class Prospect extends ProspectShort
   private String discipline;
   private String visa;
   
+  public Prospect()
+  {
+    super();
+  }
+  
   public Prospect(ProspectShort prospectShort)
   {
     setFullName(prospectShort.getFullName());

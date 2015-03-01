@@ -75,3 +75,6 @@ tr.odd {
 tr.even {
   background-color: #ffffff;
 }
+select {
+     width: 100%;
+}

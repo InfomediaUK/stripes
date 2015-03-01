@@ -39,7 +39,6 @@ public class DisciplineActionBean extends BaseActionBean
     this.id = id;
   }
 
-
   @DefaultHandler
   @DontValidate
   public Resolution view() throws Exception

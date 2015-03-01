@@ -6,7 +6,7 @@
   metaDescription="register"
   metaKeywords="job">
   <s:layout-component name="body">
-  <s:form beanclass="net.infomediauk.stripes.action.RegisterActionBean">
+  <s:form beanclass="net.infomediauk.stripes.action.RegistrationActionBean">
     <s:errors/>
     <table class="form" >
       <tr>
@@ -46,7 +46,7 @@
          <s:label for="prospect.discipline" />
         </td>
         <td>
-         <s:select name="discipline" >
+         <s:select name="discipline" class="select">
            <s:options-collection collection="${actionBean.disciplineList}" value="id" sort="name" />
          </s:select> 
         </td>
@@ -56,7 +56,7 @@
          <s:label for="prospect.visa" />
         </td>
         <td>
-         <s:select name="visa" >
+         <s:select name="visa" class="select">
            <s:options-collection collection="${actionBean.visaList}" value="id" sort="name" />
          </s:select> 
         </td>

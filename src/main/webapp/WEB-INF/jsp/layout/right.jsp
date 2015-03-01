@@ -14,7 +14,7 @@
       </tr>
       <tr>
         <td>
-          Contact Tele (incl code)<br />
+          Contact Tel. (incl code)<br />
           <s:text name="prospectShort.contactTelephone"  size="23" />
         </td>
       </tr>
