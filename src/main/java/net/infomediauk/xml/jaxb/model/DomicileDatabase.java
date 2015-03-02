@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement()
-public class DisciplineDatabase extends BaseDatabase<DisciplineRecord>
+public class DomicileDatabase extends BaseDatabase<DomicileRecord>
 {
   // XmLElementWrapper generates a wrapper element around XML representation
   @XmlElementWrapper(name = "list")
@@ -17,9 +17,10 @@ public class DisciplineDatabase extends BaseDatabase<DisciplineRecord>
    * This is needed for the JAXB 
    */
   @Override
-  public ArrayList<DisciplineRecord> getRecords()
+  public ArrayList<DomicileRecord> getRecords()
   {
     return super.getRecords();
   } 
   
 }
+

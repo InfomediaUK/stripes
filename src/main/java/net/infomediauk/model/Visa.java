@@ -1,36 +1,13 @@
 package net.infomediauk.model;
 
-public class Visa
+public class Visa extends BaseModel
 {
-  private Integer id;
-  private String name;
-  
-  public Integer getId()
-  {
-    return id;
-  }
-  
-  public void setId(Integer id)
-  {
-    this.id = id;
-  }
-  
-  public String getName()
-  {
-    return name;
-  }
-  
-  public void setName(String name)
-  {
-    this.name = name;
-  }
-
   @Override
   public boolean equals(Object obj)
   {
     try
     {
-      return id.equals(((Visa)obj).getId());
+      return getId().equals(((Visa)obj).getId());
     }
     catch (Exception exc)
     {
@@ -38,9 +15,4 @@ public class Visa
     }
   }
 
-  @Override
-  public String toString()
-  {
-    return String.format("%s", name);
-  }
 }

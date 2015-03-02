@@ -6,7 +6,7 @@
   metaDescription="${actionBean.htmlPage.metaDescription}"
   metaKeywords="${actionBean.htmlPage.metaKeywords}">
   <s:layout-component name="body">
-  <s:form beanclass="net.infomediauk.stripes.action.admin.DisciplineActionBean" >
+  <s:form beanclass="net.infomediauk.stripes.action.admin.DomicileActionBean">
     <s:errors/>
     <table class="form" >
       <tr>
@@ -14,15 +14,15 @@
           Id
         </td>
         <td>
-          ${actionBean.discipline.id} 
+          ${actionBean.domicile.id} 
         </td>
       </tr>
       <tr>
         <td>
-          Discipline
+          Domicile
         </td>
         <td>
-          <s:text name="discipline.name" class="required" size="100" />
+          <s:text name="domicile.name" class="required" size="100" />
         </td>
       </tr>
       <tr>
@@ -30,21 +30,21 @@
           Display Order
         </td>
         <td>
-          <s:text name="discipline.displayOrder" class="required" size="3" />
+          <s:text name="domicile.displayOrder" class="required" size="3" />
         </td>
       </tr>
       <tr>
         <td>
           <s:submit name="save" value="Save"  />
           <s:submit name="cancel" value="Cancel"  />
-        <c:if test="${actionBean.discipline.id!=null}">
+        <c:if test="${actionBean.domicile.id!=null}">
           <s:submit name="delete" value="Delete"  />
         </c:if>
         </td>
       </tr>
     </table>
-    <s:hidden name="discipline.id" />
-    <s:hidden name="discipline.numberOfChanges" />
+    <s:hidden name="domicile.id" />
+    <s:hidden name="domicile.numberOfChanges" />
   </s:form>
   </s:layout-component>
 </s:layout-render>

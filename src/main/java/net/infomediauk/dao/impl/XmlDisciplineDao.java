@@ -10,12 +10,12 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import net.infomediauk.dao.BaseDao;
-import net.infomediauk.dao.DisciplineDao;
+import net.infomediauk.dao.Dao;
 import net.infomediauk.model.Discipline;
 import net.infomediauk.xml.jaxb.model.DisciplineDatabase;
 import net.infomediauk.xml.jaxb.model.DisciplineRecord;
 
-public class XmlDisciplineDao extends BaseDao implements DisciplineDao
+public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
 {
   private static final String DISCIPLINE_DATABASE_XML = "discipline.xml";
   private DisciplineDatabase disciplineDatabase;
@@ -65,6 +65,11 @@ public class XmlDisciplineDao extends BaseDao implements DisciplineDao
     return instance;
   }
 
+  public void deleteData()
+  {
+    disciplineDatabase.deleteData();
+  }
+  
   @Override
   public List<Discipline> selectAll()
   {
@@ -72,11 +77,10 @@ public class XmlDisciplineDao extends BaseDao implements DisciplineDao
     Discipline discipline = null;
     if (disciplineDatabase != null)
     {
-      for (DisciplineRecord disciplineRecord : disciplineDatabase.getDisciplineRecords())
+      for (DisciplineRecord disciplineRecord : disciplineDatabase.getRecords())
       {
         discipline = new Discipline();
-        discipline.setId(disciplineRecord.getId());
-        discipline.setName(disciplineRecord.getName());
+        fillDiscipline(discipline, disciplineRecord);
         list.add(discipline);
       }
     }
@@ -89,31 +93,59 @@ public class XmlDisciplineDao extends BaseDao implements DisciplineDao
     Discipline discipline = new Discipline();
     if (id != null)
     {
-      DisciplineRecord disciplineRecord = disciplineDatabase.getDisciplineRecord(id);
-      discipline.setId(disciplineRecord.getId());
-      discipline.setName(disciplineRecord.getName());
+      DisciplineRecord disciplineRecord = disciplineDatabase.getRecord(id);
+      fillDiscipline(discipline, disciplineRecord);
     }
     return discipline;
   }
 
+  private void fillDiscipline(Discipline discipline, DisciplineRecord disciplineRecord)
+  {
+    discipline.setId(disciplineRecord.getId());
+    discipline.setName(disciplineRecord.getName());
+    discipline.setDisplayOrder(disciplineRecord.getDisplayOrder());
+    discipline.setNumberOfChanges(disciplineRecord.getNumberOfChanges());
+  }
+  
+
   @Override
-  public void update(Discipline discipline)
+  public Boolean update(Discipline discipline)
   {
     if (discipline != null)
     {
       if (discipline.getId() == null)
       {
         DisciplineRecord disciplineRecord = new DisciplineRecord();
-        disciplineRecord.setName(discipline.getName());
-        disciplineDatabase.insertDisciplineRecord(disciplineRecord);
+        fillDisciplineRecord(disciplineRecord, discipline);
+        disciplineDatabase.insertRecord(disciplineRecord);
       }
       else
       {
-        DisciplineRecord disciplineRecord = disciplineDatabase.getDisciplineRecord(discipline.getId());
-        disciplineRecord.setName(discipline.getName());
+        DisciplineRecord disciplineRecord = disciplineDatabase.getRecord(discipline.getId());
+        if (!disciplineRecord.getNumberOfChanges().equals(discipline.getNumberOfChanges()))
+        {
+//          return 1;
+        }
+        fillDisciplineRecord(disciplineRecord, discipline);
       }
       commit();
     }
+    return true;
+  }
+
+  private void fillDisciplineRecord(DisciplineRecord disciplineRecord, Discipline discipline)
+  {
+    disciplineRecord.setName(discipline.getName());
+    disciplineRecord.setDisplayOrder(discipline.getDisplayOrder());
+    disciplineRecord.setNumberOfChanges(discipline.getNumberOfChanges());
+  }
+  
+  @Override
+  public Boolean delete(Integer id)
+  {
+    disciplineDatabase.deleteRecord(id);
+    commit();
+    return true;
   }
 
   private void commit()
@@ -138,13 +170,6 @@ public class XmlDisciplineDao extends BaseDao implements DisciplineDao
 
   }
   
-  @Override
-  public void delete(Integer id)
-  {
-    disciplineDatabase.deleteDisciplineRecord(id);
-    commit();
-  }
-
   @Override
   public String getFileName()
   {

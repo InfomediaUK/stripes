@@ -29,6 +29,10 @@
       <param-name>ActionResolver.Packages</param-name>
       <param-value>stripesbook.action,net.infomediauk.stripes.action</param-value>
     </init-param>
+    <init-param>
+      <param-name>LocalePicker.Locales</param-name>
+      <param-value>en,es</param-value>
+    </init-param>
     <!-- Register Form on right would not clear until the following <init-param> was added. 
     <init-param>
       <param-name>PopulationStrategy.Class</param-name>

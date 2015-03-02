@@ -24,6 +24,10 @@
               Visa List
             </s:link>
             &nbsp;
+            <s:link beanclass="net.infomediauk.stripes.action.admin.DomicileListActionBean" event="view">
+              Domicile List
+            </s:link>
+            &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.admin.HtmlPageListActionBean" event="view">
               HTML Page List
             </s:link>

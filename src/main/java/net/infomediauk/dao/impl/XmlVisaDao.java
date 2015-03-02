@@ -10,12 +10,12 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import net.infomediauk.dao.BaseDao;
-import net.infomediauk.dao.VisaDao;
+import net.infomediauk.dao.Dao;
 import net.infomediauk.model.Visa;
 import net.infomediauk.xml.jaxb.model.VisaDatabase;
 import net.infomediauk.xml.jaxb.model.VisaRecord;
 
-public class XmlVisaDao extends BaseDao implements VisaDao
+public class XmlVisaDao extends BaseDao implements Dao<Visa>
 {
   private static final String VISA_DATABASE_XML = "visa.xml";
   private VisaDatabase visaDatabase;
@@ -52,7 +52,7 @@ public class XmlVisaDao extends BaseDao implements VisaDao
     if (instance == null)
     {
       // NOT instantiated yet so maybe it should be created.
-      synchronized(XmlDisciplineDao.class)
+      synchronized(XmlVisaDao.class)
       {
         // Now that only one thread can be here check if it exists again!
         if (instance == null)
@@ -65,6 +65,11 @@ public class XmlVisaDao extends BaseDao implements VisaDao
     return instance;
   }
 
+  public void deleteData()
+  {
+    visaDatabase.deleteData();
+  }
+  
   @Override
   public List<Visa> selectAll()
   {
@@ -72,11 +77,10 @@ public class XmlVisaDao extends BaseDao implements VisaDao
     Visa visa = null;
     if (visaDatabase != null)
     {
-      for (VisaRecord visaRecord : visaDatabase.getVisaRecords())
+      for (VisaRecord visaRecord : visaDatabase.getRecords())
       {
         visa = new Visa();
-        visa.setId(visaRecord.getId());
-        visa.setName(visaRecord.getName());
+        fillVisa(visa, visaRecord);
         list.add(visa);
       }
     }
@@ -89,31 +93,59 @@ public class XmlVisaDao extends BaseDao implements VisaDao
     Visa visa = new Visa();
     if (id != null)
     {
-      VisaRecord visaRecord = visaDatabase.getVisaRecord(id);
-      visa.setId(visaRecord.getId());
-      visa.setName(visaRecord.getName());
+      VisaRecord visaRecord = visaDatabase.getRecord(id);
+      fillVisa(visa, visaRecord);
     }
     return visa;
   }
 
+  private void fillVisa(Visa visa, VisaRecord visaRecord)
+  {
+    visa.setId(visaRecord.getId());
+    visa.setName(visaRecord.getName());
+    visa.setDisplayOrder(visaRecord.getDisplayOrder());
+    visa.setNumberOfChanges(visaRecord.getNumberOfChanges());
+  }
+  
+
   @Override
-  public void update(Visa visa)
+  public Boolean update(Visa visa)
   {
     if (visa != null)
     {
       if (visa.getId() == null)
       {
         VisaRecord visaRecord = new VisaRecord();
-        visaRecord.setName(visa.getName());
-        visaDatabase.insertVisaRecord(visaRecord);
+        fillVisaRecord(visaRecord, visa);
+        visaDatabase.insertRecord(visaRecord);
       }
       else
       {
-        VisaRecord visaRecord = visaDatabase.getVisaRecord(visa.getId());
-        visaRecord.setName(visa.getName());
+        VisaRecord visaRecord = visaDatabase.getRecord(visa.getId());
+        if (!visaRecord.getNumberOfChanges().equals(visa.getNumberOfChanges()))
+        {
+//          return 1;
+        }
+        fillVisaRecord(visaRecord, visa);
       }
       commit();
     }
+    return true;
+  }
+
+  private void fillVisaRecord(VisaRecord visaRecord, Visa visa)
+  {
+    visaRecord.setName(visa.getName());
+    visaRecord.setDisplayOrder(visa.getDisplayOrder());
+    visaRecord.setNumberOfChanges(visa.getNumberOfChanges());
+  }
+  
+  @Override
+  public Boolean delete(Integer id)
+  {
+    visaDatabase.deleteRecord(id);
+    commit();
+    return true;
   }
 
   private void commit()
@@ -138,13 +170,6 @@ public class XmlVisaDao extends BaseDao implements VisaDao
 
   }
   
-  @Override
-  public void delete(Integer id)
-  {
-    visaDatabase.deleteVisaRecord(id);
-    commit();
-  }
-
   @Override
   public String getFileName()
   {

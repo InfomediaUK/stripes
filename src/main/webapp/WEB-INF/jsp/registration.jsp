@@ -11,10 +11,18 @@
     <table class="form" >
       <tr>
         <td>
-          <s:label for="prospect.fullName" />
+          <s:label for="prospect.firstName" />
         </td>
         <td>
-          <s:text name="prospect.fullName" size="50" /> 
+          <s:text name="prospect.firstName" size="50" /> 
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <s:label for="prospect.lastName" />
+        </td>
+        <td>
+          <s:text name="prospect.lastName" size="50" /> 
         </td>
       </tr>
       <tr>
@@ -46,7 +54,7 @@
          <s:label for="prospect.discipline" />
         </td>
         <td>
-         <s:select name="discipline" class="select">
+         <s:select name="disciplineId" class="select">
            <s:options-collection collection="${actionBean.disciplineList}" value="id" sort="name" />
          </s:select> 
         </td>
@@ -56,9 +64,17 @@
          <s:label for="prospect.visa" />
         </td>
         <td>
-         <s:select name="visa" class="select">
+         <s:select name="visaId" class="select">
            <s:options-collection collection="${actionBean.visaList}" value="id" sort="name" />
          </s:select> 
+        </td>
+      </tr>
+      <tr>
+        <td>
+         <s:label for="fileBean" />
+        </td>
+        <td>
+         <s:file name="fileBean"/> 
         </td>
       </tr>
       <tr>

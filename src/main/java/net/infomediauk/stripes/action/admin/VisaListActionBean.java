@@ -36,6 +36,14 @@ public class VisaListActionBean extends BaseActionBean
     return new ForwardResolution(LIST);
   }  
 
+  public Resolution delete()
+  {
+    String fileName = XmlVisaDao.getInstance().getFileName();
+    File file = XmlVisaDao.getInstance().getFile();
+    file.delete();
+    return new ForwardResolution(LIST);
+  }
+  
   /**
    * See http://stripes.sourceforge.net/docs/current/javadoc/net/sourceforge/stripes/action/StreamingResolution.html
    * @return

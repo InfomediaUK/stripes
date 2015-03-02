@@ -12,6 +12,10 @@
       New
     </s:link>
     &nbsp;
+    <s:link beanclass="net.infomediauk.stripes.action.admin.DisciplineListActionBean" event="delete">
+      Delete
+    </s:link>
+    &nbsp;
     <s:link beanclass="net.infomediauk.stripes.action.admin.DisciplineListActionBean" event="download">
       Download
     </s:link>
@@ -23,6 +27,7 @@
             ${discipline.name}
           </s:link>
       </d:column>
+      <d:column title="Display Order" property="displayOrder" sortable="true" />
     </d:table>
   </s:layout-component>
 </s:layout-render>

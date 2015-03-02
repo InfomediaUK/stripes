@@ -5,43 +5,46 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import net.infomediauk.dao.impl.XmlDisciplineDao;
 import net.infomediauk.dao.impl.XmlDomicileDao;
-import net.infomediauk.model.Discipline;
+import net.infomediauk.model.Domicile;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.StreamingResolution;
 import stripesbook.action.BaseActionBean;
 
-public class DisciplineListActionBean extends BaseActionBean
+public class DomicileListActionBean extends BaseActionBean
 {
-  private static final String LIST = "/WEB-INF/jsp/admin/disciplineList.jsp";
-  private List<Discipline> disciplineList;
+  private static final String LIST = "/WEB-INF/jsp/admin/domicileList.jsp";
+  private List<Domicile> domicileList;
 
-  public List<Discipline> getDisciplineList()
+  public List<Domicile> getDomicileList()
   {
-    return disciplineList;
+    return domicileList;
   }
 
-  public void setDisciplineList(List<Discipline> disciplineList)
+  public void setDomicileList(List<Domicile> domicileList)
   {
-    this.disciplineList = disciplineList;
+    this.domicileList = domicileList;
   }
 
   @DefaultHandler
   public Resolution view() throws Exception
   {
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
-    disciplineList = XmlDisciplineDao.getInstance().selectAll();
+    domicileList = XmlDomicileDao.getInstance().selectAll();
     return new ForwardResolution(LIST);
   }  
 
   public Resolution delete()
   {
-    String fileName = XmlDisciplineDao.getInstance().getFileName();
-    File file = XmlDisciplineDao.getInstance().getFile();
-    file.delete();
+    String fileName = XmlDomicileDao.getInstance().getFileName();
+    File file = XmlDomicileDao.getInstance().getFile();
+    if (file.delete())
+    {
+      XmlDomicileDao.getInstance().deleteData();
+      System.out.println("Gone!");
+    }
     return new ForwardResolution(LIST);
   }
   
@@ -51,8 +54,8 @@ public class DisciplineListActionBean extends BaseActionBean
    */
   public Resolution download()
   {
-    String fileName = XmlDisciplineDao.getInstance().getFileName();
-    File file = XmlDisciplineDao.getInstance().getFile();
+    String fileName = XmlDomicileDao.getInstance().getFileName();
+    File file = XmlDomicileDao.getInstance().getFile();
     String mimeType = getContext().getServletContext().getMimeType(fileName);
     FileInputStream inputStream = null;
     try

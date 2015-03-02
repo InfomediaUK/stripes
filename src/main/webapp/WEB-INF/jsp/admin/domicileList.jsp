@@ -7,24 +7,24 @@
   metaKeywords="${actionBean.htmlPage.metaKeywords}">
   <s:layout-component name="body">
     <s:errors/>
-    <s:link beanclass="net.infomediauk.stripes.action.admin.VisaActionBean" event="view">
-      <s:param name="visaName" value="${visa.fileName}" />
+    <s:link beanclass="net.infomediauk.stripes.action.admin.DomicileActionBean" event="view">
+      <s:param name="domicileName" value="${domicile.fileName}" />
       New
     </s:link>
     &nbsp;
-    <s:link beanclass="net.infomediauk.stripes.action.admin.VisaListActionBean" event="delete">
+    <s:link beanclass="net.infomediauk.stripes.action.admin.DomicileListActionBean" event="delete">
       Delete
     </s:link>
     &nbsp;
-    <s:link beanclass="net.infomediauk.stripes.action.admin.VisaListActionBean" event="download">
+    <s:link beanclass="net.infomediauk.stripes.action.admin.DomicileListActionBean" event="download">
       Download
     </s:link>
-    <d:table name="${actionBean.visaList}" id="visa" requestURI="" defaultsort="2" >
+    <d:table name="${actionBean.domicileList}" id="domicile" requestURI="" defaultsort="2" >
       <d:column title="Id" property="id" sortable="true" />
-      <d:column title="Visa" sortable="true" >
-          <s:link beanclass="net.infomediauk.stripes.action.admin.VisaActionBean" event="view">
-            <s:param name="id" value="${visa.id}" />
-            ${visa.name}
+      <d:column title="Domicile" sortable="true" >
+          <s:link beanclass="net.infomediauk.stripes.action.admin.DomicileActionBean" event="view">
+            <s:param name="id" value="${domicile.id}" />
+            ${domicile.name}
           </s:link>
       </d:column>
       <d:column title="Display Order" property="displayOrder" sortable="true" />

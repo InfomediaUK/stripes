@@ -27,6 +27,14 @@
       </tr>
       <tr>
         <td>
+          Display Order
+        </td>
+        <td>
+          <s:text name="visa.displayOrder" class="required" size="3" />
+        </td>
+      </tr>
+      <tr>
+        <td>
           <s:submit name="save" value="Save"  />
           <s:submit name="cancel" value="Cancel"  />
         <c:if test="${actionBean.visa.id!=null}">
@@ -36,6 +44,7 @@
       </tr>
     </table>
     <s:hidden name="visa.id" />
+    <s:hidden name="visa.numberOfChanges" />
   </s:form>
   </s:layout-component>
 </s:layout-render>
