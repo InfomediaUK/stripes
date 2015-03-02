@@ -1,5 +1,13 @@
-package net.infomediauk.model;
+package net.infomediauk.xml.jaxb.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+import net.infomediauk.model.ProspectShort;
+
+@XmlRootElement
+@XmlType(propOrder = { "title", "firstName", "lastName", "contactTelephone", "email", "profession", "availableForWork", 
+                       "disciplineId", "domicileId", "visaId", "lengthOfStayId", "documentFileName"})
 public class Prospect
 {
   private String title;
@@ -8,10 +16,11 @@ public class Prospect
   private String contactTelephone;
   private String email;
   private String profession;
+  private String availableForWork;
   private Integer disciplineId;
-  private Integer domicleId;
-  private Integer stayId;
+  private Integer domicileId;
   private Integer visaId;
+  private Integer lengthOfStayId;
   private String documentFileName;
   
   public Prospect()
@@ -96,6 +105,16 @@ public class Prospect
     this.profession = profession;
   }
 
+  public String getAvailableForWork()
+  {
+    return availableForWork;
+  }
+
+  public void setAvailableForWork(String dateInCountry)
+  {
+    this.availableForWork = dateInCountry;
+  }
+
   public Integer getDisciplineId()
   {
     return disciplineId;
@@ -106,24 +125,14 @@ public class Prospect
     this.disciplineId = discipline;
   }
 
-  public Integer getDomicleId()
+  public Integer getDomicileId()
   {
-    return domicleId;
+    return domicileId;
   }
 
-  public void setDomicleId(Integer domicleId)
+  public void setDomicileId(Integer domicleId)
   {
-    this.domicleId = domicleId;
-  }
-
-  public Integer getStayId()
-  {
-    return stayId;
-  }
-
-  public void setStayId(Integer stayId)
-  {
-    this.stayId = stayId;
+    this.domicileId = domicleId;
   }
 
   public Integer getVisaId()
@@ -134,6 +143,16 @@ public class Prospect
   public void setVisaId(Integer visa)
   {
     this.visaId = visa;
+  }
+
+  public Integer getLengthOfStayId()
+  {
+    return lengthOfStayId;
+  }
+
+  public void setLengthOfStayId(Integer lengthOfStayId)
+  {
+    this.lengthOfStayId = lengthOfStayId;
   }
 
   public String getDocumentFileName()
