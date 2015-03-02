@@ -1,6 +1,7 @@
 package stripesbook.action;
 
 import java.io.File;
+import java.util.Calendar;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -96,5 +97,11 @@ public abstract class BaseActionBean implements ActionBean
     String path = System.getenv("OPENSHIFT_DATA_DIR") + "/files/static";
     return path;
   }
-  
+
+  protected Integer getThisYear()
+  {
+    Calendar calendar = Calendar.getInstance();
+    return Integer.valueOf(calendar.get(Calendar.YEAR));
+
+  }
 }
