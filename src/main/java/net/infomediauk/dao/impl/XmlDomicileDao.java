@@ -18,7 +18,7 @@ import net.infomediauk.xml.jaxb.model.DomicileRecord;
 public class XmlDomicileDao extends BaseDao implements Dao<Domicile>
 {
   private static final String DOMICILE_DATABASE_XML = "domicile.xml";
-  private DomicileDatabase domicileDatabase;
+  private DomicileDatabase database;
   private static XmlDomicileDao instance = null;
 
   private XmlDomicileDao()
@@ -31,12 +31,12 @@ public class XmlDomicileDao extends BaseDao implements Dao<Domicile>
         // Read in database.
         JAXBContext context = JAXBContext.newInstance(DomicileDatabase.class);
         Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
-        domicileDatabase = (DomicileDatabase)jaxbUnmarshaller.unmarshal(file);
-        domicileDatabase.loadMap();
+        database = (DomicileDatabase)jaxbUnmarshaller.unmarshal(file);
+        database.loadMap();
       }
       else
       {
-        domicileDatabase = new DomicileDatabase();
+        database = new DomicileDatabase();
         commit();
       }
     }
@@ -67,7 +67,7 @@ public class XmlDomicileDao extends BaseDao implements Dao<Domicile>
 
   public void deleteData()
   {
-    domicileDatabase.deleteData();
+    database.deleteData();
   }
   
   @Override
@@ -75,9 +75,9 @@ public class XmlDomicileDao extends BaseDao implements Dao<Domicile>
   {
     List<Domicile> list = new ArrayList<Domicile>();
     Domicile domicile = null;
-    if (domicileDatabase != null)
+    if (database != null)
     {
-      for (DomicileRecord domicileRecord : domicileDatabase.getRecords())
+      for (DomicileRecord domicileRecord : database.getRecords())
       {
         domicile = new Domicile();
         fillDomicile(domicile, domicileRecord);
@@ -93,7 +93,7 @@ public class XmlDomicileDao extends BaseDao implements Dao<Domicile>
     Domicile domicile = new Domicile();
     if (id != null)
     {
-      DomicileRecord domicileRecord = domicileDatabase.getRecord(id);
+      DomicileRecord domicileRecord = database.getRecord(id);
       fillDomicile(domicile, domicileRecord);
     }
     return domicile;
@@ -117,11 +117,11 @@ public class XmlDomicileDao extends BaseDao implements Dao<Domicile>
       {
         DomicileRecord domicileRecord = new DomicileRecord();
         fillDomicileRecord(domicileRecord, domicile);
-        domicileDatabase.insertRecord(domicileRecord);
+        database.insertRecord(domicileRecord);
       }
       else
       {
-        DomicileRecord domicileRecord = domicileDatabase.getRecord(domicile.getId());
+        DomicileRecord domicileRecord = database.getRecord(domicile.getId());
         if (!domicileRecord.getNumberOfChanges().equals(domicile.getNumberOfChanges()))
         {
 //          return 1;
@@ -143,7 +143,7 @@ public class XmlDomicileDao extends BaseDao implements Dao<Domicile>
   @Override
   public Boolean delete(Integer id)
   {
-    domicileDatabase.deleteRecord(id);
+    database.deleteRecord(id);
     commit();
     return true;
   }
@@ -160,8 +160,8 @@ public class XmlDomicileDao extends BaseDao implements Dao<Domicile>
       // output pretty printed
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-      jaxbMarshaller.marshal(domicileDatabase, file);
-      jaxbMarshaller.marshal(domicileDatabase, System.out);
+      jaxbMarshaller.marshal(database, file);
+      jaxbMarshaller.marshal(database, System.out);
     }
     catch (JAXBException e)
     {

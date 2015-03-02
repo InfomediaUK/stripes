@@ -18,7 +18,7 @@ import net.infomediauk.xml.jaxb.model.VisaRecord;
 public class XmlVisaDao extends BaseDao implements Dao<Visa>
 {
   private static final String VISA_DATABASE_XML = "visa.xml";
-  private VisaDatabase visaDatabase;
+  private VisaDatabase database;
   private static XmlVisaDao instance = null;
 
   private XmlVisaDao()
@@ -31,12 +31,12 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
         // Read in database.
         JAXBContext context = JAXBContext.newInstance(VisaDatabase.class);
         Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
-        visaDatabase = (VisaDatabase)jaxbUnmarshaller.unmarshal(file);
-        visaDatabase.loadMap();
+        database = (VisaDatabase)jaxbUnmarshaller.unmarshal(file);
+        database.loadMap();
       }
       else
       {
-        visaDatabase = new VisaDatabase();
+        database = new VisaDatabase();
         commit();
       }
     }
@@ -67,7 +67,7 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
 
   public void deleteData()
   {
-    visaDatabase.deleteData();
+    database.deleteData();
   }
   
   @Override
@@ -75,9 +75,9 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
   {
     List<Visa> list = new ArrayList<Visa>();
     Visa visa = null;
-    if (visaDatabase != null)
+    if (database != null)
     {
-      for (VisaRecord visaRecord : visaDatabase.getRecords())
+      for (VisaRecord visaRecord : database.getRecords())
       {
         visa = new Visa();
         fillVisa(visa, visaRecord);
@@ -93,7 +93,7 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
     Visa visa = new Visa();
     if (id != null)
     {
-      VisaRecord visaRecord = visaDatabase.getRecord(id);
+      VisaRecord visaRecord = database.getRecord(id);
       fillVisa(visa, visaRecord);
     }
     return visa;
@@ -117,11 +117,11 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
       {
         VisaRecord visaRecord = new VisaRecord();
         fillVisaRecord(visaRecord, visa);
-        visaDatabase.insertRecord(visaRecord);
+        database.insertRecord(visaRecord);
       }
       else
       {
-        VisaRecord visaRecord = visaDatabase.getRecord(visa.getId());
+        VisaRecord visaRecord = database.getRecord(visa.getId());
         if (!visaRecord.getNumberOfChanges().equals(visa.getNumberOfChanges()))
         {
 //          return 1;
@@ -143,7 +143,7 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
   @Override
   public Boolean delete(Integer id)
   {
-    visaDatabase.deleteRecord(id);
+    database.deleteRecord(id);
     commit();
     return true;
   }
@@ -160,8 +160,8 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
       // output pretty printed
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-      jaxbMarshaller.marshal(visaDatabase, file);
-      jaxbMarshaller.marshal(visaDatabase, System.out);
+      jaxbMarshaller.marshal(database, file);
+      jaxbMarshaller.marshal(database, System.out);
     }
     catch (JAXBException e)
     {

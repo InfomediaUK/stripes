@@ -18,7 +18,7 @@ import net.infomediauk.xml.jaxb.model.DisciplineRecord;
 public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
 {
   private static final String DISCIPLINE_DATABASE_XML = "discipline.xml";
-  private DisciplineDatabase disciplineDatabase;
+  private DisciplineDatabase database;
   private static XmlDisciplineDao instance = null;
 
   private XmlDisciplineDao()
@@ -31,12 +31,12 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
         // Read in database.
         JAXBContext context = JAXBContext.newInstance(DisciplineDatabase.class);
         Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
-        disciplineDatabase = (DisciplineDatabase)jaxbUnmarshaller.unmarshal(file);
-        disciplineDatabase.loadMap();
+        database = (DisciplineDatabase)jaxbUnmarshaller.unmarshal(file);
+        database.loadMap();
       }
       else
       {
-        disciplineDatabase = new DisciplineDatabase();
+        database = new DisciplineDatabase();
         commit();
       }
     }
@@ -67,7 +67,7 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
 
   public void deleteData()
   {
-    disciplineDatabase.deleteData();
+    database.deleteData();
   }
   
   @Override
@@ -75,9 +75,9 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
   {
     List<Discipline> list = new ArrayList<Discipline>();
     Discipline discipline = null;
-    if (disciplineDatabase != null)
+    if (database != null)
     {
-      for (DisciplineRecord disciplineRecord : disciplineDatabase.getRecords())
+      for (DisciplineRecord disciplineRecord : database.getRecords())
       {
         discipline = new Discipline();
         fillDiscipline(discipline, disciplineRecord);
@@ -93,7 +93,7 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
     Discipline discipline = new Discipline();
     if (id != null)
     {
-      DisciplineRecord disciplineRecord = disciplineDatabase.getRecord(id);
+      DisciplineRecord disciplineRecord = database.getRecord(id);
       fillDiscipline(discipline, disciplineRecord);
     }
     return discipline;
@@ -117,11 +117,11 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
       {
         DisciplineRecord disciplineRecord = new DisciplineRecord();
         fillDisciplineRecord(disciplineRecord, discipline);
-        disciplineDatabase.insertRecord(disciplineRecord);
+        database.insertRecord(disciplineRecord);
       }
       else
       {
-        DisciplineRecord disciplineRecord = disciplineDatabase.getRecord(discipline.getId());
+        DisciplineRecord disciplineRecord = database.getRecord(discipline.getId());
         if (!disciplineRecord.getNumberOfChanges().equals(discipline.getNumberOfChanges()))
         {
 //          return 1;
@@ -143,7 +143,7 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
   @Override
   public Boolean delete(Integer id)
   {
-    disciplineDatabase.deleteRecord(id);
+    database.deleteRecord(id);
     commit();
     return true;
   }
@@ -160,8 +160,8 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
       // output pretty printed
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-      jaxbMarshaller.marshal(disciplineDatabase, file);
-      jaxbMarshaller.marshal(disciplineDatabase, System.out);
+      jaxbMarshaller.marshal(database, file);
+      jaxbMarshaller.marshal(database, System.out);
     }
     catch (JAXBException e)
     {
