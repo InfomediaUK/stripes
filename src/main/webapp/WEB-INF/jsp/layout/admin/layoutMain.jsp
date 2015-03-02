@@ -17,23 +17,27 @@
         <tr>
           <td>
             <s:link beanclass="net.infomediauk.stripes.action.admin.DisciplineListActionBean" event="view">
-              Discipline List
+              Disciplines
             </s:link>
             &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.admin.VisaListActionBean" event="view">
-              Visa List
+              Visa Types
             </s:link>
             &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.admin.DomicileListActionBean" event="view">
-              Domicile List
+              Domiciles
             </s:link>
             &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.admin.TitleListActionBean" event="view">
-              Title List
+              Titles
+            </s:link>
+            &nbsp;
+            <s:link beanclass="net.infomediauk.stripes.action.admin.LengthOfStayListActionBean" event="view">
+              Lengths of Stay
             </s:link>
             &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.admin.HtmlPageListActionBean" event="view">
-              HTML Page List
+              HTML Pages
             </s:link>
           </td>
         </tr>
