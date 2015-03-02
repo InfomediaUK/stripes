@@ -28,6 +28,10 @@
               Domicile List
             </s:link>
             &nbsp;
+            <s:link beanclass="net.infomediauk.stripes.action.admin.TitleListActionBean" event="view">
+              Title List
+            </s:link>
+            &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.admin.HtmlPageListActionBean" event="view">
               HTML Page List
             </s:link>

@@ -2,6 +2,7 @@ package net.infomediauk.model;
 
 public class Prospect
 {
+  private String title;
   private String firstName;
   private String lastName;
   private String contactTelephone;
@@ -33,6 +34,16 @@ public class Prospect
     setContactTelephone(prospectShort.getContactTelephone());
     setEmail(prospectShort.getEmail());
     setProfession(prospectShort.getProfession());
+  }
+
+  public String getTitle()
+  {
+    return title;
+  }
+
+  public void setTitle(String title)
+  {
+    this.title = title;
   }
 
   public String getFirstName()
@@ -135,4 +146,9 @@ public class Prospect
     this.documentFileName = document;
   }
   
+  @Override
+  public String toString()
+  {
+    return String.format("%s %s %s %s %s", title, firstName, lastName, email, contactTelephone);
+  }
 }
