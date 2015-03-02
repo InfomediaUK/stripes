@@ -75,6 +75,15 @@ tr.odd {
 tr.even {
   background-color: #ffffff;
 }
-select {
+select.wide {
      width: 100%;
+}
+select.day {
+     width: 20%;
+}
+select.month {
+     width: 40%;
+}
+select.year {
+     width: 30%;
 }
