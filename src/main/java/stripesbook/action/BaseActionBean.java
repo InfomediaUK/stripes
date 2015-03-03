@@ -1,7 +1,6 @@
 package stripesbook.action;
 
 import java.io.File;
-import java.util.Calendar;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -9,7 +8,6 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import net.infomediauk.xml.jaxb.model.HtmlPage;
-import net.infomediauk.xml.jaxb.model.Prospect;
 import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.ActionBeanContext;
 
@@ -78,25 +76,6 @@ public abstract class BaseActionBean implements ActionBean
 
   }
   
-//  protected void saveProspect(Prospect prospect, String fileName)
-//  {
-//    File file = getProspectFile(fileName);
-//    try
-//    {
-//      JAXBContext jaxbContext = JAXBContext.newInstance(Prospect.class);
-//      Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-//      // output pretty printed
-//      jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-//      jaxbMarshaller.marshal(prospect, file);
-//      jaxbMarshaller.marshal(prospect, System.out);
-//    }
-//    catch (JAXBException e)
-//    {
-//      e.printStackTrace();
-//    }
-//    System.out.println(file.getName());
-//  }
-//
   protected File getHtmlPageFile(String fileName)
   {
     String fullFileName = getHtmlPageFilesFolder() + "/" + fileName;;

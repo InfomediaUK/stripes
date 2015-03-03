@@ -164,6 +164,16 @@ public class Prospect
   {
     this.documentFileName = document;
   }
+
+  public String getTitleAndFullName()
+  {
+    return String.format("%s %s %s", title, firstName, lastName);
+  }
+  
+  public String getFullName()
+  {
+    return String.format("%s %s", firstName, lastName);
+  }
   
   @Override
   public String toString()

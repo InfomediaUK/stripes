@@ -10,6 +10,9 @@ import java.util.Map;
 
 public class DateManager
 {
+  private String dayTitle;
+  private String monthTitle;
+  private String yearTitle;
   private List<DayNumber> dayNumberList;
   private List<Month> monthList;
   private List<Year> yearList;
@@ -19,9 +22,25 @@ public class DateManager
   
   public DateManager()
   {
-    super();
+    this(Locale.ENGLISH, "--", "---------------", "----");
+  }
+
+  public DateManager(Locale locale)
+  {
+    this(locale, "--", "---------------", "----");
+  }
+
+  public DateManager(Locale locale, String dayTitle, String monthTitle, String yearTitle)
+  {
+    if (locale == null) 
+    {
+      locale = Locale.ENGLISH;
+    }
+    this.dayTitle = dayTitle;
+    this.monthTitle = monthTitle;
+    this.yearTitle = yearTitle;
     buildDayNUmberList();
-    buildMonthList();
+    buildMonthList(locale);
     buildYearList();
   }
 
@@ -70,22 +89,24 @@ public class DateManager
   private void buildDayNUmberList()
   {
     dayNumberList = new ArrayList<DayNumber>(32);
-    dayNumberList.add(new DayNumber(0, "Day"));
+    dayNumberList.add(new DayNumber(0, dayTitle));
     for (int i = 1; i < 31; i++)
     {
       dayNumberList.add(new DayNumber(i, new Integer(i).toString()));
     }
   }
   
-  private void buildMonthList()
+  private void buildMonthList(Locale locale)
   {
-    DateFormatSymbols dfs = new DateFormatSymbols(Locale.ENGLISH);
-    String[] monthNames = dfs.getMonths();
+    DateFormatSymbols dateFormatSymbols = new DateFormatSymbols(Locale.ENGLISH);
+    DateFormatSymbols localizedFormatSymbols = new DateFormatSymbols(locale);
+    String[] monthNames = dateFormatSymbols.getMonths();
+    String[] localizedMonthNames = localizedFormatSymbols.getMonths();
     monthList = new ArrayList<Month>(13);
-    monthList.add(new Month(0, "Month"));
+    monthList.add(new Month(0, monthTitle, monthTitle));
     for (int i = 0; i < 12; i++) 
     {
-      Month month = new Month(i + 1, monthNames[i]);
+      Month month = new Month(i + 1, monthNames[i], localizedMonthNames[i]);
       monthList.add(month);
       monthMap.put(month.getId(), month);
     }
@@ -94,7 +115,7 @@ public class DateManager
   private void buildYearList()
   {
     yearList = new ArrayList<Year>(5);
-    yearList.add(new Year(0, "Year"));
+    yearList.add(new Year(0, yearTitle));
     Calendar calendar = Calendar.getInstance();
     int yyyy = 0;
     for (int i = 1; i < 5; i++)
