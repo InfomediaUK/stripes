@@ -7,6 +7,12 @@
   
   <display-name>P J Locums</display-name>
 
+  <!-- Tell JSTL to get fmt messages from StripesResources.properties -->
+  <context-param>
+    <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+    <param-value>StripesResources</param-value>
+  </context-param>
+   
   <filter>
     <filter-name>CharsetFilter</filter-name>
     <filter-class>net.infomediauk.filter.CharsetFilter</filter-class>
