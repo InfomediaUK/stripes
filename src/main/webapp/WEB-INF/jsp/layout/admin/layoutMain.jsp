@@ -36,6 +36,10 @@
               Lengths of Stay
             </s:link>
             &nbsp;
+            <s:link beanclass="net.infomediauk.stripes.action.admin.ProspectListActionBean" event="view">
+              Prospects
+            </s:link>
+            &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.admin.HtmlPageListActionBean" event="view">
               HTML Pages
             </s:link>

@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/common/taglibs.jsp" %>
 
 <fieldset>
-  <h3>Register with us</h3>
+  <h3><fmt:message key="registerWithUs" /></h3>
   <s:form beanclass="net.infomediauk.stripes.action.RegisterActionBean">
     <s:errors/>
     <table class="form" >

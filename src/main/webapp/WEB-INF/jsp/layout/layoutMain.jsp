@@ -44,7 +44,7 @@
               About Us
             </s:link>
          </div>
-          <div id="tagline"><h1>UK locum recruitment agency for overseas staff to the NHS<br />and private sector market</h1></div>
+          <div id="tagline"><h1><fmt:message key="tagLine" /></h1></div>
         </div>
         <div id="footer" style="clear:both; padding-top:10px;">
           <s:layout-component name="footer">
