@@ -103,7 +103,7 @@
          </s:select>
          &nbsp; 
          <s:select name="availableYear" class="year" value="${actionBean.availableYear}" >
-           <s:options-collection collection="${actionBean.yearList}" value="name" sort="id"  />
+           <s:options-collection collection="${actionBean.yearList}" value="id" sort="id"  />
          </s:select>
         </td>
       </tr>

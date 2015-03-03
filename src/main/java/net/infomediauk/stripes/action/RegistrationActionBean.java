@@ -1,6 +1,7 @@
 package net.infomediauk.stripes.action;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,6 +12,7 @@ import stripesbook.action.BaseActionBean;
 import net.infomediauk.dao.impl.XmlDisciplineDao;
 import net.infomediauk.dao.impl.XmlDomicileDao;
 import net.infomediauk.dao.impl.XmlLengthOfStayDao;
+import net.infomediauk.dao.impl.XmlProspectDao;
 import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Discipline;
@@ -19,6 +21,7 @@ import net.infomediauk.model.LengthOfStay;
 import net.infomediauk.model.ProspectShort;
 import net.infomediauk.model.Title;
 import net.infomediauk.model.Visa;
+import net.infomediauk.utils.DateManager;
 import net.infomediauk.utils.DayNumber;
 import net.infomediauk.utils.Month;
 import net.infomediauk.utils.Year;
@@ -44,9 +47,9 @@ public class RegistrationActionBean extends BaseActionBean
   private Prospect prospect;
   private ProspectShort prospectShort;
   private FileBean fileBean;
-  private List<DayNumber> dayNumberList;
-  private List<Month> monthList;
-  private List<Year> yearList;
+//  private List<DayNumber> dayNumberList;
+//  private List<Month> monthList;
+//  private List<Year> yearList;
   private List<Domicile> domicileList;
   private List<LengthOfStay> lengthOfStayList;
   private List<Discipline> disciplineList;
@@ -58,15 +61,17 @@ public class RegistrationActionBean extends BaseActionBean
   private Integer visaId;
   private Integer availableDayNumber;
   private Integer availableMonth;
-  private String availableYear;
+  private Integer availableYear;
   private String title;
+  private DateManager dateManager;
   
   public RegistrationActionBean()
   {
     super();
-    buildDayNUmberList();
-    buildMonthList();
-    buildYearList();
+    dateManager = new DateManager();
+//    buildDayNUmberList();
+//    buildMonthList();
+//    buildYearList();
     domicileList     = XmlDomicileDao.getInstance().selectAll();
     disciplineList   = XmlDisciplineDao.getInstance().selectAll();
     lengthOfStayList = XmlLengthOfStayDao.getInstance().selectAll();
@@ -196,34 +201,34 @@ public class RegistrationActionBean extends BaseActionBean
 
   public List<DayNumber> getDayNumberList()
   {
-    return dayNumberList;
+    return dateManager.getDayNumberList();
   }
 
-  public void setDayNumberList(List<DayNumber> dayNumberList)
-  {
-    this.dayNumberList = dayNumberList;
-  }
-
+//  public void setDayNumberList(List<DayNumber> dayNumberList)
+//  {
+//    this.dayNumberList = dayNumberList;
+//  }
+//
   public List<Month> getMonthList()
   {
-    return monthList;
+    return dateManager.getMonthList();
   }
 
-  public void setMonthList(List<Month> monthList)
-  {
-    this.monthList = monthList;
-  }
-
+//  public void setMonthList(List<Month> monthList)
+//  {
+//    this.monthList = monthList;
+//  }
+//
   public List<Year> getYearList()
   {
-    return yearList;
+    return dateManager.getYearList();
   }
 
-  public void setYearList(List<Year> yearList)
-  {
-    this.yearList = yearList;
-  }
-
+//  public void setYearList(List<Year> yearList)
+//  {
+//    this.yearList = yearList;
+//  }
+//
   public Integer getAvailableDayNumber()
   {
     return availableDayNumber;
@@ -244,14 +249,14 @@ public class RegistrationActionBean extends BaseActionBean
     this.availableMonth = month;
   }
 
-  public String getAvailableYear()
+  public Integer getAvailableYear()
   {
     return availableYear;
   }
 
-  public void setAvailableYear(String year)
+  public void setAvailableYear(Integer availableYear)
   {
-    this.availableYear = year;
+    this.availableYear = availableYear;
   }
 
   public String getTitle()
@@ -280,7 +285,8 @@ public class RegistrationActionBean extends BaseActionBean
       // See web.xml net.sourceforge.stripes.tag.BeanFirstPopulationStrategy
       prospect = new Prospect(prospectShort);
     }
-    availableYear = getThisYear().toString();
+    // Prime initial with this year that will be always be id 1.
+    availableYear = 1;
     return new ForwardResolution("/WEB-INF/jsp/registration.jsp");
   }
 
@@ -300,12 +306,12 @@ public class RegistrationActionBean extends BaseActionBean
     }
     if (availableMonth > 0)
     {
-      availableForWork.append(availableMonth.toString());
+      availableForWork.append(dateManager.getMonthName(availableMonth).toString());
       availableForWork.append(" ");
     }
     if (!availableYear.equals("Year"))
     {
-      availableForWork.append(availableYear);
+      availableForWork.append(dateManager.getYearName(availableYear).toString());
     }
     System.out.println(availableDayNumber);
     System.out.println(availableMonth);
@@ -313,85 +319,70 @@ public class RegistrationActionBean extends BaseActionBean
     availableForWork.trimToSize();
     prospect.setAvailableForWork(availableForWork.toString());
     System.out.println(prospect.getAvailableForWork());
-//    prospect.setDateAvailable(day);
-    if (fileBean != null)
+    if (fileBean == null)
+    {
+      prospect.setDocumentFileName("NOT SUPPLIED");
+    }
+    else
     {
       String fileName = fileBean.getFileName();
       System.out.println(fileName);
       System.out.println(fileBean.getContentType());
       System.out.println(fileBean.getSize());
       String newFileName = prospect.getEmail() + fileName.substring(fileName.lastIndexOf("."));
-      String newFullFileName = getProspectFolder() + "/" + newFileName; 
-      prospect.setDocumentFileName(newFileName);
+      String newFullFileName = getProspectFilesFolder() + "/" + newFileName; 
+      try
+      {
+        fileBean.save(new File(newFullFileName));
+        prospect.setDocumentFileName(newFileName);
+      }
+      catch (IOException e)
+      {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
     }
-    System.out.println(prospect);
-//    try
-//    {
-//      fileBean.save(new File(getProspectFolder() + "/" + newFileName));
-//    }
-//    catch (IOException e)
-//    {
-//      // TODO Auto-generated catch block
-//      e.printStackTrace();
-//    }
+    XmlProspectDao.getInstance().saveProspect(prospect);
 
     return new ForwardResolution("/WEB-INF/jsp/registration.jsp");
 //    return new RedirectResolution(RegisterActionBean.class);
   }
 
-  /**
-   * Note that OPENSHIFT_DATA_DIR must be set as an environment variable in run configurations.
-   * It must correspond to the tomcat deployment folder.
-   * Eg. /Users/infomedia/Documents/Eclipse/Luna/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/stripes/WEB-INF
-   * 
-   * @return
-   */
-  protected String getProspectFolder()
-  {
-    String path = System.getenv("OPENSHIFT_DATA_DIR") + "/files/prospect";
-    File folder = new File(path);
-    if (!folder.exists())
-    {
-      folder.mkdirs();
-    }
-    return path;
-  }
-
-  private void buildDayNUmberList()
-  {
-    dayNumberList = new ArrayList<DayNumber>(32);
-    dayNumberList.add(new DayNumber(0, "Day"));
-    for (int i = 1; i < 31; i++)
-    {
-      dayNumberList.add(new DayNumber(i, new Integer(i).toString()));
-    }
-  }
-  
-  private void buildMonthList()
-  {
-    DateFormatSymbols dfs = new DateFormatSymbols(Locale.ENGLISH);
-    String[] monthNames = dfs.getMonths();
-    monthList = new ArrayList<Month>(13);
-    monthList.add(new Month(0, "Month"));
-    for (int i = 0; i < 12; i++) 
-    {
-      monthList.add(new Month(i + 1, monthNames[i]));
-    }
-  }
-
-  private void buildYearList()
-  {
-    yearList = new ArrayList<Year>(5);
-    yearList.add(new Year(0, "Year"));
-    Calendar calendar = Calendar.getInstance();
-    int year = 0;
-    for (int i = 1; i < 5; i++)
-    {
-      year = calendar.get(Calendar.YEAR);
-      yearList.add(new Year(Integer.valueOf(i), String.valueOf(year)));
-      calendar.add(Calendar.YEAR, 1);
-    }
-  }
+//  private void buildDayNUmberList()
+//  {
+//    dayNumberList = new ArrayList<DayNumber>(32);
+//    dayNumberList.add(new DayNumber(0, "Day"));
+//    for (int i = 1; i < 31; i++)
+//    {
+//      dayNumberList.add(new DayNumber(i, new Integer(i).toString()));
+//    }
+//  }
+//  
+//  private void buildMonthList()
+//  {
+//    DateFormatSymbols dfs = new DateFormatSymbols(Locale.ENGLISH);
+//    String[] monthNames = dfs.getMonths();
+//    monthList = new ArrayList<Month>(13);
+//    monthList.add(new Month(0, "Month"));
+//    for (int i = 0; i < 12; i++) 
+//    {
+//      monthList.add(new Month(i + 1, monthNames[i]));
+//    }
+//  }
+//
+//  private void buildYearList()
+//  {
+//    yearList = new ArrayList<Year>(5);
+//    yearList.add(new Year(0, "Year"));
+//    Calendar calendar = Calendar.getInstance();
+//    int year = 0;
+//    for (int i = 1; i < 5; i++)
+//    {
+//      year = calendar.get(Calendar.YEAR);
+//      yearList.add(new Year(Integer.valueOf(i), String.valueOf(year)));
+//      calendar.add(Calendar.YEAR, 1);
+//    }
+//  }
   
 //  @ValidationMethod(on={"save"})
 //  public void repopulateList()
