@@ -9,6 +9,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import net.infomediauk.xml.jaxb.model.HtmlPage;
+import net.infomediauk.xml.jaxb.model.Prospect;
 import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.ActionBeanContext;
 
@@ -39,7 +40,7 @@ public abstract class BaseActionBean implements ActionBean
   
   protected HtmlPage loadPage(String fileName)
   {
-    File file = getFile(fileName);
+    File file = getHtmlPageFile(fileName);
     if (file.isFile())
     {
       try
@@ -60,7 +61,7 @@ public abstract class BaseActionBean implements ActionBean
 
   protected void savePage(HtmlPage htmlPage, String fileName)
   {
-    File file = getFile(fileName);
+    File file = getHtmlPageFile(fileName);
     try
     {
       JAXBContext jaxbContext = JAXBContext.newInstance(HtmlPage.class);
@@ -76,10 +77,36 @@ public abstract class BaseActionBean implements ActionBean
     }
 
   }
-
-  protected File getFile(String fileName)
+  
+//  protected void saveProspect(Prospect prospect, String fileName)
+//  {
+//    File file = getProspectFile(fileName);
+//    try
+//    {
+//      JAXBContext jaxbContext = JAXBContext.newInstance(Prospect.class);
+//      Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+//      // output pretty printed
+//      jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//      jaxbMarshaller.marshal(prospect, file);
+//      jaxbMarshaller.marshal(prospect, System.out);
+//    }
+//    catch (JAXBException e)
+//    {
+//      e.printStackTrace();
+//    }
+//    System.out.println(file.getName());
+//  }
+//
+  protected File getHtmlPageFile(String fileName)
   {
     String fullFileName = getHtmlPageFilesFolder() + "/" + fileName;;
+    File file = new File(fullFileName);
+    return file;
+  }
+  
+  protected File getProspectFile(String fileName)
+  {
+    String fullFileName = getProspectFilesFolder() + "/" + fileName;;
     File file = new File(fullFileName);
     return file;
   }
@@ -93,15 +120,26 @@ public abstract class BaseActionBean implements ActionBean
    */
   protected String getHtmlPageFilesFolder()
   {
-//    String path = actionBeanContext.getServletContext().getRealPath("/WEB-INF/files");
     String path = System.getenv("OPENSHIFT_DATA_DIR") + "/files/static";
     return path;
   }
 
-  protected Integer getThisYear()
+  /**
+   * Note that OPENSHIFT_DATA_DIR must be set as an environment variable in run configurations.
+   * It must correspond to the tomcat deployment folder.
+   * Eg. /Users/infomedia/Documents/Eclipse/Luna/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/stripes/WEB-INF
+   * 
+   * @return
+   */
+  protected String getProspectFilesFolder()
   {
-    Calendar calendar = Calendar.getInstance();
-    return Integer.valueOf(calendar.get(Calendar.YEAR));
-
+    String path = System.getenv("OPENSHIFT_DATA_DIR") + "/files/prospect";
+    File folder = new File(path);
+    if (!folder.exists())
+    {
+      folder.mkdirs();
+    }
+    return path;
   }
+
 }
