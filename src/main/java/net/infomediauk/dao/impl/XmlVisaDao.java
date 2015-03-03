@@ -73,7 +73,6 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
     database.deleteData();
   }
   
-  @Override
   public List<Visa> selectAll()
   {
     List<Visa> list = new ArrayList<Visa>();
@@ -90,7 +89,6 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
     return list;
   }
 
-  @Override
   public Visa select(Integer id)
   {
     Visa visa = new Visa();
@@ -111,7 +109,6 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
   }
   
 
-  @Override
   public Boolean update(Visa visa)
   {
     if (visa != null)
@@ -127,7 +124,7 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
         VisaRecord visaRecord = database.getRecord(visa.getId());
         if (!visaRecord.getNumberOfChanges().equals(visa.getNumberOfChanges()))
         {
-//          return 1;
+          return false;
         }
         fillVisaRecord(visaRecord, visa);
       }
@@ -143,7 +140,6 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
     visaRecord.setNumberOfChanges(visa.getNumberOfChanges());
   }
   
-  @Override
   public Boolean delete(Integer id)
   {
     database.deleteRecord(id);

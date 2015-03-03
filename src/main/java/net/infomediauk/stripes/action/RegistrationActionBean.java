@@ -105,51 +105,51 @@ public class RegistrationActionBean extends BaseActionBean
     return domicileList;
   }
 
-  public void setDomicileList(List<Domicile> domicileList)
-  {
-    this.domicileList = domicileList;
-  }
-
+//  public void setDomicileList(List<Domicile> domicileList)
+//  {
+//    this.domicileList = domicileList;
+//  }
+//
   public List<LengthOfStay> getLengthOfStayList()
   {
     return lengthOfStayList;
   }
 
-  public void setLengthOfStayList(List<LengthOfStay> lengthOfStayList)
-  {
-    this.lengthOfStayList = lengthOfStayList;
-  }
-
+//  public void setLengthOfStayList(List<LengthOfStay> lengthOfStayList)
+//  {
+//    this.lengthOfStayList = lengthOfStayList;
+//  }
+//
   public List<Discipline> getDisciplineList()
   {
     return disciplineList;
   }
 
-  public void setDisciplineList(List<Discipline> disciplineList)
-  {
-    this.disciplineList = disciplineList;
-  }
-
+//  public void setDisciplineList(List<Discipline> disciplineList)
+//  {
+//    this.disciplineList = disciplineList;
+//  }
+//
   public List<Visa> getVisaList()
   {
     return visaList;
   }
 
-  public void setVisaList(List<Visa> visaList)
-  {
-    this.visaList = visaList;
-  }
-
+//  public void setVisaList(List<Visa> visaList)
+//  {
+//    this.visaList = visaList;
+//  }
+//
   public List<Title> getTitleList()
   {
     return titleList;
   }
 
-  public void setTitleList(List<Title> titleList)
-  {
-    this.titleList = titleList;
-  }
-
+//  public void setTitleList(List<Title> titleList)
+//  {
+//    this.titleList = titleList;
+//  }
+//
   public Integer getDomicileId()
   {
     return domicileId;

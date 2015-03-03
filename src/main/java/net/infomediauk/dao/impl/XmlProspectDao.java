@@ -60,19 +60,7 @@ public class XmlProspectDao
           if (fileName.substring(fileName.lastIndexOf(".")).equals(".xml"))
           {
             // It's an xml file.
-            prospectFile = new ProspectFile();
-            prospectFile.setFileName(file.getName());
-            Prospect prospect = loadProspect(fileName);
-            prospectFile.setProspect(prospect);
-            // Now do the "joins"...
-            Visa visa = XmlVisaDao.getInstance().select(prospect.getVisaId());
-            prospectFile.setVisaName(visa.getName());
-            Discipline discipline = XmlDisciplineDao.getInstance().select(prospect.getDisciplineId());
-            prospectFile.setDisciplineName(discipline.getName());
-            Domicile domicile = XmlDomicileDao.getInstance().select(prospect.getDomicileId());
-            prospectFile.setDomicileName(domicile.getName());
-            LengthOfStay lengthOfStay = XmlLengthOfStayDao.getInstance().select(prospect.getLengthOfStayId());
-            prospectFile.setLengthOfStayName(lengthOfStay.getName());
+            prospectFile = loadProspectFile(fileName);
             list.add(prospectFile);
           }
         }
@@ -81,7 +69,31 @@ public class XmlProspectDao
     return list;
   }
 
-  protected Prospect loadProspect(String fileName)
+  public ProspectFile select(String fileName)
+  {
+    ProspectFile prospectFile = loadProspectFile(fileName);
+    return prospectFile;
+  }
+  
+  private ProspectFile loadProspectFile(String fileName)
+  {
+    ProspectFile prospectFile = new ProspectFile();
+    prospectFile.setFileName(fileName);//file.getName()
+    Prospect prospect = loadProspect(fileName);
+    prospectFile.setProspect(prospect);
+    // Now do the "joins"...
+    Visa visa = XmlVisaDao.getInstance().select(prospect.getVisaId());
+    prospectFile.setVisaName(visa.getName());
+    Discipline discipline = XmlDisciplineDao.getInstance().select(prospect.getDisciplineId());
+    prospectFile.setDisciplineName(discipline.getName());
+    Domicile domicile = XmlDomicileDao.getInstance().select(prospect.getDomicileId());
+    prospectFile.setDomicileName(domicile.getName());
+    LengthOfStay lengthOfStay = XmlLengthOfStayDao.getInstance().select(prospect.getLengthOfStayId());
+    prospectFile.setLengthOfStayName(lengthOfStay.getName());
+    return prospectFile;
+  }
+  
+  private Prospect loadProspect(String fileName)
   {
     File file = getProspectFile(fileName);
     if (file.isFile())
@@ -102,6 +114,13 @@ public class XmlProspectDao
     return new Prospect();
   }
 
+  public Boolean update(ProspectFile prospectFile)
+  {
+    Prospect prospect = prospectFile.getProspect();
+    saveProspect(prospect);    
+    return true;
+  }
+  
   public void saveProspect(Prospect prospect)
   {
     File file = getProspectFile(prospect.getEmail() + ".xml");
