@@ -69,7 +69,7 @@ public class HtmlPageActionBean extends BaseActionBean
   @DontValidate
   public Resolution download()
   {
-    File file = getFile(htmlPageFileName);
+    File file = getHtmlPageFile(htmlPageFileName);
     String mimeType = getContext().getServletContext().getMimeType(htmlPageFileName);
     FileInputStream inputStream = null;
     try
@@ -87,7 +87,7 @@ public class HtmlPageActionBean extends BaseActionBean
   @DontValidate
   public Resolution delete()
   {
-    File file = getFile(htmlPageFileName);
+    File file = getHtmlPageFile(htmlPageFileName);
     file.delete();
     return new RedirectResolution(HtmlPageListActionBean.class);
   }

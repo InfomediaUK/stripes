@@ -15,6 +15,9 @@ import net.infomediauk.model.Visa;
 import net.infomediauk.xml.jaxb.model.VisaDatabase;
 import net.infomediauk.xml.jaxb.model.VisaRecord;
 
+/**
+ * Single file DAO for Visa Types. That is, there is ONLY ONE file.
+ */
 public class XmlVisaDao extends BaseDao implements Dao<Visa>
 {
   private static final String VISA_DATABASE_XML = "visa.xml";
