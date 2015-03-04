@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import net.infomediauk.dao.impl.XmlLengthOfStayDao;
+import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.model.LengthOfStay;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -38,9 +39,7 @@ public class LengthOfStayListActionBean extends BaseActionBean
 
   public Resolution delete()
   {
-    String fileName = XmlLengthOfStayDao.getInstance().getFileName();
-    File file = XmlLengthOfStayDao.getInstance().getFile();
-    file.delete();
+    XmlLengthOfStayDao.getInstance().deleteData();
     return new ForwardResolution(LIST);
   }
   
@@ -50,19 +49,9 @@ public class LengthOfStayListActionBean extends BaseActionBean
    */
   public Resolution download()
   {
-    String fileName = XmlLengthOfStayDao.getInstance().getFileName();
-    File file = XmlLengthOfStayDao.getInstance().getFile();
+    String fileName = XmlTitleDao.getInstance().getFileName();
     String mimeType = getContext().getServletContext().getMimeType(fileName);
-    FileInputStream inputStream = null;
-    try
-    {
-      inputStream = new FileInputStream(file);
-    }
-    catch (FileNotFoundException e)
-    {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+    FileInputStream inputStream = XmlLengthOfStayDao.getInstance().getDownloadInputStream(mimeType);
     return new StreamingResolution(mimeType, inputStream).setFilename(fileName);
   }
   

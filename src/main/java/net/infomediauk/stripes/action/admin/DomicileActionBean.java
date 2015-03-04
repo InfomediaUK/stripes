@@ -2,14 +2,19 @@ package net.infomediauk.stripes.action.admin;
 
 import stripesbook.action.BaseActionBean;
 import net.infomediauk.dao.impl.XmlDomicileDao;
+import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Domicile;
+import net.infomediauk.model.Visa;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
+import net.sourceforge.stripes.action.SimpleMessage;
+import net.sourceforge.stripes.validation.SimpleError;
 import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
+import net.sourceforge.stripes.validation.ValidationErrors;
 
 public class DomicileActionBean extends BaseActionBean
 {
@@ -57,8 +62,16 @@ public class DomicileActionBean extends BaseActionBean
   @DontValidate
   public Resolution delete()
   {
-    XmlDomicileDao.getInstance().delete(domicile.getId());
-    return new RedirectResolution(DomicileListActionBean.class);
+    Domicile deletedDomicile = XmlDomicileDao.getInstance().select(domicile.getId());
+    if (XmlDomicileDao.getInstance().delete(domicile.getId()))
+    {
+      // Deleted successfully.
+      getContext().getMessages().add(new SimpleMessage("Deleted {0}.", deletedDomicile.getName()));
+      return new RedirectResolution(DomicileListActionBean.class);
+    }
+    ValidationErrors validationErrors = getContext().getValidationErrors();
+    validationErrors.add("domicile.name", new SimpleError("Is in existing Prospect. Cannot delete it"));
+    return new ForwardResolution(FORM);
   }
   
   public Resolution save()

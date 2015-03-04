@@ -3,9 +3,11 @@ package net.infomediauk.stripes.action.admin;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.List;
 
 import net.infomediauk.dao.impl.XmlTitleDao;
+import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Title;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -38,9 +40,7 @@ public class TitleListActionBean extends BaseActionBean
 
   public Resolution delete()
   {
-    String fileName = XmlTitleDao.getInstance().getFileName();
-    File file = XmlTitleDao.getInstance().getFile();
-    file.delete();
+    XmlTitleDao.getInstance().deleteData();
     return new ForwardResolution(LIST);
   }
   
@@ -51,18 +51,8 @@ public class TitleListActionBean extends BaseActionBean
   public Resolution download()
   {
     String fileName = XmlTitleDao.getInstance().getFileName();
-    File file = XmlTitleDao.getInstance().getFile();
     String mimeType = getContext().getServletContext().getMimeType(fileName);
-    FileInputStream inputStream = null;
-    try
-    {
-      inputStream = new FileInputStream(file);
-    }
-    catch (FileNotFoundException e)
-    {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+    FileInputStream inputStream = XmlTitleDao.getInstance().getDownloadInputStream(mimeType);
     return new StreamingResolution(mimeType, inputStream).setFilename(fileName);
   }
   

@@ -65,8 +65,10 @@ public class XmlTitleDao extends BaseDao implements Dao<Title>
     return instance;
   }
 
+  @Override
   public void deleteData()
   {
+    super.deleteData();
     database.deleteData();
   }
   
@@ -139,10 +141,20 @@ public class XmlTitleDao extends BaseDao implements Dao<Title>
     titleRecord.setDisplayOrder(title.getDisplayOrder());
     titleRecord.setNumberOfChanges(title.getNumberOfChanges());
   }
-  
+ 
+  // It was probably a mistake to NOT store title id in Prospect. Hence we have to pass title itself.
+  // Error prone.
   @Override
   public Boolean delete(Integer id)
   {
+    return false;
+  }
+  public Boolean delete(Integer id, String title)
+  {
+    if (XmlProspectDao.getInstance().titleInProspect(title))
+    {
+      return false;
+    }
     database.deleteRecord(id);
     commit();
     return true;

@@ -17,6 +17,8 @@ import net.infomediauk.xml.jaxb.model.VisaRecord;
 
 /**
  * Single file DAO for Visa Types. That is, there is ONLY ONE file.
+ * 
+ * NOTE. The id value is supplied, it does NOT use nextId.
  */
 public class XmlVisaDao extends BaseDao implements Dao<Visa>
 {
@@ -68,8 +70,10 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
     return instance;
   }
 
+  @Override
   public void deleteData()
   {
+    super.deleteData();
     database.deleteData();
   }
   
@@ -113,15 +117,18 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
   {
     if (visa != null)
     {
-      if (visa.getId() == null)
+      VisaRecord visaRecord = database.getRecord(visa.getId());
+      if (visaRecord == null)
       {
-        VisaRecord visaRecord = new VisaRecord();
+        // Record does NOT exist, insert a new one.
+        visaRecord = new VisaRecord();
         fillVisaRecord(visaRecord, visa);
-        database.insertRecord(visaRecord);
+        // Insert record without getting nextId.
+        visaRecord.setId(visa.getId());
+        database.insertRecord(visaRecord, false);
       }
       else
       {
-        VisaRecord visaRecord = database.getRecord(visa.getId());
         if (!visaRecord.getNumberOfChanges().equals(visa.getNumberOfChanges()))
         {
           return false;
@@ -140,8 +147,13 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
     visaRecord.setNumberOfChanges(visa.getNumberOfChanges());
   }
   
+  @Override
   public Boolean delete(Integer id)
   {
+    if (XmlProspectDao.getInstance().visaInProspect(id))
+    {
+      return false;
+    }
     database.deleteRecord(id);
     commit();
     return true;

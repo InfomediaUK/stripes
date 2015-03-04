@@ -65,8 +65,10 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
     return instance;
   }
 
+  @Override
   public void deleteData()
   {
+    super.deleteData();
     database.deleteData();
   }
   
@@ -143,6 +145,10 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
   @Override
   public Boolean delete(Integer id)
   {
+    if (XmlProspectDao.getInstance().disciplineInProspect(id))
+    {
+      return false;
+    }
     database.deleteRecord(id);
     commit();
     return true;

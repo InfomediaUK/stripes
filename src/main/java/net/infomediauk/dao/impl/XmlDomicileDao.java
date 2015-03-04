@@ -65,8 +65,10 @@ public class XmlDomicileDao extends BaseDao implements Dao<Domicile>
     return instance;
   }
 
+  @Override
   public void deleteData()
   {
+    super.deleteData();
     database.deleteData();
   }
   
@@ -143,6 +145,10 @@ public class XmlDomicileDao extends BaseDao implements Dao<Domicile>
   @Override
   public Boolean delete(Integer id)
   {
+    if (XmlProspectDao.getInstance().domicileInProspect(id))
+    {
+      return false;
+    }
     database.deleteRecord(id);
     commit();
     return true;

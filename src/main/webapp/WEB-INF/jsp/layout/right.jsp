@@ -3,7 +3,7 @@
 
 <fieldset>
   <h3><fmt:message key="registerWithUs" /></h3>
-  <s:form beanclass="net.infomediauk.stripes.action.RegisterActionBean">
+  <s:form beanclass="net.infomediauk.stripes.action.RegisterFormActionBean">
     <s:errors/>
     <table class="form" >
       <tr>

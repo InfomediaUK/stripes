@@ -41,9 +41,22 @@ public class BaseDatabase<T extends BaseRecord>
     return record; 
   }
   
+  /**
+   * Insert new record after getting nextId.
+   * 
+   * @param record
+   */
   public void insertRecord(T record)
   {
-    record.setId(getNextId());
+    insertRecord(record, true);
+  }
+  
+  public void insertRecord(T record, Boolean getNextId)
+  {
+    if (getNextId)
+    {
+      record.setId(getNextId());
+    }
     record.setNumberOfChanges(0);
     recordList.add(record);
     map.put(record.getId(), record);

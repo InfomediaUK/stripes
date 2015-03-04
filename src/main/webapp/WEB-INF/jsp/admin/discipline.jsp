@@ -19,10 +19,10 @@
       </tr>
       <tr>
         <td>
-          Discipline
+          <s:label for="discipline" />
         </td>
         <td>
-          <s:text name="discipline.name" class="required" size="100" />
+          <s:text name="discipline.name" id="discipline" class="required" size="100" />
         </td>
       </tr>
       <tr>

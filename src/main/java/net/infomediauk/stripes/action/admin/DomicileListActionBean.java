@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import net.infomediauk.dao.impl.XmlDomicileDao;
+import net.infomediauk.dao.impl.XmlLengthOfStayDao;
+import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.model.Domicile;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -38,13 +40,7 @@ public class DomicileListActionBean extends BaseActionBean
 
   public Resolution delete()
   {
-    String fileName = XmlDomicileDao.getInstance().getFileName();
-    File file = XmlDomicileDao.getInstance().getFile();
-    if (file.delete())
-    {
-      XmlDomicileDao.getInstance().deleteData();
-      System.out.println("Gone!");
-    }
+    XmlDomicileDao.getInstance().deleteData();
     return new ForwardResolution(LIST);
   }
   
@@ -54,19 +50,9 @@ public class DomicileListActionBean extends BaseActionBean
    */
   public Resolution download()
   {
-    String fileName = XmlDomicileDao.getInstance().getFileName();
-    File file = XmlDomicileDao.getInstance().getFile();
+    String fileName = XmlTitleDao.getInstance().getFileName();
     String mimeType = getContext().getServletContext().getMimeType(fileName);
-    FileInputStream inputStream = null;
-    try
-    {
-      inputStream = new FileInputStream(file);
-    }
-    catch (FileNotFoundException e)
-    {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+    FileInputStream inputStream = XmlDomicileDao.getInstance().getDownloadInputStream(mimeType);
     return new StreamingResolution(mimeType, inputStream).setFilename(fileName);
   }
   

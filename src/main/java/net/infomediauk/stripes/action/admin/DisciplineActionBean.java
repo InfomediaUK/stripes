@@ -9,13 +9,18 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SimpleMessage;
+import net.sourceforge.stripes.validation.SimpleError;
 import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
+import net.sourceforge.stripes.validation.ValidationErrors;
 
 public class DisciplineActionBean extends BaseActionBean
 {
   private static final String FORM = "/WEB-INF/jsp/admin/discipline.jsp";
-  @ValidateNestedProperties({@Validate(field="name", required=true)})
+  @ValidateNestedProperties({
+    @Validate(field="id", required=true),
+    @Validate(field="name", required=true)
+  })
   private Discipline discipline;
   private Integer id;
 
@@ -58,14 +63,21 @@ public class DisciplineActionBean extends BaseActionBean
   public Resolution delete()
   {
     Discipline deletedDiscipline = XmlDisciplineDao.getInstance().select(discipline.getId());
-    XmlDisciplineDao.getInstance().delete(discipline.getId());
-    getContext().getMessages().add(new SimpleMessage("Deleted {0}.", deletedDiscipline.getName()));
-    return new RedirectResolution(DisciplineListActionBean.class);
+    if (XmlDisciplineDao.getInstance().delete(discipline.getId()))
+    {
+      // Deleted successfully.
+      getContext().getMessages().add(new SimpleMessage("Deleted {0}.", deletedDiscipline.getName()));
+      return new RedirectResolution(DisciplineListActionBean.class);
+    }
+    ValidationErrors validationErrors = getContext().getValidationErrors();
+    validationErrors.add("discipline.name", new SimpleError("Is in existing Prospect. Cannot delete it"));
+    return new ForwardResolution(FORM);
   }
   
   public Resolution save()
   {
     XmlDisciplineDao.getInstance().update(discipline);
+    getContext().getMessages().add(new SimpleMessage("Saved {0}.", discipline.getName()));
     return new RedirectResolution(DisciplineListActionBean.class);
   }
   

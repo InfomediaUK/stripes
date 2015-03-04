@@ -7,6 +7,7 @@ import java.util.List;
 
 import net.infomediauk.dao.impl.XmlDisciplineDao;
 import net.infomediauk.dao.impl.XmlDomicileDao;
+import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.model.Discipline;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -39,9 +40,7 @@ public class DisciplineListActionBean extends BaseActionBean
 
   public Resolution delete()
   {
-    String fileName = XmlDisciplineDao.getInstance().getFileName();
-    File file = XmlDisciplineDao.getInstance().getFile();
-    file.delete();
+    XmlDisciplineDao.getInstance().deleteData();
     return new ForwardResolution(LIST);
   }
   
@@ -51,19 +50,9 @@ public class DisciplineListActionBean extends BaseActionBean
    */
   public Resolution download()
   {
-    String fileName = XmlDisciplineDao.getInstance().getFileName();
-    File file = XmlDisciplineDao.getInstance().getFile();
+    String fileName = XmlTitleDao.getInstance().getFileName();
     String mimeType = getContext().getServletContext().getMimeType(fileName);
-    FileInputStream inputStream = null;
-    try
-    {
-      inputStream = new FileInputStream(file);
-    }
-    catch (FileNotFoundException e)
-    {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+    FileInputStream inputStream = XmlDisciplineDao.getInstance().getDownloadInputStream(mimeType);
     return new StreamingResolution(mimeType, inputStream).setFilename(fileName);
   }
   

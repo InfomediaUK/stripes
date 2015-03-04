@@ -1,9 +1,38 @@
 package net.infomediauk.dao;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import net.infomediauk.dao.impl.XmlVisaDao;
 
 public abstract class BaseDao
 {
+
+  /**
+   * Delete file. Sub classes must override this method and then clear the list and map.
+   */
+  public void deleteData()
+  {
+    File file = getFile();
+    file.delete();
+  }
+
+  public FileInputStream getDownloadInputStream(String mimeType)
+  {
+    File file = getFile();
+    FileInputStream fileInputStream = null;
+    try
+    {
+      fileInputStream = new FileInputStream(file);
+    }
+    catch (FileNotFoundException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return fileInputStream;
+  }
   
   public File getFile()
   {

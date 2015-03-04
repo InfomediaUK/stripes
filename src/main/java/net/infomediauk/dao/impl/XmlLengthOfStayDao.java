@@ -65,8 +65,10 @@ public class XmlLengthOfStayDao extends BaseDao implements Dao<LengthOfStay>
     return instance;
   }
 
+  @Override
   public void deleteData()
   {
+    super.deleteData();
     database.deleteData();
   }
   
@@ -143,6 +145,10 @@ public class XmlLengthOfStayDao extends BaseDao implements Dao<LengthOfStay>
   @Override
   public Boolean delete(Integer id)
   {
+    if (XmlProspectDao.getInstance().lengthOfStayInProspect(id))
+    {
+      return false;
+    }
     database.deleteRecord(id);
     commit();
     return true;

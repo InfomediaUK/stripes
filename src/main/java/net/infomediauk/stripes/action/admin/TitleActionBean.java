@@ -2,14 +2,19 @@ package net.infomediauk.stripes.action.admin;
 
 import stripesbook.action.BaseActionBean;
 import net.infomediauk.dao.impl.XmlTitleDao;
+import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Title;
+import net.infomediauk.model.Visa;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
+import net.sourceforge.stripes.action.SimpleMessage;
+import net.sourceforge.stripes.validation.SimpleError;
 import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
+import net.sourceforge.stripes.validation.ValidationErrors;
 
 public class TitleActionBean extends BaseActionBean
 {
@@ -57,8 +62,16 @@ public class TitleActionBean extends BaseActionBean
   @DontValidate
   public Resolution delete()
   {
-    XmlTitleDao.getInstance().delete(title.getId());
-    return new RedirectResolution(TitleListActionBean.class);
+    Title deletedTitle = XmlTitleDao.getInstance().select(title.getId());
+    if (XmlTitleDao.getInstance().delete(title.getId(), title.getName()))
+    {
+      // Deleted successfully.
+      getContext().getMessages().add(new SimpleMessage("Deleted {0}.", deletedTitle.getName()));
+      return new RedirectResolution(TitleListActionBean.class);
+    }
+    ValidationErrors validationErrors = getContext().getValidationErrors();
+    validationErrors.add("title.name", new SimpleError("Is in existing Prospect. Cannot delete it"));
+    return new ForwardResolution(FORM);
   }
   
   public Resolution save()

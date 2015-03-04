@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Visa;
 import net.sourceforge.stripes.action.DefaultHandler;
@@ -38,9 +39,7 @@ public class VisaListActionBean extends BaseActionBean
 
   public Resolution delete()
   {
-    String fileName = XmlVisaDao.getInstance().getFileName();
-    File file = XmlVisaDao.getInstance().getFile();
-    file.delete();
+    XmlVisaDao.getInstance().deleteData();
     return new ForwardResolution(LIST);
   }
   
@@ -50,19 +49,9 @@ public class VisaListActionBean extends BaseActionBean
    */
   public Resolution download()
   {
-    String fileName = XmlVisaDao.getInstance().getFileName();
-    File file = XmlVisaDao.getInstance().getFile();
+    String fileName = XmlTitleDao.getInstance().getFileName();
     String mimeType = getContext().getServletContext().getMimeType(fileName);
-    FileInputStream inputStream = null;
-    try
-    {
-      inputStream = new FileInputStream(file);
-    }
-    catch (FileNotFoundException e)
-    {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+    FileInputStream inputStream = XmlVisaDao.getInstance().getDownloadInputStream(mimeType);
     return new StreamingResolution(mimeType, inputStream).setFilename(fileName);
   }
   

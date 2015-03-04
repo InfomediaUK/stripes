@@ -11,26 +11,32 @@
     <table class="form" >
       <tr>
         <td>
-          Id
+          <s:label for="id" />
         </td>
         <td>
-          ${actionBean.visa.id} 
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Visa
-        </td>
-        <td>
-          <s:text name="visa.name" class="required" size="100" />
+        <c:if test="${actionBean.visa.id==null}">
+          <s:text name="visa.id" id="id" class="required" size="4" />
+        </c:if>  
+        <c:if test="${actionBean.visa.id!=null}">
+           ${actionBean.visa.id}
+           <s:hidden name="visa.id" />
+        </c:if>  
         </td>
       </tr>
       <tr>
         <td>
-          Display Order
+          <s:label for="visa" />
         </td>
         <td>
-          <s:text name="visa.displayOrder" class="required" size="3" />
+          <s:text name="visa.name" id="visa" class="required" size="100" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <s:label for="displayOrder" />
+        </td>
+        <td>
+          <s:text name="visa.displayOrder" id="displayOrder" class="required" size="3" />
         </td>
       </tr>
       <tr>
@@ -43,7 +49,6 @@
         </td>
       </tr>
     </table>
-    <s:hidden name="visa.id" />
     <s:hidden name="visa.numberOfChanges" />
   </s:form>
   </s:layout-component>

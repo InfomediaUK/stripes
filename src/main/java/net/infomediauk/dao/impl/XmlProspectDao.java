@@ -140,6 +140,71 @@ public class XmlProspectDao
     System.out.println(file.getName());
   }
 
+  public Boolean disciplineInProspect(Integer id)
+  {
+    List<ProspectFile> prospectFileList = selectAll();
+    for (ProspectFile prospectFile : prospectFileList)
+    {
+      if (prospectFile.getProspect().getDisciplineId().equals(id))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public Boolean domicileInProspect(Integer id)
+  {
+    List<ProspectFile> prospectFileList = selectAll();
+    for (ProspectFile prospectFile : prospectFileList)
+    {
+      if (prospectFile.getProspect().getDomicileId().equals(id))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public Boolean visaInProspect(Integer id)
+  {
+    List<ProspectFile> prospectFileList = selectAll();
+    for (ProspectFile prospectFile : prospectFileList)
+    {
+      if (prospectFile.getProspect().getVisaId().equals(id))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public Boolean lengthOfStayInProspect(Integer id)
+  {
+    List<ProspectFile> prospectFileList = selectAll();
+    for (ProspectFile prospectFile : prospectFileList)
+    {
+      if (prospectFile.getProspect().getLengthOfStayId().equals(id))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public Boolean titleInProspect(String title)
+  {
+    List<ProspectFile> prospectFileList = selectAll();
+    for (ProspectFile prospectFile : prospectFileList)
+    {
+      if (prospectFile.getProspect().getTitle().equals(title))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+  
   private File getProspectFile(String fileName)
   {
     String fullFileName = getProspectFilesFolder() + "/" + fileName;;
