@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.infomediauk.dao.impl.XmlProspectDao;
-import net.infomediauk.stripes.ProspectFile;
+import net.infomediauk.xml.jaxb.model.ProspectFile;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;

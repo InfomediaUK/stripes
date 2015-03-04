@@ -13,8 +13,8 @@ import net.infomediauk.model.Discipline;
 import net.infomediauk.model.Domicile;
 import net.infomediauk.model.LengthOfStay;
 import net.infomediauk.model.Visa;
-import net.infomediauk.stripes.ProspectFile;
 import net.infomediauk.xml.jaxb.model.Prospect;
+import net.infomediauk.xml.jaxb.model.ProspectFile;
 
 /**
  * Multiple file DAO for Prospects. That is, there can be MORE THAN ONE one file.

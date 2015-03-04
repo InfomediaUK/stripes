@@ -1,6 +1,5 @@
-package net.infomediauk.stripes;
+package net.infomediauk.xml.jaxb.model;
 
-import net.infomediauk.xml.jaxb.model.HtmlPage;
 
 public class HtmlPageFile
 {
