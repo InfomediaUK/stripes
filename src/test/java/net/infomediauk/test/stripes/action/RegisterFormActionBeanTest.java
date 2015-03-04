@@ -19,6 +19,7 @@ public class RegisterFormActionBeanTest
 {
   private static MockServletContext mockServletContext;
   private static MockHttpSession mockSession;
+  
 
   @BeforeClass
   public static void setup() throws Exception
