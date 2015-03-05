@@ -18,7 +18,7 @@ public class DisciplineActionBean extends BaseActionBean
 {
   private static final String FORM = "/WEB-INF/jsp/admin/discipline.jsp";
   @ValidateNestedProperties({
-//    @Validate(field="id", required=true),
+    @Validate(field="id", required=true),
     @Validate(field="name", required=true)
   })
   private Discipline discipline;

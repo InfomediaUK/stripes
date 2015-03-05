@@ -123,6 +123,7 @@
         </td>
       </tr>
     </table>
+    <s:hidden name="prospectFileName" />
     <s:hidden name="prospect.documentFileName" />
   </s:form>
   </s:layout-component>

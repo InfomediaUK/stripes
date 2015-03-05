@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import net.infomediauk.dao.impl.XmlVisaDao;
-
 public abstract class BaseDao
 {
 

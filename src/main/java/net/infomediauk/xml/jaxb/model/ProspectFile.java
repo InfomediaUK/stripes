@@ -79,5 +79,10 @@ public class ProspectFile
   {
     return prospect.getFullName();
   }
-  
+
+  @Override
+  public String toString()
+  {
+    return prospect.toString() + " (" + fileName + ")";
+  }
 }

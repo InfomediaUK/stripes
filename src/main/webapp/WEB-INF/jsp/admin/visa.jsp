@@ -7,7 +7,7 @@
   metaKeywords="${actionBean.htmlPage.metaKeywords}">
   <s:layout-component name="body">
   <s:form beanclass="net.infomediauk.stripes.action.admin.VisaActionBean">
-    <s:errors/>
+    <s:errors/><s:messages/>
     <table class="form" >
       <tr>
         <td>

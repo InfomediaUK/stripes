@@ -21,6 +21,7 @@ import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
+import net.sourceforge.stripes.action.SimpleMessage;
 
 public class ProspectActionBean extends BaseActionBean
 {
@@ -138,16 +139,20 @@ public class ProspectActionBean extends BaseActionBean
   @DontValidate
   public Resolution delete()
   {
-//    Prospect deletedProspect = XmlProspectDao.getInstance().select(prospectFile.getId());
-//    XmlProspectDao.getInstance().delete(prospectFile.getId());
-//    getContext().getMessages().add(new SimpleMessage("Deleted {0}.", deletedProspect.getName()));
-    return new RedirectResolution(ProspectListActionBean.class);
+    ProspectFile prospectFile = XmlProspectDao.getInstance().select(prospectFileName);
+    String prospectString = prospectFile.toString();
+    if (XmlProspectDao.getInstance().delete(prospectFileName, prospectFile.getProspect().getDocumentFileName()))
+    {
+      getContext().getMessages().add(new SimpleMessage("Deleted {0}.", prospectString));
+      return new RedirectResolution(ProspectListActionBean.class);
+    }
+    getContext().getMessages().add(new SimpleMessage("Unable to delete {0}.", prospectString));
+    return new ForwardResolution(FORM);    
   }
 
   
   public Resolution save()
   {
-//    Prospect prospect = prospectFile.getProspect();
     // Update Prospect from values returned from the lists.
     prospect.setDomicileId(domicileId);
     prospect.setDisciplineId(disciplineId);

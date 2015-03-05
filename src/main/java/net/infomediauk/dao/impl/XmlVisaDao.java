@@ -115,7 +115,11 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
 
   public Boolean update(Visa visa)
   {
-    if (visa != null)
+    if (visa == null)
+    {
+      return false;
+    }
+    else
     {
       VisaRecord visaRecord = database.getRecord(visa.getId());
       if (visaRecord == null)

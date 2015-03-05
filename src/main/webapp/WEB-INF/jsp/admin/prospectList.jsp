@@ -6,7 +6,7 @@
   metaDescription="${actionBean.htmlPage.metaDescription}"
   metaKeywords="${actionBean.htmlPage.metaKeywords}">
   <s:layout-component name="body">
-    <s:errors/>
+    <s:messages/>
     <s:link beanclass="net.infomediauk.stripes.action.admin.ProspectActionBean" event="view">
       <s:param name="prospectFileName" value="" />
       New

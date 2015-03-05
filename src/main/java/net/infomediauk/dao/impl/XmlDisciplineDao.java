@@ -12,9 +12,16 @@ import javax.xml.bind.Unmarshaller;
 import net.infomediauk.dao.BaseDao;
 import net.infomediauk.dao.Dao;
 import net.infomediauk.model.Discipline;
+import net.infomediauk.model.Visa;
 import net.infomediauk.xml.jaxb.model.DisciplineDatabase;
 import net.infomediauk.xml.jaxb.model.DisciplineRecord;
+import net.infomediauk.xml.jaxb.model.VisaRecord;
 
+/**
+ * Single file DAO for Discipline Types. That is, there is ONLY ONE file.
+ * 
+ * NOTE. The id value is supplied, it does NOT use nextId.
+ */
 public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
 {
   private static final String DISCIPLINE_DATABASE_XML = "discipline.xml";
@@ -110,23 +117,29 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
   }
   
 
-  @Override
   public Boolean update(Discipline discipline)
   {
-    if (discipline != null)
+    if (discipline == null)
     {
-      if (discipline.getId() == null)
+      return false;
+    }
+    else
+    {
+      DisciplineRecord disciplineRecord = database.getRecord(discipline.getId());
+      if (disciplineRecord == null)
       {
-        DisciplineRecord disciplineRecord = new DisciplineRecord();
+        // Record does NOT exist, insert a new one.
+        disciplineRecord = new DisciplineRecord();
         fillDisciplineRecord(disciplineRecord, discipline);
-        database.insertRecord(disciplineRecord);
+        // Insert record without getting nextId.
+        disciplineRecord.setId(discipline.getId());
+        database.insertRecord(disciplineRecord, false);
       }
       else
       {
-        DisciplineRecord disciplineRecord = database.getRecord(discipline.getId());
         if (!disciplineRecord.getNumberOfChanges().equals(discipline.getNumberOfChanges()))
         {
-//          return 1;
+          return false;
         }
         fillDisciplineRecord(disciplineRecord, discipline);
       }

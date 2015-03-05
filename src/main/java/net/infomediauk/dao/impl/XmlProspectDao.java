@@ -140,6 +140,18 @@ public class XmlProspectDao
     System.out.println(file.getName());
   }
 
+  public Boolean delete(String fileName, String documentFileName)
+  {
+    if (documentFileName != null && !documentFileName.equals("") && !documentFileName.equals("NOT SUPPLIED"))
+    {
+      File documentFile = getProspectDocumentFile(documentFileName);
+      documentFile.delete();
+    }
+    File file = getProspectFile(fileName);
+//    return true;
+    return file.delete() ? true : false;
+  }
+
   public Boolean disciplineInProspect(Integer id)
   {
     List<ProspectFile> prospectFileList = selectAll();
@@ -203,6 +215,13 @@ public class XmlProspectDao
       }
     }
     return false;
+  }
+  
+  private File getProspectDocumentFile(String documentFileName)
+  {
+    String fullDocumentFileName = getProspectFilesFolder() + "/" + documentFileName;;
+    File file = new File(fullDocumentFileName);
+    return file;
   }
   
   private File getProspectFile(String fileName)

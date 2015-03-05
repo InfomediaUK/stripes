@@ -6,15 +6,21 @@
   metaDescription="${actionBean.htmlPage.metaDescription}"
   metaKeywords="${actionBean.htmlPage.metaKeywords}">
   <s:layout-component name="body">
-  <s:form beanclass="net.infomediauk.stripes.action.admin.DisciplineActionBean" >
-    <s:errors/>
+  <s:form beanclass="net.infomediauk.stripes.action.admin.DisciplineActionBean">
+    <s:errors/><s:messages/>
     <table class="form" >
       <tr>
         <td>
-          Id
+          <s:label for="id" />
         </td>
         <td>
-          ${actionBean.discipline.id} 
+        <c:if test="${actionBean.discipline.id==null}">
+          <s:text name="discipline.id" id="id" class="required" size="4" />
+        </c:if>  
+        <c:if test="${actionBean.discipline.id!=null}">
+           ${actionBean.discipline.id}
+           <s:hidden name="discipline.id" />
+        </c:if>  
         </td>
       </tr>
       <tr>
@@ -27,10 +33,10 @@
       </tr>
       <tr>
         <td>
-          Display Order
+          <s:label for="displayOrder" />
         </td>
         <td>
-          <s:text name="discipline.displayOrder" class="required" size="3" />
+          <s:text name="discipline.displayOrder" id="displayOrder" class="required" size="3" />
         </td>
       </tr>
       <tr>
@@ -43,7 +49,6 @@
         </td>
       </tr>
     </table>
-    <s:hidden name="discipline.id" />
     <s:hidden name="discipline.numberOfChanges" />
   </s:form>
   </s:layout-component>
