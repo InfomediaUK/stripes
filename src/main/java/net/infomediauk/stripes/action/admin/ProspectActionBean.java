@@ -2,6 +2,13 @@ package net.infomediauk.stripes.action.admin;
 
 import java.util.List;
 
+import javax.ws.rs.core.MediaType;
+
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.core.util.MultivaluedMapImpl;
+
 import stripesbook.action.BaseActionBean;
 import net.infomediauk.dao.impl.XmlDisciplineDao;
 import net.infomediauk.dao.impl.XmlDomicileDao;
@@ -169,4 +176,30 @@ public class ProspectActionBean extends BaseActionBean
     return new RedirectResolution(ProspectListActionBean.class);
   }
 
+  public Resolution sendToMmj()
+  {
+    ProspectFile prospectFile = XmlProspectDao.getInstance().select(prospectFileName);
+    prospect = prospectFile.getProspect();
+//    XmlDisciplineDao.getInstance().update(discipline);
+//    getContext().getMessages().add(new SimpleMessage("Saved {0}.", discipline.getName()));
+    Client client = Client.create();
+    WebResource webResource = client.resource("http://localhost:8080/jersey/rest/prospects");
+    MultivaluedMapImpl values = new MultivaluedMapImpl();
+    values.add("title", prospect.getTitle());
+    values.add("firstName", prospect.getFirstName());
+    values.add("lastName", prospect.getLastName());
+    values.add("contactTelephone", prospect.getContactTelephone());
+    values.add("email", prospect.getEmail());
+    values.add("profession", prospect.getProfession());
+    values.add("availableForWork", prospect.getAvailableForWork());
+    values.add("disciplineId", prospect.getDisciplineId());
+    values.add("domicile", prospectFile.getDomicileName());
+    values.add("visaId", prospect.getVisaId());
+    values.add("lengthOfStay", prospectFile.getLengthOfStayName());
+    values.add("visaId", prospect.getVisaId());
+    values.add("documentFileName", prospect.getDocumentFileName());
+    ClientResponse response = webResource.type(MediaType.APPLICATION_FORM_URLENCODED).post(ClientResponse.class, values);
+    return new RedirectResolution(ProspectListActionBean.class);
+  }
+  
 }
