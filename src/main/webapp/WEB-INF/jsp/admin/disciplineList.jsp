@@ -16,6 +16,10 @@
       Delete
     </s:link>
     &nbsp;
+    <s:link beanclass="net.infomediauk.stripes.action.admin.DisciplineListActionBean" event="refreshFromMMJ" title="Refresh from MMJ" >
+      Refresh
+    </s:link>
+    &nbsp;
     <s:link beanclass="net.infomediauk.stripes.action.admin.DisciplineListActionBean" event="download">
       Download
     </s:link>

@@ -1,21 +1,27 @@
 package net.infomediauk.dao.impl;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+
 import net.infomediauk.dao.BaseDao;
 import net.infomediauk.dao.Dao;
 import net.infomediauk.model.Discipline;
-import net.infomediauk.model.Visa;
 import net.infomediauk.xml.jaxb.model.DisciplineDatabase;
 import net.infomediauk.xml.jaxb.model.DisciplineRecord;
-import net.infomediauk.xml.jaxb.model.VisaRecord;
+import net.infomediauk.xml.jaxb.model.mmj.DisciplineCategories;
+import net.infomediauk.xml.jaxb.model.mmj.DisciplineCategory;
 
 /**
  * Single file DAO for Discipline Types. That is, there is ONLY ONE file.
@@ -116,7 +122,6 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
     discipline.setNumberOfChanges(disciplineRecord.getNumberOfChanges());
   }
   
-
   public Boolean update(Discipline discipline)
   {
     if (discipline == null)
@@ -187,6 +192,40 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
       e.printStackTrace();
     }
 
+  }
+
+  public void refreshFromWeb()
+  {
+    try
+    {
+      Client client = Client.create();
+      WebResource webResource = client.resource("http://localhost:8080/jersey/rest/disciplines");
+      ClientResponse response = webResource.accept(MediaType.APPLICATION_XML).get(ClientResponse.class);
+      if (response.getStatus() != 200)
+      {
+        throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+      }
+      InputStream inputStream = response.getEntityInputStream();
+      System.out.println("Output from Server .... \n");
+      JAXBContext context = JAXBContext.newInstance(DisciplineCategories.class);
+      Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
+      DisciplineCategories disciplineCategories = (DisciplineCategories)jaxbUnmarshaller.unmarshal(inputStream);
+      Discipline discipline = null;
+      Integer id = null;
+      for (DisciplineCategory disciplineCategory : disciplineCategories.getDisciplineCategories())
+      {
+        id = disciplineCategory.getId();
+        discipline = XmlDisciplineDao.getInstance().select(id);
+        discipline.setName(disciplineCategory.getName());
+        discipline.setDisplayOrder(disciplineCategory.getDisplayOrder());
+        XmlDisciplineDao.getInstance().update(discipline);
+      }
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    
   }
   
   @Override

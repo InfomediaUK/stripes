@@ -1,16 +1,14 @@
 package net.infomediauk.stripes.action.admin;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.List;
 
 import net.infomediauk.dao.impl.XmlDisciplineDao;
-import net.infomediauk.dao.impl.XmlDomicileDao;
 import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.model.Discipline;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
+import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.StreamingResolution;
 import stripesbook.action.BaseActionBean;
@@ -55,5 +53,12 @@ public class DisciplineListActionBean extends BaseActionBean
     FileInputStream inputStream = XmlDisciplineDao.getInstance().getDownloadInputStream(mimeType);
     return new StreamingResolution(mimeType, inputStream).setFilename(fileName);
   }
+
+  public Resolution refreshFromMMJ()
+  {
+    XmlDisciplineDao.getInstance().refreshFromWeb();
+    return new RedirectResolution(DisciplineListActionBean.class);
+  }
+  
   
 }
