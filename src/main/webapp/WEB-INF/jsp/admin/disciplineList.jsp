@@ -25,7 +25,7 @@
     </s:link>
     <d:table name="${actionBean.disciplineList}" id="discipline" requestURI="" defaultsort="2" >
       <d:column title="Id" property="id" sortable="true" />
-      <d:column title="Discipline" sortable="true" >
+      <d:column title="Discipline" property="name" sortable="true" >
           <s:link beanclass="net.infomediauk.stripes.action.admin.DisciplineActionBean" event="view">
             <s:param name="id" value="${discipline.id}" />
             ${discipline.name}

@@ -3,6 +3,8 @@ package net.infomediauk.dao.impl;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
@@ -105,11 +107,16 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
   @Override
   public Discipline select(Integer id)
   {
-    Discipline discipline = new Discipline();
+    Discipline discipline = null;
     if (id != null)
     {
       DisciplineRecord disciplineRecord = database.getRecord(id);
-      fillDiscipline(discipline, disciplineRecord);
+      if (disciplineRecord != null)
+      {
+        // Record found.
+        discipline = new Discipline();
+        fillDiscipline(discipline, disciplineRecord);
+      }
     }
     return discipline;
   }
@@ -176,7 +183,14 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
   {
     try
     {
+      Collections.sort(database.getRecords(), new Comparator<DisciplineRecord>() {
+        @Override
+        public int compare(DisciplineRecord  disciplineRecord1, DisciplineRecord  disciplineRecord2)
+        {
 
+            return  disciplineRecord1.getName().compareTo(disciplineRecord2.getName());
+        }
+      });      
       File file = getFile();;
       JAXBContext jaxbContext = JAXBContext.newInstance(DisciplineDatabase.class);
       Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -199,7 +213,8 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
     try
     {
       Client client = Client.create();
-      WebResource webResource = client.resource("http://localhost:8080/jersey/rest/disciplines");
+//      WebResource webResource = client.resource("http://localhost:8080/jersey/rest/disciplines");
+      WebResource webResource = client.resource("http://test.matchmyjob.co.uk/mmj/rest/disciplines");
       ClientResponse response = webResource.accept(MediaType.APPLICATION_XML).get(ClientResponse.class);
       if (response.getStatus() != 200)
       {
@@ -216,6 +231,12 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
       {
         id = disciplineCategory.getId();
         discipline = XmlDisciplineDao.getInstance().select(id);
+        if (discipline == null)
+        {
+          // Must be a new Discipline Category.
+          discipline = new Discipline();
+          discipline.setId(id);
+        }
         discipline.setName(disciplineCategory.getName());
         discipline.setDisplayOrder(disciplineCategory.getDisplayOrder());
         XmlDisciplineDao.getInstance().update(discipline);
