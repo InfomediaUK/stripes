@@ -27,7 +27,7 @@
       <tr>
         <td>
           Profession<br />
-          <s:text name="prospectShort.profession" size="23" />
+          <sd:text name="prospectShort.profession" placeholder="Your Job" size="23" />
         </td>
       </tr>
       <tr>
