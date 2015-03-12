@@ -13,8 +13,8 @@ public class StaticPageActionBean extends BaseActionBean
   public Resolution view() throws Exception
   {
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
-    UAgentInfo uai = new UAgentInfo(getContext().getRequest().getHeader("User-Agent"), getContext().getRequest().getHeader("Accept"));
-    if (uai.isMobilePhone)
+    UAgentInfo uAgentInfo = new UAgentInfo(getContext().getRequest().getHeader("User-Agent"), getContext().getRequest().getHeader("Accept"));
+    if (uAgentInfo.detectMobileLong())
     {
       return new ForwardResolution("/WEB-INF/jsp/mobile/staticPage.jsp");
     }
