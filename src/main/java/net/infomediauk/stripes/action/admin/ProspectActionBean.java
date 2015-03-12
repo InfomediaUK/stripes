@@ -1,5 +1,10 @@
 package net.infomediauk.stripes.action.admin;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
@@ -8,6 +13,8 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
+import com.sun.jersey.multipart.BodyPart;
+import com.sun.jersey.multipart.MultiPart;
 
 import stripesbook.action.BaseActionBean;
 import net.infomediauk.dao.impl.XmlDisciplineDao;
@@ -29,6 +36,8 @@ import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SimpleMessage;
+import net.sourceforge.stripes.validation.SimpleError;
+import net.sourceforge.stripes.validation.ValidationErrors;
 
 public class ProspectActionBean extends BaseActionBean
 {
@@ -176,30 +185,47 @@ public class ProspectActionBean extends BaseActionBean
     return new RedirectResolution(ProspectListActionBean.class);
   }
 
-  public Resolution sendToMmj()
+  public Resolution sendMultiPartToMmj() throws MalformedURLException
   {
-    ProspectFile prospectFile = XmlProspectDao.getInstance().select(prospectFileName);
-    prospect = prospectFile.getProspect();
-//    XmlDisciplineDao.getInstance().update(discipline);
-//    getContext().getMessages().add(new SimpleMessage("Saved {0}.", discipline.getName()));
-    Client client = Client.create();
-    WebResource webResource = client.resource("http://localhost:8080/jersey/rest/prospects");
-    MultivaluedMapImpl values = new MultivaluedMapImpl();
-    values.add("title", prospect.getTitle());
-    values.add("firstName", prospect.getFirstName());
-    values.add("lastName", prospect.getLastName());
-    values.add("contactTelephone", prospect.getContactTelephone());
-    values.add("email", prospect.getEmail());
-    values.add("profession", prospect.getProfession());
-    values.add("availableForWork", prospect.getAvailableForWork());
-    values.add("disciplineId", prospect.getDisciplineId());
-    values.add("domicile", prospectFile.getDomicileName());
-    values.add("visaId", prospect.getVisaId());
-    values.add("lengthOfStay", prospectFile.getLengthOfStayName());
-    values.add("visaId", prospect.getVisaId());
-    values.add("documentFileName", prospect.getDocumentFileName());
-    ClientResponse response = webResource.type(MediaType.APPLICATION_FORM_URLENCODED).post(ClientResponse.class, values);
-    return new RedirectResolution(ProspectListActionBean.class);
+    ClientResponse response = XmlProspectDao.getInstance().sendMultiPartToMmj(prospect ,prospectFileName);
+    System.out.println("Back in ProspectActionBean");
+    if (response.getClientResponseStatus() == ClientResponse.Status.ACCEPTED)
+    {
+      XmlProspectDao.getInstance().delete(prospectFileName, prospect.getDocumentFileName());
+      getContext().getMessages().add(new SimpleMessage("Sent {0} to MMJ.", prospect.toString()));
+      return new RedirectResolution(ProspectListActionBean.class);      
+    }
+    ValidationErrors validationErrors = getContext().getValidationErrors();
+    validationErrors.add("prospect", new SimpleError("Unable to send  {2} to MMJ. Reason: {3}", prospect.toString(), response.getEntity(String.class)));
+    return new ForwardResolution(FORM);    
   }
+  
+//public Resolution sendToMmj()
+//{
+//  ProspectFile prospectFile = XmlProspectDao.getInstance().select(prospectFileName);
+//  prospect = prospectFile.getProspect();
+////  XmlDisciplineDao.getInstance().update(discipline);
+////  getContext().getMessages().add(new SimpleMessage("Saved {0}.", discipline.getName()));
+//  Client client = Client.create();
+//  WebResource webResource = client.resource("http://localhost:8080/jersey/rest/prospects");
+//  MultivaluedMapImpl values = new MultivaluedMapImpl();
+//  values.add("title", prospect.getTitle());
+//  values.add("firstName", prospect.getFirstName());
+//  values.add("lastName", prospect.getLastName());
+//  values.add("contactTelephone", prospect.getContactTelephone());
+//  values.add("email", prospect.getEmail());
+//  values.add("profession", prospect.getProfession());
+//  values.add("availableForWork", prospect.getAvailableForWork());
+//  values.add("disciplineId", prospect.getDisciplineId());
+//  values.add("domicile", prospectFile.getDomicileName());
+//  values.add("visaId", prospect.getVisaId());
+//  values.add("lengthOfStay", prospectFile.getLengthOfStayName());
+//  values.add("visaId", prospect.getVisaId());
+//  values.add("documentFileName", prospect.getDocumentFileName());
+//  ClientResponse response = webResource.type(MediaType.APPLICATION_FORM_URLENCODED).post(ClientResponse.class, values);
+//  System.out.println("Response Status : " + response.getEntity(String.class));
+//  return new RedirectResolution(ProspectListActionBean.class);
+//}
+//
   
 }

@@ -308,7 +308,7 @@ public class RegistrationActionBean extends BaseActionBean
       System.out.println(fileBean.getContentType());
       System.out.println(fileBean.getSize());
       String newFileName = prospect.getEmail() + fileName.substring(fileName.lastIndexOf("."));
-      String newFullFileName = getProspectFilesFolder() + "/" + newFileName; 
+      String newFullFileName = XmlProspectDao.getInstance().getProspectFilesFolder() + "/" + newFileName; 
       try
       {
         fileBean.save(new File(newFullFileName));

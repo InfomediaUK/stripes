@@ -1,13 +1,27 @@
 package net.infomediauk.dao.impl;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.ObjectInputStream.GetField;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.multipart.BodyPart;
+import com.sun.jersey.multipart.MultiPart;
 
 import net.infomediauk.model.Discipline;
 import net.infomediauk.model.Domicile;
@@ -217,6 +231,35 @@ public class XmlProspectDao
     return false;
   }
   
+  public ClientResponse sendMultiPartToMmj(Prospect prospect, String prospectFileName)
+  {
+    ProspectFile prospectFile = select(prospectFileName);
+    prospect = prospectFile.getProspect();
+    Client client = Client.create();
+    String BASE_URI = "http://localhost:8080/jersey/rest/";
+    WebResource webResource = client.resource(BASE_URI);
+    MultiPart multiPart = new MultiPart();
+    multiPart.getBodyParts().add(new BodyPart(prospect, MediaType.APPLICATION_XML_TYPE));
+    if (!prospect.getDocumentFileName().equals("NOT SUPPLIED"))
+    {
+      File file = getProspectDocumentFile(prospect.getDocumentFileName());
+      InputStream inputStream = null;
+      try
+      {
+        inputStream = new BufferedInputStream(new FileInputStream(file));
+        multiPart.getBodyParts().add(new BodyPart(inputStream, MediaType.APPLICATION_OCTET_STREAM_TYPE));
+      }
+      catch (FileNotFoundException e)
+      {
+        e.printStackTrace();
+      }
+    }
+    System.out.println("Sending to jersey...");
+    ClientResponse response = webResource.path("/prospects").type("multipart/mixed").post(ClientResponse.class, multiPart);
+    System.out.println("Response Status : " + response.getEntity(String.class));
+    return response;
+  }
+  
   private File getProspectDocumentFile(String documentFileName)
   {
     String fullDocumentFileName = getProspectFilesFolder() + "/" + documentFileName;;
@@ -238,7 +281,7 @@ public class XmlProspectDao
    * 
    * @return
    */
-  private String getProspectFilesFolder()
+  public String getProspectFilesFolder()
   {
     String path = System.getenv("OPENSHIFT_DATA_DIR") + "/files/prospect";
     File folder = new File(path);
