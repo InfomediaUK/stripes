@@ -34,8 +34,8 @@
             <s:link beanclass="net.infomediauk.stripes.action.HomeActionBean" event="view">
                  <img src="${contextPath}/images/logo.gif" alt="pj locums" width="141" height="72" title="pj locums" />
             </s:link>
-         </div>
-         <div>
+          </div>
+          <div>
             <s:link beanclass="net.infomediauk.stripes.action.FaqsActionBean" event="view">
               FAQs
             </s:link>
@@ -43,7 +43,7 @@
             <s:link beanclass="net.infomediauk.stripes.action.AboutUsActionBean" event="view">
               About Us
             </s:link>
-         </div>
+          </div>
           <div id="tagline"><h1><fmt:message key="tagLine" /></h1></div>
         </div>
         <div id="footer" style="clear:both; padding-top:10px;">
