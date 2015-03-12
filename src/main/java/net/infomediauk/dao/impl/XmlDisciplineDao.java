@@ -187,8 +187,11 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
         @Override
         public int compare(DisciplineRecord  disciplineRecord1, DisciplineRecord  disciplineRecord2)
         {
-
+          if (disciplineRecord1.getDisplayOrder().equals(disciplineRecord2.getDisplayOrder()))
+          {
             return  disciplineRecord1.getName().compareTo(disciplineRecord2.getName());
+          }
+          return  disciplineRecord1.getDisplayOrder().compareTo(disciplineRecord2.getDisplayOrder());
         }
       });      
       File file = getFile();;
