@@ -83,13 +83,6 @@ public abstract class BaseActionBean implements ActionBean
     return file;
   }
   
-  protected File getProspectFile(String fileName)
-  {
-    String fullFileName = getProspectFilesFolder() + "/" + fileName;;
-    File file = new File(fullFileName);
-    return file;
-  }
-  
   /**
    * Note that OPENSHIFT_DATA_DIR must be set as an environment variable in run configurations.
    * It must correspond to the tomcat deployment folder.
@@ -100,24 +93,6 @@ public abstract class BaseActionBean implements ActionBean
   protected String getHtmlPageFilesFolder()
   {
     String path = System.getenv("OPENSHIFT_DATA_DIR") + "/files/static";
-    return path;
-  }
-
-  /**
-   * Note that OPENSHIFT_DATA_DIR must be set as an environment variable in run configurations.
-   * It must correspond to the tomcat deployment folder.
-   * Eg. /Users/infomedia/Documents/Eclipse/Luna/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/stripes/WEB-INF
-   * 
-   * @return
-   */
-  protected String getProspectFilesFolder()
-  {
-    String path = System.getenv("OPENSHIFT_DATA_DIR") + "/files/prospect";
-    File folder = new File(path);
-    if (!folder.exists())
-    {
-      folder.mkdirs();
-    }
     return path;
   }
 
