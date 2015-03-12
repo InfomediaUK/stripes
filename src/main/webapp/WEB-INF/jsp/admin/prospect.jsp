@@ -120,7 +120,7 @@
           <s:submit name="save" value="Save"  />
           <s:submit name="cancel" value="Cancel"  />
           <s:submit name="delete" value="Delete"  />
-          <s:submit name="sendToMmj" value="Send to MMJ"  />
+          <s:submit name="sendMultiPartToMmj" value="Send to MMJ"  />
         </td>
       </tr>
     </table>
