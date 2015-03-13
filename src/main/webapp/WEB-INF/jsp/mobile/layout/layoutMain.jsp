@@ -8,6 +8,9 @@
   <title>${title}</title>
   <meta name="description" content="${metaDescription}" />
   <meta name="keywords" content="${metaKeywords}" />
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+  <meta name="HandheldFriendly" content="true"/>
+  <meta name="MobileOptimized" content="width" />
 </head>
 <body>
   <div id="pageContainer">
