@@ -32,7 +32,7 @@ public class RegisterFormActionBean extends BaseActionBean
   @DontValidate
   public Resolution start() throws Exception
   {
-    return new ForwardResolution(RegistrationActionBean.class);
+    return new ForwardResolution(RegistrationFormActionBean.class);
   }
 
 }

@@ -32,7 +32,7 @@ import net.sourceforge.stripes.validation.EmailTypeConverter;
 import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
 
-public class RegistrationActionBean extends BaseActionBean
+public class RegistrationFormActionBean extends BaseActionBean
 {
   @ValidateNestedProperties({
     @Validate(field="firstName", required=true),
@@ -59,7 +59,7 @@ public class RegistrationActionBean extends BaseActionBean
   private String title;
   private DateManager dateManager;
   
-  public RegistrationActionBean()
+  public RegistrationFormActionBean()
   {
     super();
     dateManager      = new DateManager();
@@ -105,51 +105,26 @@ public class RegistrationActionBean extends BaseActionBean
     return domicileList;
   }
 
-//  public void setDomicileList(List<Domicile> domicileList)
-//  {
-//    this.domicileList = domicileList;
-//  }
-//
   public List<LengthOfStay> getLengthOfStayList()
   {
     return lengthOfStayList;
   }
 
-//  public void setLengthOfStayList(List<LengthOfStay> lengthOfStayList)
-//  {
-//    this.lengthOfStayList = lengthOfStayList;
-//  }
-//
   public List<Discipline> getDisciplineList()
   {
     return disciplineList;
   }
 
-//  public void setDisciplineList(List<Discipline> disciplineList)
-//  {
-//    this.disciplineList = disciplineList;
-//  }
-//
   public List<Visa> getVisaList()
   {
     return visaList;
   }
 
-//  public void setVisaList(List<Visa> visaList)
-//  {
-//    this.visaList = visaList;
-//  }
-//
   public List<Title> getTitleList()
   {
     return titleList;
   }
 
-//  public void setTitleList(List<Title> titleList)
-//  {
-//    this.titleList = titleList;
-//  }
-//
   public Integer getDomicileId()
   {
     return domicileId;

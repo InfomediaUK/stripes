@@ -2,27 +2,19 @@
 <%@ include file="/WEB-INF/jsp/common/taglibs.jsp" %>
 <jsp:useBean id="date" class="java.util.Date" />
 <fieldset>
-  <table width="900">
-    <tr>
-      <td>
-        <img src="${contextPath}/images/iso9001.gif" alt="iso 9001" width="155" height="49" />
-      </td>
-      <td>
-      </td>
-      <td>
-      </td>
-      <td>
-        <p>(In the UK)</p>
-        <p>Freephone: 0800 032 0454</p>
-        <p>Fax: 020 8874 7222</p>
-        <p>Email: info@pjlocums.co.uk</p>
-      </td>
-      <td>
-        <p>(International)</p>
-        <p>Tel: + 44 20 8874 6111</p>
-        <p>Fax: + 44 20 8874 7222</p>
-      </td>
-    </tr>
-  </table>
+  <div id="iso9001">
+    <img src="${contextPath}/images/iso9001.gif" alt="iso 9001" width="155" height="49" />
+  </div>
+  <div id="ukcontact">
+    <p>(In the UK)</p>
+    <p>Freephone: 0800 032 0454</p>
+    <p>Fax: 020 8874 7222</p>
+    <p>Email: info@pjlocums.co.uk</p>
+  </div>
+  <div id="internationalcontact">
+    <p>(International)</p>
+    <p>Tel: + 44 20 8874 6111</p>
+    <p>Fax: + 44 20 8874 7222</p>
+  </div>
 </fieldset>
 <p>&copy; <fmt:formatDate value="${date}" pattern="yyyy" /> P J Locums</p>
