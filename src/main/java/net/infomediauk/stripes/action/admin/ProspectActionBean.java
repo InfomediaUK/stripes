@@ -176,7 +176,8 @@ public class ProspectActionBean extends BaseActionBean
 
   public Resolution sendMultiPartToMmj() throws MalformedURLException
   {
-    ClientResponse response = XmlProspectDao.getInstance().sendMultiPartToMmj(prospect ,prospectFileName);
+    System.out.println(prospect);
+    ClientResponse response = XmlProspectDao.getInstance().sendMultiPartToMmj(prospectFileName);
     System.out.println("Back in ProspectActionBean");
     if (response.getClientResponseStatus() == ClientResponse.Status.ACCEPTED)
     {
@@ -185,7 +186,7 @@ public class ProspectActionBean extends BaseActionBean
       return new RedirectResolution(ProspectListActionBean.class);      
     }
     ValidationErrors validationErrors = getContext().getValidationErrors();
-    validationErrors.add("prospect", new SimpleError("Unable to send  {2} to MMJ. Reason: {3}", prospect.toString(), response.getEntity(String.class)));
+    validationErrors.add("prospect", new SimpleError("Unable to send {2} to MMJ. Reason: {3}", prospect.toString(), response.getEntity(String.class)));
     return new ForwardResolution(FORM);    
   }
   

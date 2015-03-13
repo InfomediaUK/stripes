@@ -29,6 +29,7 @@ import net.infomediauk.model.LengthOfStay;
 import net.infomediauk.model.Visa;
 import net.infomediauk.xml.jaxb.model.Prospect;
 import net.infomediauk.xml.jaxb.model.ProspectFile;
+import net.infomediauk.xml.jaxb.model.mmj.ProspectApplicant;
 
 /**
  * Multiple file DAO for Prospects. That is, there can be MORE THAN ONE one file.
@@ -231,18 +232,18 @@ public class XmlProspectDao
     return false;
   }
   
-  public ClientResponse sendMultiPartToMmj(Prospect prospect, String prospectFileName)
+  public ClientResponse sendMultiPartToMmj(String prospectFileName)
   {
     ProspectFile prospectFile = select(prospectFileName);
-    prospect = prospectFile.getProspect();
+    ProspectApplicant prospectApplicant = new ProspectApplicant(prospectFile);
     Client client = Client.create();
     String BASE_URI = "http://localhost:8080/jersey/rest/";
     WebResource webResource = client.resource(BASE_URI);
     MultiPart multiPart = new MultiPart();
-    multiPart.getBodyParts().add(new BodyPart(prospect, MediaType.APPLICATION_XML_TYPE));
-    if (!prospect.getDocumentFileName().equals("NOT SUPPLIED"))
+    multiPart.getBodyParts().add(new BodyPart(prospectApplicant, MediaType.APPLICATION_XML_TYPE));
+    if (!prospectFile.getProspect().getDocumentFileName().equals("NOT SUPPLIED"))
     {
-      File file = getProspectDocumentFile(prospect.getDocumentFileName());
+      File file = getProspectDocumentFile(prospectFile.getProspect().getDocumentFileName());
       InputStream inputStream = null;
       try
       {
@@ -255,7 +256,7 @@ public class XmlProspectDao
       }
     }
     System.out.println("Sending to jersey...");
-    ClientResponse response = webResource.path("/prospects").type("multipart/mixed").post(ClientResponse.class, multiPart);
+    ClientResponse response = webResource.path("/prospect").type("multipart/mixed").post(ClientResponse.class, multiPart);
     System.out.println("Response Status : " + response.getEntity(String.class));
     return response;
   }
