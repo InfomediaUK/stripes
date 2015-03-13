@@ -248,7 +248,7 @@ public class RegistrationActionBean extends BaseActionBean
 
   public Resolution register() throws Exception
   {
-    return new ForwardResolution("/WEB-INF/jsp/registration.jsp");
+    return new ForwardResolution("/WEB-INF/jsp/www/registration.jsp");
   }
 
   @DefaultHandler
@@ -265,7 +265,7 @@ public class RegistrationActionBean extends BaseActionBean
     System.out.println(locale);
     // Prime initial with this year that will be always be id 1.
     availableYear = 1;
-    return new ForwardResolution("/WEB-INF/jsp/registration.jsp");
+    return new ForwardResolution("/WEB-INF/jsp/www/registration.jsp");
   }
 
   public Resolution save()
@@ -322,7 +322,7 @@ public class RegistrationActionBean extends BaseActionBean
     }
     XmlProspectDao.getInstance().saveProspect(prospect);
 
-    return new ForwardResolution("/WEB-INF/jsp/registration.jsp");
+    return new ForwardResolution("/WEB-INF/jsp/www/registration.jsp");
 //    return new RedirectResolution(RegisterActionBean.class);
   }
 

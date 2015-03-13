@@ -18,6 +18,6 @@ public class StaticPageActionBean extends BaseActionBean
     {
       return new ForwardResolution("/WEB-INF/jsp/mobile/staticPage.jsp");
     }
-    return new ForwardResolution("/WEB-INF/jsp/staticPage.jsp");
+    return new ForwardResolution("/WEB-INF/jsp/www/staticPage.jsp");
   }
 }
