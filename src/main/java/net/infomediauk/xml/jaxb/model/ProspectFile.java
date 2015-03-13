@@ -1,14 +1,18 @@
 package net.infomediauk.xml.jaxb.model;
 
-
 public class ProspectFile
 {
+  private Prospect prospect;
   private String fileName;
   private String visaName;
   private String disciplineName;
   private String domicileName;
   private String lengthOfStayName;
-  private Prospect prospect;
+
+  public ProspectFile()
+  {
+    super();
+  }
 
   public String getFileName()
   {

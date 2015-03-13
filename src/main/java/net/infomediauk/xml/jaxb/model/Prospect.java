@@ -7,7 +7,7 @@ import net.infomediauk.model.ProspectShort;
 
 @XmlRootElement
 @XmlType(propOrder = { "title", "firstName", "lastName", "contactTelephone", "email", "profession", "availableForWork", 
-                       "disciplineId", "domicileId", "visaId", "lengthOfStayId", "documentFileName"})
+                       "documentFileName", "disciplineId", "domicileId", "visaId", "lengthOfStayId"})
 public class Prospect
 {
   private String title;
@@ -17,11 +17,11 @@ public class Prospect
   private String email;
   private String profession;
   private String availableForWork;
+  private String documentFileName;
   private Integer disciplineId;
   private Integer domicileId;
   private Integer visaId;
   private Integer lengthOfStayId;
-  private String documentFileName;
   
   public Prospect()
   {
