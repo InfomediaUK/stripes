@@ -1,7 +1,7 @@
 <%@ include file="/WEB-INF/jsp/common/pagedirectives.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/taglibs.jsp" %>
 
-<s:layout-render name="/WEB-INF/jsp/layout/layoutMain.jsp" 
+<s:layout-render name="/WEB-INF/jsp/www/layout/layoutMain.jsp" 
   title="Registration" 
   metaDescription="register"
   metaKeywords="job">

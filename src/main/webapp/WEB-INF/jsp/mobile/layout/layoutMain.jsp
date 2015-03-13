@@ -20,14 +20,13 @@
     </header>
     <div id="contentContainer" class="clearfix">
       <section id="pageSection">
-        <header class="sectionHeader">
-        </header>
+        <header class="sectionHeader"></header>
         <article class="sectionArticle">
           <s:layout-component name="body"/>
         </article>
         <footer class="sectionFooter">
           <s:layout-component name="left">
-            <jsp:include page="/WEB-INF/jsp/layout/leftMenu.jsp"/>
+            <jsp:include page="/WEB-INF/jsp/mobile/layout/menu.jsp"/>
           </s:layout-component>
         </footer>
       </section>
@@ -35,7 +34,7 @@
     <footer id="pageFooter">
       <div id="footer" style="clear:both; padding-top:10px;">
         <s:layout-component name="footer">
-          <jsp:include page="/WEB-INF/jsp/layout/footer.jsp"/>
+          <jsp:include page="/WEB-INF/jsp/mobile/layout/footer.jsp"/>
         </s:layout-component>
       </div>
     </footer>
