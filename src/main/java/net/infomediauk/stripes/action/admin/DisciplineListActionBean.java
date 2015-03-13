@@ -48,7 +48,7 @@ public class DisciplineListActionBean extends BaseActionBean
    */
   public Resolution download()
   {
-    String fileName = XmlTitleDao.getInstance().getFileName();
+    String fileName = XmlDisciplineDao.getInstance().getFileName();
     String mimeType = getContext().getServletContext().getMimeType(fileName);
     FileInputStream inputStream = XmlDisciplineDao.getInstance().getDownloadInputStream(mimeType);
     return new StreamingResolution(mimeType, inputStream).setFilename(fileName);

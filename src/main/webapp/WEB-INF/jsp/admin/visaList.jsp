@@ -16,12 +16,16 @@
       Delete
     </s:link>
     &nbsp;
+    <s:link beanclass="net.infomediauk.stripes.action.admin.VisaListActionBean" event="refreshFromMMJ" title="Refresh from MMJ" >
+      Refresh
+    </s:link>
+    &nbsp;
     <s:link beanclass="net.infomediauk.stripes.action.admin.VisaListActionBean" event="download">
       Download
     </s:link>
     <d:table name="${actionBean.visaList}" id="visa" requestURI="" defaultsort="2" >
       <d:column title="Id" property="id" sortable="true" />
-      <d:column title="Visa" sortable="true" >
+      <d:column title="Visa" sortProperty="name" sortable="true" >
           <s:link beanclass="net.infomediauk.stripes.action.admin.VisaActionBean" event="view">
             <s:param name="id" value="${visa.id}" />
             ${visa.name}

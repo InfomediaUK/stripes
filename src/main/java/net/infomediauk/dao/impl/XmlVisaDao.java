@@ -1,19 +1,28 @@
 package net.infomediauk.dao.impl;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+
 import net.infomediauk.dao.BaseDao;
 import net.infomediauk.dao.Dao;
 import net.infomediauk.model.Visa;
+import net.infomediauk.xml.jaxb.model.DisciplineRecord;
 import net.infomediauk.xml.jaxb.model.VisaDatabase;
 import net.infomediauk.xml.jaxb.model.VisaRecord;
+import net.infomediauk.xml.jaxb.model.mmj.VisaTypes;
+import net.infomediauk.xml.jaxb.model.mmj.VisaType;
 
 /**
  * Single file DAO for Visa Types. That is, there is ONLY ONE file.
@@ -95,11 +104,16 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
 
   public Visa select(Integer id)
   {
-    Visa visa = new Visa();
+    Visa visa = null;
     if (id != null)
     {
       VisaRecord visaRecord = database.getRecord(id);
-      fillVisa(visa, visaRecord);
+      if (visaRecord != null)
+      {
+        // Record found.
+        visa = new Visa();
+        fillVisa(visa, visaRecord);
+      }
     }
     return visa;
   }
@@ -183,6 +197,46 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
       e.printStackTrace();
     }
 
+  }
+  
+  public void refreshFromWeb()
+  {
+    try
+    {
+      Client client = Client.create();
+      WebResource webResource = client.resource("http://test.matchmyjob.co.uk/mmj/rest/visas");
+      ClientResponse response = webResource.accept(MediaType.APPLICATION_XML).get(ClientResponse.class);
+      if (response.getStatus() != 200)
+      {
+        throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+      }
+      InputStream inputStream = response.getEntityInputStream();
+      System.out.println("Output from Server .... \n");
+      JAXBContext context = JAXBContext.newInstance(VisaTypes.class);
+      Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
+      VisaTypes visaTypes = (VisaTypes)jaxbUnmarshaller.unmarshal(inputStream);
+      Visa visa = null;
+      Integer id = null;
+      for (VisaType visaType : visaTypes.getVisaTypes())
+      {
+        id = visaType.getId();
+        visa = XmlVisaDao.getInstance().select(id);
+        if (visa == null)
+        {
+          // Must be a new Visa.
+          visa = new Visa();
+          visa.setId(id);
+        }
+        visa.setName(visaType.getName());
+        visa.setDisplayOrder(visaType.getDisplayOrder());
+        XmlVisaDao.getInstance().update(visa);
+      }
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    
   }
   
   @Override
