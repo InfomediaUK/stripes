@@ -10,7 +10,7 @@
       <title>${title}</title>
       <meta name="description" content="${metaDescription}" />
       <meta name="keywords" content="${metaKeywords}" />
-      <link rel="stylesheet" type="text/css" href="${contextPath}/css/pjlocums.css">
+      <link rel="stylesheet" type="text/css" href="${contextPath}/css/site.css">
     </head>
     <body>
       <div id="container" style="width:980px; margin:0 auto; position:relative;">
@@ -20,13 +20,13 @@
           </div>
           <div id="right_sidebar" style="float:right; width:200px;">
             <s:layout-component name="right">
-            <jsp:include page="/WEB-INF/jsp/www/layout/right.jsp"/>
+            <jsp:include page="/WEB-INF/jsp/site/layout/right.jsp"/>
             </s:layout-component>
           </div>
         </div>
         <div id="left_sidebar" style="float:left; width:160px; margin-right:10px; margin-top:160px;">
           <s:layout-component name="left">
-            <jsp:include page="/WEB-INF/jsp/www/layout/leftMenu.jsp"/>
+            <jsp:include page="/WEB-INF/jsp/site/layout/leftMenu.jsp"/>
           </s:layout-component>
         </div>
         <div id="header" style="height:120px; margin:0; padding:0; position:absolute; top:0; left:0; width:980px;">
@@ -48,7 +48,7 @@
         </div>
         <div id="footer" style="clear:both; padding-top:10px;">
           <s:layout-component name="footer">
-            <jsp:include page="/WEB-INF/jsp/www/layout/footer.jsp"/>
+            <jsp:include page="/WEB-INF/jsp/site/layout/footer.jsp"/>
           </s:layout-component>
         </div>
       </div>

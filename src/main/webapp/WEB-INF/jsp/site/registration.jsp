@@ -1,12 +1,12 @@
 <%@ include file="/WEB-INF/jsp/common/pagedirectives.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/taglibs.jsp" %>
 
-<s:layout-render name="/WEB-INF/jsp/www/layout/layoutMain.jsp" 
+<s:layout-render name="/WEB-INF/jsp/site/layout/layoutMain.jsp" 
   title="Registration" 
   metaDescription="register"
   metaKeywords="job">
   <s:layout-component name="body">
-  <s:form beanclass="net.infomediauk.stripes.action.RegistrationActionBean">
+  <s:form beanclass="net.infomediauk.stripes.action.RegistrationFormActionBean">
     <s:errors/>
     <table class="form" >
       <tr>
