@@ -18,7 +18,7 @@ public abstract class BaseActionBean implements ActionBean
 {
   private ActionBeanContext actionBeanContext;
   private HtmlPage htmlPage;
-  private String currentActionBeanClassName;
+  private String currentActionBeanClassName = this.getClass().getName();
   
   public ActionBeanContext getContext()
   {

@@ -22,7 +22,7 @@
 <p>
   &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> P J Locums
   <s:link beanclass="net.infomediauk.stripes.action.ToggleSiteActionBean" event="view">
-    <s:param name="currentActionBeanClassName" value="${actionBean.class.name}"/>
+    <s:param name="currentActionBeanClassName" value="${actionBean.currentActionBeanClassName}"/>
     Desk Top Site
   </s:link>
 </p>
