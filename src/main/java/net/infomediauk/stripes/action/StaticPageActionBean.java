@@ -1,9 +1,5 @@
 package net.infomediauk.stripes.action;
 
-import javax.servlet.http.HttpSession;
-
-import com.handinteractive.mobile.UAgentInfo;
-
 import stripesbook.action.BaseActionBean;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -15,23 +11,10 @@ public class StaticPageActionBean extends BaseActionBean
   public Resolution view() throws Exception
   {
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
-//    HttpSession session = getContext().getRequest().getSession();
-//    if (session.getAttribute("view") == null)
+//    if (getView().equals("MOBILE"))
 //    {
-//      UAgentInfo uAgentInfo = new UAgentInfo(getContext().getRequest().getHeader("User-Agent"), getContext().getRequest().getHeader("Accept"));
-//      if (uAgentInfo.detectMobileLong())
-//      {
-//        session.setAttribute("view", "MOBILE");
-//      }
-//      else
-//      {
-//        session.setAttribute("view", "SITE");
-//      }
+//      return new ForwardResolution("/WEB-INF/jsp/mobile/staticPage.jsp");
 //    }
-    if (getView().equals("MOBILE"))
-    {
-      return new ForwardResolution("/WEB-INF/jsp/mobile/staticPage.jsp");
-    }
-    return new ForwardResolution("/WEB-INF/jsp/site/staticPage.jsp");
+    return new ForwardResolution("/WEB-INF/jsp/" + getView().toLowerCase() + "/staticPage.jsp");
   }
 }
