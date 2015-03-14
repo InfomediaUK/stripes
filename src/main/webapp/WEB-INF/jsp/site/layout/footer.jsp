@@ -25,4 +25,10 @@
     </tr>
   </table>
 </fieldset>
-<p>&copy; <fmt:formatDate value="${date}" pattern="yyyy" /> P J Locums</p>
+<p>
+  &copy; <fmt:formatDate value="${date}" pattern="yyyy" /> P J Locums
+  <s:link beanclass="net.infomediauk.stripes.action.ToggleSiteActionBean" event="view">
+    <s:param name="currentActionBeanClassName" value="${actionBean.class.name}"/>
+    Mobile Site
+  </s:link>
+</p>

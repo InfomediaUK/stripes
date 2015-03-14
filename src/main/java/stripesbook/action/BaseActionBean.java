@@ -2,10 +2,13 @@ package stripesbook.action;
 
 import java.io.File;
 
+import javax.servlet.http.HttpSession;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+
+import com.handinteractive.mobile.UAgentInfo;
 
 import net.infomediauk.xml.jaxb.model.HtmlPage;
 import net.sourceforge.stripes.action.ActionBean;
@@ -15,7 +18,8 @@ public abstract class BaseActionBean implements ActionBean
 {
   private ActionBeanContext actionBeanContext;
   private HtmlPage htmlPage;
-
+  private String currentActionBeanClassName;
+  
   public ActionBeanContext getContext()
   {
     return actionBeanContext;
@@ -34,6 +38,34 @@ public abstract class BaseActionBean implements ActionBean
   public void setHtmlPage(HtmlPage htmlPage)
   {
     this.htmlPage = htmlPage;
+  }
+  
+  public String getCurrentActionBeanClassName()
+  {
+    return currentActionBeanClassName;
+  }
+
+  public void setCurrentActionBeanClassName(String currentActionBeanClassName)
+  {
+    this.currentActionBeanClassName = currentActionBeanClassName;
+  }
+
+  protected String getView()
+  {
+    HttpSession session = getContext().getRequest().getSession();
+    if (session.getAttribute("view") == null)
+    {
+      UAgentInfo uAgentInfo = new UAgentInfo(getContext().getRequest().getHeader("User-Agent"), getContext().getRequest().getHeader("Accept"));
+      if (uAgentInfo.detectMobileLong())
+      {
+        session.setAttribute("view", "MOBILE");
+      }
+      else
+      {
+        session.setAttribute("view", "SITE");
+      }
+    }
+    return (String)session.getAttribute("view");
   }
   
   protected HtmlPage loadPage(String fileName)
