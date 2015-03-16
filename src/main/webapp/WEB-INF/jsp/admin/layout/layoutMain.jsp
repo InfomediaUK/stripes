@@ -10,7 +10,7 @@
       <title>${title}</title>
       <meta name="description" content="${metaDescription}" />
       <meta name="keywords" content="${metaKeywords}" />
-      <link rel="stylesheet" type="text/css" href="${contextPath}/css/pjlocums.css">
+      <link rel="stylesheet" type="text/css" href="${contextPath}/css/site.css">
     </head>
     <body>
       <table>
