@@ -40,7 +40,7 @@ public class Prospect
       setFirstName(prospectShort.getFullName().substring(0, spaceIndex));
       setLastName(prospectShort.getFullName().substring(spaceIndex + 1));
     }
-    setMobileTelephone(prospectShort.getContactTelephone());
+    setMobileTelephone(prospectShort.getMobileTelephone());
     setEmail(prospectShort.getEmail());
     setProfession(prospectShort.getProfession());
   }
@@ -80,9 +80,9 @@ public class Prospect
     return mobileTelephone;
   }
 
-  public void setMobileTelephone(String contactTelephone)
+  public void setMobileTelephone(String mobileTelephone)
   {
-    this.mobileTelephone = contactTelephone;
+    this.mobileTelephone = mobileTelephone;
   }
 
   public String getEmail()

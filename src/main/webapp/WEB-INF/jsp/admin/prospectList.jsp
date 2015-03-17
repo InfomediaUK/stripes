@@ -18,7 +18,7 @@
             ${prospectFile.fullName}
           </s:link>
       </d:column>
-      <d:column title="Gender" property="prospect.gender.description" sortable="true" />
+      <d:column title="Gender" property="prospect.gender.name" sortable="true" />
       <d:column title="Mobile Tel." property="prospect.mobileTelephone" sortable="true" />
       <d:column title="Email" property="prospect.email" sortable="true" />
       <d:column title="Profession" property="prospect.profession" sortable="true" />

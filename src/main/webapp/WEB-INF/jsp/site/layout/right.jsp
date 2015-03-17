@@ -8,26 +8,26 @@
     <table class="form" >
       <tr>
         <td>
-          <label for="fullName">Full Name</label><br />
-          <s:text name="prospectShort.fullName" value ="" size="23" /> 
+          <s:label for="prospectShort.fullName"/><br />
+          <s:text name="prospectShort.fullName" id="prospectShort.fullName" size="23" /> 
         </td>
       </tr>
       <tr>
         <td>
-          Contact Tel. (incl code)<br />
-          <s:text name="prospectShort.mobileTelephone"  size="23" />
+          <s:label for="prospectShort.mobileTelephone"/><br />
+          <s:text name="prospectShort.mobileTelephone" id="prospectShort.mobileTelephone"  size="23" />
         </td>
       </tr>
       <tr>
         <td>
-          Email Address<br />
-          <s:text name="prospectShort.email"  size="23" />
+          <s:label for="prospectShort.email"/><br />
+          <sd:text name="prospectShort.email" id="prospectShort.email" placeholder="name@example.com" size="23" />
         </td>
       </tr>
       <tr>
         <td>
-          Profession<br />
-          <sd:text name="prospectShort.profession" placeholder="Your Job" size="23" />
+          <s:label for="prospectShort.profession"/><br />
+          <sd:text name="prospectShort.profession" id="prospectShort.profession" placeholder="Your Current Job" size="23" />
         </td>
       </tr>
       <tr>

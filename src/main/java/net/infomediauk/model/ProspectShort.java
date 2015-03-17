@@ -3,7 +3,7 @@ package net.infomediauk.model;
 public class ProspectShort
 {
   private String fullName;
-  private String contactTelephone;
+  private String mobileTelephone;
   private String email;
   private String profession;
     
@@ -17,14 +17,14 @@ public class ProspectShort
     this.fullName = fullName;
   }
 
-  public String getContactTelephone()
+  public String getMobileTelephone()
   {
-    return contactTelephone;
+    return mobileTelephone;
   }
 
-  public void setContactTelephone(String contactTelephone)
+  public void setMobileTelephone(String mobileTelephone)
   {
-    this.contactTelephone = contactTelephone;
+    this.mobileTelephone = mobileTelephone;
   }
 
   public String getEmail()
@@ -50,7 +50,7 @@ public class ProspectShort
   public void clear()
   {
     fullName = null;
-    contactTelephone = null;
+    mobileTelephone = null;
     email = null;
     profession = null;
   }

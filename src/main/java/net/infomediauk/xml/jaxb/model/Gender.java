@@ -2,14 +2,20 @@ package net.infomediauk.xml.jaxb.model;
 
 public enum Gender
 {
-  MALE("Male"), FEMALE("Female");
-  private String description;
-  private Gender(String description)
+  MALE("Male", "M"), FEMALE("Female", "F");
+  private String name;
+  private String code;
+  private Gender(String name, String code)
   {
-    this.description = description;
+    this.name = name;
+    this.code = code;
   }
-  public String getDescription()
+  public String getName()
   {
-    return description;
+    return name;
+  }
+  public String getCode()
+  {
+    return code;
   }
 };

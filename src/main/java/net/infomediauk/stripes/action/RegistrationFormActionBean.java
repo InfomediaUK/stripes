@@ -93,7 +93,7 @@ public class RegistrationFormActionBean extends BaseActionBean
   }
 
   @Validate(required=true)
-  public void setGender(Gender gender) // , converter=EnumeratedTypeConverter.class
+  public void setGender(Gender gender)
   {
     this.gender = gender;
   }

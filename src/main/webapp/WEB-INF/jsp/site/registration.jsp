@@ -31,7 +31,7 @@
         </td>
         <td>
           <c:forEach var="gender" items="<%= net.infomediauk.xml.jaxb.model.Gender.values() %>">
-            <s:radio name="gender" value="${gender}" id="${gender.description}"/> <s:label for="${gender.description}" />&nbsp;
+            <s:radio name="gender" value="${gender}" id="${gender.name}"/> <s:label for="${gender.name}" />&nbsp;
           </c:forEach>
         </td>
       </tr>
