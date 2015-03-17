@@ -12,13 +12,14 @@
       New
     </s:link>
     <d:table name="${actionBean.prospectFileList}" id="prospectFile" requestURI="" defaultsort="1" >
-      <d:column title="File" sortable="true" >
+      <d:column title="Full Name" sortable="true" >
           <s:link beanclass="net.infomediauk.stripes.action.admin.ProspectActionBean" event="view">
             <s:param name="prospectFileName" value="${prospectFile.fileName}" />
-            ${prospectFile.titleAndFullName}
+            ${prospectFile.fullName}
           </s:link>
       </d:column>
-      <d:column title="Contact Tel." property="prospect.contactTelephone" sortable="true" />
+      <d:column title="Gender" property="prospect.gender.description" sortable="true" />
+      <d:column title="Mobile Tel." property="prospect.mobileTelephone" sortable="true" />
       <d:column title="Email" property="prospect.email" sortable="true" />
       <d:column title="Profession" property="prospect.profession" sortable="true" />
       <d:column title="Available" property="prospect.availableForWork" sortable="true" />

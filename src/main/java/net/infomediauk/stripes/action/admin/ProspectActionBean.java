@@ -44,7 +44,6 @@ public class ProspectActionBean extends BaseActionBean
   private Integer disciplineId;
   private Integer lengthOfStayId;
   private Integer visaId;
-  private String title;
 
   public ProspectActionBean()
   {
@@ -126,11 +125,6 @@ public class ProspectActionBean extends BaseActionBean
     this.visaId = visaId;
   }
 
-  public void setTitle(String title)
-  {
-    this.title = title;
-  }
-
   @DefaultHandler
   @DontValidate
   public Resolution view() throws Exception
@@ -163,7 +157,6 @@ public class ProspectActionBean extends BaseActionBean
     prospect.setDisciplineId(disciplineId);
     prospect.setVisaId(visaId);
     prospect.setLengthOfStayId(lengthOfStayId);
-    prospect.setTitle(title);
     XmlProspectDao.getInstance().saveProspect(prospect);
     return new RedirectResolution(ProspectListActionBean.class);
   }

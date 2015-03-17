@@ -10,18 +10,17 @@ import net.infomediauk.dao.impl.XmlDisciplineDao;
 import net.infomediauk.dao.impl.XmlDomicileDao;
 import net.infomediauk.dao.impl.XmlLengthOfStayDao;
 import net.infomediauk.dao.impl.XmlProspectDao;
-import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Discipline;
 import net.infomediauk.model.Domicile;
 import net.infomediauk.model.LengthOfStay;
 import net.infomediauk.model.ProspectShort;
-import net.infomediauk.model.Title;
 import net.infomediauk.model.Visa;
 import net.infomediauk.utils.DateManager;
 import net.infomediauk.utils.DayNumber;
 import net.infomediauk.utils.Month;
 import net.infomediauk.utils.Year;
+import net.infomediauk.xml.jaxb.model.Gender;
 import net.infomediauk.xml.jaxb.model.Prospect;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
@@ -37,18 +36,18 @@ public class RegistrationFormActionBean extends BaseActionBean
   @ValidateNestedProperties({
     @Validate(field="firstName", required=true),
     @Validate(field="lastName", required=true),
-    @Validate(field="contactTelephone", required=true),
+    @Validate(field="mobileTelephone", required=true),
     @Validate(field="email", required=true, converter=EmailTypeConverter.class),
     @Validate(field="profession", required=true)
   })
   private Prospect prospect;
   private ProspectShort prospectShort;
+  private Gender gender;
   private FileBean fileBean;
   private List<Domicile> domicileList;
   private List<LengthOfStay> lengthOfStayList;
   private List<Discipline> disciplineList;
   private List<Visa> visaList;
-  private List<Title> titleList;
   private Integer domicileId;
   private Integer disciplineId;
   private Integer lengthOfStayId;
@@ -56,7 +55,6 @@ public class RegistrationFormActionBean extends BaseActionBean
   private Integer availableDayNumber;
   private Integer availableMonth;
   private Integer availableYear;
-  private String title;
   private DateManager dateManager;
   
   public RegistrationFormActionBean()
@@ -67,7 +65,6 @@ public class RegistrationFormActionBean extends BaseActionBean
     disciplineList   = XmlDisciplineDao.getInstance().selectAll();
     lengthOfStayList = XmlLengthOfStayDao.getInstance().selectAll();
     visaList         = XmlVisaDao.getInstance().selectAll();
-    titleList        = XmlTitleDao.getInstance().selectAll();
   }
 
   public Prospect getProspect()
@@ -88,6 +85,17 @@ public class RegistrationFormActionBean extends BaseActionBean
   public void setProspectShort(ProspectShort prospectShort)
   {
     this.prospectShort = prospectShort;
+  }
+
+  public Gender getGender()
+  {
+    return gender;
+  }
+
+  @Validate(required=true)
+  public void setGender(Gender gender) // , converter=EnumeratedTypeConverter.class
+  {
+    this.gender = gender;
   }
 
   public FileBean getFileBean()
@@ -120,16 +128,12 @@ public class RegistrationFormActionBean extends BaseActionBean
     return visaList;
   }
 
-  public List<Title> getTitleList()
-  {
-    return titleList;
-  }
-
   public Integer getDomicileId()
   {
     return domicileId;
   }
 
+  @Validate(required=true)
   public void setDomicileId(Integer domicileId)
   {
     this.domicileId = domicileId;
@@ -140,6 +144,7 @@ public class RegistrationFormActionBean extends BaseActionBean
     return lengthOfStayId;
   }
 
+  @Validate(required=true)
   public void setLengthOfStayId(Integer lengthOfStayId)
   {
     this.lengthOfStayId = lengthOfStayId;
@@ -150,6 +155,7 @@ public class RegistrationFormActionBean extends BaseActionBean
     return disciplineId;
   }
 
+  @Validate(required=true)
   public void setDisciplineId(Integer disciplineId)
   {
     this.disciplineId = disciplineId;
@@ -160,6 +166,7 @@ public class RegistrationFormActionBean extends BaseActionBean
     return visaId;
   }
 
+  @Validate(required=true)
   public void setVisaId(Integer visaId)
   {
     this.visaId = visaId;
@@ -210,17 +217,6 @@ public class RegistrationFormActionBean extends BaseActionBean
     this.availableYear = availableYear;
   }
 
-  public String getTitle()
-  {
-    return title;
-  }
-
-  @Validate(required=true)
-  public void setTitle(String title)
-  {
-    this.title = title;
-  }
-
   public Resolution register() throws Exception
   {
     return new ForwardResolution("/WEB-INF/jsp/" + getView().toLowerCase() + "/registration.jsp");
@@ -246,7 +242,7 @@ public class RegistrationFormActionBean extends BaseActionBean
   public Resolution save()
   {
     // Set values from lists.
-    prospect.setTitle(title);
+    prospect.setGender(gender);
     prospect.setDomicileId(domicileId);
     prospect.setDisciplineId(disciplineId);
     prospect.setVisaId(visaId);
@@ -274,7 +270,7 @@ public class RegistrationFormActionBean extends BaseActionBean
     System.out.println(prospect.getAvailableForWork());
     if (fileBean == null)
     {
-      prospect.setDocumentFileName("NOT SUPPLIED");
+      prospect.setDocumentFileName("");
     }
     else
     {

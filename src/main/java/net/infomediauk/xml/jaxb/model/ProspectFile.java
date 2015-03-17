@@ -74,11 +74,6 @@ public class ProspectFile
     this.prospect = prospect;
   }
    
-  public String getTitleAndFullName()
-  {
-    return prospect.getTitleAndFullName();
-  }
-  
   public String getFullName()
   {
     return prospect.getFullName();

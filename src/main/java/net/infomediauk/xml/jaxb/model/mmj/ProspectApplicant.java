@@ -3,6 +3,7 @@ package net.infomediauk.xml.jaxb.model.mmj;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import net.infomediauk.xml.jaxb.model.Gender;
 import net.infomediauk.xml.jaxb.model.Prospect;
 import net.infomediauk.xml.jaxb.model.ProspectFile;
 
@@ -13,22 +14,24 @@ import net.infomediauk.xml.jaxb.model.ProspectFile;
  *
  */
 @XmlRootElement(name="prospect")
-@XmlType(propOrder = { "title", "firstName", "lastName", "contactTelephone", "email", "profession", "availableForWork", 
-                       "domicile", "lengthOfStay", "documentFileName", "disciplineId", "visaId"})
+@XmlType(propOrder = { "firstName", "lastName", "gender", "mobileTelephone", "email", "profession", "availableForWork", 
+    "agencyId", "consultantId", "disciplineId", "visaId", "domicile", "lengthOfStay", "documentFileName"})
 public class ProspectApplicant
 {
-  private String title;
   private String firstName;
   private String lastName;
-  private String contactTelephone;
+  private Gender gender;
+  private String mobileTelephone;
   private String email;
   private String profession;
   private String availableForWork;
+  private Integer agencyId;
+  private Integer consultantId;
+  private Integer disciplineId;
+  private Integer visaId;
   private String domicile;
   private String lengthOfStay;
   private String documentFileName;
-  private Integer disciplineId;
-  private Integer visaId;
   
   public ProspectApplicant()
   {
@@ -38,11 +41,10 @@ public class ProspectApplicant
   public ProspectApplicant(ProspectFile prospectFile)
   {
     Prospect prospect = prospectFile.getProspect();
-    this.setTitle(prospect.getTitle());
     this.setFirstName(prospect.getFirstName());
     this.setLastName(prospect.getLastName());
     this.setEmail(prospect.getEmail());
-    this.setContactTelephone(prospect.getContactTelephone());
+    this.setMobileTelephone(prospect.getMobileTelephone());
     this.setAvailableForWork(prospect.getAvailableForWork());
     this.setDocumentFileName(prospect.getDocumentFileName());
     this.setProfession(prospect.getProfession());
@@ -50,16 +52,6 @@ public class ProspectApplicant
     this.setVisaId(prospect.getVisaId());
     this.setDomicile(prospectFile.getDomicileName());
     this.setLengthOfStay(prospectFile.getLengthOfStayName());
-  }
-
-  public String getTitle()
-  {
-    return title;
-  }
-
-  public void setTitle(String title)
-  {
-    this.title = title;
   }
 
   public String getFirstName()
@@ -82,14 +74,24 @@ public class ProspectApplicant
     this.lastName = lastName;
   }
 
-  public String getContactTelephone()
+  public Gender getGender()
   {
-    return contactTelephone;
+    return gender;
   }
 
-  public void setContactTelephone(String contactTelephone)
+  public void setGender(Gender gender)
   {
-    this.contactTelephone = contactTelephone;
+    this.gender = gender;
+  }
+
+  public String getMobileTelephone()
+  {
+    return mobileTelephone;
+  }
+
+  public void setMobileTelephone(String contactTelephone)
+  {
+    this.mobileTelephone = contactTelephone;
   }
 
   public String getEmail()
@@ -120,6 +122,26 @@ public class ProspectApplicant
   public void setAvailableForWork(String dateInCountry)
   {
     this.availableForWork = dateInCountry;
+  }
+
+  public Integer getAgencyId()
+  {
+    return agencyId;
+  }
+
+  public void setAgencyId(Integer agencyId)
+  {
+    this.agencyId = agencyId;
+  }
+
+  public Integer getConsultantId()
+  {
+    return consultantId;
+  }
+
+  public void setConsultantId(Integer consultantId)
+  {
+    this.consultantId = consultantId;
   }
 
   public Integer getDisciplineId()
@@ -172,11 +194,6 @@ public class ProspectApplicant
     this.documentFileName = document;
   }
 
-  public String getTitleAndFullName()
-  {
-    return String.format("%s %s %s", title, firstName, lastName);
-  }
-  
   public String getFullName()
   {
     return String.format("%s %s", firstName, lastName);
@@ -185,6 +202,49 @@ public class ProspectApplicant
   @Override
   public String toString()
   {
-    return String.format("%s %s %s %s %s", title, firstName, lastName, email, contactTelephone);
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append("firstName=[");
+    stringBuilder.append(firstName);
+    stringBuilder.append("], ");
+    stringBuilder.append("lastName=[");
+    stringBuilder.append(lastName);
+    stringBuilder.append("], ");
+    stringBuilder.append("gender=[");
+    stringBuilder.append(gender);
+    stringBuilder.append("], ");
+    stringBuilder.append("email=[");
+    stringBuilder.append(email);
+    stringBuilder.append("], ");
+    stringBuilder.append("mobileTelephone=[");
+    stringBuilder.append(mobileTelephone);
+    stringBuilder.append("], ");
+    stringBuilder.append("profession=[");
+    stringBuilder.append(profession);
+    stringBuilder.append("], ");
+    stringBuilder.append("availableForWork=[");
+    stringBuilder.append(availableForWork);
+    stringBuilder.append("], ");
+    stringBuilder.append("domicile=[");
+    stringBuilder.append(domicile);
+    stringBuilder.append("], ");
+    stringBuilder.append("lengthOfStay=[");
+    stringBuilder.append(lengthOfStay);
+    stringBuilder.append("], ");
+    stringBuilder.append("documentFileName=[");
+    stringBuilder.append(documentFileName);
+    stringBuilder.append("], ");
+    stringBuilder.append("agencyId=[");
+    stringBuilder.append(agencyId);
+    stringBuilder.append("], ");
+    stringBuilder.append("consultantId=[");
+    stringBuilder.append(consultantId);
+    stringBuilder.append("], ");
+    stringBuilder.append("disciplineId=[");
+    stringBuilder.append(disciplineId);
+    stringBuilder.append("], ");
+    stringBuilder.append("visaId=[");
+    stringBuilder.append(visaId);
+    stringBuilder.append("]");
+    return stringBuilder.toString();
   }
 }

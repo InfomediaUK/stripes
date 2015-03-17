@@ -6,14 +6,14 @@ import javax.xml.bind.annotation.XmlType;
 import net.infomediauk.model.ProspectShort;
 
 @XmlRootElement
-@XmlType(propOrder = { "title", "firstName", "lastName", "contactTelephone", "email", "profession", "availableForWork", 
+@XmlType(propOrder = { "firstName", "lastName", "gender", "mobileTelephone", "email", "profession", "availableForWork", 
                        "documentFileName", "disciplineId", "domicileId", "visaId", "lengthOfStayId"})
 public class Prospect
 {
-  private String title;
   private String firstName;
   private String lastName;
-  private String contactTelephone;
+  private Gender gender;
+  private String mobileTelephone;
   private String email;
   private String profession;
   private String availableForWork;
@@ -40,19 +40,9 @@ public class Prospect
       setFirstName(prospectShort.getFullName().substring(0, spaceIndex));
       setLastName(prospectShort.getFullName().substring(spaceIndex + 1));
     }
-    setContactTelephone(prospectShort.getContactTelephone());
+    setMobileTelephone(prospectShort.getContactTelephone());
     setEmail(prospectShort.getEmail());
     setProfession(prospectShort.getProfession());
-  }
-
-  public String getTitle()
-  {
-    return title;
-  }
-
-  public void setTitle(String title)
-  {
-    this.title = title;
   }
 
   public String getFirstName()
@@ -75,14 +65,24 @@ public class Prospect
     this.lastName = lastName;
   }
 
-  public String getContactTelephone()
+  public Gender getGender()
   {
-    return contactTelephone;
+    return gender;
   }
 
-  public void setContactTelephone(String contactTelephone)
+  public void setGender(Gender gender)
   {
-    this.contactTelephone = contactTelephone;
+    this.gender = gender;
+  }
+
+  public String getMobileTelephone()
+  {
+    return mobileTelephone;
+  }
+
+  public void setMobileTelephone(String contactTelephone)
+  {
+    this.mobileTelephone = contactTelephone;
   }
 
   public String getEmail()
@@ -165,11 +165,6 @@ public class Prospect
     this.documentFileName = document;
   }
 
-  public String getTitleAndFullName()
-  {
-    return String.format("%s %s %s", title, firstName, lastName);
-  }
-  
   public String getFullName()
   {
     return String.format("%s %s", firstName, lastName);
@@ -178,6 +173,6 @@ public class Prospect
   @Override
   public String toString()
   {
-    return String.format("%s %s %s %s %s", title, firstName, lastName, email, contactTelephone);
+    return String.format("%s %s %s %s", firstName, lastName, email, mobileTelephone);
   }
 }

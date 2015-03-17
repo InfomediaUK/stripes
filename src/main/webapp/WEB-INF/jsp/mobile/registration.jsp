@@ -11,16 +11,6 @@
     <table class="form" >
       <tr>
         <td>
-         <s:label for="prospect.title" />
-        </td>
-        <td>
-         <s:select name="title" id="prospect.title" class="wide">
-           <s:options-collection collection="${actionBean.titleList}" value="name" sort="displayOrder" />
-         </s:select> 
-        </td>
-      </tr>
-      <tr>
-        <td>
           <s:label for="prospect.firstName" />
         </td>
         <td>
@@ -37,10 +27,20 @@
       </tr>
       <tr>
         <td>
-         <s:label for="prospect.contactTelephone" /> 
+         <s:label for="prospect.gender" />
         </td>
         <td>
-         <input type="tel" name="prospect.contactTelephone" id="prospect.contactTelephone" required="required" size="50" /> 
+          <c:forEach var="gender" items="<%= net.infomediauk.xml.jaxb.model.Gender.values() %>">
+            <s:radio name="gender" value="${gender}" id="${gender.description}"/> <s:label for="${gender.description}" />&nbsp;
+          </c:forEach>
+        </td>
+      </tr>
+      <tr>
+        <td>
+         <s:label for="prospect.mobileTelephone" /> 
+        </td>
+        <td>
+         <input type="tel" name="prospect.mobileTelephone" id="prospect.mobileTelephone" required="required" size="50" /> 
         </td>
       </tr>
       <tr>
@@ -65,6 +65,7 @@
         </td>
         <td>
          <s:select name="disciplineId" id="prospect.discipline" class="wide">
+           <s:option value="">-----</s:option>
            <s:options-collection collection="${actionBean.disciplineList}" value="id" sort="displayOrder" />
          </s:select> 
         </td>
@@ -75,6 +76,7 @@
         </td>
         <td>
          <s:select name="visaId" id="prospect.visa" class="wide">
+           <s:option value="">-----</s:option>
            <s:options-collection collection="${actionBean.visaList}" value="id" sort="displayOrder" />
          </s:select> 
         </td>
@@ -85,6 +87,7 @@
         </td>
         <td>
          <s:select name="domicileId" id="prospect.domicile" class="wide">
+           <s:option value="">-----</s:option>
            <s:options-collection collection="${actionBean.domicileList}" value="id" sort="displayOrder" />
          </s:select> 
         </td>
@@ -113,6 +116,7 @@
         </td>
         <td>
          <s:select name="lengthOfStayId" id="prospect.lengthOfStay" class="wide">
+           <s:option value="">-----</s:option>
            <s:options-collection collection="${actionBean.lengthOfStayList}" value="id" sort="displayOrder" />
          </s:select> 
         </td>
@@ -127,7 +131,7 @@
       </tr>
       <tr>
         <td>
-          <s:submit name="save" value="Save"  />
+          <s:submit name="save" value="Submit Your Details"  />
         </td>
       </tr>
     </table>

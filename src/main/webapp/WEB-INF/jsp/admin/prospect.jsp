@@ -19,16 +19,6 @@
       </tr>
       <tr>
         <td>
-          <s:label for="prospect.title" />
-        </td>
-        <td>
-          <s:select name="title" id="prospect.title" value="${actionBean.prospect.title}" class="wide">
-            <s:options-collection collection="${actionBean.titleList}" value="name" sort="displayOrder" />
-          </s:select> 
-        </td>
-      </tr>
-      <tr>
-        <td>
           <s:label for="prospect.firstName" />
         </td>
         <td>
@@ -45,10 +35,10 @@
       </tr>
       <tr>
         <td>
-          <s:label for="prospect.contactTelephone" />
+          <s:label for="prospect.mobileTelephone" />
         </td>
         <td>
-          <s:text name="prospect.contactTelephone" id="prospect.contactTelephone" class="required" size="100" />
+          <s:text name="prospect.mobileTelephone" id="prospect.mobileTelephone" class="required" size="100" />
         </td>
       </tr>
       <tr>

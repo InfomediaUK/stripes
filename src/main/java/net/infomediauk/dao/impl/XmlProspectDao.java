@@ -5,13 +5,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.io.ObjectInputStream.GetField;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -219,23 +216,26 @@ public class XmlProspectDao
     return false;
   }
   
-  public Boolean titleInProspect(String title)
-  {
-    List<ProspectFile> prospectFileList = selectAll();
-    for (ProspectFile prospectFile : prospectFileList)
-    {
-      if (prospectFile.getProspect().getTitle().equals(title))
-      {
-        return true;
-      }
-    }
-    return false;
-  }
+//  public Boolean titleInProspect(String title)
+//  {
+//    List<ProspectFile> prospectFileList = selectAll();
+//    for (ProspectFile prospectFile : prospectFileList)
+//    {
+//      if (prospectFile.getProspect().getTitle().equals(title))
+//      {
+//        return true;
+//      }
+//    }
+//    return false;
+//  }
   
   public ClientResponse sendMultiPartToMmj(String prospectFileName)
   {
     ProspectFile prospectFile = select(prospectFileName);
     ProspectApplicant prospectApplicant = new ProspectApplicant(prospectFile);
+    // TEMP CODE
+    prospectApplicant.setAgencyId(5);
+    prospectApplicant.setConsultantId(123);
     Client client = Client.create();
     String BASE_URI = "http://localhost:8080/jersey/rest/";
     WebResource webResource = client.resource(BASE_URI);
