@@ -40,6 +40,7 @@ fieldset {
 form {
   margin: 5px;
   padding: 5px 5px;
+  overflow: auto;
   color: #fffff;
   background-color: #ffffff;
   border-radius: 10px;
@@ -51,16 +52,4 @@ form {
 }
 input.required {
   border-width: 2px;
-}
-select.wide {
-     width: 100%;
-}
-select.day {
-     width: 20%;
-}
-select.month {
-     width: 40%;
-}
-select.year {
-     width: 30%;
 }
