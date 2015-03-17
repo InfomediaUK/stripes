@@ -40,7 +40,7 @@
          <s:label for="prospect.contactTelephone" /> 
         </td>
         <td>
-         <s:text name="prospect.contactTelephone" id="prospect.contactTelephone" size="50" /> 
+         <input type="tel" name="prospect.contactTelephone" id="prospect.contactTelephone" required="required" size="50" /> 
         </td>
       </tr>
       <tr>
@@ -48,7 +48,7 @@
          <s:label for="prospect.email" /> 
         </td>
         <td>
-         <s:text name="prospect.email" id="prospect.email" size="50" /> 
+         <input type="email" name="prospect.email" id="prospect.email" placeholder="name@example.com" required="required" size="50" /> 
         </td>
       </tr>
       <tr>
