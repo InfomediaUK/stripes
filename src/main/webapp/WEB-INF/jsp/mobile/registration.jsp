@@ -12,20 +12,20 @@
       <tr>
         <td>
           <s:label for="prospect.firstName" /><br />
-          <s:text name="prospect.firstName" id="prospect.firstName" size="50" /> 
+          <s:text name="prospect.firstName" id="prospect.firstName" /> 
         </td>
       </tr>
       <tr>
         <td>
           <s:label for="prospect.lastName" /><br />
-          <s:text name="prospect.lastName" id="prospect.lastName" size="50" /> 
+          <s:text name="prospect.lastName" id="prospect.lastName" /> 
         </td>
       </tr>
       <tr>
         <td>
          <s:label for="prospect.gender" /><br />
          <c:forEach var="gender" items="<%= net.infomediauk.xml.jaxb.model.Gender.values() %>">
-            <s:radio name="gender" value="${gender}" id="${gender.description}"/> <s:label for="${gender.description}" />&nbsp;
+            <s:radio name="gender" value="${gender}" id="${gender.name}"/> <s:label for="${gender.name}" />&nbsp;
           </c:forEach>
         </td>
       </tr>
