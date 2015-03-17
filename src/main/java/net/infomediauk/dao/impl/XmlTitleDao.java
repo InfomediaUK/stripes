@@ -149,12 +149,13 @@ public class XmlTitleDao extends BaseDao implements Dao<Title>
   {
     return false;
   }
+  
   public Boolean delete(Integer id, String title)
   {
-    if (XmlProspectDao.getInstance().titleInProspect(title))
-    {
-      return false;
-    }
+//    if (XmlProspectDao.getInstance().titleInProspect(title))
+//    {
+//      return false;
+//    }
     database.deleteRecord(id);
     commit();
     return true;

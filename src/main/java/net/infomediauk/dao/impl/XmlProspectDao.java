@@ -233,9 +233,10 @@ public class XmlProspectDao
   {
     ProspectFile prospectFile = select(prospectFileName);
     ProspectApplicant prospectApplicant = new ProspectApplicant(prospectFile);
-    // TEMP CODE
+    // TEMP CODE >>>>>>>>>>>>
     prospectApplicant.setAgencyId(5);
     prospectApplicant.setConsultantId(123);
+    // <<<<<<<<<<<<<<<< TEMP CODE
     Client client = Client.create();
     String BASE_URI = "http://localhost:8080/jersey/rest/";
     WebResource webResource = client.resource(BASE_URI);
