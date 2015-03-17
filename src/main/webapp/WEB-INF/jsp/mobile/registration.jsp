@@ -32,25 +32,25 @@
       <tr>
         <td>
          <s:label for="prospect.mobileTelephone" /><br /> 
-         <input type="tel" name="prospect.mobileTelephone" id="prospect.mobileTelephone" required="required" size="50" /> 
+         <input type="tel" name="prospect.mobileTelephone" id="prospect.mobileTelephone" required="required" /> 
         </td>
       </tr>
       <tr>
         <td>
          <s:label for="prospect.email" /><br /> 
-         <input type="email" name="prospect.email" id="prospect.email" placeholder="name@example.com" required="required" size="50" /> 
+         <input type="email" name="prospect.email" id="prospect.email" placeholder="name@example.com" required="required" /> 
         </td>
       </tr>
       <tr>
         <td>
          <s:label for="prospect.profession" /><br />
-         <s:text name="prospect.profession" id="prospect.profession" size="50" /> 
+         <s:text name="prospect.profession" id="prospect.profession" /> 
         </td>
       </tr>
       <tr>
         <td>
          <s:label for="prospect.discipline" /><br />
-         <s:select name="disciplineId" id="prospect.discipline" class="wide">
+         <s:select name="disciplineId" id="prospect.discipline" >
            <s:option value="">-----</s:option>
            <s:options-collection collection="${actionBean.disciplineList}" value="id" sort="displayOrder" />
          </s:select> 
@@ -59,7 +59,7 @@
       <tr>
         <td>
          <s:label for="prospect.visa" /><br />
-         <s:select name="visaId" id="prospect.visa" class="wide">
+         <s:select name="visaId" id="prospect.visa" >
            <s:option value="">-----</s:option>
            <s:options-collection collection="${actionBean.visaList}" value="id" sort="displayOrder" />
          </s:select> 
@@ -68,7 +68,7 @@
       <tr>
         <td>
          <s:label for="prospect.domicile" /><br />
-         <s:select name="domicileId" id="prospect.domicile" class="wide">
+         <s:select name="domicileId" id="prospect.domicile" >
            <s:option value="">-----</s:option>
            <s:options-collection collection="${actionBean.domicileList}" value="id" sort="displayOrder" />
          </s:select> 
@@ -77,15 +77,15 @@
       <tr>
         <td>
          <s:label for="prospect.dateAvailable" /><br />
-         <s:select name="availableDayNumber" id="prospect.dateAvailable" class="day" >
+         <s:select name="availableDayNumber" id="prospect.dateAvailable" >
            <s:options-collection collection="${actionBean.dayNumberList}" value="id" sort="id" />
          </s:select>
          &nbsp; 
-         <s:select name="availableMonth" class="month" >
+         <s:select name="availableMonth" >
            <s:options-collection collection="${actionBean.monthList}" value="id" sort="id" />
          </s:select>
          &nbsp; 
-         <s:select name="availableYear" class="year" value="${actionBean.availableYear}" >
+         <s:select name="availableYear" value="${actionBean.availableYear}" >
            <s:options-collection collection="${actionBean.yearList}" value="id" sort="id"  />
          </s:select>
         </td>
@@ -93,7 +93,7 @@
       <tr>
         <td>
          <s:label for="prospect.lengthOfStay" /><br />
-         <s:select name="lengthOfStayId" id="prospect.lengthOfStay" class="wide">
+         <s:select name="lengthOfStayId" id="prospect.lengthOfStay">
            <s:option value="">-----</s:option>
            <s:options-collection collection="${actionBean.lengthOfStayList}" value="id" sort="displayOrder" />
          </s:select> 
