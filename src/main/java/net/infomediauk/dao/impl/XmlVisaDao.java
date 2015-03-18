@@ -18,7 +18,6 @@ import com.sun.jersey.api.client.WebResource;
 import net.infomediauk.dao.BaseDao;
 import net.infomediauk.dao.Dao;
 import net.infomediauk.model.Visa;
-import net.infomediauk.xml.jaxb.model.DisciplineRecord;
 import net.infomediauk.xml.jaxb.model.VisaDatabase;
 import net.infomediauk.xml.jaxb.model.VisaRecord;
 import net.infomediauk.xml.jaxb.model.mmj.VisaTypes;
@@ -121,6 +120,7 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
   private void fillVisa(Visa visa, VisaRecord visaRecord)
   {
     visa.setId(visaRecord.getId());
+    visa.setCode(visaRecord.getCode());
     visa.setName(visaRecord.getName());
     visa.setDisplayOrder(visaRecord.getDisplayOrder());
     visa.setNumberOfChanges(visaRecord.getNumberOfChanges());
@@ -160,6 +160,7 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
 
   private void fillVisaRecord(VisaRecord visaRecord, Visa visa)
   {
+    visaRecord.setCode(visa.getCode());
     visaRecord.setName(visa.getName());
     visaRecord.setDisplayOrder(visa.getDisplayOrder());
     visaRecord.setNumberOfChanges(visa.getNumberOfChanges());
@@ -227,6 +228,7 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
           visa = new Visa();
           visa.setId(id);
         }
+        visa.setCode(visaType.getCode());
         visa.setName(visaType.getName());
         visa.setDisplayOrder(visaType.getDisplayOrder());
         XmlVisaDao.getInstance().update(visa);

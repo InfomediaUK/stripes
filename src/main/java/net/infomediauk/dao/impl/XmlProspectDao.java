@@ -190,6 +190,19 @@ public class XmlProspectDao
     return false;
   }
   
+  public Boolean passportInProspect(Integer id)
+  {
+    List<ProspectFile> prospectFileList = selectAll();
+    for (ProspectFile prospectFile : prospectFileList)
+    {
+//      if (prospectFile.getProspect().getPassportId().equals(id))
+//      {
+//        return true;
+//      }
+    }
+    return false;
+  }
+  
   public Boolean visaInProspect(Integer id)
   {
     List<ProspectFile> prospectFileList = selectAll();
@@ -235,14 +248,15 @@ public class XmlProspectDao
     ProspectApplicant prospectApplicant = new ProspectApplicant(prospectFile);
     // TEMP CODE >>>>>>>>>>>>
     prospectApplicant.setAgencyId(5);
-    prospectApplicant.setConsultantId(123);
+    prospectApplicant.setConsultantId(1179);
     // <<<<<<<<<<<<<<<< TEMP CODE
     Client client = Client.create();
-    String BASE_URI = "http://localhost:8080/jersey/rest/";
+//    String BASE_URI = "http://localhost:8080/jersey/rest/";
+    String BASE_URI = "http://test.matchmyjob.co.uk/mmj/rest/";
     WebResource webResource = client.resource(BASE_URI);
     MultiPart multiPart = new MultiPart();
     multiPart.getBodyParts().add(new BodyPart(prospectApplicant, MediaType.APPLICATION_XML_TYPE));
-    if (!prospectFile.getProspect().getDocumentFileName().equals("NOT SUPPLIED"))
+    if (prospectFile.getProspect().getDocumentFileName() != null && !prospectFile.getProspect().getDocumentFileName().equals(""))
     {
       File file = getProspectDocumentFile(prospectFile.getProspect().getDocumentFileName());
       InputStream inputStream = null;

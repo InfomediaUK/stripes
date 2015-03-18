@@ -20,8 +20,12 @@
               Disciplines
             </s:link>
             &nbsp;
+            <s:link beanclass="net.infomediauk.stripes.action.admin.PassportListActionBean" event="view">
+              Passports
+            </s:link>
+            &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.admin.VisaListActionBean" event="view">
-              Visa Types
+              Visas
             </s:link>
             &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.admin.DomicileListActionBean" event="view">
