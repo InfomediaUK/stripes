@@ -35,6 +35,14 @@
       </tr>
       <tr>
         <td>
+          <s:label for="prospect.gender" />
+        </td>
+        <td>
+          ${actionBean.prospect.gender.name}
+        </td>
+      </tr>
+      <tr>
+        <td>
           <s:label for="prospect.mobileTelephone" />
         </td>
         <td>
@@ -116,6 +124,7 @@
     </table>
     <s:hidden name="prospectFileName" />
     <s:hidden name="prospect.documentFileName" />
+    <s:hidden name="prospect.gender" />
   </s:form>
   </s:layout-component>
 </s:layout-render>
