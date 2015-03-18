@@ -43,6 +43,7 @@ public class ProspectApplicant
     Prospect prospect = prospectFile.getProspect();
     this.setFirstName(prospect.getFirstName());
     this.setLastName(prospect.getLastName());
+    this.setGender(prospect.getGender());
     this.setEmail(prospect.getEmail());
     this.setMobileTelephone(prospect.getMobileTelephone());
     this.setAvailableForWork(prospect.getAvailableForWork());
