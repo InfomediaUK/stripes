@@ -25,6 +25,14 @@
       </tr>
       <tr>
         <td>
+          <s:label for="code" />
+        </td>
+        <td>
+          <s:text name="visa.code" id="code" size="6" />
+        </td>
+      </tr>
+      <tr>
+        <td>
           <s:label for="visa" />
         </td>
         <td>

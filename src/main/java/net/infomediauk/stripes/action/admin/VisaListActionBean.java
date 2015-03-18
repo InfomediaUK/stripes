@@ -3,8 +3,6 @@ package net.infomediauk.stripes.action.admin;
 import java.io.FileInputStream;
 import java.util.List;
 
-import net.infomediauk.dao.impl.XmlDisciplineDao;
-import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Visa;
 import net.sourceforge.stripes.action.DefaultHandler;

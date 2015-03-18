@@ -4,10 +4,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement()
-@XmlType(propOrder = { "id", "name", "displayOrder" })
+@XmlType(propOrder = { "id", "code", "name", "displayOrder" })
 public class VisaType
 {
   private Integer id;
+  private String code;
   private String name;
   private Integer displayOrder;
 
@@ -21,6 +22,16 @@ public class VisaType
     this.id = id;
   }
   
+  public String getCode()
+  {
+    return code;
+  }
+
+  public void setCode(String code)
+  {
+    this.code = code;
+  }
+
   public String getName()
   {
     return name;

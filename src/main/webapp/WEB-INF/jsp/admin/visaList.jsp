@@ -25,6 +25,7 @@
     </s:link>
     <d:table name="${actionBean.visaList}" id="visa" requestURI="" defaultsort="2" >
       <d:column title="Id" property="id" sortable="true" />
+      <d:column title="Code" property="code" sortable="true" />
       <d:column title="Visa" sortProperty="name" sortable="true" >
           <s:link beanclass="net.infomediauk.stripes.action.admin.VisaActionBean" event="view">
             <s:param name="id" value="${visa.id}" />
