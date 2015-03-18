@@ -4,6 +4,7 @@ public class BaseRecord
 {
   private Integer id;
   private String name;
+  private String code;
   private Integer displayOrder;
   private Integer numberOfChanges;
   
@@ -17,6 +18,16 @@ public class BaseRecord
     this.id = id;
   }
   
+  public String getCode()
+  {
+    return code;
+  }
+
+  public void setCode(String code)
+  {
+    this.code = code;
+  }
+
   public String getName()
   {
     return name;

@@ -3,6 +3,7 @@ package net.infomediauk.model;
 public class BaseModel
 {
   private Integer id;
+  private String code;
   private String name;
   private Integer displayOrder;
   private Integer numberOfChanges;
@@ -17,6 +18,16 @@ public class BaseModel
     this.id = id;
   }
   
+  public String getCode()
+  {
+    return code;
+  }
+
+  public void setCode(String code)
+  {
+    this.code = code;
+  }
+
   public String getName()
   {
     return name;
