@@ -13,13 +13,13 @@
         <s:label for="prospect.firstName" />
       </li>
       <li>
-        <input type="text" name="prospect.firstName" id="prospect.firstName" required="required" autocomplete="off" /> 
+        <sd:text name="prospect.firstName" id="prospect.firstName" required="required" autocomplete="off" /> 
       </li>
       <li>
         <s:label for="prospect.lastName" />
       </li>
       <li>
-        <input type="text" name="prospect.lastName" id="prospect.lastName" required="required" autocomplete="off" style="width:100%" /> 
+        <sd:text name="prospect.lastName" id="prospect.lastName" required="required" autocomplete="off" /> 
       </li>
       <li>
         <s:label for="prospect.gender" />
@@ -33,13 +33,13 @@
         <s:label for="prospect.mobileTelephone" /> 
       </li>
       <li>
-        <input type="tel" name="prospect.mobileTelephone" id="prospect.mobileTelephone" required="required" /> 
+        <sd:text  name="prospect.mobileTelephone" id="prospect.mobileTelephone" required="required" /> 
       </li>
       <li>
         <s:label for="prospect.email" /> 
       </li>
       <li>
-        <input type="email" name="prospect.email" id="prospect.email" placeholder="name@example.com" required="required" /> 
+        <sd:text name="prospect.email" id="prospect.email" placeholder="name@example.com" required="required" /> 
       </li>
       <li>
         <s:label for="prospect.profession" />
