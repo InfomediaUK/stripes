@@ -4,7 +4,7 @@
 <s:layout-render name="/WEB-INF/jsp/site/layout/layoutMain.jsp" 
   title="Registration" 
   metaDescription="register"
-  metaKeywords="job">
+  metaKeywords="job" >
   <s:layout-component name="body">
   <s:form beanclass="net.infomediauk.stripes.action.RegistrationFormActionBean">
     <s:errors/>
