@@ -77,6 +77,10 @@ input.required {
   border-width: 2px;
 }
 
+input {
+  max-width=100%
+}
+
 .error {
   background-color: #fffe36;
   border: 1px solid #e1e16d;
