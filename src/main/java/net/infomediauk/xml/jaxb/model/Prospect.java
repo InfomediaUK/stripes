@@ -7,7 +7,7 @@ import net.infomediauk.model.ProspectShort;
 
 @XmlRootElement
 @XmlType(propOrder = { "firstName", "lastName", "gender", "mobileTelephone", "email", "profession", "availableForWork", 
-                       "documentFileName", "disciplineId", "domicileId", "visaId", "lengthOfStayId"})
+                       "documentFileName", "disciplineId", "passportId", "visaId", "lengthOfStayId"})
 public class Prospect
 {
   private String firstName;
@@ -19,7 +19,7 @@ public class Prospect
   private String availableForWork;
   private String documentFileName;
   private Integer disciplineId;
-  private Integer domicileId;
+  private Integer passportId;
   private Integer visaId;
   private Integer lengthOfStayId;
   
@@ -125,14 +125,14 @@ public class Prospect
     this.disciplineId = discipline;
   }
 
-  public Integer getDomicileId()
+  public Integer getPassportId()
   {
-    return domicileId;
+    return passportId;
   }
 
-  public void setDomicileId(Integer domicleId)
+  public void setPassportId(Integer domicleId)
   {
-    this.domicileId = domicleId;
+    this.passportId = domicleId;
   }
 
   public Integer getVisaId()

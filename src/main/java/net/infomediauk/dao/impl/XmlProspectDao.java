@@ -21,7 +21,7 @@ import com.sun.jersey.multipart.BodyPart;
 import com.sun.jersey.multipart.MultiPart;
 
 import net.infomediauk.model.Discipline;
-import net.infomediauk.model.Domicile;
+import net.infomediauk.model.Passport;
 import net.infomediauk.model.LengthOfStay;
 import net.infomediauk.model.Visa;
 import net.infomediauk.xml.jaxb.model.Prospect;
@@ -98,8 +98,8 @@ public class XmlProspectDao
     prospectFile.setVisaName(visa.getName());
     Discipline discipline = XmlDisciplineDao.getInstance().select(prospect.getDisciplineId());
     prospectFile.setDisciplineName(discipline.getName());
-    Domicile domicile = XmlDomicileDao.getInstance().select(prospect.getDomicileId());
-    prospectFile.setDomicileName(domicile.getName());
+    Passport passport = XmlPassportDao.getInstance().select(prospect.getPassportId());
+    prospectFile.setPassportName(passport.getName());
     LengthOfStay lengthOfStay = XmlLengthOfStayDao.getInstance().select(prospect.getLengthOfStayId());
     prospectFile.setLengthOfStayName(lengthOfStay.getName());
     return prospectFile;
@@ -177,28 +177,15 @@ public class XmlProspectDao
     return false;
   }
   
-  public Boolean domicileInProspect(Integer id)
-  {
-    List<ProspectFile> prospectFileList = selectAll();
-    for (ProspectFile prospectFile : prospectFileList)
-    {
-      if (prospectFile.getProspect().getDomicileId().equals(id))
-      {
-        return true;
-      }
-    }
-    return false;
-  }
-  
   public Boolean passportInProspect(Integer id)
   {
     List<ProspectFile> prospectFileList = selectAll();
     for (ProspectFile prospectFile : prospectFileList)
     {
-//      if (prospectFile.getProspect().getPassportId().equals(id))
-//      {
-//        return true;
-//      }
+      if (prospectFile.getProspect().getPassportId().equals(id))
+      {
+        return true;
+      }
     }
     return false;
   }
@@ -242,17 +229,13 @@ public class XmlProspectDao
 //    return false;
 //  }
   
-  public ClientResponse sendMultiPartToMmj(String prospectFileName)
+  public ClientResponse sendMultiPartToMmj(Integer agencyId, String prospectFileName)
   {
     ProspectFile prospectFile = select(prospectFileName);
-    ProspectApplicant prospectApplicant = new ProspectApplicant(prospectFile);
-    // TEMP CODE >>>>>>>>>>>>
-    prospectApplicant.setAgencyId(5);
-    prospectApplicant.setConsultantId(1179);
-    // <<<<<<<<<<<<<<<< TEMP CODE
+    ProspectApplicant prospectApplicant = new ProspectApplicant(agencyId, prospectFile);
     Client client = Client.create();
-//    String BASE_URI = "http://localhost:8080/jersey/rest/";
-    String BASE_URI = "http://test.matchmyjob.co.uk/mmj/rest/";
+    String BASE_URI = "http://localhost:8080/jersey/rest/";
+//    String BASE_URI = "http://test.matchmyjob.co.uk/mmj/rest/";
     WebResource webResource = client.resource(BASE_URI);
     MultiPart multiPart = new MultiPart();
     multiPart.getBodyParts().add(new BodyPart(prospectApplicant, MediaType.APPLICATION_XML_TYPE));

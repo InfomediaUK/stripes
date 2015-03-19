@@ -57,21 +57,21 @@
         </s:select> 
       </li>
       <li>
+        <s:label for="prospect.passport" />
+      </li>
+      <li>
+        <s:select name="passportId" id="prospect.passport" >
+          <s:option value="">-----</s:option>
+          <s:options-collection collection="${actionBean.passportList}" value="id" sort="displayOrder" />
+        </s:select> 
+      </li>
+      <li>
         <s:label for="prospect.visa" />
       </li>
       <li>
         <s:select name="visaId" id="prospect.visa" >
           <s:option value="">-----</s:option>
           <s:options-collection collection="${actionBean.visaList}" value="id" sort="displayOrder" />
-        </s:select> 
-      </li>
-      <li>
-        <s:label for="prospect.domicile" />
-      </li>
-      <li>
-        <s:select name="domicileId" id="prospect.domicile" >
-          <s:option value="">-----</s:option>
-          <s:options-collection collection="${actionBean.domicileList}" value="id" sort="displayOrder" />
         </s:select> 
       </li>
       <li>

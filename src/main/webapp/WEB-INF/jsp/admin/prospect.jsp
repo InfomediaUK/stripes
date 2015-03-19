@@ -19,6 +19,16 @@
       </tr>
       <tr>
         <td>
+          <s:label for="agency" />
+        </td>
+        <td>
+          <s:select name="agencyId" id="agency" class="wide">
+            <s:options-collection collection="${actionBean.agencyList}" value="id" sort="displayOrder" />
+          </s:select> 
+        </td>
+      </tr>
+      <tr>
+        <td>
           <s:label for="prospect.firstName" />
         </td>
         <td>
@@ -85,11 +95,11 @@
       </tr>
       <tr>
         <td>
-          <s:label for="prospect.domicile" />
+          <s:label for="prospect.passport" />
         </td>
         <td>
-          <s:select name="domicileId" id="prospect.domicile" value="${actionBean.prospect.domicileId}" class="wide">
-            <s:options-collection collection="${actionBean.domicileList}" value="id" sort="displayOrder" />
+          <s:select name="passportId" id="prospect.passport" value="${actionBean.prospect.passportId}" class="wide">
+            <s:options-collection collection="${actionBean.passportList}" value="id" sort="displayOrder" />
           </s:select> 
         </td>
       </tr>

@@ -14,10 +14,11 @@ import net.infomediauk.xml.jaxb.model.ProspectFile;
  *
  */
 @XmlRootElement(name="prospect")
-@XmlType(propOrder = { "firstName", "lastName", "gender", "mobileTelephone", "email", "profession", "availableForWork", 
-    "agencyId", "consultantId", "disciplineId", "visaId", "domicile", "lengthOfStay", "documentFileName"})
+@XmlType(propOrder = { "agencyId", "firstName", "lastName", "gender", "mobileTelephone", "email", "profession", "availableForWork", 
+    "disciplineId", "passportId", "visaId", "lengthOfStay", "documentFileName"})
 public class ProspectApplicant
 {
+  private Integer agencyId;
   private String firstName;
   private String lastName;
   private Gender gender;
@@ -25,11 +26,9 @@ public class ProspectApplicant
   private String email;
   private String profession;
   private String availableForWork;
-  private Integer agencyId;
-  private Integer consultantId;
   private Integer disciplineId;
+  private Integer passportId;
   private Integer visaId;
-  private String domicile;
   private String lengthOfStay;
   private String documentFileName;
   
@@ -38,8 +37,9 @@ public class ProspectApplicant
     super();
   }
 
-  public ProspectApplicant(ProspectFile prospectFile)
+  public ProspectApplicant(Integer agencyId, ProspectFile prospectFile)
   {
+    this.agencyId = agencyId;
     Prospect prospect = prospectFile.getProspect();
     this.setFirstName(prospect.getFirstName());
     this.setLastName(prospect.getLastName());
@@ -50,9 +50,19 @@ public class ProspectApplicant
     this.setDocumentFileName(prospect.getDocumentFileName());
     this.setProfession(prospect.getProfession());
     this.setDisciplineId(prospect.getDisciplineId());
+    this.setPassportId(prospect.getPassportId());
     this.setVisaId(prospect.getVisaId());
-    this.setDomicile(prospectFile.getDomicileName());
     this.setLengthOfStay(prospectFile.getLengthOfStayName());
+  }
+
+  public Integer getAgencyId()
+  {
+    return agencyId;
+  }
+
+  public void setAgencyId(Integer agencyId)
+  {
+    this.agencyId = agencyId;
   }
 
   public String getFirstName()
@@ -125,26 +135,6 @@ public class ProspectApplicant
     this.availableForWork = dateInCountry;
   }
 
-  public Integer getAgencyId()
-  {
-    return agencyId;
-  }
-
-  public void setAgencyId(Integer agencyId)
-  {
-    this.agencyId = agencyId;
-  }
-
-  public Integer getConsultantId()
-  {
-    return consultantId;
-  }
-
-  public void setConsultantId(Integer consultantId)
-  {
-    this.consultantId = consultantId;
-  }
-
   public Integer getDisciplineId()
   {
     return disciplineId;
@@ -155,14 +145,14 @@ public class ProspectApplicant
     this.disciplineId = discipline;
   }
 
-  public String getDomicile()
+  public Integer getPassportId()
   {
-    return domicile;
+    return passportId;
   }
 
-  public void setDomicile(String domicile)
+  public void setPassportId(Integer passportId)
   {
-    this.domicile = domicile;
+    this.passportId = passportId;
   }
 
   public Integer getVisaId()
@@ -204,6 +194,9 @@ public class ProspectApplicant
   public String toString()
   {
     StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append("agencyId=[");
+    stringBuilder.append(agencyId);
+    stringBuilder.append("], ");
     stringBuilder.append("firstName=[");
     stringBuilder.append(firstName);
     stringBuilder.append("], ");
@@ -225,24 +218,18 @@ public class ProspectApplicant
     stringBuilder.append("availableForWork=[");
     stringBuilder.append(availableForWork);
     stringBuilder.append("], ");
-    stringBuilder.append("domicile=[");
-    stringBuilder.append(domicile);
-    stringBuilder.append("], ");
     stringBuilder.append("lengthOfStay=[");
     stringBuilder.append(lengthOfStay);
     stringBuilder.append("], ");
     stringBuilder.append("documentFileName=[");
     stringBuilder.append(documentFileName);
     stringBuilder.append("], ");
-    stringBuilder.append("agencyId=[");
-    stringBuilder.append(agencyId);
-    stringBuilder.append("], ");
-    stringBuilder.append("consultantId=[");
-    stringBuilder.append(consultantId);
-    stringBuilder.append("], ");
     stringBuilder.append("disciplineId=[");
     stringBuilder.append(disciplineId);
     stringBuilder.append("], ");
+    stringBuilder.append("passportId=[");
+    stringBuilder.append(passportId);
+    stringBuilder.append("]");
     stringBuilder.append("visaId=[");
     stringBuilder.append(visaId);
     stringBuilder.append("]");

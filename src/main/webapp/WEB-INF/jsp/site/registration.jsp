@@ -72,23 +72,23 @@
       </tr>
       <tr>
         <td>
+         <s:label for="prospect.passport" />
+        </td>
+        <td>
+         <s:select name="passportId" id="prospect.passport" class="wide">
+           <s:option value="">-----</s:option>
+           <s:options-collection collection="${actionBean.passportList}" value="id" sort="displayOrder" />
+         </s:select> 
+        </td>
+      </tr>
+      <tr>
+        <td>
          <s:label for="prospect.visa" />
         </td>
         <td>
          <s:select name="visaId" id="prospect.visa" class="wide">
            <s:option value="">-----</s:option>
            <s:options-collection collection="${actionBean.visaList}" value="id" sort="displayOrder" />
-         </s:select> 
-        </td>
-      </tr>
-      <tr>
-        <td>
-         <s:label for="prospect.domicile" />
-        </td>
-        <td>
-         <s:select name="domicileId" id="prospect.domicile" class="wide">
-           <s:option value="">-----</s:option>
-           <s:options-collection collection="${actionBean.domicileList}" value="id" sort="displayOrder" />
          </s:select> 
         </td>
       </tr>

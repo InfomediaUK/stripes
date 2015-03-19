@@ -6,14 +6,16 @@ import java.util.List;
 import com.sun.jersey.api.client.ClientResponse;
 
 import stripesbook.action.BaseActionBean;
+import net.infomediauk.dao.impl.XmlAgencyDao;
 import net.infomediauk.dao.impl.XmlDisciplineDao;
-import net.infomediauk.dao.impl.XmlDomicileDao;
+import net.infomediauk.dao.impl.XmlPassportDao;
 import net.infomediauk.dao.impl.XmlLengthOfStayDao;
 import net.infomediauk.dao.impl.XmlProspectDao;
 import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.dao.impl.XmlVisaDao;
+import net.infomediauk.model.Agency;
 import net.infomediauk.model.Discipline;
-import net.infomediauk.model.Domicile;
+import net.infomediauk.model.Passport;
 import net.infomediauk.model.LengthOfStay;
 import net.infomediauk.model.Title;
 import net.infomediauk.model.Visa;
@@ -34,13 +36,15 @@ public class ProspectActionBean extends BaseActionBean
   private Prospect prospect;
   private String prospectFileName;
   // Lists
-  private List<Domicile> domicileList;
+  private List<Passport> passportList;
   private List<LengthOfStay> lengthOfStayList;
   private List<Discipline> disciplineList;
+  private List<Agency> agencyList;
   private List<Visa> visaList;
   private List<Title> titleList;
   // The values returned from the Lists.
-  private Integer domicileId;
+  private Integer agencyId;
+  private Integer passportId;
   private Integer disciplineId;
   private Integer lengthOfStayId;
   private Integer visaId;
@@ -48,7 +52,8 @@ public class ProspectActionBean extends BaseActionBean
   public ProspectActionBean()
   {
     super();
-    domicileList     = XmlDomicileDao.getInstance().selectAll();
+    agencyList       = XmlAgencyDao.getInstance().selectAll();
+    passportList     = XmlPassportDao.getInstance().selectAll();
     disciplineList   = XmlDisciplineDao.getInstance().selectAll();
     lengthOfStayList = XmlLengthOfStayDao.getInstance().selectAll();
     visaList         = XmlVisaDao.getInstance().selectAll();
@@ -75,9 +80,9 @@ public class ProspectActionBean extends BaseActionBean
     this.prospect = prospectFile;
   }
 
-  public List<Domicile> getDomicileList()
+  public List<Passport> getPassportList()
   {
-    return domicileList;
+    return passportList;
   }
 
   public List<LengthOfStay> getLengthOfStayList()
@@ -88,6 +93,16 @@ public class ProspectActionBean extends BaseActionBean
   public List<Discipline> getDisciplineList()
   {
     return disciplineList;
+  }
+
+  public List<Agency> getAgencyList()
+  {
+    return agencyList;
+  }
+
+  public void setAgencyList(List<Agency> agencyList)
+  {
+    this.agencyList = agencyList;
   }
 
   public List<Visa> getVisaList()
@@ -105,9 +120,9 @@ public class ProspectActionBean extends BaseActionBean
     return titleList;
   }
 
-  public void setDomicileId(Integer domicileId)
+  public void setPassportId(Integer passportId)
   {
-    this.domicileId = domicileId;
+    this.passportId = passportId;
   }
 
   public void setDisciplineId(Integer disciplineId)
@@ -118,6 +133,11 @@ public class ProspectActionBean extends BaseActionBean
   public void setLengthOfStayId(Integer lengthOfStayId)
   {
     this.lengthOfStayId = lengthOfStayId;
+  }
+
+  public void setAgencyId(Integer agencyId)
+  {
+    this.agencyId = agencyId;
   }
 
   public void setVisaId(Integer visaId)
@@ -153,7 +173,7 @@ public class ProspectActionBean extends BaseActionBean
   public Resolution save()
   {
     // Update Prospect from values returned from the lists.
-    prospect.setDomicileId(domicileId);
+    prospect.setPassportId(passportId);
     prospect.setDisciplineId(disciplineId);
     prospect.setVisaId(visaId);
     prospect.setLengthOfStayId(lengthOfStayId);
@@ -170,7 +190,7 @@ public class ProspectActionBean extends BaseActionBean
   public Resolution sendMultiPartToMmj() throws MalformedURLException
   {
     System.out.println(prospect);
-    ClientResponse response = XmlProspectDao.getInstance().sendMultiPartToMmj(prospectFileName);
+    ClientResponse response = XmlProspectDao.getInstance().sendMultiPartToMmj(agencyId, prospectFileName);
     System.out.println("Back in ProspectActionBean");
     if (response.getClientResponseStatus() == ClientResponse.Status.ACCEPTED)
     {
@@ -200,7 +220,7 @@ public class ProspectActionBean extends BaseActionBean
 //  values.add("profession", prospect.getProfession());
 //  values.add("availableForWork", prospect.getAvailableForWork());
 //  values.add("disciplineId", prospect.getDisciplineId());
-//  values.add("domicile", prospectFile.getDomicileName());
+//  values.add("passport", prospectFile.getPassportName());
 //  values.add("visaId", prospect.getVisaId());
 //  values.add("lengthOfStay", prospectFile.getLengthOfStayName());
 //  values.add("visaId", prospect.getVisaId());

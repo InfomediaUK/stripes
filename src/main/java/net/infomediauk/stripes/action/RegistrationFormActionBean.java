@@ -7,12 +7,12 @@ import java.util.Locale;
 
 import stripesbook.action.BaseActionBean;
 import net.infomediauk.dao.impl.XmlDisciplineDao;
-import net.infomediauk.dao.impl.XmlDomicileDao;
+import net.infomediauk.dao.impl.XmlPassportDao;
 import net.infomediauk.dao.impl.XmlLengthOfStayDao;
 import net.infomediauk.dao.impl.XmlProspectDao;
 import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Discipline;
-import net.infomediauk.model.Domicile;
+import net.infomediauk.model.Passport;
 import net.infomediauk.model.LengthOfStay;
 import net.infomediauk.model.ProspectShort;
 import net.infomediauk.model.Visa;
@@ -44,11 +44,11 @@ public class RegistrationFormActionBean extends BaseActionBean
   private ProspectShort prospectShort;
   private Gender gender;
   private FileBean fileBean;
-  private List<Domicile> domicileList;
+  private List<Passport> passportList;
   private List<LengthOfStay> lengthOfStayList;
   private List<Discipline> disciplineList;
   private List<Visa> visaList;
-  private Integer domicileId;
+  private Integer passportId;
   private Integer disciplineId;
   private Integer lengthOfStayId;
   private Integer visaId;
@@ -61,7 +61,7 @@ public class RegistrationFormActionBean extends BaseActionBean
   {
     super();
     dateManager      = new DateManager();
-    domicileList     = XmlDomicileDao.getInstance().selectAll();
+    passportList     = XmlPassportDao.getInstance().selectAll();
     disciplineList   = XmlDisciplineDao.getInstance().selectAll();
     lengthOfStayList = XmlLengthOfStayDao.getInstance().selectAll();
     visaList         = XmlVisaDao.getInstance().selectAll();
@@ -108,9 +108,9 @@ public class RegistrationFormActionBean extends BaseActionBean
     this.fileBean = fileBean;
   }
 
-  public List<Domicile> getDomicileList()
+  public List<Passport> getPassportList()
   {
-    return domicileList;
+    return passportList;
   }
 
   public List<LengthOfStay> getLengthOfStayList()
@@ -128,15 +128,15 @@ public class RegistrationFormActionBean extends BaseActionBean
     return visaList;
   }
 
-  public Integer getDomicileId()
+  public Integer getPassportId()
   {
-    return domicileId;
+    return passportId;
   }
 
   @Validate(required=true)
-  public void setDomicileId(Integer domicileId)
+  public void setPassportId(Integer passportId)
   {
-    this.domicileId = domicileId;
+    this.passportId = passportId;
   }
 
   public Integer getLengthOfStayId()
@@ -243,7 +243,7 @@ public class RegistrationFormActionBean extends BaseActionBean
   {
     // Set values from lists.
     prospect.setGender(gender);
-    prospect.setDomicileId(domicileId);
+    prospect.setPassportId(passportId);
     prospect.setDisciplineId(disciplineId);
     prospect.setVisaId(visaId);
     prospect.setLengthOfStayId(lengthOfStayId);
