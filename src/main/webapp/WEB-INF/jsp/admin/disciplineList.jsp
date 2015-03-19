@@ -4,7 +4,8 @@
 <s:layout-render name="/WEB-INF/jsp/admin/layout/layoutMain.jsp"
   title="${actionBean.htmlPage.title}" 
   metaDescription="${actionBean.htmlPage.metaDescription}"
-  metaKeywords="${actionBean.htmlPage.metaKeywords}">
+  metaKeywords="${actionBean.htmlPage.metaKeywords}"
+  pageHeading="disciplineList">
   <s:layout-component name="body">
     <s:messages/>
     <s:link beanclass="net.infomediauk.stripes.action.admin.DisciplineActionBean" event="view">

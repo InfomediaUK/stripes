@@ -4,17 +4,18 @@
 <s:layout-render name="/WEB-INF/jsp/admin/layout/layoutMain.jsp"
   title="${actionBean.htmlPage.title}" 
   metaDescription="${actionBean.htmlPage.metaDescription}"
-  metaKeywords="${actionBean.htmlPage.metaKeywords}">
+  metaKeywords="${actionBean.htmlPage.metaKeywords}"
+  pageHeading="prospect">
   <s:layout-component name="body">
   <s:form beanclass="net.infomediauk.stripes.action.admin.ProspectActionBean">
     <s:errors/>
     <table class="form" >
       <tr>
         <td>
-          File
+          Upload Base URL
         </td>
         <td>
-          ${actionBean.prospectFileName} 
+          ${actionBean.prospectUploadBaseUrl} 
         </td>
       </tr>
       <tr>
@@ -25,6 +26,14 @@
           <s:select name="agencyId" id="agency" class="wide">
             <s:options-collection collection="${actionBean.agencyList}" value="id" sort="displayOrder" />
           </s:select> 
+        </td>
+      </tr>
+      <tr>
+        <td>
+          File
+        </td>
+        <td>
+          ${actionBean.prospectFileName} 
         </td>
       </tr>
       <tr>

@@ -4,7 +4,8 @@
 <s:layout-render name="/WEB-INF/jsp/admin/layout/layoutMain.jsp"
   title="${actionBean.htmlPage.title}" 
   metaDescription="${actionBean.htmlPage.metaDescription}"
-  metaKeywords="${actionBean.htmlPage.metaKeywords}">
+  metaKeywords="${actionBean.htmlPage.metaKeywords}"
+  pageHeading="agency">
   <s:layout-component name="body">
   <s:form beanclass="net.infomediauk.stripes.action.admin.AgencyActionBean">
     <s:errors/><s:messages/>

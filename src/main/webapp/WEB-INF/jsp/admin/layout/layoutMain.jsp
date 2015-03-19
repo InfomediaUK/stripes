@@ -31,6 +31,7 @@
             <s:link beanclass="net.infomediauk.stripes.action.admin.VisaListActionBean" event="view">
               Visas
             </s:link>
+<%-- 
             &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.admin.DomicileListActionBean" event="view">
               Domiciles
@@ -39,6 +40,7 @@
             <s:link beanclass="net.infomediauk.stripes.action.admin.TitleListActionBean" event="view">
               Titles
             </s:link>
+--%>
             &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.admin.LengthOfStayListActionBean" event="view">
               Lengths of Stay
@@ -51,6 +53,15 @@
             <s:link beanclass="net.infomediauk.stripes.action.admin.HtmlPageListActionBean" event="view">
               HTML Pages
             </s:link>
+            &nbsp;
+            <s:link beanclass="net.infomediauk.stripes.action.admin.SystemSettingsActionBean" event="view">
+              Settings
+            </s:link>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h3><fmt:message key="${pageHeading}" /></h3>
           </td>
         </tr>
         <tr>
