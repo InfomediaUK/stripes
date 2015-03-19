@@ -16,6 +16,10 @@
       <table>
         <tr>
           <td>
+            <s:link beanclass="net.infomediauk.stripes.action.admin.AgencyListActionBean" event="view">
+              Agencies
+            </s:link>
+            &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.admin.DisciplineListActionBean" event="view">
               Disciplines
             </s:link>
