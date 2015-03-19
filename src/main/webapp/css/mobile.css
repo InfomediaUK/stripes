@@ -3,7 +3,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #888888;
+  background-color: #ffffff;
   font-family: "Verdana", "Arial", Helvetica, sans-serif;
 }
 
@@ -29,6 +29,7 @@ h3{
 }
 
 fieldset {
+  background-color: #f0f0f0;
   margin: 5px, 5px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -77,8 +78,8 @@ input.required {
   border-width: 2px;
 }
 
-input {
-  max-width: 100%;
+input text {
+  max-width:100%;
 }
 
 .error {
