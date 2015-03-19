@@ -13,13 +13,13 @@
         <s:label for="prospect.firstName" />
       </li>
       <li>
-        <input type="text" name="prospect.firstName" id="prospect.firstName" required="required" /> 
+        <input type="text" name="prospect.firstName" id="prospect.firstName" required="required" autocorrect="off" autocapitalize="on" /> 
       </li>
       <li>
         <s:label for="prospect.lastName" />
       </li>
       <li>
-        <s:text name="prospect.lastName" id="prospect.lastName" /> 
+        <input type="text" name="prospect.lastName" id="prospect.lastName" required="required" autocorrect="off" autocapitalize="on" /> 
       </li>
       <li>
         <s:label for="prospect.gender" />
