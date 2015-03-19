@@ -94,38 +94,28 @@
       </tr>
       <tr>
         <td>
-         <s:label for="prospect.dateAvailable" />
+          <s:label for="prospect.availableForWork" />
         </td>
         <td>
-         <s:select name="availableDayNumber" id="prospect.dateAvailable" class="day" >
-           <s:options-collection collection="${actionBean.dayNumberList}" value="id" sort="id" />
-         </s:select>
-         &nbsp; 
-         <s:select name="availableMonth" class="month" >
-           <s:options-collection collection="${actionBean.monthList}" value="id" sort="id" />
-         </s:select>
-         &nbsp; 
-         <s:select name="availableYear" class="year" value="${actionBean.availableYear}" >
-           <s:options-collection collection="${actionBean.yearList}" value="id" sort="id"  />
-         </s:select>
+          <sd:text name="prospect.availableForWork" id="prospect.availableForWork" placeholder="DD/MM/YYYY" maxlength="10" size="50" /> 
         </td>
       </tr>
       <tr>
         <td>
-         <s:label for="prospect.lengthOfStay" />
+          <s:label for="prospect.lengthOfStay" />
         </td>
         <td>
-         <s:select name="lengthOfStayId" id="prospect.lengthOfStay" class="wide">
-           <s:options-collection collection="${actionBean.lengthOfStayList}" value="id" sort="displayOrder" />
-         </s:select> 
+          <s:select name="lengthOfStayId" id="prospect.lengthOfStay" class="wide">
+            <s:options-collection collection="${actionBean.lengthOfStayList}" value="id" sort="displayOrder" />
+          </s:select> 
         </td>
       </tr>
       <tr>
         <td>
-         <s:label for="fileBean" />
+          <s:label for="fileBean" />
         </td>
         <td>
-         <s:file name="fileBean" id="fileBean" /> 
+          <s:file name="fileBean" id="fileBean" /> 
         </td>
       </tr>
       <tr>

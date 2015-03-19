@@ -16,16 +16,14 @@ import net.infomediauk.model.Passport;
 import net.infomediauk.model.LengthOfStay;
 import net.infomediauk.model.ProspectShort;
 import net.infomediauk.model.Visa;
-import net.infomediauk.utils.DateManager;
-import net.infomediauk.utils.DayNumber;
-import net.infomediauk.utils.Month;
-import net.infomediauk.utils.Year;
 import net.infomediauk.xml.jaxb.model.Gender;
 import net.infomediauk.xml.jaxb.model.Prospect;
+import net.infomediauk.xml.jaxb.model.ProspectFile;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.FileBean;
 import net.sourceforge.stripes.action.ForwardResolution;
+import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.validation.EmailTypeConverter;
 import net.sourceforge.stripes.validation.Validate;
@@ -38,7 +36,8 @@ public class RegistrationFormActionBean extends BaseActionBean
     @Validate(field="lastName", required=true),
     @Validate(field="mobileTelephone", required=true),
     @Validate(field="email", required=true, converter=EmailTypeConverter.class),
-    @Validate(field="profession", required=true)
+    @Validate(field="profession", required=true),
+    @Validate(field="availableForWork", required=true)
   })
   private Prospect prospect;
   private ProspectShort prospectShort;
@@ -52,15 +51,11 @@ public class RegistrationFormActionBean extends BaseActionBean
   private Integer disciplineId;
   private Integer lengthOfStayId;
   private Integer visaId;
-  private Integer availableDayNumber;
-  private Integer availableMonth;
-  private Integer availableYear;
-  private DateManager dateManager;
+  private String email;
   
   public RegistrationFormActionBean()
   {
     super();
-    dateManager      = new DateManager();
     passportList     = XmlPassportDao.getInstance().selectAll();
     disciplineList   = XmlDisciplineDao.getInstance().selectAll();
     lengthOfStayList = XmlLengthOfStayDao.getInstance().selectAll();
@@ -172,49 +167,14 @@ public class RegistrationFormActionBean extends BaseActionBean
     this.visaId = visaId;
   }
 
-  public List<DayNumber> getDayNumberList()
+  public String getEmail()
   {
-    return dateManager.getDayNumberList();
+    return email;
   }
 
-  public List<Month> getMonthList()
+  public void setEmail(String email)
   {
-    return dateManager.getMonthList();
-  }
-
-  public List<Year> getYearList()
-  {
-    return dateManager.getYearList();
-  }
-
-  public Integer getAvailableDayNumber()
-  {
-    return availableDayNumber;
-  }
-
-  public void setAvailableDayNumber(Integer day)
-  {
-    this.availableDayNumber = day;
-  }
-
-  public Integer getAvailableMonth()
-  {
-    return availableMonth;
-  }
-
-  public void setAvailableMonth(Integer month)
-  {
-    this.availableMonth = month;
-  }
-
-  public Integer getAvailableYear()
-  {
-    return availableYear;
-  }
-
-  public void setAvailableYear(Integer availableYear)
-  {
-    this.availableYear = availableYear;
+    this.email = email;
   }
 
   public Resolution register() throws Exception
@@ -234,11 +194,17 @@ public class RegistrationFormActionBean extends BaseActionBean
     }
     Locale locale    = getContext().getLocale();
     System.out.println(locale);
-    // Prime initial with this year that will be always be id 1.
-    availableYear = 1;
     return new ForwardResolution("/WEB-INF/jsp/" + getView().toLowerCase() + "/registration.jsp");
   }
 
+  @DontValidate
+  public Resolution thanks()
+  {
+    ProspectFile prospectFile = XmlProspectDao.getInstance().select(email + ".xml");
+    prospect = prospectFile.getProspect();
+    return new ForwardResolution("/WEB-INF/jsp/" + getView().toLowerCase() + "/registrationThanks.jsp");
+  }
+  
   public Resolution save()
   {
     // Set values from lists.
@@ -247,26 +213,6 @@ public class RegistrationFormActionBean extends BaseActionBean
     prospect.setDisciplineId(disciplineId);
     prospect.setVisaId(visaId);
     prospect.setLengthOfStayId(lengthOfStayId);
-    StringBuffer availableForWork = new StringBuffer();
-    if (availableDayNumber > 0)
-    {
-      availableForWork.append(availableDayNumber.toString());
-      availableForWork.append(" ");
-    }
-    if (availableMonth > 0)
-    {
-      availableForWork.append(dateManager.getMonthName(availableMonth).toString());
-      availableForWork.append(" ");
-    }
-    if (!availableYear.equals("Year"))
-    {
-      availableForWork.append(dateManager.getYearName(availableYear).toString());
-    }
-    System.out.println(availableDayNumber);
-    System.out.println(availableMonth);
-    System.out.println(availableYear);
-    availableForWork.trimToSize();
-    prospect.setAvailableForWork(availableForWork.toString());
     System.out.println(prospect.getAvailableForWork());
     if (fileBean == null)
     {
@@ -293,7 +239,7 @@ public class RegistrationFormActionBean extends BaseActionBean
     }
     XmlProspectDao.getInstance().saveProspect(prospect);
 
-    return new ForwardResolution("/WEB-INF/jsp/" + getView().toLowerCase() + "/registration.jsp");
+    return new RedirectResolution(RegistrationFormActionBean.class, "thanks").addParameter("email", prospect.getEmail());
   }
 
 }

@@ -14,6 +14,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -154,7 +156,7 @@ public class XmlProspectDao
 
   public Boolean delete(String fileName, String documentFileName)
   {
-    if (documentFileName != null && !documentFileName.equals("") && !documentFileName.equals("NOT SUPPLIED"))
+    if (StringUtils.isNotEmpty(documentFileName))
     {
       File documentFile = getProspectDocumentFile(documentFileName);
       documentFile.delete();
@@ -215,19 +217,6 @@ public class XmlProspectDao
     }
     return false;
   }
-  
-//  public Boolean titleInProspect(String title)
-//  {
-//    List<ProspectFile> prospectFileList = selectAll();
-//    for (ProspectFile prospectFile : prospectFileList)
-//    {
-//      if (prospectFile.getProspect().getTitle().equals(title))
-//      {
-//        return true;
-//      }
-//    }
-//    return false;
-//  }
   
   public ClientResponse sendMultiPartToMmj(Integer agencyId, String prospectFileName)
   {

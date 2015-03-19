@@ -75,20 +75,10 @@
         </s:select> 
       </li>
       <li>
-        <s:label for="prospect.dateAvailable" />
+        <s:label for="prospect.availableForWork" />
       </li>
       <li>
-        <s:select name="availableDayNumber" id="prospect.dateAvailable" >
-          <s:options-collection collection="${actionBean.dayNumberList}" value="id" sort="id" />
-        </s:select>
-        &nbsp; 
-        <s:select name="availableMonth" >
-          <s:options-collection collection="${actionBean.monthList}" value="id" sort="id" />
-        </s:select>
-        &nbsp; 
-        <s:select name="availableYear" value="${actionBean.availableYear}" >
-          <s:options-collection collection="${actionBean.yearList}" value="id" sort="id"  />
-        </s:select>
+        <sd:text name="prospect.availableForWork" id="prospect.availableForWork" placeholder="DD/MM/YYYY" maxlength="10" /> 
       </li>
       <li>
         <s:label for="prospect.lengthOfStay" />
