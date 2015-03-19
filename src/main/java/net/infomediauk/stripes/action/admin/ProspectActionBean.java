@@ -11,6 +11,7 @@ import net.infomediauk.dao.impl.XmlDisciplineDao;
 import net.infomediauk.dao.impl.XmlPassportDao;
 import net.infomediauk.dao.impl.XmlLengthOfStayDao;
 import net.infomediauk.dao.impl.XmlProspectDao;
+import net.infomediauk.dao.impl.XmlSystemSettingsDao;
 import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Agency;
@@ -48,6 +49,8 @@ public class ProspectActionBean extends BaseActionBean
   private Integer disciplineId;
   private Integer lengthOfStayId;
   private Integer visaId;
+  // Upload target URL.
+  private String prospectUploadBaseUrl;
 
   public ProspectActionBean()
   {
@@ -145,11 +148,17 @@ public class ProspectActionBean extends BaseActionBean
     this.visaId = visaId;
   }
 
+  public String getProspectUploadBaseUrl()
+  {
+    return prospectUploadBaseUrl;
+  }
+
   @DefaultHandler
   @DontValidate
   public Resolution view() throws Exception
   {
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
+    prospectUploadBaseUrl = XmlSystemSettingsDao.getInstance().select().getProspectUploadBaseUrl();
     ProspectFile prospectFile = XmlProspectDao.getInstance().select(prospectFileName);
     prospect = prospectFile.getProspect();
     return new ForwardResolution(FORM);
