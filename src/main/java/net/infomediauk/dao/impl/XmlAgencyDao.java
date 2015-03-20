@@ -200,7 +200,9 @@ public class XmlAgencyDao extends BaseDao implements Dao<Agency>
     try
     {
       Client client = Client.create();
-      WebResource webResource = client.resource("http://test.matchmyjob.co.uk/mmj/rest/agencies");
+      String resource = XmlSystemSettingsDao.getInstance().select().getMatchMyJobRestBaseUrl() + "agencies";
+      WebResource webResource = client.resource(resource);
+//      WebResource webResource = client.resource("http://test.matchmyjob.co.uk/mmj/rest/agencies");
       ClientResponse response = webResource.accept(MediaType.APPLICATION_XML).get(ClientResponse.class);
       if (response.getStatus() != 200)
       {

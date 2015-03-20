@@ -19,6 +19,14 @@
       </tr>
       <tr>
         <td>
+          <s:label for="systemSettings.matchMyJobRestBaseUrl" />
+        </td>
+        <td>
+          <s:text name="systemSettings.matchMyJobRestBaseUrl" id="systemSettings.matchMyJobRestBaseUrl" class="required" size="50" />
+        </td>
+      </tr>
+      <tr>
+        <td>
           <s:submit name="save" value="Save"  />
         </td>
       </tr>

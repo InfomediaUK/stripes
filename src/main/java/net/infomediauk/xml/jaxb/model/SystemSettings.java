@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SystemSettings
 {
   private String prospectUploadBaseUrl;
+  private String matchMyJobRestBaseUrl;
 
   public String getProspectUploadBaseUrl()
   {
@@ -16,6 +17,15 @@ public class SystemSettings
   {
     this.prospectUploadBaseUrl = prospectUploadBaseUrl;
   }
-  
-  
+
+  public String getMatchMyJobRestBaseUrl()
+  {
+    return matchMyJobRestBaseUrl;
+  }
+
+  public void setMatchMyJobRestBaseUrl(String matchMyJobRestBaseUrl)
+  {
+    this.matchMyJobRestBaseUrl = matchMyJobRestBaseUrl;
+  }
+    
 }
