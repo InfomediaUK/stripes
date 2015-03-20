@@ -205,7 +205,8 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
     try
     {
       Client client = Client.create();
-      WebResource webResource = client.resource("http://test.matchmyjob.co.uk/mmj/rest/visas");
+      String resource = XmlSystemSettingsDao.getInstance().select().getMatchMyJobRestBaseUrl() + "visas";
+      WebResource webResource = client.resource(resource);
       ClientResponse response = webResource.accept(MediaType.APPLICATION_XML).get(ClientResponse.class);
       if (response.getStatus() != 200)
       {

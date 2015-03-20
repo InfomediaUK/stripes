@@ -217,8 +217,8 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
     try
     {
       Client client = Client.create();
-//      WebResource webResource = client.resource("http://localhost:8080/jersey/rest/disciplines");
-      WebResource webResource = client.resource("http://test.matchmyjob.co.uk/mmj/rest/disciplines");
+      String resource = XmlSystemSettingsDao.getInstance().select().getMatchMyJobRestBaseUrl() + "disciplines";
+      WebResource webResource = client.resource(resource);
       ClientResponse response = webResource.accept(MediaType.APPLICATION_XML).get(ClientResponse.class);
       if (response.getStatus() != 200)
       {

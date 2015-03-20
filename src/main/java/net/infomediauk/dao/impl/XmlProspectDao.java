@@ -224,8 +224,8 @@ public class XmlProspectDao
     ProspectApplicant prospectApplicant = new ProspectApplicant(agencyId, prospectFile);
     Client client = Client.create();
     String BASE_URI = XmlSystemSettingsDao.getInstance().select().getProspectUploadBaseUrl();
-//    String BASE_URI = "http://localhost:8080/jersey/rest/";
-//    String BASE_URI = "http://test.matchmyjob.co.uk/mmj/rest/";
+    // http://localhost:8080/jersey/rest/
+    // http://test.matchmyjob.co.uk/mmj/rest/
     WebResource webResource = client.resource(BASE_URI);
     MultiPart multiPart = new MultiPart();
     multiPart.getBodyParts().add(new BodyPart(prospectApplicant, MediaType.APPLICATION_XML_TYPE));

@@ -206,7 +206,8 @@ public class XmlPassportDao extends BaseDao implements Dao<Passport>
     try
     {
       Client client = Client.create();
-      WebResource webResource = client.resource("http://test.matchmyjob.co.uk/mmj/rest/passports");
+      String resource = XmlSystemSettingsDao.getInstance().select().getMatchMyJobRestBaseUrl() + "passports";
+      WebResource webResource = client.resource(resource);
       ClientResponse response = webResource.accept(MediaType.APPLICATION_XML).get(ClientResponse.class);
       if (response.getStatus() != 200)
       {
