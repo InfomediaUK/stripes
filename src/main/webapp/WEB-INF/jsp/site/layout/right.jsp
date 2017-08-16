@@ -9,7 +9,7 @@
   <s:form beanclass="net.infomediauk.stripes.action.RegisterFormActionBean" class="register-form">
       <tr>
         <td>
-          <input type="submit" value="Register With Us" name="submit" class="submit" />
+          <s:submit name="start" value="Register With Us" class="submit" />
         </td>
       </tr>
     </table>

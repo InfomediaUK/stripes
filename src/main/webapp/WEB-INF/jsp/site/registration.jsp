@@ -6,7 +6,7 @@
   metaDescription="register"
   metaKeywords="job" >
   <s:layout-component name="body">
-  <s:form beanclass="net.infomediauk.stripes.action.RegistrationFormActionBean">
+  <s:form beanclass="net.infomediauk.stripes.action.RegistrationFormActionBean" class="register-form">
     <s:errors/>
     <table class="form" >
       <tr>
@@ -120,7 +120,7 @@
       </tr>
       <tr>
         <td>
-          <s:submit name="save" value="Save"  />
+          <s:submit name="save" value="Send Details" class="submit" />
         </td>
       </tr>
     </table>
