@@ -28,9 +28,9 @@
               Podiatry
             </s:link>
           </li>
-          <li id="radiographer">
-            <s:link beanclass="net.infomediauk.stripes.action.RadiographersActionBean" event="view">
-              Radiographer
+          <li id="radiography">
+            <s:link beanclass="net.infomediauk.stripes.action.RadiographyActionBean" event="view">
+              Radiography
             </s:link>
           </li>
         </ul>
