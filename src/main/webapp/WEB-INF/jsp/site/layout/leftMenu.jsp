@@ -43,6 +43,19 @@
               Radiography
             </s:link>
           </li>
+          <li id="odp">
+            <s:link beanclass="net.infomediauk.stripes.action.OdpActionBean" event="view" title="Operating Department Practioner">
+              ODP
+            </s:link>
+          </li>
+        </ul>
+        <h4>Nursing Sector</h4>
+        <ul class="menu">
+          <li id="midwifery">
+            <s:link beanclass="net.infomediauk.stripes.action.MidwiferyActionBean" event="view" title="Midwifery">
+              Midwifery
+            </s:link>
+          </li>
         </ul>
       </div>
     </div>
