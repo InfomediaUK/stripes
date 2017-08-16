@@ -33,6 +33,11 @@
               Podiatry
             </s:link>
           </li>
+          <li id="speechtherapy">
+            <s:link beanclass="net.infomediauk.stripes.action.SpeechTherapyActionBean" event="view">
+              Speech Therapy
+            </s:link>
+          </li>
           <li id="radiography">
             <s:link beanclass="net.infomediauk.stripes.action.RadiographyActionBean" event="view">
               Radiography
