@@ -23,9 +23,9 @@
               Physiotherapy
             </s:link>
           </li>
-          <li id="podiatrists">
-            <s:link beanclass="net.infomediauk.stripes.action.PodiatristsActionBean" event="view">
-              Podiatrists
+          <li id="podiatry">
+            <s:link beanclass="net.infomediauk.stripes.action.PodiatryActionBean" event="view">
+              Podiatry
             </s:link>
           </li>
           <li id="radiographer">
