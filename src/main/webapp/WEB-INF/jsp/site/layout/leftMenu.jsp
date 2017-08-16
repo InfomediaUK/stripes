@@ -8,9 +8,9 @@
         <h3>Sectors</h3>
         <h4>AHP/HSS Sector</h4>
         <ul class="menu menu2">
-          <li id="dietitians">
-            <s:link beanclass="net.infomediauk.stripes.action.DietitiansActionBean" event="view">
-              Dietitians
+          <li id="dietetics">
+            <s:link beanclass="net.infomediauk.stripes.action.DieteticsActionBean" event="view">
+              Dietetics
             </s:link>
           </li>
           <li id="pharmacy">
