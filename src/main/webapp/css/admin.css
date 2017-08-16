@@ -1,0 +1,89 @@
+/* General settings */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #ffffff;
+}
+
+/* HEADER
+----------------------------------------------------------------- */
+#tagline{
+text-align:right;
+margin-right:10px;
+}
+
+/* LEFT CONTENT
+----------------------------------------------------------------- */
+#logo{
+	border-top:4px solid #000;
+	float:left;
+	height:100px;
+	width:174px;
+	text-align:center;
+}
+#logo img{
+	margin-top:10px;
+}
+#blackbox{
+	background:#000;
+	color:#fff;
+	padding:5px 0 5px 18px;
+}
+
+/* HEADINGS
+----------------------------------------------------------------- */
+h1,h2,h3,h4,h5,h6{
+	font-weight:bold;
+	margin-bottom:4px;
+	margin-top:0;
+	padding:0;
+}
+h1{
+	color:#000;
+	font-size: 1.1em;
+}
+h2{
+	color:#000;
+	font-size: 1.0em;
+}
+h3{
+	color:#000;
+	font-size: 1.0em;
+}
+#footerleft h1{
+	color:#000;
+	font-size: 0.9em;
+	padding-top:5px;
+}
+
+fieldset {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+input.required {
+  border-width: 2px;
+}
+th.sorted {
+  background-color: #eeccaa;
+}
+tr.odd {
+  background-color: #e5f5e5;
+}
+tr.even {
+  background-color: #ffffff;
+}
+select.wide {
+     width: 100%;
+}
+select.day {
+     width: 20%;
+}
+select.month {
+     width: 40%;
+}
+select.year {
+     width: 30%;
+}
