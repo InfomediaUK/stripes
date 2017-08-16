@@ -8,7 +8,6 @@
   <s:layout-component name="body">
     <s:errors/>
     <s:link beanclass="net.infomediauk.stripes.action.admin.TitleActionBean" event="view">
-      <s:param name="titleName" value="${title.fileName}" />
       New
     </s:link>
     &nbsp;

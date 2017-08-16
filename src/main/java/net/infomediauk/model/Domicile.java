@@ -1,6 +1,6 @@
 package net.infomediauk.model;
 
-public class Domicile extends BaseModel
+public class Domicile extends NameCodeBaseModel
 {
   @Override
   public boolean equals(Object obj)

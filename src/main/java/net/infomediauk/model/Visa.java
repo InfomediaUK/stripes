@@ -1,6 +1,6 @@
 package net.infomediauk.model;
 
-public class Visa extends BaseModel
+public class Visa extends NameCodeBaseModel
 {
   @Override
   public boolean equals(Object obj)

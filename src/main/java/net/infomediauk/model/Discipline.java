@@ -1,6 +1,6 @@
 package net.infomediauk.model;
 
-public class Discipline extends BaseModel
+public class Discipline extends NameCodeBaseModel
 {
   @Override
   public boolean equals(Object obj)

@@ -1,6 +1,6 @@
 package net.infomediauk.model;
 
-public class LengthOfStay extends BaseModel
+public class LengthOfStay extends NameCodeBaseModel
 {
   @Override
   public boolean equals(Object obj)

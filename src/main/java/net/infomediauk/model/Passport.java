@@ -1,6 +1,6 @@
 package net.infomediauk.model;
 
-public class Passport extends BaseModel
+public class Passport extends NameCodeBaseModel
 {
   @Override
   public boolean equals(Object obj)

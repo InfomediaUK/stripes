@@ -30,7 +30,7 @@
          <s:label for="prospect.gender" />
         </td>
         <td>
-          <c:forEach var="gender" items="<%= net.infomediauk.xml.jaxb.model.Gender.values() %>">
+          <c:forEach var="gender" items="<%=net.infomediauk.xml.jaxb.model.Gender.values()%>">
             <s:radio name="gender" value="${gender}" id="${gender.name}"/> <s:label for="${gender.name}" />&nbsp;
           </c:forEach>
         </td>

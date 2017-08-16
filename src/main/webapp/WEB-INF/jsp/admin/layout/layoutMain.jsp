@@ -10,12 +10,20 @@
       <title>${title}</title>
       <meta name="description" content="${metaDescription}" />
       <meta name="keywords" content="${metaKeywords}" />
-      <link rel="stylesheet" type="text/css" href="${contextPath}/css/site.css">
+      <link rel="stylesheet" type="text/css" href="${contextPath}/css/admin.css">
     </head>
     <body>
       <table>
         <tr>
           <td>
+            <s:link beanclass="net.infomediauk.stripes.action.admin.RoleListActionBean" event="view">
+              Roles
+            </s:link>
+            &nbsp;
+            <s:link beanclass="net.infomediauk.stripes.action.admin.UserListActionBean" event="view">
+              Users
+            </s:link>
+            &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.admin.AgencyListActionBean" event="view">
               Agencies
             </s:link>

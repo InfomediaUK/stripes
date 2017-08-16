@@ -1,5 +1,5 @@
 package net.infomediauk.xml.jaxb.model;
 
-public class DomicileRecord extends BaseRecord
+public class DomicileRecord extends NameCodeBaseRecord
 {
 }

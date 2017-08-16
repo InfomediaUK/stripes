@@ -1,6 +1,6 @@
 package net.infomediauk.model;
 
-public class Title extends BaseModel
+public class Title extends NameCodeBaseModel
 {
   @Override
   public boolean equals(Object obj)
