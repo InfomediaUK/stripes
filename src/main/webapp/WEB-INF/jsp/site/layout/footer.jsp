@@ -23,7 +23,9 @@ Tel: 02088746111 | VAT No: 792 2329 17 | Company Reg No: 4371384
 <ul class="footer-info">
   <li>&copy; <fmt:formatDate value="${date}" pattern="yyyy" /> P J Locums</li>
 </ul>
+<%-- 
   <s:link beanclass="net.infomediauk.stripes.action.ToggleSiteActionBean" event="view">
     <s:param name="currentActionBeanClassName" value="${actionBean.currentActionBeanClassName}"/>
     Mobile Site
   </s:link>
+--%>
