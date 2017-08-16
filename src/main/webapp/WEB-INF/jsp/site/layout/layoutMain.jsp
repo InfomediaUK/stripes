@@ -16,12 +16,12 @@
     <body>
       <div id="container" style="width:980px; margin:0 auto; position:relative;">
         <div id="main_right" style="float:right; width:735px; margin-top:180px;">
-          <div id="main_content" style="float:left; width:490px; margin-right:10px;">
+          <div id="main_content" style="float:left; width:476px; margin-right:10px;">
             <s:layout-component name="body"/>
           </div>
-          <div id="right_sidebar" style="float:right; width:200px;">
+          <div id="right_sidebar">
             <s:layout-component name="right">
-            <jsp:include page="/WEB-INF/jsp/site/layout/right.jsp"/>
+              <jsp:include page="/WEB-INF/jsp/site/layout/right.jsp"/>
             </s:layout-component>
           </div>
         </div>
