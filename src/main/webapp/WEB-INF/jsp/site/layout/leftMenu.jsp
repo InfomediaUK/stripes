@@ -13,6 +13,11 @@
               Dietetics
             </s:link>
           </li>
+          <li id="occupationaltherapy">
+            <s:link beanclass="net.infomediauk.stripes.action.OccupationalTherapyActionBean" event="view">
+              Occupational Therapy
+            </s:link>
+          </li>
           <li id="pharmacy">
             <s:link beanclass="net.infomediauk.stripes.action.PharmacyActionBean" event="view">
               Pharmacy
