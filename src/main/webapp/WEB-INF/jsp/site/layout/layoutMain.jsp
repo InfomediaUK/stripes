@@ -10,7 +10,7 @@
       <title>${title}</title>
       <meta name="description" content="${metaDescription}" />
       <meta name="keywords" content="${metaKeywords}" />
-      <link rel="stylesheet" type="text/css" href="${contextPath}/css/site.css">
+      <link rel="stylesheet" type="text/css" href="${contextPath}/css/main.css">
     </head>
     <body>
       <div id="container" style="width:980px; margin:0 auto; position:relative;">
@@ -40,8 +40,16 @@
               FAQs
             </s:link>
             &nbsp;
+            <s:link beanclass="net.infomediauk.stripes.action.DocumentationActionBean" event="view">
+              Documentation
+            </s:link>
+            &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.AboutUsActionBean" event="view">
               About Us
+            </s:link>
+            &nbsp;
+            <s:link beanclass="net.infomediauk.stripes.action.ContactUsActionBean" event="view">
+              Contact Us
             </s:link>
           </div>
           <div id="tagline"><h1><fmt:message key="tagLine" /></h1></div>
