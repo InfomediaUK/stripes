@@ -1,3 +1,3 @@
 package net.infomediauk.stripes.action;
 
-public class PharmacistsActionBean extends StaticPageActionBean {}
+public class PharmacyActionBean extends StaticPageActionBean {}

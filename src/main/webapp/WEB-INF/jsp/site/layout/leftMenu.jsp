@@ -13,9 +13,9 @@
               Dietitians
             </s:link>
           </li>
-          <li id="pharmacists">
-            <s:link beanclass="net.infomediauk.stripes.action.PharmacistsActionBean" event="view">
-              Pharmacists
+          <li id="pharmacy">
+            <s:link beanclass="net.infomediauk.stripes.action.PharmacyActionBean" event="view">
+              Pharmacy
             </s:link>
           </li>
           <li id="physiotherapy">
