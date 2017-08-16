@@ -8,7 +8,7 @@
   <s:layout-component name="body">
   <s:form beanclass="net.infomediauk.stripes.action.RegistrationFormActionBean" class="register-form">
     <s:errors/>
-    <table class="form" >
+    <table>
       <tr>
         <td>
           <s:label for="prospect.firstName" />
@@ -31,7 +31,7 @@
         </td>
         <td>
           <c:forEach var="gender" items="<%=net.infomediauk.xml.jaxb.model.Gender.values()%>">
-            <s:radio name="gender" value="${gender}" id="${gender.name}"/> <s:label for="${gender.name}" />&nbsp;
+            <s:label for="${gender.name}" /><s:radio name="gender" value="${gender}" id="${gender.name}"/>
           </c:forEach>
         </td>
       </tr>
