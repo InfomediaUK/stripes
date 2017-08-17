@@ -13,7 +13,7 @@
 
 							<p>3a Archway Mews | Putney Bridge | London | SW15 2PE<br />
 
-Tel: 02088746111 | VAT No: 792 2329 17 | Company Reg No: 4371384
+Tel: +442088746111 | VAT No: 792 2329 17 | Company Registration Number: 4371384
 </p>
 						</div>
 					</div>
