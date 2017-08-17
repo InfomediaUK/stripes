@@ -43,32 +43,32 @@
           <div class="nav-block">
             <ul id="nav">
               <li class="active-home">
-                <s:link beanclass="net.infomediauk.stripes.action.HomeActionBean" event="view">
+                <s:link beanclass="net.infomediauk.stripes.action.HomeActionBean" event="view" title="Home">
                   <span>Home</span>
                 </s:link>
               </li>
               <li>
-                <s:link beanclass="net.infomediauk.stripes.action.FaqsActionBean" event="view">
+                <s:link beanclass="net.infomediauk.stripes.action.FaqsActionBean" event="view" title="Frequently Asked Questions">
                   <span>FAQs</span>
                 </s:link>
               </li>
               <li class="active-cpd">
-                <s:link beanclass="net.infomediauk.stripes.action.CpdActionBean" event="view">
+                <s:link beanclass="net.infomediauk.stripes.action.CpdActionBean" event="view" title="Continued Professional Development">
                   <span>CPD</span>
                 </s:link>
               </li>
               <li class="active-doc">
-                <s:link beanclass="net.infomediauk.stripes.action.DocumentationActionBean" event="view">
+                <s:link beanclass="net.infomediauk.stripes.action.DocumentationActionBean" event="view" title="Documentation">
                   <span>Documentation</span>
                 </s:link>
               </li>
               <li class="active-about">
-                <s:link beanclass="net.infomediauk.stripes.action.AboutUsActionBean" event="view">
+                <s:link beanclass="net.infomediauk.stripes.action.AboutUsActionBean" event="view" title="About Us">
                   <span>About Us</span>
                 </s:link>
               </li>
               <li class="active-contact">
-                <s:link beanclass="net.infomediauk.stripes.action.ContactUsActionBean" event="view">
+                <s:link beanclass="net.infomediauk.stripes.action.ContactUsActionBean" event="view" title="Contact Information">
                   <span>Contact Us</span>
                 </s:link>
               </li>
@@ -81,7 +81,7 @@
           </s:layout-component>
         </div>
       </div>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script src="${contextPath}/js/jquery.cycle2.min.js"></script>
       <script>
         $(".hide-fields").hide();
