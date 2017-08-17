@@ -2,16 +2,16 @@
 <%@ include file="/WEB-INF/jsp/common/taglibs.jsp" %>
 
 <s:layout-definition>
-  <?xml version="1.0" encoding="UTF-8" ?>
-  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+  <!DOCTYPE html>
   <html>
     <head>
-      <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+      <meta charset="UTF-8">
       <title>${title}</title>
       <meta name="description" content="${metaDescription}" />
       <meta name="keywords" content="${metaKeywords}" />
       <link media="all" rel="stylesheet" type="text/css" href="${contextPath}/css/main.css">
       <link media="all" rel="stylesheet" type="text/css" href="${contextPath}/css/fonts.css" />
+      <script type="text/javascript" src="${contextPath}/js/main.js" ></script>
     </head>
     <body>
       <div id="container" style="width:980px; margin:0 auto; position:relative;">
@@ -81,6 +81,16 @@
           </s:layout-component>
         </div>
       </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+      <script src="${contextPath}/js/jquery.cycle2.min.js"></script>
+      <script>
+        $(".hide-fields").hide();
+        $(function(){
+          $('#firstname').focus(function(){
+          $(".hide-fields").fadeIn('fast');
+          });
+        });
+      </script>     
     </body>
   </html>
 </s:layout-definition>

@@ -57,6 +57,16 @@
             </s:link>
           </li>
         </ul>
+<%-- 
+        <h4>Doctors Sector</h4>
+        <ul class="menu">
+          <li id="doctor">
+            <s:link beanclass="net.infomediauk.stripes.action.MidwiferyActionBean" event="view" title="Doctor">
+              SHO
+            </s:link>
+          </li>
+        </ul>
+--%>
       </div>
     </div>
   </div>
