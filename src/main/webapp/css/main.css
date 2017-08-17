@@ -154,13 +154,13 @@ form,fieldset{
 }
 .gallery-block{
 	width:476px;
-	height:242px;
-	overflow:hidden;
+	height:250px;
+/*	overflow:hidden; */
 	position:relative;
 	margin:0 0 12px;
 }
 #content .gallery{
-	width:99999px;
+	width:476px;
 	list-style:none;
 	margin:0;
 	padding:0;
@@ -174,7 +174,7 @@ form,fieldset{
 }
 .gallery li{
 	float:left;
-	height:242px;
+	height:250px;
 	padding:0 30px 0 0;
 	width:446px;
 	background: url(../images/bg-gallery.png) no-repeat;
@@ -190,7 +190,7 @@ form,fieldset{
 	font-weight:normal;
 	font-family: 'PTSansRegular', Arial, Helvetica, sans-serif;
 }
-.gallery p{margin:0 0 22px; line-height: 100%; font-size: 100%; color: #073d64; font-style: bold}
+.gallery p{margin:0 0 22px; line-height: 120%; font-size: 120%; color: #073d64; font-style: bold}
 #content p{margin:0 0 9px; }
 .switcher{
 	list-style:none;
