@@ -502,7 +502,7 @@ form,fieldset{
 	width:100%;
 	margin:-1px 0 0;
 	padding:8px 0;
-	border-top:1px solid #c9e0f0;
+    border-top:1px solid #000000;
 }
 .menu a{
 	text-decoration:none;
@@ -552,13 +552,13 @@ form,fieldset{
 	background-size: 23px
 }
 
-.menu2 a.button8, .menu2 a.button8:hover {
-	background:url(../images/button-odp.jpg) 0 0 no-repeat ;
+.menu2 a.button7, .menu2 a.button7:hover {
+	background:url(../images/button-radiographer.jpg) 0 0 no-repeat ;
 	background-size: 23px
 }
 
-.menu2 a.button7, .menu2 a.button7:hover {
-	background:url(../images/button-radiographer.jpg) 0 0 no-repeat ;
+.menu2 a.button8, .menu2 a.button8:hover {
+	background:url(../images/button-odp.jpg) 0 0 no-repeat ;
 	background-size: 23px
 }
  
