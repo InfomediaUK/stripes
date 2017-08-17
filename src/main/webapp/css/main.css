@@ -371,8 +371,16 @@ form,fieldset{
 	margin:0 0 4px;
 	
 }
-
+.register-form ul {
+    list-style-type:none;
+    list-style-position:outside;
+    padding-left:0;
+}
 .register-form input {
+	width: 98%;
+	margin: 0 0 12px 2px	
+}
+.register-form select {
 	width: 100%;
 	margin: 0 0 12px 0	
 }
@@ -389,7 +397,6 @@ form,fieldset{
 }
 
 .register-form .submit {
-	
 	display: block;
 	height: 35px;
 	color: #fff;
@@ -401,7 +408,6 @@ form,fieldset{
 	margin: 0 auto;
 	margin-top: 20px;
 	cursor:pointer
-		
 }
 
 .light-label {
@@ -656,3 +662,4 @@ form,fieldset{
 	background: url(../images/icon-pdf.gif) no-repeat;
 	padding: 7px 0 7px 40px	
 }
+
