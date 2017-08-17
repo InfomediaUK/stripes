@@ -190,7 +190,7 @@ form,fieldset{
 	font-weight:normal;
 	font-family: 'PTSansRegular', Arial, Helvetica, sans-serif;
 }
-#content .gallery p{margin:0 0 22px; line-height: 130%; font-size: 120%; color: #073d64; font-style: normal}
+.gallery p{margin:0 0 22px; line-height: 100%; font-size: 100%; color: #073d64; font-style: bold}
 #content p{margin:0 0 9px; }
 .switcher{
 	list-style:none;
