@@ -43,7 +43,7 @@
           <div class="nav-block">
             <ul id="nav">
               <li class="active-home">
-                <a href="${contextPath}" title="Home"><span>Home</span></a>
+                <a href="${contextPath}/" title="Home"><span>Home</span></a>
               </li>
               <li>
                 <s:link beanclass="net.infomediauk.stripes.action.FaqsActionBean" event="view" title="Frequently Asked Questions">
