@@ -20,10 +20,12 @@ select{
 	vertical-align:middle;
 	color:#000;
 }
+/* Change height and appearance of select. */
 select{
     height:25px;
     line-height:25px;
-    background:#f4f4f4;
+    background:#fafafa;
+    border-color:#888888;
 }
 form,fieldset{
 	margin:0;
