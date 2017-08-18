@@ -20,6 +20,11 @@ select{
 	vertical-align:middle;
 	color:#000;
 }
+select{
+    height:25px;
+    line-height:25px;
+    background:#f4f4f4;
+}
 form,fieldset{
 	margin:0;
 	padding:0;
@@ -378,11 +383,11 @@ form,fieldset{
 }
 .register-form input {
 	width: 98%;
-	margin: 0 0 12px 2px	
+	margin: 0 0 12px 2px;	
 }
 .register-form select {
-	width: 100%;
-	margin: 0 0 12px 0	
+	width: 99%;
+	margin: 0 0 12px 2px;	
 }
 .register-form label span{font-weight:normal;}
 .register-form .text{
