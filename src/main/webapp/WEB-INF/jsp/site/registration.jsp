@@ -29,15 +29,15 @@
       </li>
       <li>
           <s:label for="prospect.availableForWork" /> 
-          <input type="text" name="prospect.availableForWork" id="prospect.availableForWork" placeholder="DD/MM/YYYY" maxlength="10" required /> 
-      </li>
-      <li>
-         <s:label for="prospect.mobileTelephone" /> 
-         <input type="text" name="prospect.mobileTelephone" id="prospect.mobileTelephone" placeholder="Eg. +442005556789" /> 
+          <input type="text" name="prospect.availableForWork" id="prospect.availableForWork" placeholder="dd/mm/yyyy" maxlength="10" required /> 
       </li>
       <li>
          <s:label for="prospect.email" /> 
-         <input type="email" name="prospect.email" id="prospect.email" placeholder="Eg. name@domain.com" required /> 
+         <input type="email" name="prospect.email" id="prospect.email" placeholder="eg. name@domain.com" required /> 
+      </li>
+      <li>
+         <s:label for="prospect.mobileTelephone" /> 
+         <input type="text" name="prospect.mobileTelephone" id="prospect.mobileTelephone" placeholder="eg. +442005556789" /> 
       </li>
       <li>
          <s:label for="prospect.profession" /> 
