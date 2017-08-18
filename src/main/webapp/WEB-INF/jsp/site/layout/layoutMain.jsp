@@ -33,9 +33,7 @@
         <div id="wrapper" style="height:100px; margin:0; padding:0; position:absolute; top:0; left:0; width:953px;">
           <div id="header">
             <strong class="logo">
-              <s:link beanclass="net.infomediauk.stripes.action.HomeActionBean" event="view">
-                <img src="${contextPath}/images/logo.gif" alt="pj locums" width="141" height="72" title="PJ Locums" />
-              </s:link>
+              <a href="${contextPath}/" title="PJ Locums"><img src="${contextPath}/images/logo.gif" alt="pj locums" width="141" height="72" title="PJ Locums" /></a>
             </strong>
             <span class="login"><a href="http://www.matchmyjob.co.uk/mmj/zap">Applicant Login</a></span>
             <h1><fmt:message key="tagLine" /></h1>
@@ -46,27 +44,27 @@
                 <a href="${contextPath}/" title="Home"><span>Home</span></a>
               </li>
               <li>
-                <s:link beanclass="net.infomediauk.stripes.action.FaqsActionBean" event="view" title="Frequently Asked Questions">
+                <s:link beanclass="net.infomediauk.stripes.action.FaqsActionBean" title="Frequently Asked Questions">
                   <span>FAQs</span>
                 </s:link>
               </li>
               <li class="active-cpd">
-                <s:link beanclass="net.infomediauk.stripes.action.CpdActionBean" event="view" title="Continued Professional Development">
+                <s:link beanclass="net.infomediauk.stripes.action.CpdActionBean" title="Continued Professional Development">
                   <span>CPD</span>
                 </s:link>
               </li>
               <li class="active-doc">
-                <s:link beanclass="net.infomediauk.stripes.action.DocumentationActionBean" event="view" title="Documentation">
+                <s:link beanclass="net.infomediauk.stripes.action.DocumentationActionBean" title="Documentation">
                   <span>Documentation</span>
                 </s:link>
               </li>
               <li class="active-about">
-                <s:link beanclass="net.infomediauk.stripes.action.AboutUsActionBean" event="view" title="About Us">
+                <s:link beanclass="net.infomediauk.stripes.action.AboutUsActionBean" title="About Us">
                   <span>About Us</span>
                 </s:link>
               </li>
               <li class="active-contact">
-                <s:link beanclass="net.infomediauk.stripes.action.ContactUsActionBean" event="view" title="Contact Information">
+                <s:link beanclass="net.infomediauk.stripes.action.ContactUsActionBean" title="Contact Information">
                   <span>Contact Us</span>
                 </s:link>
               </li>
