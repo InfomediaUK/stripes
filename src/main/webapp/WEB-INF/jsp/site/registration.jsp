@@ -45,7 +45,7 @@
       </li>
       <li>
          <s:label for="prospect.discipline" /> 
-         <s:select name="disciplineId" id="prospect.discipline" onfocus="this.size=10;" onblur="this.size=1;" onchange="this.size=1; this.blur();">
+         <s:select name="disciplineId" id="prospect.discipline">
            <s:option value="">-----</s:option>
            <s:options-collection collection="${actionBean.disciplineList}" value="id" sort="displayOrder" />
          </s:select> 
