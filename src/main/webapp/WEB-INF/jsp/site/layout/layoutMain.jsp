@@ -43,9 +43,7 @@
           <div class="nav-block">
             <ul id="nav">
               <li class="active-home">
-                <s:link beanclass="net.infomediauk.stripes.action.HomeActionBean" event="view" title="Home">
-                  <span>Home</span>
-                </s:link>
+                <a href="${contextPath}" title="Home"><span>Home</span></a>
               </li>
               <li>
                 <s:link beanclass="net.infomediauk.stripes.action.FaqsActionBean" event="view" title="Frequently Asked Questions">
