@@ -21,8 +21,8 @@
           <shtml5:text name="prospect.lastName" id="prospect.lastName" required="true" /> 
       </li>
       <li>
-          <s:errors field="prospect.gender"/> 
-          <s:label for="prospect.gender" />
+          <s:errors field="gender"/> 
+          <s:label for="gender" />
           <table>
             <tr>
             <c:forEach var="gender" items="<%=net.infomediauk.xml.jaxb.model.Gender.values()%>">

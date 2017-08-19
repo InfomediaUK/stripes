@@ -36,7 +36,7 @@ public class RegistrationFormActionBean extends BaseActionBean
     @Validate(field="lastName", required=true),
     @Validate(field="email", required=true, converter=EmailTypeConverter.class),
     @Validate(field="profession", required=true),
-    @Validate(field="availableForWork", required=true, converter=DateTypeConverter.class)
+    @Validate(field="availableForWork", required=true) // Putting converter=DateTypeConverter.class here cleared field after submit.
   })
   private Prospect prospect;
   private Gender gender;
