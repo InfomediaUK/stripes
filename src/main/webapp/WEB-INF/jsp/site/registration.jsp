@@ -34,9 +34,9 @@
           </table>
       </li>
       <li>
-          <s:errors field="prospect.availableForWork"/> 
-          <s:label for="prospect.availableForWork" /> 
-          <shtml5:text name="prospect.availableForWork" id="prospect.availableForWork" class="datepicker" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" required="true" /> 
+          <s:errors field="availableForWork"/> 
+          <s:label for="availableForWork" /> 
+          <shtml5:text name="availableForWork" id="availableForWork" class="datepicker" formatPattern="dd/MM/yyyy" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" required="true" /> 
       </li>
       <li>
          <s:errors field="prospect.profession"/> 

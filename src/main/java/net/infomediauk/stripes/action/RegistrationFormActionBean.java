@@ -2,6 +2,8 @@ package net.infomediauk.stripes.action;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -36,7 +38,7 @@ public class RegistrationFormActionBean extends BaseActionBean
     @Validate(field="lastName", required=true),
     @Validate(field="email", required=true, converter=EmailTypeConverter.class),
     @Validate(field="profession", required=true),
-    @Validate(field="availableForWork", required=true) // Putting converter=DateTypeConverter.class here cleared field after submit.
+    @Validate(field="availableForWork", converter=DateTypeConverter.class) // Note. Do not put required here or save() will not run...
   })
   private Prospect prospect;
   private Gender gender;
@@ -50,6 +52,7 @@ public class RegistrationFormActionBean extends BaseActionBean
   private Integer lengthOfStay;
   private Integer visa;
   private String email;
+  private Date availableForWork;
   
   public RegistrationFormActionBean()
   {
@@ -165,6 +168,17 @@ public class RegistrationFormActionBean extends BaseActionBean
     this.email = email;
   }
 
+  public Date getAvailableForWork()
+  {
+    return availableForWork;
+  }
+
+  @Validate(required=true)
+  public void setAvailableForWork(Date availableForWork)
+  {
+    this.availableForWork = availableForWork;
+  }
+
   public Resolution register() throws Exception
   {
     return new ForwardResolution("/WEB-INF/jsp/" + getView().toLowerCase() + "/registration.jsp");
@@ -189,12 +203,14 @@ public class RegistrationFormActionBean extends BaseActionBean
   
   public Resolution save()
   {
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     // Set values from lists.
     prospect.setGender(gender);
     prospect.setPassportId(passport);
     prospect.setDisciplineId(discipline);
     prospect.setVisaId(visa);
     prospect.setLengthOfStayId(lengthOfStay);
+    prospect.setAvailableForWork(sdf.format(availableForWork));
     System.out.println(prospect.getAvailableForWork());
     if (fileBean == null)
     {
