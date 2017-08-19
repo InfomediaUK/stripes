@@ -8,6 +8,7 @@
   pageHeading="prospect">
   <s:layout-component name="body">
   <s:form beanclass="net.infomediauk.stripes.action.admin.ProspectActionBean">
+    <s:hidden name="prospect.email" />
     <s:errors/>
     <table class="form" >
       <tr>
@@ -73,7 +74,7 @@
           <s:label for="prospect.email" />
         </td>
         <td>
-          <s:text name="prospect.email" id="prospect.email" class="required" size="100" />
+          ${actionBean.prospect.email} <%-- Note. You must NOT edit the email address as it is used as the prospect's filename.  --%>
         </td>
       </tr>
       <tr>
@@ -140,6 +141,7 @@
           <s:submit name="save" value="Save"  />
           <s:submit name="cancel" value="Cancel"  />
           <s:submit name="delete" value="Delete"  />
+          <s:submit name="revert" value="Revert"  />
           <s:submit name="sendMultiPartToMmj" value="Send to MMJ"  />
         </td>
       </tr>

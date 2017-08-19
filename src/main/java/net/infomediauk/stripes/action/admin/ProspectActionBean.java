@@ -186,7 +186,15 @@ public class ProspectActionBean extends BaseActionBean
     prospect.setDisciplineId(disciplineId);
     prospect.setVisaId(visaId);
     prospect.setLengthOfStayId(lengthOfStayId);
+    XmlProspectDao.getInstance().backupProspect(prospect);
     XmlProspectDao.getInstance().saveProspect(prospect);
+    return new RedirectResolution(ProspectListActionBean.class);
+  }
+
+  @DontValidate
+  public Resolution revert()
+  {
+    XmlProspectDao.getInstance().revertProspect(prospect);
     return new RedirectResolution(ProspectListActionBean.class);
   }
   

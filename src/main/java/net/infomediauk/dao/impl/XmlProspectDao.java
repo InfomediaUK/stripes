@@ -4,7 +4,12 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import static java.nio.file.StandardCopyOption.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -149,7 +154,9 @@ public class XmlProspectDao
   
   public void saveProspect(Prospect prospect)
   {
-    File file = getProspectFile(prospect.getEmail() + ".xml");
+    String fileName = prospect.getEmail() + ".xml";
+    
+    File file = getProspectFile(fileName);
     try
     {
       JAXBContext jaxbContext = JAXBContext.newInstance(Prospect.class);
@@ -165,7 +172,50 @@ public class XmlProspectDao
     }
     System.out.println(file.getName());
   }
+  
+  public void backupProspect(Prospect prospect)
+  {
+    String fileName = prospect.getEmail() + ".xml";
+    String fullFileName = getProspectFilesFolder() + "/" + fileName;
+    String backupFullFileName = fullFileName + ".bak";
+    Path sourcePath = Paths.get(fullFileName);
+    Path destinationPath = Paths.get(backupFullFileName);
+    try
+    {
+      Files.copy(sourcePath, destinationPath);
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
 
+  public void revertProspect(Prospect prospect)
+  {
+    String prospectFileName = prospect.getEmail() + ".xml";
+    String prospectFullFileName = getProspectFilesFolder() + "/" + prospectFileName;
+    String backupFullFileName = prospectFullFileName + ".bak";
+    String tempFullFileName = prospectFullFileName + ".tmp";
+    Path prospectPath = Paths.get(prospectFullFileName);
+    Path backupPath = Paths.get(backupFullFileName);
+    Path tempPath = Paths.get(tempFullFileName);
+    if (Files.exists(backupPath))
+    {
+      try
+      {
+        Files.move(backupPath, tempPath, REPLACE_EXISTING);
+        Files.move(prospectPath, backupPath, REPLACE_EXISTING);
+        Files.move(tempPath, prospectPath, REPLACE_EXISTING);
+      }
+      catch (IOException e)
+      {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }
+    
+  }
+  
   public Boolean delete(String fileName, String documentFileName)
   {
     if (StringUtils.isNotEmpty(documentFileName))
