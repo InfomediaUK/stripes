@@ -14,7 +14,6 @@ import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Discipline;
 import net.infomediauk.model.Passport;
 import net.infomediauk.model.LengthOfStay;
-import net.infomediauk.model.ProspectShort;
 import net.infomediauk.model.Visa;
 import net.infomediauk.xml.jaxb.model.Gender;
 import net.infomediauk.xml.jaxb.model.Prospect;
@@ -40,17 +39,16 @@ public class RegistrationFormActionBean extends BaseActionBean
     @Validate(field="availableForWork", required=true)
   })
   private Prospect prospect;
-  private ProspectShort prospectShort;
   private Gender gender;
   private FileBean fileBean;
   private List<Passport> passportList;
   private List<LengthOfStay> lengthOfStayList;
   private List<Discipline> disciplineList;
   private List<Visa> visaList;
-  private Integer passportId;
-  private Integer disciplineId;
-  private Integer lengthOfStayId;
-  private Integer visaId;
+  private Integer passport;
+  private Integer discipline;
+  private Integer lengthOfStay;
+  private Integer visa;
   private String email;
   
   public RegistrationFormActionBean()
@@ -70,16 +68,6 @@ public class RegistrationFormActionBean extends BaseActionBean
   public void setProspect(Prospect prospect)
   {
     this.prospect = prospect;
-  }
-
-  public ProspectShort getProspectShort()
-  {
-    return prospectShort;
-  }
-
-  public void setProspectShort(ProspectShort prospectShort)
-  {
-    this.prospectShort = prospectShort;
   }
 
   public Gender getGender()
@@ -123,48 +111,48 @@ public class RegistrationFormActionBean extends BaseActionBean
     return visaList;
   }
 
-  public Integer getPassportId()
+  public Integer getPassport()
   {
-    return passportId;
+    return passport;
   }
 
-  @Validate(required=true)
-  public void setPassportId(Integer passportId)
+//  @Validate(required=true)
+  public void setPassport(Integer passportId)
   {
-    this.passportId = passportId;
+    this.passport = passportId;
   }
 
-  public Integer getLengthOfStayId()
+  public Integer getLengthOfStay()
   {
-    return lengthOfStayId;
+    return lengthOfStay;
   }
 
-  @Validate(required=true)
-  public void setLengthOfStayId(Integer lengthOfStayId)
+//  @Validate(required=true)
+  public void setLengthOfStay(Integer lengthOfStayId)
   {
-    this.lengthOfStayId = lengthOfStayId;
+    this.lengthOfStay = lengthOfStayId;
   }
 
-  public Integer getDisciplineId()
+  public Integer getDiscipline()
   {
-    return disciplineId;
+    return discipline;
   }
 
-  @Validate(required=true)
-  public void setDisciplineId(Integer disciplineId)
+//  @Validate(required=true)
+  public void setDiscipline(Integer disciplineId)
   {
-    this.disciplineId = disciplineId;
+    this.discipline = disciplineId;
   }
 
-  public Integer getVisaId()
+  public Integer getVisa()
   {
-    return visaId;
+    return visa;
   }
 
-  @Validate(required=true)
-  public void setVisaId(Integer visaId)
+//  @Validate(required=true)
+  public void setVisa(Integer visaId)
   {
-    this.visaId = visaId;
+    this.visa = visaId;
   }
 
   public String getEmail()
@@ -186,12 +174,6 @@ public class RegistrationFormActionBean extends BaseActionBean
   @DontValidate
   public Resolution view() throws Exception
   {
-    if (prospectShort != null)
-    {
-      // The Prospect Short form needs to be cleared now. 
-      // See web.xml net.sourceforge.stripes.tag.BeanFirstPopulationStrategy
-      prospect = new Prospect(prospectShort);
-    }
     Locale locale    = getContext().getLocale();
     System.out.println(locale);
     return new ForwardResolution("/WEB-INF/jsp/" + getView().toLowerCase() + "/registration.jsp");
@@ -209,10 +191,10 @@ public class RegistrationFormActionBean extends BaseActionBean
   {
     // Set values from lists.
     prospect.setGender(gender);
-    prospect.setPassportId(passportId);
-    prospect.setDisciplineId(disciplineId);
-    prospect.setVisaId(visaId);
-    prospect.setLengthOfStayId(lengthOfStayId);
+    prospect.setPassportId(passport);
+    prospect.setDisciplineId(discipline);
+    prospect.setVisaId(visa);
+    prospect.setLengthOfStayId(lengthOfStay);
     System.out.println(prospect.getAvailableForWork());
     if (fileBean == null)
     {

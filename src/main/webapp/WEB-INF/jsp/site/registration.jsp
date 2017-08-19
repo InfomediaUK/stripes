@@ -1,5 +1,6 @@
 <%@ include file="/WEB-INF/jsp/common/pagedirectives.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/taglibs.jsp" %>
+<%@ taglib prefix="shtml5" uri="/stripes-html5"%>
 
 <s:layout-render name="/WEB-INF/jsp/site/layout/layoutMain.jsp" 
   title="Registration" 
@@ -11,11 +12,11 @@
     <ul>
       <li>
           <s:label for="prospect.firstName" />
-          <input type="text" name="prospect.firstName" id="prospect.firstName" required /> 
+          <shtml5:text name="prospect.firstName" id="prospect.firstName" required="true" /> 
       </li>
       <li>
           <s:label for="prospect.lastName" />
-          <input type="text" name="prospect.lastName" id="prospect.lastName" required /> 
+          <shtml5:text name="prospect.lastName" id="prospect.lastName" required="true" /> 
       </li>
       <li>
           <s:label for="prospect.gender" />
@@ -29,44 +30,45 @@
       </li>
       <li>
           <s:label for="prospect.availableForWork" /> 
-          <input type="text" name="prospect.availableForWork" id="prospect.availableForWork" placeholder="dd/mm/yyyy" maxlength="10" required /> 
+          <shtml5:text name="prospect.availableForWork" id="prospect.availableForWork" class="datepicker" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" required="true" /> 
+          <!-- input type="text" name="prospect.availableForWork" id="prospect.availableForWork" placeholder="dd/mm/yyyy" maxlength="10" required /--> 
       </li>
       <li>
          <s:label for="prospect.email" /> 
-         <input type="email" name="prospect.email" id="prospect.email" placeholder="eg. name@domain.com" required /> 
+         <shtml5:text name="prospect.email" id="prospect.email" placeholder="eg. name@domain.com" required="true" /> 
       </li>
       <li>
          <s:label for="prospect.mobileTelephone" /> 
-         <input type="text" name="prospect.mobileTelephone" id="prospect.mobileTelephone" placeholder="eg. +442005556789" /> 
+         <shtml5:text name="prospect.mobileTelephone" id="prospect.mobileTelephone" placeholder="eg. +442005556789" /> 
       </li>
       <li>
          <s:label for="prospect.profession" /> 
-         <s:text name="prospect.profession" id="prospect.profession" size="50" /> 
+         <s:text name="prospect.profession" id="prospect.profession" /> 
       </li>
       <li>
          <s:label for="prospect.discipline" /> 
-         <s:select name="disciplineId" id="prospect.discipline">
+         <s:select name="discipline" id="prospect.discipline">
            <s:option value="">-----</s:option>
            <s:options-collection collection="${actionBean.disciplineList}" value="id" sort="displayOrder" />
          </s:select> 
       </li>
       <li>
          <s:label for="prospect.passport" /> 
-         <s:select name="passportId" id="prospect.passport">
+         <s:select name="passport" id="prospect.passport">
            <s:option value="">-----</s:option>
            <s:options-collection collection="${actionBean.passportList}" value="id" sort="displayOrder" />
          </s:select> 
       </li>
       <li>
          <s:label for="prospect.visa" /> 
-         <s:select name="visaId" id="prospect.visa">
+         <s:select name="visa" id="prospect.visa">
            <s:option value="">-----</s:option>
            <s:options-collection collection="${actionBean.visaList}" value="id" sort="displayOrder" />
          </s:select> 
       </li>
       <li>
           <s:label for="prospect.lengthOfStay" /> 
-          <s:select name="lengthOfStayId" id="prospect.lengthOfStay" class="wide">
+          <s:select name="lengthOfStay" id="prospect.lengthOfStay" class="wide">
             <s:options-collection collection="${actionBean.lengthOfStayList}" value="id" sort="displayOrder" />
           </s:select> 
       </li>

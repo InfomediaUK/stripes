@@ -98,6 +98,7 @@
         </td>
         <td>
           <s:select name="disciplineId" id="prospect.discipline" value="${actionBean.prospect.disciplineId}" class="wide">
+            <s:option value="">-----</s:option>
             <s:options-collection collection="${actionBean.disciplineList}" value="id" sort="displayOrder" />
           </s:select> 
         </td>
@@ -108,6 +109,7 @@
         </td>
         <td>
           <s:select name="passportId" id="prospect.passport" value="${actionBean.prospect.passportId}" class="wide">
+            <s:option value="">-----</s:option>
             <s:options-collection collection="${actionBean.passportList}" value="id" sort="displayOrder" />
           </s:select> 
         </td>
@@ -118,6 +120,7 @@
         </td>
         <td>
           <s:select name="visaId" id="prospect.visa" value="${actionBean.prospect.visaId}" class="wide">
+            <s:option value="">-----</s:option>
             <s:options-collection collection="${actionBean.visaList}" value="id" sort="displayOrder" />
           </s:select> 
         </td>

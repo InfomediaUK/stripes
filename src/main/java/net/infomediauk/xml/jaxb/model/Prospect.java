@@ -3,8 +3,6 @@ package net.infomediauk.xml.jaxb.model;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import net.infomediauk.model.ProspectShort;
-
 @XmlRootElement
 @XmlType(propOrder = { "firstName", "lastName", "gender", "mobileTelephone", "email", "profession", "availableForWork", 
                        "documentFileName", "disciplineId", "passportId", "visaId", "lengthOfStayId"})
@@ -23,28 +21,6 @@ public class Prospect
   private Integer visaId;
   private Integer lengthOfStayId;
   
-  public Prospect()
-  {
-    super();
-  }
-  
-  public Prospect(ProspectShort prospectShort)
-  {
-    int spaceIndex = prospectShort.getFullName().indexOf(" ");
-    if (spaceIndex == -1)
-    {
-      setFirstName(prospectShort.getFullName());
-    }
-    else
-    {
-      setFirstName(prospectShort.getFullName().substring(0, spaceIndex));
-      setLastName(prospectShort.getFullName().substring(spaceIndex + 1));
-    }
-    setMobileTelephone(prospectShort.getMobileTelephone());
-    setEmail(prospectShort.getEmail());
-    setProfession(prospectShort.getProfession());
-  }
-
   public String getFirstName()
   {
     return firstName;
@@ -169,10 +145,18 @@ public class Prospect
   {
     return String.format("%s %s", firstName, lastName);
   }
-  
+
   @Override
   public String toString()
   {
-    return String.format("%s %s %s %s", firstName, lastName, email, mobileTelephone);
+    return "Prospect [firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender + ", mobileTelephone=" + mobileTelephone + ", email=" + email + ", profession=" + profession
+        + ", availableForWork=" + availableForWork + ", documentFileName=" + documentFileName + ", disciplineId=" + disciplineId + ", passportId=" + passportId + ", visaId=" + visaId
+        + ", lengthOfStayId=" + lengthOfStayId + "]";
   }
+  
+//  @Override
+//  public String toString()
+//  {
+//    return String.format("%s %s %s %s", firstName, lastName, email, mobileTelephone);
+//  }
 }

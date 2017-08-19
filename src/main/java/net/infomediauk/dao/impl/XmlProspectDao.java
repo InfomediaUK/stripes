@@ -96,14 +96,26 @@ public class XmlProspectDao
     Prospect prospect = loadProspect(fileName);
     prospectFile.setProspect(prospect);
     // Now do the "joins"...
-    Visa visa = XmlVisaDao.getInstance().select(prospect.getVisaId());
-    prospectFile.setVisaName(visa.getName());
-    Discipline discipline = XmlDisciplineDao.getInstance().select(prospect.getDisciplineId());
-    prospectFile.setDisciplineName(discipline.getName());
-    Passport passport = XmlPassportDao.getInstance().select(prospect.getPassportId());
-    prospectFile.setPassportName(passport.getName());
-    LengthOfStay lengthOfStay = XmlLengthOfStayDao.getInstance().select(prospect.getLengthOfStayId());
-    prospectFile.setLengthOfStayName(lengthOfStay.getName());
+    if (prospect.getVisaId() != null)
+    {
+      Visa visa = XmlVisaDao.getInstance().select(prospect.getVisaId());
+      prospectFile.setVisaName(visa.getName());
+    }
+    if (prospect.getDisciplineId() != null)
+    {
+      Discipline discipline = XmlDisciplineDao.getInstance().select(prospect.getDisciplineId());
+      prospectFile.setDisciplineName(discipline.getName());
+    }
+    if (prospect.getPassportId() != null)
+    {
+      Passport passport = XmlPassportDao.getInstance().select(prospect.getPassportId());
+      prospectFile.setPassportName(passport.getName());
+    }
+    if (prospect.getLengthOfStayId() != null)
+    {
+      LengthOfStay lengthOfStay = XmlLengthOfStayDao.getInstance().select(prospect.getLengthOfStayId());
+      prospectFile.setLengthOfStayName(lengthOfStay.getName());
+    }
     return prospectFile;
   }
   
