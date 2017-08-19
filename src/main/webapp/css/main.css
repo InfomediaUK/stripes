@@ -669,4 +669,9 @@ form,fieldset{
 	background: url(../images/icon-pdf.gif) no-repeat;
 	padding: 7px 0 7px 40px	
 }
+/* reverse text */
+span.zaza {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
 
