@@ -24,6 +24,7 @@ import net.sourceforge.stripes.action.FileBean;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
+import net.sourceforge.stripes.validation.DateTypeConverter;
 import net.sourceforge.stripes.validation.EmailTypeConverter;
 import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
@@ -36,7 +37,7 @@ public class RegistrationFormActionBean extends BaseActionBean
     @Validate(field="mobileTelephone", required=true),
     @Validate(field="email", required=true, converter=EmailTypeConverter.class),
     @Validate(field="profession", required=true),
-    @Validate(field="availableForWork", required=true)
+    @Validate(field="availableForWork", required=true, converter=DateTypeConverter.class)
   })
   private Prospect prospect;
   private Gender gender;
