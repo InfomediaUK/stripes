@@ -13,12 +13,12 @@
       <li>
           <s:errors field="prospect.firstName"/> 
           <s:label for="prospect.firstName" />
-          <shtml5:text name="prospect.firstName" id="prospect.firstName" required="true" />
+          <shtml5:text name="prospect.firstName" id="prospect.firstName" />
       </li>
       <li>
           <s:errors field="prospect.lastName"/> 
           <s:label for="prospect.lastName" />
-          <shtml5:text name="prospect.lastName" id="prospect.lastName" required="true" /> 
+          <shtml5:text name="prospect.lastName" id="prospect.lastName" /> 
       </li>
       <li>
           <s:errors field="gender"/> 
@@ -36,7 +36,7 @@
       <li>
           <s:errors field="availableForWork"/> 
           <s:label for="availableForWork" /> 
-          <shtml5:text name="availableForWork" id="availableForWork" class="datepicker" formatPattern="dd/MM/yyyy" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" required="true" /> 
+          <shtml5:text name="availableForWork" id="availableForWork" class="datepicker" formatPattern="dd/MM/yyyy" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" /> 
       </li>
       <li>
          <s:errors field="prospect.profession"/> 
@@ -44,9 +44,9 @@
          <s:text name="prospect.profession" id="prospect.profession" /> 
       </li>
       <li>
-          <s:errors field="prospect.email"/> 
+         <s:errors field="prospect.email"/> 
          <s:label for="prospect.email" /> 
-         <shtml5:text name="prospect.email" id="prospect.email" placeholder="eg. name@domain.com" required="true" /> 
+         <shtml5:text name="prospect.email" id="prospect.email" placeholder="eg. name@domain.com" /> 
       </li>
       <li>
           <s:errors field="prospect.mobileTelephone"/> 
