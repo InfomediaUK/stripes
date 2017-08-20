@@ -2,7 +2,7 @@ package net.infomediauk.stripes.tag;
 
 import net.sourceforge.stripes.tag.InputTextTag;
 
-public class Html5InputText extends InputTextTag
+public class Html5InputTextTag extends InputTextTag
 {
 
   public void setRequired(String required)
