@@ -11,7 +11,225 @@
 	<tag>
 		<display-name>text</display-name>
 		<name>text</name>
-		<tag-class>net.infomediauk.stripes.tag.Html5InputText</tag-class>
+		<tag-class>net.infomediauk.stripes.tag.Html5InputTextTag</tag-class>
+		<body-content>JSP</body-content>
+
+		<!-- Start: Standard Form Input attributes -->
+		<attribute>
+			<description>The name of the form field.</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>The size of the form field. (HTML Pass-through)</description>
+			<name>size</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>A default value for the form field. Can be a literal value, or an EL expression.</description>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description>Disables the input element when it first loads so that the user can not write text in it, or select it. (HTML Pass-through)</description>
+			<name>disabled</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- End: Standard Form Input attributes -->
+
+		<attribute>
+			<description>Indicates that the value of this field cannot be modified. (HTML Pass-through)</description>
+			<name>readonly</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>The maximum number of characters that can be entered in the field. (HTML Pass-through)</description>
+			<name>maxlength</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>The type used to format the object. If the value is a date, valid values are 'date', 'time' and 'datetime'. If the value is a Number, valid values are 'number', 'percentage' and 'currency'.</description>
+			<name>formatType</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>The pattern to apply. Can be either a named pattern or an actual pattern as understood by java.text.DateFormat or java.text.NumberFormat as appropriate for the type of object being formatted.</description>
+			<name>formatPattern</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+
+		<!-- Start: Standard HTML attributes -->
+		<attribute>
+			<description>Keyboard shortcut to access the element. (HTML Pass-through)</description>
+			<name>accesskey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>The CSS class to be applied to the element. (HTML Pass-through)</description>
+			<name>class</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Text direction. (HTML Pass-through)</description>
+			<name>dir</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>A unique identifier for the HTML tag on the page. (HTML Pass-through)</description>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>The language code of the element. (HTML Pass-through)</description>
+			<name>lang</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scripting code run when the element loses focus. (HTML Pass-through)</description>
+			<name>onblur</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scripting code run when the element changes. (HTML Pass-through)</description>
+			<name>onchange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scripting code run on each mouse click. (HTML Pass-through)</description>
+			<name>onclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scripting code run on a double-click of the mouse. (HTML Pass-through)</description>
+			<name>ondblclick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scripting code run when the element acquires focus. (HTML Pass-through)</description>
+			<name>onfocus</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scripting code run when a key is depressed. (HTML Pass-through)</description>
+			<name>onkeydown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scripting code run when a key is pressed and released. (HTML Pass-through)</description>
+			<name>onkeypress</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scripting code run when a key is released. (HTML Pass-through)</description>
+			<name>onkeyup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scripting code run when a mouse button is depressed. (HTML Pass-through)</description>
+			<name>onmousedown</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scripting code run when the mouse pointer is moved. (HTML Pass-through)</description>
+			<name>onmousemove</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scripting code run when the mouse pointer moves out of the element. (HTML Pass-through)</description>
+			<name>onmouseout</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scripting code run when the mouse pointer moves over the element. (HTML Pass-through)</description>
+			<name>onmouseover</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scripting code run when a mouse button is released. (HTML Pass-through)</description>
+			<name>onmouseup</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scripting code run when an element is selected. (HTML Pass-through)</description>
+			<name>onselect</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Inline CSS style fragment that applies to the element (HTML Pass-through)</description>
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>The tab order of the element. (HTML Pass-through)</description>
+			<name>tabindex</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Tool-tip text for the element. (HTML Pass-through)</description>
+			<name>title</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- End: Standard HTML attributes -->
+
+		<!-- Start: HTML 5 specific attributes -->
+		<attribute>
+			<description>Whether this field is required or not</description>
+			<name>required</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Placeholder for text input</description>
+			<name>placeholder</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Pattern that the input has to match</description>
+			<name>pattern</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<!-- End: HTML 5 specific attributes -->
+
+		<dynamic-attributes>false</dynamic-attributes>
+	</tag>
+
+	<tag>
+		<display-name>date</display-name>
+		<name>date</name>
+		<tag-class>net.infomediauk.stripes.tag.Html5InputDateTag</tag-class>
 		<body-content>JSP</body-content>
 
 		<!-- Start: Standard Form Input attributes -->
