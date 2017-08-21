@@ -27,6 +27,38 @@
       </tr>
       <tr>
         <td>
+          <s:label for="systemSettings.emailFromAddress" />
+        </td>
+        <td>
+          <s:text name="systemSettings.emailFromAddress" id="systemSettings.emailFromAddress" size="50" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <s:label for="systemSettings.emailProperties" />
+        </td>
+        <td>
+          <s:text name="systemSettings.emailProperties" id="systemSettings.emailProperties" size="50" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <s:label for="systemSettings.emailUserName" />
+        </td>
+        <td>
+          <s:text name="systemSettings.emailUserName" id="systemSettings.emailUserName" size="50" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <s:label for="systemSettings.emailPassword" />
+        </td>
+        <td>
+          <s:text name="systemSettings.emailPassword" id="systemSettings.emailPassword" size="50" />
+        </td>
+      </tr>
+      <tr>
+        <td>
           <s:submit name="save" value="Save"  />
         </td>
       </tr>
