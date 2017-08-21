@@ -3,7 +3,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #ffffff;
+  background-color: #3a9ac2;
   font-family: "Verdana", "Arial", Helvetica, sans-serif;
 }
 
@@ -29,23 +29,24 @@ h3{
 }
 
 fieldset {
-  background-color: #f0f0f0;
+  border-style:none;
+  background-color: #3a9ac2;
   margin: 5px, 5px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
+  padding: 5px 5px;
   border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;  
   box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
   -moz-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
   -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
 }
 
 form {
-  background-color: #f0f0f0;
-  margin: 5px;
+  background-color: #3a9ac2;
+  margin: 5px, 5px;
   padding: 5px 5px;
   overflow: auto;
   color: #fffff;
-  background-color: #ffffff;
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;  
@@ -101,3 +102,17 @@ select {
   -moz-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
   -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
 }
+.register-form .submit {
+	display: block;
+	height: 35px;
+	color: #fff;
+	background: #2a83ac;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	width: 100%;
+	font-size: 120%;
+	margin: 0 auto;
+	margin-top: 20px;
+	cursor:pointer
+}
+
