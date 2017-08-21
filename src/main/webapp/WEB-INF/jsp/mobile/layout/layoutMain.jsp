@@ -22,7 +22,44 @@
     </header>
     <div id="contentContainer" class="clearfix">
       <section id="pageSection">
-        <header class="sectionHeader"></header>
+        <header class="sectionHeader">
+          <fieldset>
+            <ul id="nav">
+              <li class="active-home">
+                <a href="${contextPath}/" title="Home"><span>Home</span></a>
+              </li>
+              <li>
+                <s:link beanclass="net.infomediauk.stripes.action.FaqsActionBean" title="Frequently Asked Questions">
+                  <span>FAQs</span>
+                </s:link>
+              </li>
+              <li class="active-cpd">
+                <s:link beanclass="net.infomediauk.stripes.action.CpdActionBean" title="Continued Professional Development">
+                  <span>CPD</span>
+                </s:link>
+              </li>
+              <li class="active-doc">
+                <s:link beanclass="net.infomediauk.stripes.action.DocumentationActionBean" title="Documentation">
+                  <span>Documentation</span>
+                </s:link>
+              </li>
+              <li class="active-about">
+                <s:link beanclass="net.infomediauk.stripes.action.AboutUsActionBean" title="About Us">
+                  <span>About Us</span>
+                </s:link>
+              </li>
+              <li class="active-contact">
+                <s:link beanclass="net.infomediauk.stripes.action.ContactUsActionBean" title="Contact Information">
+                  <span>Contact Us</span>
+                </s:link>
+              </li>
+            </ul>
+          </fieldset>
+            <s:form beanclass="net.infomediauk.stripes.action.RegisterFormActionBean" class="register-form">
+              <h3>Looking For Work?</h3>
+              <s:submit name="start" value="Register With Us" class="submit" />
+            </s:form>
+        </header>
         <article class="sectionArticle">
           <s:layout-component name="body"/>
         </article>

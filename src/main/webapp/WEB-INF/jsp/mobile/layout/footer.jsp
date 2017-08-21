@@ -2,21 +2,16 @@
 <%@ include file="/WEB-INF/jsp/common/taglibs.jsp" %>
 <jsp:useBean id="date" class="java.util.Date" />
 <fieldset>
-  <div id="email">
-      <p>Email: info@pjlocums.co.uk</p>
-  </div>
-  <div id="ukcontact">
-    <p>(In the UK)</p>
-    <p>Freephone: 0800 032 0454</p>
-    <p>Fax: 020 8874 7222</p>
-  </div>
-  <div id="internationalcontact">
-    <p>(International)</p>
-    <p>Tel: + 44 20 8874 6111</p>
-    <p>Fax: + 44 20 8874 7222</p>
-  </div>
   <div id="iso9001">
-    <img src="images/iso900.jpg" alt="ISO 900" width="194" height="109" />
+    <img src="images/iso900.jpg" alt="ISO 900" />
+  </div>
+  <br />
+  <div id="framework-accreditation">
+    <img src="images/Framework-accreditation.jpg" alt="Framework Accreditation" />
+  </div>
+  <div class="contact">
+    <p>3a Archway Mews | Putney Bridge | London | SW15 2PE</p>
+    <p>VAT No: 792 2329 17 | Company Registration Number: 4371384</p>
   </div>
 </fieldset>
 <p>

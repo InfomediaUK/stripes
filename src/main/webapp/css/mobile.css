@@ -115,4 +115,9 @@ select {
 	margin-top: 20px;
 	cursor:pointer
 }
+/* reverse text */
+span.zaza {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
 
