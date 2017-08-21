@@ -1,6 +1,8 @@
 package stripesbook.action;
 
 import java.io.File;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.JAXBContext;
@@ -10,24 +12,26 @@ import javax.xml.bind.Unmarshaller;
 
 import com.handinteractive.mobile.UAgentInfo;
 
+import net.infomediauk.stripes.ext.SessionActionBeanContext;
 import net.infomediauk.xml.jaxb.model.HtmlPage;
 import net.sourceforge.stripes.action.ActionBean;
 import net.sourceforge.stripes.action.ActionBeanContext;
+import net.sourceforge.stripes.util.Base64;
 
 public abstract class BaseActionBean implements ActionBean
 {
-  private ActionBeanContext actionBeanContext;
+  private SessionActionBeanContext actionBeanContext;
   private HtmlPage htmlPage;
   private String currentActionBeanClassName = this.getClass().getName();
   
-  public ActionBeanContext getContext()
+  public SessionActionBeanContext getContext()
   {
     return actionBeanContext;
   }
 
   public void setContext(ActionBeanContext actionBeanContext)
   {
-    this.actionBeanContext = actionBeanContext;
+    this.actionBeanContext = (SessionActionBeanContext)actionBeanContext;
   }
 
   public HtmlPage getHtmlPage()
@@ -117,8 +121,6 @@ public abstract class BaseActionBean implements ActionBean
   
   /**
    * Note that OPENSHIFT_DATA_DIR must be set as an environment variable in run configurations.
-   * It must correspond to the tomcat deployment folder.
-   * Eg. /Users/infomedia/Documents/Eclipse/Luna/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/stripes/WEB-INF
    * 
    * @return
    */
@@ -128,4 +130,17 @@ public abstract class BaseActionBean implements ActionBean
     return path;
   }
 
+  protected String encryptPassword(String password)
+  {
+    try
+    {
+      MessageDigest md = MessageDigest.getInstance("SHA-1");
+      byte[] bytes = md.digest(password.getBytes());
+      return Base64.encodeBytes(bytes);
+    }
+    catch (NoSuchAlgorithmException exc)
+    {
+      throw new IllegalArgumentException(exc);
+    }
+  }
 }
