@@ -11,50 +11,38 @@
     <table class="form" >
       <tr>
         <td>
-          <s:label for="systemSettings.prospectUploadBaseUrl" />
-        </td>
-        <td>
-          <s:text name="systemSettings.prospectUploadBaseUrl" id="systemSettings.prospectUploadBaseUrl" class="required" size="50" />
+          <s:label for="systemSettings.prospectUploadBaseUrl" /><br />
+          <s:text name="systemSettings.prospectUploadBaseUrl" id="systemSettings.prospectUploadBaseUrl" class="required" size="103" />
         </td>
       </tr>
       <tr>
         <td>
-          <s:label for="systemSettings.matchMyJobRestBaseUrl" />
-        </td>
-        <td>
-          <s:text name="systemSettings.matchMyJobRestBaseUrl" id="systemSettings.matchMyJobRestBaseUrl" class="required" size="50" />
+          <s:label for="systemSettings.matchMyJobRestBaseUrl" /><br />
+          <s:text name="systemSettings.matchMyJobRestBaseUrl" id="systemSettings.matchMyJobRestBaseUrl" class="required" size="103" />
         </td>
       </tr>
       <tr>
         <td>
-          <s:label for="systemSettings.emailFromAddress" />
-        </td>
-        <td>
-          <s:text name="systemSettings.emailFromAddress" id="systemSettings.emailFromAddress" size="50" />
+          <s:label for="systemSettings.emailFromAddress" /><br />
+          <s:text name="systemSettings.emailFromAddress" id="systemSettings.emailFromAddress" size="103" />
         </td>
       </tr>
       <tr>
         <td>
-          <s:label for="systemSettings.emailProperties" />
-        </td>
-        <td>
-          <s:text name="systemSettings.emailProperties" id="systemSettings.emailProperties" size="50" />
+          <s:label for="systemSettings.emailProperties" /><br />
+          <s:textarea name="systemSettings.emailProperties" id="systemSettings.emailProperties" cols="100" rows="6" />
         </td>
       </tr>
       <tr>
         <td>
-          <s:label for="systemSettings.emailUserName" />
-        </td>
-        <td>
-          <s:text name="systemSettings.emailUserName" id="systemSettings.emailUserName" size="50" />
+          <s:label for="systemSettings.emailUserName" /><br />
+          <s:text name="systemSettings.emailUserName" id="systemSettings.emailUserName" size="103" />
         </td>
       </tr>
       <tr>
         <td>
-          <s:label for="systemSettings.emailPassword" />
-        </td>
-        <td>
-          <s:text name="systemSettings.emailPassword" id="systemSettings.emailPassword" size="50" />
+          <s:label for="systemSettings.emailPassword" /><br />
+          <s:text name="systemSettings.emailPassword" id="systemSettings.emailPassword" size="103" />
         </td>
       </tr>
       <tr>
