@@ -64,6 +64,10 @@
             <s:link beanclass="net.infomediauk.stripes.action.admin.SystemSettingsActionBean">
               Settings
             </s:link>
+            &nbsp;
+            <s:link beanclass="net.infomediauk.stripes.action.admin.LogoutActionBean">
+              Logout
+            </s:link>
           </td>
         </tr>
         <tr>
