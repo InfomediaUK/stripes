@@ -2,8 +2,7 @@
 <%@ include file="/WEB-INF/jsp/common/taglibs.jsp" %>
 
 <s:layout-definition>
-  <?xml version="1.0" encoding="UTF-8" ?>
-  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+  <!DOCTYPE html>
   <html>
     <head>
       <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
@@ -16,53 +15,53 @@
       <table>
         <tr>
           <td>
-            <s:link beanclass="net.infomediauk.stripes.action.admin.RoleListActionBean" event="view">
+            <s:link beanclass="net.infomediauk.stripes.action.admin.RoleListActionBean">
               Roles
             </s:link>
             &nbsp;
-            <s:link beanclass="net.infomediauk.stripes.action.admin.UserListActionBean" event="view">
+            <s:link beanclass="net.infomediauk.stripes.action.admin.UserListActionBean">
               Users
             </s:link>
             &nbsp;
-            <s:link beanclass="net.infomediauk.stripes.action.admin.AgencyListActionBean" event="view">
+            <s:link beanclass="net.infomediauk.stripes.action.admin.AgencyListActionBean">
               Agencies
             </s:link>
             &nbsp;
-            <s:link beanclass="net.infomediauk.stripes.action.admin.DisciplineListActionBean" event="view">
+            <s:link beanclass="net.infomediauk.stripes.action.admin.DisciplineListActionBean">
               Disciplines
             </s:link>
             &nbsp;
-            <s:link beanclass="net.infomediauk.stripes.action.admin.PassportListActionBean" event="view">
+            <s:link beanclass="net.infomediauk.stripes.action.admin.PassportListActionBean">
               Passports
             </s:link>
             &nbsp;
-            <s:link beanclass="net.infomediauk.stripes.action.admin.VisaListActionBean" event="view">
+            <s:link beanclass="net.infomediauk.stripes.action.admin.VisaListActionBean">
               Visas
             </s:link>
 <%-- 
             &nbsp;
-            <s:link beanclass="net.infomediauk.stripes.action.admin.DomicileListActionBean" event="view">
+            <s:link beanclass="net.infomediauk.stripes.action.admin.DomicileListActionBean">
               Domiciles
             </s:link>
             &nbsp;
-            <s:link beanclass="net.infomediauk.stripes.action.admin.TitleListActionBean" event="view">
+            <s:link beanclass="net.infomediauk.stripes.action.admin.TitleListActionBean">
               Titles
             </s:link>
 --%>
             &nbsp;
-            <s:link beanclass="net.infomediauk.stripes.action.admin.LengthOfStayListActionBean" event="view">
+            <s:link beanclass="net.infomediauk.stripes.action.admin.LengthOfStayListActionBean">
               Lengths of Stay
             </s:link>
             &nbsp;
-            <s:link beanclass="net.infomediauk.stripes.action.admin.ProspectListActionBean" event="view">
+            <s:link beanclass="net.infomediauk.stripes.action.admin.ProspectListActionBean">
               Prospects
             </s:link>
             &nbsp;
-            <s:link beanclass="net.infomediauk.stripes.action.admin.HtmlPageListActionBean" event="view">
+            <s:link beanclass="net.infomediauk.stripes.action.admin.HtmlPageListActionBean">
               HTML Pages
             </s:link>
             &nbsp;
-            <s:link beanclass="net.infomediauk.stripes.action.admin.SystemSettingsActionBean" event="view">
+            <s:link beanclass="net.infomediauk.stripes.action.admin.SystemSettingsActionBean">
               Settings
             </s:link>
           </td>
