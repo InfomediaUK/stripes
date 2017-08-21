@@ -21,6 +21,7 @@
     </s:link>
     <d:table name="${actionBean.roleList}" id="role" requestURI="" defaultsort="2" >
       <d:column title="Id" property="id" sortable="true" />
+      <d:column title="Code" property="code" sortable="true" />
       <d:column title="Role" sortable="true" >
           <s:link beanclass="net.infomediauk.stripes.action.admin.RoleActionBean" event="view">
             <s:param name="id" value="${role.id}" />
