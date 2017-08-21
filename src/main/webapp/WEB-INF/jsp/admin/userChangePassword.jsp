@@ -52,6 +52,14 @@
       </tr>
       <tr>
         <td>
+          <s:label for="passwordHint" />
+        </td>
+        <td>
+          <s:text name="passwordHint" id="passwordHint" class="required" />
+        </td>
+      </tr>
+      <tr>
+        <td>
           <s:submit name="save" value="Save"  />
           <s:submit name="cancel" value="Cancel"  />
         </td>

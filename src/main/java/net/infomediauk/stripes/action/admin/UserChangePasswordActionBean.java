@@ -21,6 +21,7 @@ public class UserChangePasswordActionBean extends UserActionBean
   private String oldPassword;
   private String newPassword;
   private String confirmPassword;
+  private String passwordHint;
 
   public String getOldPassword()
   {
@@ -55,6 +56,17 @@ public class UserChangePasswordActionBean extends UserActionBean
     this.confirmPassword = confirmPassword;
   }
 
+  @Validate(required=true)
+  public String getPasswordHint()
+  {
+    return passwordHint;
+  }
+
+  public void setPasswordHint(String passwordHint)
+  {
+    this.passwordHint = passwordHint;
+  }
+
   @DefaultHandler
   @DontValidate
   public Resolution view() throws Exception
@@ -68,6 +80,7 @@ public class UserChangePasswordActionBean extends UserActionBean
   {
     setUser(XmlUserDao.getInstance().select(getUser().getId()));
     getUser().setPassword(encryptPassword(newPassword));
+    getUser().setPasswordHint(passwordHint);
     XmlUserDao.getInstance().updatePassword(getUser());
     return new RedirectResolution(UserListActionBean.class);
   }

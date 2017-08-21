@@ -44,6 +44,14 @@
       </tr>
       <tr>
         <td>
+          <s:label for="passwordHint" />
+        </td>
+        <td>
+          <s:password name="passwordHint" id="passwordHint" repopulate="true" class="required" />
+        </td>
+      </tr>
+      <tr>
+        <td>
           <s:label for="displayOrder" />
         </td>
         <td>

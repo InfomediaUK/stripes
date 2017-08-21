@@ -20,6 +20,7 @@ public class UserNewActionBean extends UserActionBean
   private static final String FORM = "/WEB-INF/jsp/admin/userNew.jsp";
   private String password;
   private String confirmPassword;
+  private String passwordHint;
 
   public String getPassword()
   {
@@ -41,6 +42,17 @@ public class UserNewActionBean extends UserActionBean
   public void setConfirmPassword(String confirmPassword)
   {
     this.confirmPassword = confirmPassword;
+  }
+
+  public String getPasswordHint()
+  {
+    return passwordHint;
+  }
+
+  @Validate(required=true)
+  public void setPasswordHint(String passwordHint)
+  {
+    this.passwordHint = passwordHint;
   }
 
   @DefaultHandler

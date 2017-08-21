@@ -35,6 +35,14 @@
         </td>
       </tr>
       <tr>
+       <td>
+          <s:label for="passwordHint" />
+        </td>
+        <td>
+          <s:text name="user.passwordHint" id="passwordHint" class="required" />
+        </td>
+      </tr>
+      <tr>
         <td>
           <s:label for="displayOrder" />
         </td>
@@ -51,7 +59,7 @@
       </tr>
       <tr>
         <td>
-          <s:link beanclass="net.infomediauk.stripes.action.admin.UserChangePasswordActionBean" event="view">
+          <s:link beanclass="net.infomediauk.stripes.action.admin.UserChangePasswordActionBean">
             <s:param name="user.id" value="${actionBean.user.id}" />
             Change Password
           </s:link>

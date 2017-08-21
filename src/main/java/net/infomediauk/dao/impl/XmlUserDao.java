@@ -119,12 +119,31 @@ public class XmlUserDao extends BaseDao implements Dao<User>
     return user;
   }
 
+  public User selectByEmail(String email)
+  {
+    User user = null;
+    if (database != null)
+    {
+      for (UserRecord userRecord : database.getRecords())
+      {
+        if (userRecord.getEmail().equals(email))
+        {
+          user = new User();
+          fillUser(user, userRecord);
+          break;
+        }
+      }
+    }
+    return user;
+  }
+
   private void fillUser(User user, UserRecord userRecord)
   {
     user.setId(userRecord.getId());
     user.setName(userRecord.getName());
     user.setEmail(userRecord.getEmail());
     user.setPassword(userRecord.getPassword());
+    user.setPasswordHint(userRecord.getPasswordHint());
     user.setDisplayOrder(userRecord.getDisplayOrder());
     user.setNumberOfChanges(userRecord.getNumberOfChanges());
   }
@@ -164,6 +183,7 @@ public class XmlUserDao extends BaseDao implements Dao<User>
       // The Password is only ever set here for NEW Users.
       userRecord.setPassword(user.getPassword());
     }
+    userRecord.setPasswordHint(user.getPasswordHint());
     userRecord.setDisplayOrder(user.getDisplayOrder() == null ? 0 : user.getDisplayOrder());
     userRecord.setNumberOfChanges(user.getNumberOfChanges() + 1);
   }
@@ -176,6 +196,7 @@ public class XmlUserDao extends BaseDao implements Dao<User>
       return false;
     }
     userRecord.setPassword(user.getPassword());
+    userRecord.setPasswordHint(user.getPasswordHint());
     commit();
     return true;
   }
