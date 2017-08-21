@@ -28,9 +28,9 @@ public class LoginInterceptor implements Interceptor
     if (actionBeanClass.contains("admin"))
     {
       // Admin action requested.
-      if (actionBeanClass.contains("LoginActionBean"))
+      if (actionBeanClass.contains("LoginActionBean") || actionBeanClass.contains("ForgottenPasswordActionBean"))
       {
-        // Going to Login. Just let it continue...
+        // Going to Login or ForgottenPassword. Just let it continue...
       }
       else
       {
@@ -40,6 +40,10 @@ public class LoginInterceptor implements Interceptor
         {
           // User not logged in yet. Redirect to Login page.
           resolution = new RedirectResolution(LoginActionBean.class);
+          if (sessionActionBeanContext.getRequest().getMethod().equalsIgnoreCase("GET"))
+          {
+            ((RedirectResolution)resolution).addParameter("interceptedUrl", actionBean.getLastUrl());
+          }
         }
       }
     }
