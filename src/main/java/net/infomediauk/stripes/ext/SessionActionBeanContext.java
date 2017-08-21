@@ -1,5 +1,7 @@
 package net.infomediauk.stripes.ext;
 
+import javax.servlet.http.HttpSession;
+
 import net.infomediauk.model.User;
 import net.sourceforge.stripes.action.ActionBeanContext;
 
@@ -18,5 +20,15 @@ public class SessionActionBeanContext extends ActionBeanContext
   public void setUser(Object value)
   {
     getRequest().getSession().setAttribute("USER_LOGGED_IN", value);
+  }
+
+  public void logout()
+  {
+    setUser(null);
+    HttpSession session = getRequest().getSession();
+    if (session != null)
+    {
+      session.invalidate();
+    }
   }
 }
