@@ -20,6 +20,7 @@ public class LoginActionBean extends BaseActionBean
   private static final String FORM = "/WEB-INF/jsp/admin/login.jsp";
   private String userName;
   private String userPassword;
+  private String interceptedUrl;
   private User user;
   
   public void setUserName(String userName)
@@ -30,6 +31,16 @@ public class LoginActionBean extends BaseActionBean
   public void setUserPassword(String userPassword)
   {
     this.userPassword = userPassword;
+  }
+
+  public String getInterceptedUrl()
+  {
+    return interceptedUrl;
+  }
+
+  public void setInterceptedUrl(String interceptedUrl)
+  {
+    this.interceptedUrl = interceptedUrl;
   }
 
   @DefaultHandler
@@ -44,6 +55,11 @@ public class LoginActionBean extends BaseActionBean
     System.out.println("In Login...");
     SessionActionBeanContext sessionActionBeanContext = getContext();
     sessionActionBeanContext.setUser(user);
+    if (interceptedUrl != null)
+    {
+      // User originally requested this url...
+      return new RedirectResolution(interceptedUrl);
+    }
     return new RedirectResolution(UserListActionBean.class);
   }
   
