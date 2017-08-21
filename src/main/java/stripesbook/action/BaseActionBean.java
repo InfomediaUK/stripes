@@ -3,7 +3,10 @@ package stripesbook.action;
 import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -32,6 +35,56 @@ public abstract class BaseActionBean implements ActionBean
   public void setContext(ActionBeanContext actionBeanContext)
   {
     this.actionBeanContext = (SessionActionBeanContext)actionBeanContext;
+  }
+
+  public String getLastUrl()
+  {
+    HttpServletRequest req = getContext().getRequest();
+    StringBuilder sb = new StringBuilder();
+
+    // Start with the URI and the path
+    String uri = (String)req.getAttribute("javax.servlet.forward.request_uri");
+    String path = (String)req.getAttribute("javax.servlet.forward.path_info");
+    if (uri == null)
+    {
+      uri = req.getRequestURI();
+      path = req.getPathInfo();
+    }
+    String context = req.getContextPath();
+    if (context != null)
+    {
+      if (uri.startsWith(context))
+      {
+        // Remove context from front of uri.
+        uri = uri.substring(context.length());
+      }
+    }
+    sb.append(uri);
+    if (path != null)
+    {
+      sb.append(path);
+    }
+
+    // Now the request parameters
+    sb.append('?');
+    Map<String, String[]> map = new HashMap<String, String[]>(req.getParameterMap());
+
+    // Remove previous locale parameter, if present.
+    // map.remove(MyLocalePicker.LOCALE);
+
+    // Append the parameters to the URL
+    for (String key : map.keySet())
+    {
+      String[] values = map.get(key);
+      for (String value : values)
+      {
+        sb.append(key).append('=').append(value).append('&');
+      }
+    }
+    // Remove the last character '?' or '&'.
+    sb.deleteCharAt(sb.length() - 1);
+
+    return sb.toString();
   }
 
   public HtmlPage getHtmlPage()
