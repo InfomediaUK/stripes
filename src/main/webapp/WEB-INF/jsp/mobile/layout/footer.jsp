@@ -16,7 +16,7 @@
     <p>Fax: + 44 20 8874 7222</p>
   </div>
   <div id="iso9001">
-    <img src="${contextPath}/images/iso9001.gif" alt="iso 9001" width="155" height="49" />
+    <img src="images/iso900.jpg" alt="ISO 900" width="194" height="109" />
   </div>
 </fieldset>
 <p>

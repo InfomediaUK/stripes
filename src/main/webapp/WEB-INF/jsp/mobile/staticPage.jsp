@@ -6,6 +6,8 @@
   metaDescription="${actionBean.htmlPage.metaDescription}"
   metaKeywords="${actionBean.htmlPage.metaKeywords}">
   <s:layout-component name="body">
-    ${actionBean.htmlPage.body}
+    <fieldset>
+      ${actionBean.htmlPage.body}
+    </fieldset>
   </s:layout-component>
 </s:layout-render>

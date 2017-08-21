@@ -8,9 +8,7 @@
   <title>${title}</title>
   <meta name="description" content="${metaDescription}" />
   <meta name="keywords" content="${metaKeywords}" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="HandheldFriendly" content="true"/>
-  <meta name="MobileOptimized" content="width" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="${contextPath}/css/mobile.css">
 </head>
 <body>

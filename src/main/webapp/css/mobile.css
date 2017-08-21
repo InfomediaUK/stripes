@@ -31,7 +31,7 @@ h3{
 fieldset {
   border-style:none;
   background-color: #3a9ac2;
-  margin: 5px, 5px;
+  margin: 5px 5px;
   padding: 5px 5px;
   border-radius: 10px;
   -moz-border-radius: 10px;
@@ -43,7 +43,7 @@ fieldset {
 
 form {
   background-color: #3a9ac2;
-  margin: 5px, 5px;
+  margin: 5px 5px;
   padding: 5px 5px;
   overflow: auto;
   color: #fffff;
@@ -81,11 +81,11 @@ input.required {
 }
 
 input {
-  width: 100%;
+  width: 98%;
 }
 
 select {
-  width: 100%;	
+  width: 98%;	
 }
 
 .error {
@@ -109,7 +109,7 @@ select {
 	background: #2a83ac;
 	border: 1px solid #fff;
 	border-radius: 5px;
-	width: 100%;
+	width: 98%;
 	font-size: 120%;
 	margin: 0 auto;
 	margin-top: 20px;
