@@ -39,6 +39,14 @@
       <param-name>LocalePicker.Locales</param-name>
       <param-value>en,es</param-value>
     </init-param>
+    <init-param>
+      <param-name>Extension.Packages</param-name>
+      <param-value>net.infomediauk.stripes.ext</param-value>
+    </init-param>
+    <init-param>
+      <param-name>Interceptor.Classes</param-name>
+      <param-value>net.infomediauk.stripes.interceptor.LoginInterceptor</param-value>
+    </init-param>
     <!-- Register Form on right would not clear until the following <init-param> was added. 
     <init-param>
       <param-name>PopulationStrategy.Class</param-name>
