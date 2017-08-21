@@ -1,5 +1,8 @@
 package net.infomediauk.stripes.action.admin;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import net.infomediauk.converter.ConverterConstants;
 import net.infomediauk.dao.impl.XmlUserDao;
 import net.sourceforge.stripes.action.DefaultHandler;
@@ -97,6 +100,26 @@ public class UserChangePasswordActionBean extends UserActionBean
       {
         errors.addGlobalError(new SimpleError("Old Password is incorrect."));
       }
+    }
+  }
+  
+  /**
+   * The new password should already be validated for acceptable length and that it matches the confirm password.
+   * 
+   * @param errors
+   */
+  @ValidationMethod(on="save", priority=99)
+  public void validatePasswordContainsSpecialCharacter(ValidationErrors errors)
+  {
+    Pattern pattern = Pattern.compile(ConverterConstants.PASSWORD_PATTERN);
+    Matcher matcher = pattern.matcher(newPassword);
+    if (matcher.matches())
+    {
+      getUser().setPassword(encryptPassword(newPassword));
+    }
+    else
+    {
+      errors.addGlobalError(new SimpleError("The password must be " + ConverterConstants.MIN_PASSWORD_LENGTH + " to " + ConverterConstants.MAX_PASSWORD_LENGTH + " characters in length with at least one digit, one upper case letter, one lower case letter and one special symbol: " + ConverterConstants.PASSWORD_SPECIAL_CHARACTERS));  
     }
   }
 }

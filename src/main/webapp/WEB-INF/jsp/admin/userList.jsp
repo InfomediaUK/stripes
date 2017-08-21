@@ -28,6 +28,7 @@
           </s:link>
       </d:column>
       <d:column title="Email" property="email" sortable="true" />
+      <d:column title="Password" property="password" sortable="false" />
       <d:column title="Display Order" property="displayOrder" sortable="true" />
     </d:table>
   </s:layout-component>
