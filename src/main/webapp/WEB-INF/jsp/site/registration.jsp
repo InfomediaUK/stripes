@@ -84,8 +84,9 @@
           </s:select> 
       </li>
       <li>
+         <s:errors field="fileBean"/> 
           <s:label for="fileBean" /> 
-          <s:file name="fileBean" id="fileBean" /> 
+          <s:file name="fileBean" id="fileBean" accept=".pdf"/> 
       </li>
       <li>
           <s:submit name="save" value="Send Details" class="submit" />
