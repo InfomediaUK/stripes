@@ -87,7 +87,7 @@
          <s:errors field="fileBean"/> 
          <s:label for="fileBean" /> 
          <s:file name="fileBean" id="fileBean" accept=".pdf"/>
-         <span>Note. Must be .pdf file with size not exceeding 500kb</span> 
+         <span>Note. Must be .pdf file with size NOT exceeding ${actionBean.maxFileUploadSize}kb</span> 
       </li>
       <li>
           <s:submit name="save" value="Send Details" class="submit" />

@@ -58,6 +58,7 @@ public class RegistrationFormActionBean extends BaseActionBean
   private Integer visa;
   private String email;
   private Date availableForWork;
+  private Integer maxFileUploadSize;
   
   public RegistrationFormActionBean()
   {
@@ -184,6 +185,11 @@ public class RegistrationFormActionBean extends BaseActionBean
     this.availableForWork = availableForWork;
   }
 
+  public Integer getMaxFileUploadSize()
+  {
+    return maxFileUploadSize;
+  }
+
   public Resolution register() throws Exception
   {
     return new ForwardResolution("/WEB-INF/jsp/" + getView().toLowerCase() + "/registration.jsp");
@@ -194,6 +200,8 @@ public class RegistrationFormActionBean extends BaseActionBean
   public Resolution view() throws Exception
   {
     Locale locale    = getContext().getLocale();
+    SystemSettings systemSettings = XmlSystemSettingsDao.getInstance().select();
+    maxFileUploadSize = systemSettings.getMaxFileUploadSize();
     System.out.println(locale);
     return new ForwardResolution("/WEB-INF/jsp/" + getView().toLowerCase() + "/registration.jsp");
   }
@@ -252,7 +260,7 @@ public class RegistrationFormActionBean extends BaseActionBean
     {
       // A file is being uploaded. Validate it.
       SystemSettings systemSettings = XmlSystemSettingsDao.getInstance().select();
-      Integer maxFileUploadSize = systemSettings.getMaxFileUploadSize();
+      maxFileUploadSize = systemSettings.getMaxFileUploadSize();
       if (!fileBean.getContentType().equalsIgnoreCase("application/pdf") || fileBean.getSize() > (1024 * 500))
       {
         errors.add("fileBean", new SimpleError("File " + fileBean.getFileName() + " Upload FAILED."));
