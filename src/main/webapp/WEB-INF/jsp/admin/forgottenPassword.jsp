@@ -7,25 +7,17 @@
   metaKeywords="forgotten,password"
   pageHeading="forgottenPassword">
   <s:layout-component name="body">
-  <s:form beanclass="net.infomediauk.stripes.action.admin.ForgottenPasswordActionBean">
-    <s:errors/>
-    <table class="form" >
-      <tr>
-       <td>
-          <s:label for="email" />
-        </td>
-        <td>
-          <s:text name="email" id="email" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <s:submit name="sendPasswordHint" value="Send"  />
-          <s:submit name="cancel" value="Cancel"  />
-        </td>
-      </tr>
-    </table>
-  </s:form>
+    <s:form beanclass="net.infomediauk.stripes.action.admin.ForgottenPasswordActionBean">
+      <s:errors />
+      <div>
+        <s:label for="email" /><br />
+        <s:text name="email" id="email" />
+      </div>
+      <div>
+        <s:submit name="sendPasswordHint" value="Send" />
+        <s:submit name="cancel" value="Cancel" />
+      </div>
+    </s:form>
   </s:layout-component>
 </s:layout-render>
     

@@ -7,41 +7,26 @@
   metaKeywords="login"
     pageHeading="login">
   <s:layout-component name="body">
-  <s:form beanclass="net.infomediauk.stripes.action.admin.LoginActionBean">
-    <s:hidden name="interceptedUrl" />
-    <s:errors/>
-    <table class="form" >
-      <tr>
-       <td>
-          <s:label for="userName" />
-        </td>
-        <td>
-          <s:text name="userName" id="userName" />
-        </td>
-      </tr>
-      <tr>
-      <tr>
-        <td>
-          <s:label for="userPassword" />
-        </td>
-        <td>
-          <s:password name="userPassword" id="userPassword" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <s:submit name="login" value="Login"  />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <s:link beanclass="net.infomediauk.stripes.action.admin.ForgottenPasswordActionBean">
-            Forgotten Password?
-          </s:link>
-        </td>
-      </tr>          
-    </table>
-  </s:form>
+    <s:form beanclass="net.infomediauk.stripes.action.admin.LoginActionBean">
+      <s:hidden name="interceptedUrl" />
+      <s:errors />
+      <div>
+        <s:label for="userName" /><br />
+        <s:text name="userName" id="userName" />
+      </div>
+      <div>
+        <s:label for="userPassword" /><br />
+        <s:password name="userPassword" id="userPassword" />
+      </div>
+      <div>
+        <s:submit name="login" value="Login" />
+      </div>
+      <div>
+        <s:link beanclass="net.infomediauk.stripes.action.admin.ForgottenPasswordActionBean">
+          Forgotten Password?
+        </s:link>
+      </div>
+    </s:form>
   </s:layout-component>
 </s:layout-render>
     
