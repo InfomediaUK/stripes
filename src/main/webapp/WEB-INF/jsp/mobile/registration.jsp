@@ -84,8 +84,10 @@
           </s:select> 
       </li>
       <li>
-          <s:label for="fileBean" /> 
-          <s:file name="fileBean" id="fileBean" /> 
+         <s:errors field="fileBean"/> 
+         <s:label for="fileBean" /> 
+         <s:file name="fileBean" id="fileBean" /> 
+         <span>Note. Must be .pdf file with size not exceeding 500kb</span> 
       </li>
       <li>
           <s:submit name="save" value="Send Details" class="submit" />
