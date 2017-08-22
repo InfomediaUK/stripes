@@ -12,6 +12,7 @@ import net.infomediauk.dao.impl.XmlDisciplineDao;
 import net.infomediauk.dao.impl.XmlPassportDao;
 import net.infomediauk.dao.impl.XmlLengthOfStayDao;
 import net.infomediauk.dao.impl.XmlProspectDao;
+import net.infomediauk.dao.impl.XmlSystemSettingsDao;
 import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Discipline;
 import net.infomediauk.model.Passport;
@@ -20,6 +21,7 @@ import net.infomediauk.model.Visa;
 import net.infomediauk.xml.jaxb.model.Gender;
 import net.infomediauk.xml.jaxb.model.Prospect;
 import net.infomediauk.xml.jaxb.model.ProspectFile;
+import net.infomediauk.xml.jaxb.model.SystemSettings;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.FileBean;
@@ -249,13 +251,19 @@ public class RegistrationFormActionBean extends BaseActionBean
     if (fileBean != null)
     {
       // A file is being uploaded. Validate it.
+      SystemSettings systemSettings = XmlSystemSettingsDao.getInstance().select();
+      Integer maxFileUploadSize = systemSettings.getMaxFileUploadSize();
+      if (!fileBean.getContentType().equalsIgnoreCase("application/pdf") || fileBean.getSize() > (1024 * 500))
+      {
+        errors.add("fileBean", new SimpleError("File " + fileBean.getFileName() + " Upload FAILED."));
+      }
       if (!fileBean.getContentType().equalsIgnoreCase("application/pdf"))
       {
-        errors.add("fileBean", new SimpleError("File " + fileBean.getFileName() + " is NOT .pdf file (application/pdf). Its content type is: " + fileBean.getContentType()));
+        errors.add("fileBean", new SimpleError("It is NOT .pdf file (application/pdf). Its content type is: " + fileBean.getContentType()));
       }
-      if (fileBean.getSize() > (1024 * 500))
+      if (fileBean.getSize() > (1000 * maxFileUploadSize))
       {
-        errors.add("fileBean", new SimpleError("File " + fileBean.getFileName() + " size of " + (fileBean.getSize() / 1000) + "kb exceeds maximum file size of 500kb."));
+        errors.add("fileBean", new SimpleError("Its size (" + (fileBean.getSize() / 1000) + "kb) exceeds maximum file size of " + maxFileUploadSize + "kb."));
       }
     }
   }
