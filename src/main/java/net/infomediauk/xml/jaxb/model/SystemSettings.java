@@ -22,6 +22,7 @@ public class SystemSettings
   private String exchangeUserName;
   private String exchangePassword;
   private String exchangeDomain;
+  private Integer maxFileUploadSize;
 
   public String getProspectUploadBaseUrl()
   {
@@ -151,13 +152,22 @@ public class SystemSettings
     return emailProperties;
   }
 
+  public Integer getMaxFileUploadSize()
+  {
+    return maxFileUploadSize;
+  }
+
+  public void setMaxFileUploadSize(Integer maxFileUploadSize)
+  {
+    this.maxFileUploadSize = maxFileUploadSize;
+  }
+
   @Override
   public String toString()
   {
     return "SystemSettings [prospectUploadBaseUrl=" + prospectUploadBaseUrl + ", matchMyJobRestBaseUrl=" + matchMyJobRestBaseUrl + ", emailServer=" + emailServer + ", emailFromAddress="
         + emailFromAddress + ", emailProperties=" + emailProperties + ", emailUserName=" + emailUserName + ", emailPassword=" + emailPassword + ", exchangeVersion=" + exchangeVersion
-        + ", exchangeUserName=" + exchangeUserName + ", exchangePassword=" + exchangePassword + ", exchangeDomain=" + exchangeDomain + "]";
+        + ", exchangeUserName=" + exchangeUserName + ", exchangePassword=" + exchangePassword + ", exchangeDomain=" + exchangeDomain + ", maxFileUploadSize=" + maxFileUploadSize + "]";
   }
-
   
 }

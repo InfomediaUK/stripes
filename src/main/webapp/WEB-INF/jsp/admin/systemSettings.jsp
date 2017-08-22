@@ -75,6 +75,12 @@
         <s:text name="systemSettings.exchangeDomain" id="systemSettings.exchangeDomain" size="103" />
       </div>
     </fieldset>
+    <br />
+    <fieldset>
+      <legend>Misc. Settings</legend>
+        <s:label for="systemSettings.maxFileUploadSize" /><br />
+        <s:text name="systemSettings.maxFileUploadSize" id="systemSettings.maxFileUploadSize" size="103" />
+    </fieldset>
     <div>
       <s:submit name="save" value="Save"  />
     </div>
