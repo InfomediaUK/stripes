@@ -11,6 +11,7 @@ import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.UrlBinding;
 import net.sourceforge.stripes.validation.SimpleError;
+import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidationErrors;
 import net.sourceforge.stripes.validation.ValidationMethod;
 
@@ -23,11 +24,13 @@ public class LoginActionBean extends BaseActionBean
   private String interceptedUrl;
   private User user;
   
+  @Validate(required=true)
   public void setUserName(String userName)
   {
     this.userName = userName;
   }
 
+  @Validate(required=true)
   public void setUserPassword(String userPassword)
   {
     this.userPassword = userPassword;

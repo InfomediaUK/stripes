@@ -31,7 +31,6 @@
       <tr>
         <td>
           <s:submit name="login" value="Login"  />
-          <s:submit name="cancel" value="Cancel"  />
         </td>
       </tr>
       <tr>
