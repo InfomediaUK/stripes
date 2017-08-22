@@ -221,6 +221,12 @@
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
+		<attribute>
+			<description>Associated data list to select from</description>
+			<name>list</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 		<!-- End: HTML 5 specific attributes -->
 
 		<dynamic-attributes>false</dynamic-attributes>

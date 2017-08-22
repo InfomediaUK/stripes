@@ -34,4 +34,14 @@ public class Html5InputTextTag extends InputTextTag
   {
     set("pattern", pattern);
   }
+
+  public String getList()
+  {
+    return get("list");
+  }
+
+  public void setList(String list)
+  {
+    set("list", list);
+  }
 }
