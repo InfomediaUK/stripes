@@ -1,6 +1,7 @@
 package net.infomediauk.stripes.action.admin;
 
 import stripesbook.action.BaseActionBean;
+import microsoft.exchange.webservices.data.autodiscover.exception.AutodiscoverLocalException;
 import net.infomediauk.dao.impl.XmlUserDao;
 import net.infomediauk.mail.MailHandler;
 import net.infomediauk.model.User;
@@ -37,12 +38,29 @@ public class ForgottenPasswordActionBean extends BaseActionBean
     return new ForwardResolution(FORM);
   }
   
+  @DontValidate
+  public Resolution cancel()
+  {
+    return new RedirectResolution(LoginActionBean.class);
+  }
+
   public Resolution sendPasswordHint() throws Exception
   {
     User user = XmlUserDao.getInstance().selectByEmail(email);
     String subject = "IMPORTANT - Your PJ Locums Hint";
     String text = "Your hint is: " + user.getPasswordHint();
-    MailHandler.getInstance().sendMail(user.getEmail(), subject, text);
+//    MailHandler.getInstance().sendMail(user.getEmail(), subject, text);
+    try
+    {
+      MailHandler.getInstance().sendExchangeMail(user.getEmail(), subject, text);
+    }
+    catch (Exception e)
+    {
+      String errorMessage = e.getMessage();
+      getContext().getValidationErrors().addGlobalError(new SimpleError(errorMessage));  
+      e.printStackTrace();
+      return new ForwardResolution(FORM);
+    }
     return new RedirectResolution(ForgottenPasswordActionBean.class, "forgottenPasswordHintSent").addParameter("email", email);
   }
   

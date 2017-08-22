@@ -8,6 +8,13 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import microsoft.exchange.webservices.data.autodiscover.IAutodiscoverRedirectionUrl;
+import microsoft.exchange.webservices.data.core.ExchangeService;
+import microsoft.exchange.webservices.data.core.enumeration.misc.ExchangeVersion;
+import microsoft.exchange.webservices.data.core.service.item.EmailMessage;
+import microsoft.exchange.webservices.data.credential.ExchangeCredentials;
+import microsoft.exchange.webservices.data.credential.WebCredentials;
+import microsoft.exchange.webservices.data.property.complex.MessageBody;
 import net.infomediauk.dao.impl.XmlSystemSettingsDao;
 import net.infomediauk.xml.jaxb.model.SystemSettings;
 
@@ -36,7 +43,7 @@ public class MailHandler
     return instance;
   }
 
-  public void sendMail(String to, String subject, String text)
+  public void sendMail(String to, String subject, String text) throws Exception
   {
     SystemSettings systemSettings = XmlSystemSettingsDao.getInstance().select();
     String from = systemSettings.getEmailFromAddress();
@@ -44,45 +51,64 @@ public class MailHandler
     SMTPAuthenticator authenticator = new SMTPAuthenticator(systemSettings.getEmailUserName(), systemSettings.getEmailPassword());
     Session session = Session.getInstance(mailProperties, authenticator);
     session.setDebug(true);
-    try 
+    Transport transport = null;
+    try
     {
-      Transport transport = null;
-      try
+      transport = session.getTransport("smtp");
+      // Create a message.
+      MimeMessage mimeMessage = new CustomMimeMessage(session);
+      mimeMessage.addHeader("Content-type", "text/HTML; charset=UTF-8");
+      mimeMessage.addHeader("format", "flowed");
+      mimeMessage.addHeader("Content-Transfer-Encoding", "8bit");
+      if (StringUtils.isEmpty(from)) 
       {
-        transport = session.getTransport("smtp");
-        // Create a message.
-        MimeMessage mimeMessage = new CustomMimeMessage(session);
-        mimeMessage.addHeader("Content-type", "text/HTML; charset=UTF-8");
-        mimeMessage.addHeader("format", "flowed");
-        mimeMessage.addHeader("Content-Transfer-Encoding", "8bit");
-        if (StringUtils.isEmpty(from)) 
-        {
-          mimeMessage.setFrom();
-        } 
-        else 
-        {
-          mimeMessage.setFrom(new InternetAddress(from));
-        }
-        InternetAddress[] toInternetAddresses = InternetAddress.parse(to);
-        mimeMessage.addRecipients(Message.RecipientType.TO, toInternetAddresses);
-        mimeMessage.setSubject(subject, "UTF-8");
-        mimeMessage.setText(text, "UTF-8");
-        mimeMessage.setSentDate(new java.util.Date());
-        transport.connect();
-        // Send the mail.
-        transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
+        mimeMessage.setFrom();
+      } 
+      else 
+      {
+        mimeMessage.setFrom(new InternetAddress(from));
       }
-      finally
+      InternetAddress[] toInternetAddresses = InternetAddress.parse(to);
+      mimeMessage.addRecipients(Message.RecipientType.TO, toInternetAddresses);
+      mimeMessage.setSubject(subject, "UTF-8");
+      mimeMessage.setText(text, "UTF-8");
+      mimeMessage.setSentDate(new java.util.Date());
+      transport.connect();
+      // Send the mail.
+      transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
+    }
+    finally
+    {
+      if (transport != null)
       {
-        if (transport != null)
-        {
-          transport.close();
-        }
+        transport.close();
       }
     }
-    catch (Exception e) 
+  }
+  
+  static class RedirectionUrlCallback implements IAutodiscoverRedirectionUrl 
+  {
+    public boolean autodiscoverRedirectionUrlValidationCallback(String redirectionUrl) 
     {
-      System.out.println(e.getMessage());
+        return redirectionUrl.toLowerCase().startsWith("https://");
     }
+  }
+  
+  public void sendExchangeMail(String to, String subject, String text) throws Exception
+  {
+    SystemSettings systemSettings = XmlSystemSettingsDao.getInstance().select();
+    String exchangeUserName = systemSettings.getExchangeUserName();
+    ExchangeVersion ev = ExchangeVersion.valueOf(systemSettings.getExchangeVersion());
+    ExchangeService service = new ExchangeService(ev);
+    EmailMessage emailMessage;
+//  service.setUrl(new URI("https://outlook.office365.com/owa/?realm=pjlocums.co.uk"));
+    service.autodiscoverUrl(exchangeUserName, new RedirectionUrlCallback());
+    ExchangeCredentials credentials = new WebCredentials(exchangeUserName, systemSettings.getExchangePassword());
+    service.setCredentials(credentials);    
+    emailMessage = new EmailMessage(service);
+    emailMessage.setSubject(subject);
+    emailMessage.setBody(MessageBody.getMessageBodyFromText(text));
+    emailMessage.getToRecipients().add(to);
+    emailMessage.send();    
   }
 }
