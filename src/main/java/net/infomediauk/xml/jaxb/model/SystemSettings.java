@@ -1,6 +1,12 @@
 package net.infomediauk.xml.jaxb.model;
 
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.Properties;
+
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.apache.commons.lang.StringUtils;
 
 @XmlRootElement()
 public class SystemSettings
@@ -71,5 +77,22 @@ public class SystemSettings
   {
     this.emailPassword = emailPassword;
   }
-    
+ 
+  public Properties getMailProperties()
+  {
+    Properties mailProperties = new Properties();
+    if (StringUtils.isNotEmpty(emailProperties))
+    {
+      try
+      {
+        mailProperties.load(new StringReader(emailProperties));
+      }
+      catch (IOException e)
+      {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }
+    return mailProperties;
+  }
 }
