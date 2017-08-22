@@ -53,10 +53,12 @@
       <param-value>net.sourceforge.stripes.tag.BeanFirstPopulationStrategy</param-value>
     </init-param>
     -->
+    <!-- Using this left form cleared of all input with just file size error message showing. 
 	<init-param>
 	  <param-name>FileUpload.MaximumPostSize</param-name>
-	  <param-value>5MB</param-value>
+	  <param-value>500kb</param-value>
 	</init-param>
+    -->
 	<init-param>
 	  <param-name>Stripes.EncryptionKey</param-name>
 	  <param-value>Don't Copy/Paste Me! Make up your own encryption key and keep it secret!</param-value>
