@@ -17,6 +17,9 @@ public class SystemSettings
   private String emailProperties;
   private String emailUserName;
   private String emailPassword;
+  private String exchangeVersion;
+  private String exchangeUserName;
+  private String exchangePassword;
 
   public String getProspectUploadBaseUrl()
   {
@@ -78,14 +81,44 @@ public class SystemSettings
     this.emailPassword = emailPassword;
   }
  
+  public String getExchangeVersion()
+  {
+    return exchangeVersion;
+  }
+
+  public void setExchangeVersion(String exchangeVersion)
+  {
+    this.exchangeVersion = exchangeVersion;
+  }
+
+  public String getExchangeUserName()
+  {
+    return exchangeUserName;
+  }
+
+  public void setExchangeUserName(String exchangeUserName)
+  {
+    this.exchangeUserName = exchangeUserName;
+  }
+
+  public String getExchangePassword()
+  {
+    return exchangePassword;
+  }
+
+  public void setExchangePassword(String exchangePassword)
+  {
+    this.exchangePassword = exchangePassword;
+  }
+
   public Properties getMailProperties()
   {
-    Properties mailProperties = new Properties();
-    if (StringUtils.isNotEmpty(emailProperties))
+    Properties emailProperties = new Properties();
+    if (StringUtils.isNotEmpty(getEmailProperties()))
     {
       try
       {
-        mailProperties.load(new StringReader(emailProperties));
+        emailProperties.load(new StringReader(getEmailProperties()));
       }
       catch (IOException e)
       {
@@ -93,6 +126,15 @@ public class SystemSettings
         e.printStackTrace();
       }
     }
-    return mailProperties;
+    return emailProperties;
   }
+
+  @Override
+  public String toString()
+  {
+    return "SystemSettings [prospectUploadBaseUrl=" + prospectUploadBaseUrl + ", matchMyJobRestBaseUrl=" + matchMyJobRestBaseUrl + ", emailFromAddress=" + emailFromAddress + ", emailProperties="
+        + emailProperties + ", emailUserName=" + emailUserName + ", emailPassword=" + emailPassword + ", exchangeVersion=" + exchangeVersion + ", exchangeUserName=" + exchangeUserName
+        + ", exchangePassword=" + exchangePassword + "]";
+  }
+  
 }
