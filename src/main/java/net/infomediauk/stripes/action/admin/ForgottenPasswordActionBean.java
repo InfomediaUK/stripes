@@ -1,19 +1,8 @@
 package net.infomediauk.stripes.action.admin;
 
-import java.util.Properties;
-
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-
-import org.apache.commons.lang3.StringUtils;
-
 import stripesbook.action.BaseActionBean;
 import net.infomediauk.dao.impl.XmlUserDao;
-import net.infomediauk.mail.CustomMimeMessage;
-import net.infomediauk.mail.SMTPAuthenticator;
+import net.infomediauk.mail.MailHandler;
 import net.infomediauk.model.User;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
@@ -50,56 +39,10 @@ public class ForgottenPasswordActionBean extends BaseActionBean
   
   public Resolution sendPasswordHint() throws Exception
   {
-    System.out.println("In sendPasswordHint...");
     User user = XmlUserDao.getInstance().selectByEmail(email);
-    String from = "admin@matchmyjob.co.uk";
-    Properties props = new Properties();
-    props.put("mail.smtp.host", "smtp.easily.co.uk");
-    props.put("mail.smtp.port", "1025");
-    props.setProperty("mail.transport.protocol", "smtp");
-    props.setProperty("mail.smtp.auth", "true");
-    SMTPAuthenticator authenticator = new SMTPAuthenticator("cgg0dhqh51j0", "helmet22");
-    Session session = Session.getInstance(props, authenticator);
-    session.setDebug(true);
-    try 
-    {
-      Transport transport = null;
-      try
-      {
-        transport = session.getTransport("smtp");
-        // Create a message.
-        MimeMessage mimeMessage = new CustomMimeMessage(session);
-        // Added header stuff. 23/07/2016 Lyndon
-        mimeMessage.addHeader("Content-type", "text/HTML; charset=UTF-8");
-        if (StringUtils.isEmpty(from)) 
-        {
-          mimeMessage.setFrom();
-        } 
-        else 
-        {
-          mimeMessage.setFrom(new InternetAddress(from));
-        }
-        InternetAddress[] toInternetAddresses = InternetAddress.parse(email);
-        mimeMessage.addRecipients(Message.RecipientType.TO, toInternetAddresses);
-        mimeMessage.setSubject("Your HINT", "UTF-8");
-        mimeMessage.setText(user.getPasswordHint(), "UTF-8");
-        mimeMessage.setSentDate(new java.util.Date());
-        transport.connect();
-        // Send the mail.
-        transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
-      }
-      finally
-      {
-        if (transport != null)
-        {
-          transport.close();
-        }
-      }
-    } 
-    catch (Exception e) 
-    {
-      System.out.println(e.getMessage());
-    }
+    String subject = "IMPORTANT - Your PJ Locums Hint";
+    String text = "Your hint is: " + user.getPasswordHint();
+    MailHandler.getInstance().sendMail(user.getEmail(), subject, text);
     return new RedirectResolution(ForgottenPasswordActionBean.class, "forgottenPasswordHintSent").addParameter("email", email);
   }
   
