@@ -98,14 +98,13 @@ public class MailHandler
   {
     SystemSettings systemSettings = XmlSystemSettingsDao.getInstance().select();
     String exchangeUserName = systemSettings.getExchangeUserName();
-    ExchangeVersion ev = ExchangeVersion.valueOf(systemSettings.getExchangeVersion());
-    ExchangeService service = new ExchangeService(ev);
-    EmailMessage emailMessage;
-//  service.setUrl(new URI("https://outlook.office365.com/owa/?realm=pjlocums.co.uk"));
-    service.autodiscoverUrl(exchangeUserName, new RedirectionUrlCallback());
-    ExchangeCredentials credentials = new WebCredentials(exchangeUserName, systemSettings.getExchangePassword());
+    String exchangePassword = systemSettings.getExchangePassword();
+    ExchangeVersion exchangeVersion = ExchangeVersion.valueOf(systemSettings.getExchangeVersion());
+    ExchangeService service = new ExchangeService(exchangeVersion);
+    ExchangeCredentials credentials = new WebCredentials(exchangeUserName, exchangePassword, systemSettings.getExchangeDomain());
     service.setCredentials(credentials);    
-    emailMessage = new EmailMessage(service);
+    service.autodiscoverUrl(exchangeUserName, new RedirectionUrlCallback());
+    EmailMessage emailMessage = new EmailMessage(service);
     emailMessage.setSubject(subject);
     emailMessage.setBody(MessageBody.getMessageBodyFromText(text));
     emailMessage.getToRecipients().add(to);
