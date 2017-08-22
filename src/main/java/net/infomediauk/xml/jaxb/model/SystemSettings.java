@@ -13,6 +13,7 @@ public class SystemSettings
 {
   private String prospectUploadBaseUrl;
   private String matchMyJobRestBaseUrl;
+  private String emailServer;
   private String emailFromAddress;
   private String emailProperties;
   private String emailUserName;
@@ -20,6 +21,7 @@ public class SystemSettings
   private String exchangeVersion;
   private String exchangeUserName;
   private String exchangePassword;
+  private String exchangeDomain;
 
   public String getProspectUploadBaseUrl()
   {
@@ -39,6 +41,16 @@ public class SystemSettings
   public void setMatchMyJobRestBaseUrl(String matchMyJobRestBaseUrl)
   {
     this.matchMyJobRestBaseUrl = matchMyJobRestBaseUrl;
+  }
+
+  public String getEmailServer()
+  {
+    return emailServer;
+  }
+
+  public void setEmailServer(String emailServer)
+  {
+    this.emailServer = emailServer;
   }
 
   public String getEmailFromAddress()
@@ -106,6 +118,16 @@ public class SystemSettings
     return exchangePassword;
   }
 
+  public String getExchangeDomain()
+  {
+    return exchangeDomain;
+  }
+
+  public void setExchangeDomain(String exchangeDomain)
+  {
+    this.exchangeDomain = exchangeDomain;
+  }
+
   public void setExchangePassword(String exchangePassword)
   {
     this.exchangePassword = exchangePassword;
@@ -132,9 +154,10 @@ public class SystemSettings
   @Override
   public String toString()
   {
-    return "SystemSettings [prospectUploadBaseUrl=" + prospectUploadBaseUrl + ", matchMyJobRestBaseUrl=" + matchMyJobRestBaseUrl + ", emailFromAddress=" + emailFromAddress + ", emailProperties="
-        + emailProperties + ", emailUserName=" + emailUserName + ", emailPassword=" + emailPassword + ", exchangeVersion=" + exchangeVersion + ", exchangeUserName=" + exchangeUserName
-        + ", exchangePassword=" + exchangePassword + "]";
+    return "SystemSettings [prospectUploadBaseUrl=" + prospectUploadBaseUrl + ", matchMyJobRestBaseUrl=" + matchMyJobRestBaseUrl + ", emailServer=" + emailServer + ", emailFromAddress="
+        + emailFromAddress + ", emailProperties=" + emailProperties + ", emailUserName=" + emailUserName + ", emailPassword=" + emailPassword + ", exchangeVersion=" + exchangeVersion
+        + ", exchangeUserName=" + exchangeUserName + ", exchangePassword=" + exchangePassword + ", exchangeDomain=" + exchangeDomain + "]";
   }
+
   
 }

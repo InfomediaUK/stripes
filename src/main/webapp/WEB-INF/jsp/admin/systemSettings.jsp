@@ -1,5 +1,6 @@
 <%@ include file="/WEB-INF/jsp/common/pagedirectives.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/taglibs.jsp" %>
+<%@ taglib prefix="shtml5" uri="/stripes-html5"%>
 
 <s:layout-render name="/WEB-INF/jsp/admin/layout/layoutMain.jsp"
   title="${actionBean.htmlPage.title}" 
@@ -21,7 +22,16 @@
     </fieldset>
     <br />
     <fieldset>
-      <legend>Email Settings</legend>
+      <legend>Email Server</legend>
+      <s:label for="systemSettings.emailServer" /> 
+      <s:select name="systemSettings.emailServer" id="systemSettings.emailServer">
+         <s:option value="${actionBean.emailHost}">${actionBean.emailHost}</s:option>
+         <s:option value="${actionBean.exchangeServer}">${actionBean.exchangeServer}</s:option>
+      </s:select> 
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>Email Host Settings</legend>
       <div>
         <s:label for="systemSettings.emailFromAddress" /><br />
         <s:text name="systemSettings.emailFromAddress" id="systemSettings.emailFromAddress" size="103" />
@@ -41,10 +51,16 @@
     </fieldset>
     <br />
     <fieldset>
-      <legend>MS Exchange Settings</legend>
+      <legend>MS Exchange Server Settings</legend>
       <div>
-        <s:label for="systemSettings.exchangeVersion" /><br />
-        <s:text name="systemSettings.exchangeVersion" id="systemSettings.exchangeVersion" size="103" />
+        <s:label for="systemSettings.exchangeVersion" /> (eg. Exchange2007_SP1, Exchange2010, Exchange2010_SP1, Exchange2010_SP2)<br />
+        <shtml5:text name="systemSettings.exchangeVersion" id="systemSettings.exchangeVersion" size="103" list="exchangeVersionList" />
+        <datalist id="exchangeVersionList">
+          <option>Exchange2007_SP1</option>
+          <option>Exchange2010</option>
+          <option>Exchange2010_SP1</option>
+          <option>Exchange2010_SP2</option>
+        </datalist>
       </div>
       <div>
         <s:label for="systemSettings.exchangeUserName" /><br />
@@ -53,6 +69,10 @@
       <div>
         <s:label for="systemSettings.exchangePassword" /><br />
         <s:text name="systemSettings.exchangePassword" id="systemSettings.exchangePassword" size="103" />
+      </div>
+      <div>
+        <s:label for="systemSettings.exchangeDomain" /><br />
+        <s:text name="systemSettings.exchangeDomain" id="systemSettings.exchangeDomain" size="103" />
       </div>
     </fieldset>
     <div>

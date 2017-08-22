@@ -19,6 +19,8 @@ public class SystemSettingsActionBean extends BaseActionBean
     @Validate(field="prospectUploadBaseUrl", required=true)
   })
   private SystemSettings systemSettings;
+  private String emailHost = Constants.EMAIL_HOST;
+  private String exchangeServer = Constants.EXCHANGE_SERVER;
 
   public SystemSettings getSystemSettings()
   {
@@ -28,6 +30,16 @@ public class SystemSettingsActionBean extends BaseActionBean
   public void setSystemSettings(SystemSettings systemSettings)
   {
     this.systemSettings = systemSettings;
+  }
+
+  public String getEmailHost()
+  {
+    return emailHost;
+  }
+
+  public String getExchangeServer()
+  {
+    return exchangeServer;
   }
 
   @DefaultHandler
