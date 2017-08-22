@@ -54,6 +54,10 @@
     </init-param>
     -->
 	<init-param>
+	  <param-name>FileUpload.MaximumPostSize</param-name>
+	  <param-value>5MB</param-value>
+	</init-param>
+	<init-param>
 	  <param-name>Stripes.EncryptionKey</param-name>
 	  <param-value>Don't Copy/Paste Me! Make up your own encryption key and keep it secret!</param-value>
 	</init-param>
