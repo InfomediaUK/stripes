@@ -28,8 +28,11 @@ import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.validation.DateTypeConverter;
 import net.sourceforge.stripes.validation.EmailTypeConverter;
+import net.sourceforge.stripes.validation.SimpleError;
 import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidateNestedProperties;
+import net.sourceforge.stripes.validation.ValidationErrors;
+import net.sourceforge.stripes.validation.ValidationMethod;
 
 public class RegistrationFormActionBean extends BaseActionBean
 {
@@ -240,4 +243,20 @@ public class RegistrationFormActionBean extends BaseActionBean
     return new RedirectResolution(RegistrationFormActionBean.class, "thanks").addParameter("email", prospect.getEmail());
   }
 
+  @ValidationMethod(on="save", priority=1)
+  public void validatePasswordContainsSpecialCharacter(ValidationErrors errors)
+  {
+    if (fileBean != null)
+    {
+      // A file is being uploaded. Validate it.
+      if (!fileBean.getContentType().equalsIgnoreCase("application/pdf"))
+      {
+        errors.add("fileBean", new SimpleError("File " + fileBean.getFileName() + " is NOT .pdf file (application/pdf). Its content type is: " + fileBean.getContentType()));
+      }
+      if (fileBean.getSize() > (1024 * 500))
+      {
+        errors.add("fileBean", new SimpleError("File " + fileBean.getFileName() + " size of " + (fileBean.getSize() / 1000) + "kb exceeds maximum file size of 500kb."));
+      }
+    }
+  }
 }
