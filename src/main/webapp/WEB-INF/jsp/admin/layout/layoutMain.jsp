@@ -49,6 +49,10 @@
             </s:link>
 --%>
             &nbsp;
+            <s:link beanclass="net.infomediauk.stripes.action.admin.JobListActionBean">
+              Jobs
+            </s:link>
+            &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.admin.LengthOfStayListActionBean">
               Lengths of Stay
             </s:link>
