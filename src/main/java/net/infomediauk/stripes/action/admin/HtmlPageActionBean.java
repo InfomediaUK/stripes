@@ -95,7 +95,15 @@ public class HtmlPageActionBean extends BaseActionBean
   public Resolution save()
   {
     System.out.println(System.getenv("OPENSHIFT_DATA_DIR"));
+    backupPage(htmlPageFileName);
     savePage(htmlPageToEdit, htmlPageFileName);
+    return new RedirectResolution(HtmlPageListActionBean.class);
+  }
+
+  @DontValidate
+  public Resolution revert()
+  {
+    revertPage(htmlPageFileName);
     return new RedirectResolution(HtmlPageListActionBean.class);
   }
   

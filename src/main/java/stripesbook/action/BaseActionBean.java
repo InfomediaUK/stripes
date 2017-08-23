@@ -1,6 +1,12 @@
 package stripesbook.action;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -163,6 +169,46 @@ public abstract class BaseActionBean implements ActionBean
       e.printStackTrace();
     }
 
+  }
+  
+  protected void backupPage(String fileName)
+  {
+    String fullFileName = getHtmlPageFilesFolder() + "/" + fileName;
+    String backupFullFileName = fullFileName + ".bak";
+    Path sourcePath = Paths.get(fullFileName);
+    Path destinationPath = Paths.get(backupFullFileName);
+    try
+    {
+      Files.copy(sourcePath, destinationPath);
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
+  }
+
+  protected void revertPage(String fileName)
+  {
+    String pageFullFileName = getHtmlPageFilesFolder() + "/" + fileName;
+    String backupFullFileName = pageFullFileName + ".bak";
+    String tempFullFileName = pageFullFileName + ".tmp";
+    Path prospectPath = Paths.get(pageFullFileName);
+    Path backupPath = Paths.get(backupFullFileName);
+    Path tempPath = Paths.get(tempFullFileName);
+    if (Files.exists(backupPath))
+    {
+      try
+      {
+        Files.move(backupPath, tempPath, REPLACE_EXISTING);
+        Files.move(prospectPath, backupPath, REPLACE_EXISTING);
+        Files.move(tempPath, prospectPath, REPLACE_EXISTING);
+      }
+      catch (IOException e)
+      {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }
   }
   
   protected File getHtmlPageFile(String fileName)

@@ -53,7 +53,8 @@
           <s:submit name="cancel" value="Cancel"  />
         <c:if test="${actionBean.htmlPageFileName!=null}">
           <s:submit name="delete" value="Delete"  />
-          <s:submit name="download" value="Download"  />
+          <s:submit name="revert" value="Revert"  />
+         <s:submit name="download" value="Download"  />
         </c:if>
         </td>
       </tr>
