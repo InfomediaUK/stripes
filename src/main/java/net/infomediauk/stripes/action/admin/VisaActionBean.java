@@ -1,7 +1,6 @@
 package net.infomediauk.stripes.action.admin;
 
 import stripesbook.action.BaseActionBean;
-import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Visa;
 import net.sourceforge.stripes.action.DefaultHandler;
