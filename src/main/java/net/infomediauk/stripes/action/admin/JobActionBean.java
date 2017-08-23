@@ -1,7 +1,11 @@
 package net.infomediauk.stripes.action.admin;
 
+import java.util.List;
+
 import stripesbook.action.BaseActionBean;
+import net.infomediauk.dao.impl.XmlDisciplineDao;
 import net.infomediauk.dao.impl.XmlJobDao;
+import net.infomediauk.model.Discipline;
 import net.infomediauk.model.Job;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
@@ -18,6 +22,16 @@ public class JobActionBean extends BaseActionBean
   @ValidateNestedProperties({@Validate(field="name", required=true)})
   private Job job;
   private Integer id;
+  // List
+  private List<Discipline> disciplineList;
+  // The values returned from the List.
+  private Integer disciplineId;
+
+  public JobActionBean()
+  {
+    super();
+    disciplineList = XmlDisciplineDao.getInstance().selectAll();
+  }
 
   public Job getJob()
   {
@@ -39,6 +53,20 @@ public class JobActionBean extends BaseActionBean
     this.id = id;
   }
 
+  public List<Discipline> getDisciplineList()
+  {
+    return disciplineList;
+  }
+
+  public Integer getDisciplineId()
+  {
+    return disciplineId;
+  }
+
+  public void setDisciplineId(Integer disciplineId)
+  {
+    this.disciplineId = disciplineId;
+  }
 
   @DefaultHandler
   @DontValidate
@@ -70,6 +98,7 @@ public class JobActionBean extends BaseActionBean
   
   public Resolution save()
   {
+    job.setDisciplineId(disciplineId);
     XmlJobDao.getInstance().update(job);
     return new RedirectResolution(JobListActionBean.class);
   }

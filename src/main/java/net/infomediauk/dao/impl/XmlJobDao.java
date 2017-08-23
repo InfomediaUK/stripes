@@ -11,7 +11,9 @@ import javax.xml.bind.Unmarshaller;
 
 import net.infomediauk.dao.BaseDao;
 import net.infomediauk.dao.Dao;
+import net.infomediauk.model.Discipline;
 import net.infomediauk.model.Job;
+import net.infomediauk.model.Visa;
 import net.infomediauk.xml.jaxb.model.JobDatabase;
 import net.infomediauk.xml.jaxb.model.JobRecord;
 
@@ -146,8 +148,18 @@ public class XmlJobDao extends BaseDao implements Dao<Job>
     job.setDescription(jobRecord.getDescription());
     job.setStartDate(jobRecord.getStartDate());
     job.setEndDate(jobRecord.getEndDate());
+    job.setDisciplineId(jobRecord.getDisciplineId());
     job.setDisplayOrder(jobRecord.getDisplayOrder());
     job.setNumberOfChanges(jobRecord.getNumberOfChanges());
+    // Now do the "joins"...
+    if (job.getDisciplineId() != null)
+    {
+      Discipline discipline = XmlDisciplineDao.getInstance().select(job.getDisciplineId());
+      if (discipline != null)
+      {
+        job.setDisciplineName(discipline.getName());
+      }
+    }
   }
   
 
@@ -184,6 +196,7 @@ public class XmlJobDao extends BaseDao implements Dao<Job>
     jobRecord.setDescription(job.getDescription());
     jobRecord.setStartDate(job.getStartDate());
     jobRecord.setEndDate(job.getEndDate());
+    jobRecord.setDisciplineId(job.getDisciplineId());
     jobRecord.setDisplayOrder(job.getDisplayOrder() == null ? 0 : job.getDisplayOrder());
     jobRecord.setNumberOfChanges(job.getNumberOfChanges() + 1);
   }

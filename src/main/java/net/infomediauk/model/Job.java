@@ -6,6 +6,8 @@ public class Job extends NameCodeBaseModel
   private String description;
   private String startDate;
   private String endDate;
+  private Integer disciplineId;
+  private String disciplineName;
 
   public String getLocation()
   {
@@ -60,10 +62,31 @@ public class Job extends NameCodeBaseModel
     }
   }
 
+  public Integer getDisciplineId()
+  {
+    return disciplineId;
+  }
+
+  public void setDisciplineId(Integer disciplineId)
+  {
+    this.disciplineId = disciplineId;
+  }
+
+  public String getDisciplineName()
+  {
+    return disciplineName;
+  }
+
+  public void setDisciplineName(String disciplineName)
+  {
+    this.disciplineName = disciplineName;
+  }
+
   @Override
   public String toString()
   {
-    return "Job [location=" + location + ", description=" + description + ", startDate=" + startDate + ", endDate=" + endDate + "]";
+    return "Job [location=" + location + ", description=" + description + ", startDate=" + startDate + ", endDate=" + endDate + ", disciplineId=" + disciplineId + ", disciplineName=" + disciplineName
+        + ", getCode()=" + getCode() + ", getName()=" + getName() + ", getDisplayOrder()=" + getDisplayOrder() + ", getNumberOfChanges()=" + getNumberOfChanges() + "]";
   }
 
 }

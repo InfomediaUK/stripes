@@ -21,6 +21,7 @@
     </s:link>
     <d:table name="${actionBean.jobList}" id="job" requestURI="" defaultsort="3" >
       <d:column title="Id" property="id" sortable="true" />
+      <d:column title="Discipline" property="disciplineName" sortable="true" />
       <d:column title="Code" property="code" sortable="true" />
       <d:column title="Job Name" sortable="true" >
           <s:link beanclass="net.infomediauk.stripes.action.admin.JobActionBean" event="view">

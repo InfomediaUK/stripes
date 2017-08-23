@@ -18,6 +18,13 @@
         <s:text name="job.code" id="code" size="103" />
       </div>
       <div>
+        <s:label for="job.discipline" /><br />
+        <s:select name="disciplineId" id="job.discipline" value="${actionBean.job.disciplineId}">
+          <s:option value="">-----</s:option>
+          <s:options-collection collection="${actionBean.disciplineList}" value="id" sort="displayOrder" />
+        </s:select> 
+      </div>
+      <div>
         <s:label for="name" /><br />
         <s:text name="job.name" id="name" class="required" size="103" />
       </div>

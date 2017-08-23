@@ -6,7 +6,8 @@ public class JobRecord extends NameCodeBaseRecord
   private String description;
   private String startDate;
   private String endDate;
-
+  private Integer disciplineId;
+  
   public String getLocation()
   {
     return location;
@@ -47,11 +48,20 @@ public class JobRecord extends NameCodeBaseRecord
     this.endDate = endDate;
   }
 
+  public Integer getDisciplineId()
+  {
+    return disciplineId;
+  }
+
+  public void setDisciplineId(Integer disciplineId)
+  {
+    this.disciplineId = disciplineId;
+  }
+
   @Override
   public String toString()
   {
-    return "JobRecord [location=" + location + ", description=" + description + ", startDate=" + startDate + ", endDate=" + endDate + "]";
+    return "JobRecord [location=" + location + ", description=" + description + ", startDate=" + startDate + ", endDate=" + endDate + ", disciplineId=" + disciplineId + "]";
   }
-  
   
 }
