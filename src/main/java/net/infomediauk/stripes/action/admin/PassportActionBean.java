@@ -77,8 +77,8 @@ public class PassportActionBean extends BaseActionBean
   
   public Resolution save()
   {
-    XmlPassportDao.getInstance().update(passport);
     XmlPassportDao.getInstance().backupDatabase();
+    XmlPassportDao.getInstance().update(passport);
     getContext().getMessages().add(new SimpleMessage("Saved {0}.", passport.getName()));
     return new RedirectResolution(PassportListActionBean.class);
   }

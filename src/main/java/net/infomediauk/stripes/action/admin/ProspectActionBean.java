@@ -181,12 +181,12 @@ public class ProspectActionBean extends BaseActionBean
   
   public Resolution save()
   {
+    XmlProspectDao.getInstance().backupProspect(prospect);
     // Update Prospect from values returned from the lists.
     prospect.setPassportId(passportId);
     prospect.setDisciplineId(disciplineId);
     prospect.setVisaId(visaId);
     prospect.setLengthOfStayId(lengthOfStayId);
-    XmlProspectDao.getInstance().backupProspect(prospect);
     XmlProspectDao.getInstance().saveProspect(prospect);
     return new RedirectResolution(ProspectListActionBean.class);
   }

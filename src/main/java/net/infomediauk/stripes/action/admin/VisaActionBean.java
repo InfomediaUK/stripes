@@ -77,8 +77,8 @@ public class VisaActionBean extends BaseActionBean
   
   public Resolution save()
   {
-    XmlVisaDao.getInstance().update(visa);
     XmlVisaDao.getInstance().backupDatabase();
+    XmlVisaDao.getInstance().update(visa);
     getContext().getMessages().add(new SimpleMessage("Saved {0}.", visa.getName()));
     return new RedirectResolution(VisaListActionBean.class);
   }

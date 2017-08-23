@@ -74,8 +74,8 @@ public class LengthOfStayActionBean extends BaseActionBean
   
   public Resolution save()
   {
-    XmlLengthOfStayDao.getInstance().update(lengthOfStay);
     XmlLengthOfStayDao.getInstance().backupDatabase();
+    XmlLengthOfStayDao.getInstance().update(lengthOfStay);
     getContext().getMessages().add(new SimpleMessage("Saved {0}.", lengthOfStay.getName()));
     return new RedirectResolution(LengthOfStayListActionBean.class);
   }

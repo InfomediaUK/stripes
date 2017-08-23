@@ -79,11 +79,11 @@ public class UserChangePasswordActionBean extends UserActionBean
   
   public Resolution save()
   {
+    XmlUserDao.getInstance().backupDatabase();
     setUser(XmlUserDao.getInstance().select(getUser().getId()));
     getUser().setPassword(encryptPassword(newPassword));
     getUser().setPasswordHint(passwordHint);
     XmlUserDao.getInstance().updatePassword(getUser());
-    XmlUserDao.getInstance().backupDatabase();
     getContext().getMessages().add(new SimpleMessage("Saved {0}.", getUser().getName()));
     return new RedirectResolution(UserListActionBean.class);
   }

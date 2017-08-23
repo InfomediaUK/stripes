@@ -1,7 +1,6 @@
 package net.infomediauk.stripes.action.admin;
 
 
-import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.dao.impl.XmlUserDao;
 import net.infomediauk.model.User;
 import net.sourceforge.stripes.action.DefaultHandler;
@@ -47,8 +46,8 @@ public class UserEditActionBean extends UserActionBean
   
   public Resolution save()
   {
-    XmlUserDao.getInstance().update(getUser());
     XmlUserDao.getInstance().backupDatabase();
+    XmlUserDao.getInstance().update(getUser());
     getContext().getMessages().add(new SimpleMessage("Saved {0}.", getUser().getName()));
     return new RedirectResolution(UserListActionBean.class);
   }

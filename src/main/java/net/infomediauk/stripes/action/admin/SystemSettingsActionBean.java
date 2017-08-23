@@ -54,8 +54,8 @@ public class SystemSettingsActionBean extends BaseActionBean
   
   public Resolution save()
   {
-    XmlSystemSettingsDao.getInstance().update(systemSettings);
     XmlSystemSettingsDao.getInstance().backupDatabase();
+    XmlSystemSettingsDao.getInstance().update(systemSettings);
     getContext().getMessages().add(new SimpleMessage("Saved."));
     return new RedirectResolution(SystemSettingsActionBean.class);
   }

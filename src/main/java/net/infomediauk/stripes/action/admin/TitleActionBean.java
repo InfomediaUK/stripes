@@ -77,8 +77,8 @@ public class TitleActionBean extends BaseActionBean
   
   public Resolution save()
   {
-    XmlTitleDao.getInstance().update(title);
     XmlTitleDao.getInstance().backupDatabase();
+    XmlTitleDao.getInstance().update(title);
     getContext().getMessages().add(new SimpleMessage("Saved {0}.", title.getName()));
     return new RedirectResolution(TitleListActionBean.class);
   }

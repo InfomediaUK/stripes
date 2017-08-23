@@ -74,8 +74,8 @@ public class DomicileActionBean extends BaseActionBean
   
   public Resolution save()
   {
-    XmlDomicileDao.getInstance().update(domicile);
     XmlDomicileDao.getInstance().backupDatabase();
+    XmlDomicileDao.getInstance().update(domicile);
     return new RedirectResolution(DomicileListActionBean.class);
   }
   

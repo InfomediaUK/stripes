@@ -66,8 +66,8 @@ public class UserNewActionBean extends UserActionBean
   
   public Resolution save()
   {
-    XmlUserDao.getInstance().update(getUser());
     XmlUserDao.getInstance().backupDatabase();
+    XmlUserDao.getInstance().update(getUser());
     getContext().getMessages().add(new SimpleMessage("Saved {0}.", getUser().getName()));
     return new RedirectResolution(UserListActionBean.class);
   }

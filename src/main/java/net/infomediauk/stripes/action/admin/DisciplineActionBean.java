@@ -76,8 +76,8 @@ public class DisciplineActionBean extends BaseActionBean
   
   public Resolution save()
   {
-    XmlDisciplineDao.getInstance().update(discipline);
     XmlDisciplineDao.getInstance().backupDatabase();
+    XmlDisciplineDao.getInstance().update(discipline);
     getContext().getMessages().add(new SimpleMessage("Saved {0}.", discipline.getName()));
     return new RedirectResolution(DisciplineListActionBean.class);
   }
