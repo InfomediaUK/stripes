@@ -32,6 +32,7 @@
       <d:column title="Location" property="location" sortable="true" />
       <d:column title="Start" property="startDate" sortable="true" />
       <d:column title="End" property="endDate" sortable="true" />
+      <d:column title="Featured" property="featured" sortable="true" />
       <d:column title="Description" property="description" sortable="false" />
       <d:column title="Display Order" property="displayOrder" sortable="true" />
     </d:table>

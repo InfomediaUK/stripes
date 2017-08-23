@@ -41,6 +41,10 @@
         <s:text name="job.endDate" id="endDate" class="required" size="103" />
       </div>
       <div>
+        <s:label for="featured" /><br />
+        <s:checkbox name="job.featured" id="featured" value="true"/>
+      </div>
+      <div>
         <s:label for="description" /><br />
         <s:textarea name="job.description" id="description" cols="100" rows="6" />
       </div>

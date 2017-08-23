@@ -3,6 +3,10 @@ package net.infomediauk.dao;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public abstract class BaseDao
 {
@@ -14,6 +18,23 @@ public abstract class BaseDao
   {
     File file = getFile();
     file.delete();
+  }
+
+  public void backupDatabase()
+  {
+    String fileName = getFileName();
+    String fullFileName = getDatabaseFolder() + "/" + fileName;
+    String backupFullFileName = fullFileName + ".bak";
+    Path sourcePath = Paths.get(fullFileName);
+    Path destinationPath = Paths.get(backupFullFileName);
+    try
+    {
+      Files.copy(sourcePath, destinationPath);
+    }
+    catch (IOException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   public FileInputStream getDownloadInputStream(String mimeType)

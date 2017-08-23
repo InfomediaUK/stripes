@@ -13,7 +13,6 @@ import net.infomediauk.dao.BaseDao;
 import net.infomediauk.dao.Dao;
 import net.infomediauk.model.Discipline;
 import net.infomediauk.model.Job;
-import net.infomediauk.model.Visa;
 import net.infomediauk.xml.jaxb.model.JobDatabase;
 import net.infomediauk.xml.jaxb.model.JobRecord;
 
@@ -121,24 +120,42 @@ public class XmlJobDao extends BaseDao implements Dao<Job>
     return job;
   }
 
-//  public Job selectByEmail(String email)
-//  {
-//    Job job = null;
-//    if (database != null)
-//    {
-//      for (JobRecord jobRecord : database.getRecords())
-//      {
-//        if (jobRecord.getEmail().equals(email))
-//        {
-//          job = new Job();
-//          fillJob(job, jobRecord);
-//          break;
-//        }
-//      }
-//    }
-//    return job;
-//  }
-//
+  public Job selectByDiscipline(Integer disciplineId)
+  {
+    Job job = null;
+    if (database != null)
+    {
+      for (JobRecord jobRecord : database.getRecords())
+      {
+        if (jobRecord.getDisciplineId().equals(disciplineId))
+        {
+          job = new Job();
+          fillJob(job, jobRecord);
+          break;
+        }
+      }
+    }
+    return job;
+  }
+
+  public Job selectFeatured()
+  {
+    Job job = null;
+    if (database != null)
+    {
+      for (JobRecord jobRecord : database.getRecords())
+      {
+        if (jobRecord.getFeatured() != null && jobRecord.getFeatured())
+        {
+          job = new Job();
+          fillJob(job, jobRecord);
+          break;
+        }
+      }
+    }
+    return job;
+  }
+
   private void fillJob(Job job, JobRecord jobRecord)
   {
     job.setId(jobRecord.getId());
@@ -149,6 +166,7 @@ public class XmlJobDao extends BaseDao implements Dao<Job>
     job.setStartDate(jobRecord.getStartDate());
     job.setEndDate(jobRecord.getEndDate());
     job.setDisciplineId(jobRecord.getDisciplineId());
+    job.setFeatured(jobRecord.getFeatured());
     job.setDisplayOrder(jobRecord.getDisplayOrder());
     job.setNumberOfChanges(jobRecord.getNumberOfChanges());
     // Now do the "joins"...
@@ -197,6 +215,7 @@ public class XmlJobDao extends BaseDao implements Dao<Job>
     jobRecord.setStartDate(job.getStartDate());
     jobRecord.setEndDate(job.getEndDate());
     jobRecord.setDisciplineId(job.getDisciplineId());
+    jobRecord.setFeatured(job.getFeatured());
     jobRecord.setDisplayOrder(job.getDisplayOrder() == null ? 0 : job.getDisplayOrder());
     jobRecord.setNumberOfChanges(job.getNumberOfChanges() + 1);
   }
