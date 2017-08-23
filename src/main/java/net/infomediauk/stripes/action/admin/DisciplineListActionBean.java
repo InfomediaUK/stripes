@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.util.List;
 
 import net.infomediauk.dao.impl.XmlDisciplineDao;
-import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.model.Discipline;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
