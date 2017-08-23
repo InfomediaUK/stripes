@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import static java.nio.file.StandardCopyOption.*;
 
 public abstract class BaseDao
 {
@@ -37,6 +38,32 @@ public abstract class BaseDao
     }
   }
 
+  public void revertDatabase()
+  {
+    String fileName = getFileName();
+    String fullFileName = getDatabaseFolder() + "/" + fileName;
+    String backupFullFileName = fullFileName + ".bak";
+    String tempFullFileName = fullFileName + ".tmp";
+    Path databasePath = Paths.get(fullFileName);
+    Path backupPath = Paths.get(backupFullFileName);
+    Path tempPath = Paths.get(tempFullFileName);
+    if (Files.exists(backupPath))
+    {
+      try
+      {
+        Files.move(backupPath, tempPath, REPLACE_EXISTING);
+        Files.move(databasePath, backupPath, REPLACE_EXISTING);
+        Files.move(tempPath, databasePath, REPLACE_EXISTING);
+      }
+      catch (IOException e)
+      {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }
+    
+  }
+  
   public FileInputStream getDownloadInputStream(String mimeType)
   {
     File file = getFile();
