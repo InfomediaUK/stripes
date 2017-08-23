@@ -8,9 +8,13 @@
   pageHeading="agencyList">
   <s:layout-component name="body">
     <s:errors/>
-    <s:link beanclass="net.infomediauk.stripes.action.admin.AgencyActionBean" event="view">
+    <s:link beanclass="net.infomediauk.stripes.action.admin.AgencyActionBean">
       <s:param name="agencyName" value="${agency.fileName}" />
       New
+    </s:link>
+    &nbsp;
+    <s:link beanclass="net.infomediauk.stripes.action.admin.AgencyListActionBean" event="revert">
+      Revert
     </s:link>
     &nbsp;
     <s:link beanclass="net.infomediauk.stripes.action.admin.AgencyListActionBean" event="delete">

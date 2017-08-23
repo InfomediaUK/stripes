@@ -7,9 +7,13 @@
   metaKeywords="${actionBean.htmlPage.metaKeywords}">
   <s:layout-component name="body">
     <s:errors/>
-    <s:link beanclass="net.infomediauk.stripes.action.admin.DomicileActionBean" event="view">
+    <s:link beanclass="net.infomediauk.stripes.action.admin.DomicileActionBean">
       <s:param name="domicileName" value="${domicile.fileName}" />
       New
+    </s:link>
+    &nbsp;
+    <s:link beanclass="net.infomediauk.stripes.action.admin.DomicileListActionBean" event="revert">
+      Revert
     </s:link>
     &nbsp;
     <s:link beanclass="net.infomediauk.stripes.action.admin.DomicileListActionBean" event="delete">

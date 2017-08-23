@@ -34,6 +34,13 @@ public class LengthOfStayListActionBean extends BaseActionBean
     return new ForwardResolution(LIST);
   }  
 
+  public Resolution revert()
+  {
+    XmlLengthOfStayDao.getInstance().revertDatabase();
+    lengthOfStayList = XmlLengthOfStayDao.getInstance().selectAll();
+    return new ForwardResolution(LIST);
+  }
+  
   public Resolution delete()
   {
     XmlLengthOfStayDao.getInstance().deleteData();

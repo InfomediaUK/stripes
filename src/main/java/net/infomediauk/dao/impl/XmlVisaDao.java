@@ -34,7 +34,8 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
   private VisaDatabase database;
   private static XmlVisaDao instance = null;
 
-  private XmlVisaDao()
+  @Override
+  protected void loadDatabase()
   {
     try
     {

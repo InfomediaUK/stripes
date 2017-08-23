@@ -21,7 +21,8 @@ public class XmlTitleDao extends BaseDao implements Dao<Title>
   private TitleDatabase database;
   private static XmlTitleDao instance = null;
 
-  private XmlTitleDao()
+  @Override
+  protected void loadDatabase()
   {
     try
     {

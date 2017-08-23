@@ -13,6 +13,10 @@
       New
     </s:link>
     &nbsp;
+    <s:link beanclass="net.infomediauk.stripes.action.admin.VisaListActionBean" event="revert">
+      Revert
+    </s:link>
+    &nbsp;
     <s:link beanclass="net.infomediauk.stripes.action.admin.VisaListActionBean" event="delete">
       Delete
     </s:link>

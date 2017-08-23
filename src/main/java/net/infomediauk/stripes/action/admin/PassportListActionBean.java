@@ -35,6 +35,13 @@ public class PassportListActionBean extends BaseActionBean
     return new ForwardResolution(LIST);
   }  
 
+  public Resolution revert()
+  {
+    XmlPassportDao.getInstance().revertDatabase();
+    passportList = XmlPassportDao.getInstance().selectAll();
+    return new ForwardResolution(LIST);
+  }
+  
   public Resolution delete()
   {
     XmlPassportDao.getInstance().deleteData();

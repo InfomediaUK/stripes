@@ -37,6 +37,7 @@ public class JobListActionBean extends BaseActionBean
   public Resolution revert()
   {
     XmlJobDao.getInstance().revertDatabase();
+    jobList = XmlJobDao.getInstance().selectAll();
     return new ForwardResolution(LIST);
   }
   

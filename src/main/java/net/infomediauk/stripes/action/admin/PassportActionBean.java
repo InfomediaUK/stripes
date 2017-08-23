@@ -1,6 +1,7 @@
 package net.infomediauk.stripes.action.admin;
 
 import stripesbook.action.BaseActionBean;
+import net.infomediauk.dao.impl.XmlLengthOfStayDao;
 import net.infomediauk.dao.impl.XmlPassportDao;
 import net.infomediauk.model.Passport;
 import net.sourceforge.stripes.action.DefaultHandler;
@@ -77,6 +78,7 @@ public class PassportActionBean extends BaseActionBean
   public Resolution save()
   {
     XmlPassportDao.getInstance().update(passport);
+    XmlPassportDao.getInstance().backupDatabase();
     getContext().getMessages().add(new SimpleMessage("Saved {0}.", passport.getName()));
     return new RedirectResolution(PassportListActionBean.class);
   }

@@ -34,6 +34,13 @@ public class UserListActionBean extends BaseActionBean
     return new ForwardResolution(LIST);
   }  
 
+  public Resolution revert()
+  {
+    XmlUserDao.getInstance().revertDatabase();
+    userList = XmlUserDao.getInstance().selectAll();
+    return new ForwardResolution(LIST);
+  }
+  
   public Resolution delete()
   {
     XmlUserDao.getInstance().deleteData();

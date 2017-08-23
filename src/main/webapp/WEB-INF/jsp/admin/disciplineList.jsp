@@ -8,9 +8,13 @@
   pageHeading="disciplineList">
   <s:layout-component name="body">
     <s:messages/>
-    <s:link beanclass="net.infomediauk.stripes.action.admin.DisciplineActionBean" event="view">
+    <s:link beanclass="net.infomediauk.stripes.action.admin.DisciplineActionBean">
       <s:param name="disciplineName" value="${discipline.fileName}" />
       New
+    </s:link>
+    &nbsp;
+    <s:link beanclass="net.infomediauk.stripes.action.admin.DisciplineListActionBean" event="revert">
+      Revert
     </s:link>
     &nbsp;
     <s:link beanclass="net.infomediauk.stripes.action.admin.DisciplineListActionBean" event="delete">

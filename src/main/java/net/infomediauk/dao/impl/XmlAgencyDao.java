@@ -33,7 +33,8 @@ public class XmlAgencyDao extends BaseDao implements Dao<Agency>
   private AgencyDatabase database;
   private static XmlAgencyDao instance = null;
 
-  private XmlAgencyDao()
+  @Override
+  protected void loadDatabase()
   {
     try
     {
@@ -58,7 +59,7 @@ public class XmlAgencyDao extends BaseDao implements Dao<Agency>
       e.printStackTrace();
     }
   }
-
+  
   public static XmlAgencyDao getInstance()
   {
     if (instance == null)

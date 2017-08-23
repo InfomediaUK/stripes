@@ -35,6 +35,13 @@ public class AgencyListActionBean extends BaseActionBean
     return new ForwardResolution(LIST);
   }  
 
+  public Resolution revert()
+  {
+    XmlAgencyDao.getInstance().revertDatabase();
+    agencyList = XmlAgencyDao.getInstance().selectAll();
+    return new ForwardResolution(LIST);
+  }
+  
   public Resolution delete()
   {
     XmlAgencyDao.getInstance().deleteData();

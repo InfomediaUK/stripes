@@ -71,6 +71,8 @@ public class RoleActionBean extends BaseActionBean
   public Resolution save()
   {
     XmlRoleDao.getInstance().update(role);
+    XmlRoleDao.getInstance().backupDatabase();
+    getContext().getMessages().add(new SimpleMessage("Saved {0}.", role.getName()));
     return new RedirectResolution(RoleListActionBean.class);
   }
   

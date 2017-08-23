@@ -21,7 +21,8 @@ public class XmlDomicileDao extends BaseDao implements Dao<Domicile>
   private DomicileDatabase database;
   private static XmlDomicileDao instance = null;
 
-  private XmlDomicileDao()
+  @Override
+  protected void loadDatabase()
   {
     try
     {

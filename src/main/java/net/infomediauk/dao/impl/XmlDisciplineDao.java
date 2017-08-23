@@ -36,7 +36,8 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
   private DisciplineDatabase database;
   private static XmlDisciplineDao instance = null;
 
-  private XmlDisciplineDao()
+  @Override
+  protected void loadDatabase()
   {
     try
     {
@@ -172,6 +173,12 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
   {
     if (XmlProspectDao.getInstance().disciplineInProspect(id))
     {
+      // Discipline is used on a Prospect. It cannot be deleted.
+      return false;
+    }
+    if (XmlJobDao.getInstance().disciplineInJob(id))
+    {
+      // Discipline is used on a Job. It cannot be deleted.
       return false;
     }
     database.deleteRecord(id);

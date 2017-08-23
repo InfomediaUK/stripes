@@ -21,7 +21,8 @@ public class XmlSystemSettingsDao extends BaseDao
   private SystemSettings database;
   private static XmlSystemSettingsDao instance = null;
 
-  private XmlSystemSettingsDao()
+  @Override
+  protected void loadDatabase()
   {
     try
     {

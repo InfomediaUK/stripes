@@ -34,7 +34,8 @@ public class XmlPassportDao extends BaseDao implements Dao<Passport>
   private PassportDatabase database;
   private static XmlPassportDao instance = null;
 
-  private XmlPassportDao()
+  @Override
+  protected void loadDatabase()
   {
     try
     {

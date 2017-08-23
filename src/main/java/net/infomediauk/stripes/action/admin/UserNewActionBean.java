@@ -10,6 +10,7 @@ import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
+import net.sourceforge.stripes.action.SimpleMessage;
 import net.sourceforge.stripes.validation.SimpleError;
 import net.sourceforge.stripes.validation.Validate;
 import net.sourceforge.stripes.validation.ValidationErrors;
@@ -66,6 +67,8 @@ public class UserNewActionBean extends UserActionBean
   public Resolution save()
   {
     XmlUserDao.getInstance().update(getUser());
+    XmlUserDao.getInstance().backupDatabase();
+    getContext().getMessages().add(new SimpleMessage("Saved {0}.", getUser().getName()));
     return new RedirectResolution(UserListActionBean.class);
   }
   

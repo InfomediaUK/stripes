@@ -77,6 +77,7 @@ public class AgencyActionBean extends BaseActionBean
   public Resolution save()
   {
     XmlAgencyDao.getInstance().update(agency);
+    XmlAgencyDao.getInstance().backupDatabase();
     getContext().getMessages().add(new SimpleMessage("Saved {0}.", agency.getName()));
     return new RedirectResolution(AgencyListActionBean.class);
   }

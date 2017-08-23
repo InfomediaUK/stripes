@@ -35,6 +35,13 @@ public class VisaListActionBean extends BaseActionBean
     return new ForwardResolution(LIST);
   }  
 
+  public Resolution revert()
+  {
+    XmlVisaDao.getInstance().revertDatabase();
+    visaList = XmlVisaDao.getInstance().selectAll();
+    return new ForwardResolution(LIST);
+  }
+  
   public Resolution delete()
   {
     XmlVisaDao.getInstance().deleteData();

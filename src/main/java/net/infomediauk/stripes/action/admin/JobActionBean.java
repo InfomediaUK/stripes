@@ -99,8 +99,9 @@ public class JobActionBean extends BaseActionBean
   public Resolution save()
   {
     job.setDisciplineId(disciplineId);
-    XmlJobDao.getInstance().backupDatabase();
     XmlJobDao.getInstance().update(job);
+    XmlJobDao.getInstance().backupDatabase();
+    getContext().getMessages().add(new SimpleMessage("Saved {0}.", job.getName()));
     return new RedirectResolution(JobListActionBean.class);
   }
   

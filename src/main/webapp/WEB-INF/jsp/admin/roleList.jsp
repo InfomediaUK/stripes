@@ -8,8 +8,12 @@
   pageHeading="roleList">
   <s:layout-component name="body">
     <s:errors/>
-    <s:link beanclass="net.infomediauk.stripes.action.admin.RoleActionBean" event="view">
+    <s:link beanclass="net.infomediauk.stripes.action.admin.RoleActionBean">
       New
+    </s:link>
+    &nbsp;
+    <s:link beanclass="net.infomediauk.stripes.action.admin.RoleListActionBean" event="revert">
+      Revert
     </s:link>
     &nbsp;
     <s:link beanclass="net.infomediauk.stripes.action.admin.RoleListActionBean" event="delete">

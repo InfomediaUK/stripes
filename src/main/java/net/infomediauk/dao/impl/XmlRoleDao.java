@@ -21,7 +21,8 @@ public class XmlRoleDao extends BaseDao implements Dao<Role>
   private RoleDatabase database;
   private static XmlRoleDao instance = null;
 
-  private XmlRoleDao()
+  @Override
+  protected void loadDatabase()
   {
     try
     {

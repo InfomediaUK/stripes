@@ -8,9 +8,13 @@
   pageHeading="passportList">
   <s:layout-component name="body">
     <s:errors/>
-    <s:link beanclass="net.infomediauk.stripes.action.admin.PassportActionBean" event="view">
+    <s:link beanclass="net.infomediauk.stripes.action.admin.PassportActionBean">
       <s:param name="passportName" value="${passport.fileName}" />
       New
+    </s:link>
+    &nbsp;
+    <s:link beanclass="net.infomediauk.stripes.action.admin.PassportListActionBean" event="revert">
+      Revert
     </s:link>
     &nbsp;
     <s:link beanclass="net.infomediauk.stripes.action.admin.PassportListActionBean" event="delete">

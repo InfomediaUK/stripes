@@ -1,13 +1,9 @@
 package net.infomediauk.stripes.action.admin;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.List;
 
 import net.infomediauk.dao.impl.XmlTitleDao;
-import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Title;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -38,6 +34,13 @@ public class TitleListActionBean extends BaseActionBean
     return new ForwardResolution(LIST);
   }  
 
+  public Resolution revert()
+  {
+    XmlTitleDao.getInstance().revertDatabase();
+    titleList = XmlTitleDao.getInstance().selectAll();
+    return new ForwardResolution(LIST);
+  }
+  
   public Resolution delete()
   {
     XmlTitleDao.getInstance().deleteData();

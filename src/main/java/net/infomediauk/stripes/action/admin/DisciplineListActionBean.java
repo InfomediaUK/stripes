@@ -35,6 +35,13 @@ public class DisciplineListActionBean extends BaseActionBean
     return new ForwardResolution(LIST);
   }  
 
+  public Resolution revert()
+  {
+    XmlDisciplineDao.getInstance().revertDatabase();
+    disciplineList = XmlDisciplineDao.getInstance().selectAll();
+    return new ForwardResolution(LIST);
+  }
+  
   public Resolution delete()
   {
     XmlDisciplineDao.getInstance().deleteData();

@@ -8,9 +8,13 @@
   pageHeading="lengthOfStayList">
   <s:layout-component name="body">
     <s:errors/>
-    <s:link beanclass="net.infomediauk.stripes.action.admin.LengthOfStayActionBean" event="view">
+    <s:link beanclass="net.infomediauk.stripes.action.admin.LengthOfStayActionBean">
       <s:param name="lengthOfStayName" value="${lengthOfStay.fileName}" />
       New
+    </s:link>
+    &nbsp;
+    <s:link beanclass="net.infomediauk.stripes.action.admin.LengthOfStayListActionBean" event="revert">
+      Revert
     </s:link>
     &nbsp;
     <s:link beanclass="net.infomediauk.stripes.action.admin.LengthOfStayListActionBean" event="delete">

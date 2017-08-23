@@ -34,6 +34,13 @@ public class RoleListActionBean extends BaseActionBean
     return new ForwardResolution(LIST);
   }  
 
+  public Resolution revert()
+  {
+    XmlRoleDao.getInstance().revertDatabase();
+    roleList = XmlRoleDao.getInstance().selectAll();
+    return new ForwardResolution(LIST);
+  }
+  
   public Resolution delete()
   {
     XmlRoleDao.getInstance().deleteData();

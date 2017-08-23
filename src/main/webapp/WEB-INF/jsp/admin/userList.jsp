@@ -8,8 +8,12 @@
   pageHeading="userList">
   <s:layout-component name="body">
     <s:errors/>
-    <s:link beanclass="net.infomediauk.stripes.action.admin.UserNewActionBean" event="view">
+    <s:link beanclass="net.infomediauk.stripes.action.admin.UserNewActionBean">
       New
+    </s:link>
+    &nbsp;
+    <s:link beanclass="net.infomediauk.stripes.action.admin.UserListActionBean" event="revert">
+      Revert
     </s:link>
     &nbsp;
     <s:link beanclass="net.infomediauk.stripes.action.admin.UserListActionBean" event="delete">

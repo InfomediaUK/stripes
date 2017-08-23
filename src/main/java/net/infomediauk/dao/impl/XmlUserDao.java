@@ -21,7 +21,8 @@ public class XmlUserDao extends BaseDao implements Dao<User>
   private UserDatabase database;
   private static XmlUserDao instance = null;
 
-  private XmlUserDao()
+  @Override
+  protected void loadDatabase()
   {
     try
     {

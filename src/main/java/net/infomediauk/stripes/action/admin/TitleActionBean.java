@@ -1,6 +1,7 @@
 package net.infomediauk.stripes.action.admin;
 
 import stripesbook.action.BaseActionBean;
+import net.infomediauk.dao.impl.XmlRoleDao;
 import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Title;
@@ -77,6 +78,8 @@ public class TitleActionBean extends BaseActionBean
   public Resolution save()
   {
     XmlTitleDao.getInstance().update(title);
+    XmlTitleDao.getInstance().backupDatabase();
+    getContext().getMessages().add(new SimpleMessage("Saved {0}.", title.getName()));
     return new RedirectResolution(TitleListActionBean.class);
   }
   

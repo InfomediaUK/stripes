@@ -1,13 +1,9 @@
 package net.infomediauk.stripes.action.admin;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.List;
 
 import net.infomediauk.dao.impl.XmlDomicileDao;
-import net.infomediauk.dao.impl.XmlLengthOfStayDao;
-import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.model.Domicile;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -38,6 +34,13 @@ public class DomicileListActionBean extends BaseActionBean
     return new ForwardResolution(LIST);
   }  
 
+  public Resolution revert()
+  {
+    XmlDomicileDao.getInstance().revertDatabase();
+    domicileList = XmlDomicileDao.getInstance().selectAll();
+    return new ForwardResolution(LIST);
+  }
+  
   public Resolution delete()
   {
     XmlDomicileDao.getInstance().deleteData();
@@ -50,7 +53,7 @@ public class DomicileListActionBean extends BaseActionBean
    */
   public Resolution download()
   {
-    String fileName = XmlTitleDao.getInstance().getFileName();
+    String fileName = XmlDomicileDao.getInstance().getFileName();
     String mimeType = getContext().getServletContext().getMimeType(fileName);
     FileInputStream inputStream = XmlDomicileDao.getInstance().getDownloadInputStream(mimeType);
     return new StreamingResolution(mimeType, inputStream).setFilename(fileName);

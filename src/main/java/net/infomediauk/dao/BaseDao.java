@@ -12,6 +12,12 @@ import static java.nio.file.StandardCopyOption.*;
 public abstract class BaseDao
 {
 
+  public BaseDao()
+  {
+    super();
+    loadDatabase();
+  }
+
   /**
    * Delete file. Sub classes must override this method and then clear the list and map.
    */
@@ -61,7 +67,11 @@ public abstract class BaseDao
         e.printStackTrace();
       }
     }
-    
+    loadDatabase();
+  }
+
+  protected void loadDatabase()
+  {
   }
   
   public FileInputStream getDownloadInputStream(String mimeType)

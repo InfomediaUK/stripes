@@ -21,7 +21,8 @@ public class XmlLengthOfStayDao extends BaseDao implements Dao<LengthOfStay>
   private LengthOfStayDatabase database;
   private static XmlLengthOfStayDao instance = null;
 
-  private XmlLengthOfStayDao()
+  @Override
+  protected void loadDatabase()
   {
     try
     {

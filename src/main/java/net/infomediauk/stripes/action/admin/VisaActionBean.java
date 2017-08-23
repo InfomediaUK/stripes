@@ -1,6 +1,7 @@
 package net.infomediauk.stripes.action.admin;
 
 import stripesbook.action.BaseActionBean;
+import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Visa;
 import net.sourceforge.stripes.action.DefaultHandler;
@@ -77,6 +78,7 @@ public class VisaActionBean extends BaseActionBean
   public Resolution save()
   {
     XmlVisaDao.getInstance().update(visa);
+    XmlVisaDao.getInstance().backupDatabase();
     getContext().getMessages().add(new SimpleMessage("Saved {0}.", visa.getName()));
     return new RedirectResolution(VisaListActionBean.class);
   }

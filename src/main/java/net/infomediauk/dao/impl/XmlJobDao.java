@@ -22,7 +22,8 @@ public class XmlJobDao extends BaseDao implements Dao<Job>
   private JobDatabase database;
   private static XmlJobDao instance = null;
 
-  private XmlJobDao()
+  @Override
+  protected void loadDatabase()
   {
     try
     {
@@ -138,6 +139,21 @@ public class XmlJobDao extends BaseDao implements Dao<Job>
     return job;
   }
 
+  /*
+   * Check if Discipline is used in a Job prior to deleting it...
+   */
+  public Boolean disciplineInJob(Integer id)
+  {
+    for (JobRecord jobRecord : database.getRecords())
+    {
+      if (jobRecord.getDisciplineId() == id)
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+  
   public Job selectFeatured()
   {
     Job job = null;
