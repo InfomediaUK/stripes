@@ -26,4 +26,10 @@ public class HtmlPageFile
     this.htmlPage = htmlPage;
   }
    
+  public String getShortName()
+  {
+    int i = fileName.indexOf("ActionBean.xml");
+    return fileName.substring(0, i);
+  }
+
 }
