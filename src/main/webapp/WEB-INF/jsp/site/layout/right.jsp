@@ -21,7 +21,7 @@
       <div class="content">
         Jobs For You!
         <c:forEach var="job" items="${actionBean.jobList}" >
-          <p>${job.code}&nbsp;${job.name}
+          <p>${job.name}&nbsp;${job.location}&nbsp;start&nbsp;${job.startDate}
         </c:forEach>
       </div>
     </div>
