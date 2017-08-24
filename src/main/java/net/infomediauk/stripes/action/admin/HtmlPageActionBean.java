@@ -3,8 +3,11 @@ package net.infomediauk.stripes.action.admin;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import stripesbook.action.BaseActionBean;
+import net.infomediauk.dao.impl.XmlDisciplineDao;
+import net.infomediauk.model.Discipline;
 import net.infomediauk.xml.jaxb.model.HtmlPage;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
@@ -24,6 +27,10 @@ public class HtmlPageActionBean extends BaseActionBean
   })
   private HtmlPage htmlPageToEdit;
   private String htmlPageFileName;
+  // List
+  private List<Discipline> disciplineList;
+  // The value returned from the List.
+  private Integer disciplineId;
 
   public String getHtmlPageFileName()
   {
@@ -46,10 +53,21 @@ public class HtmlPageActionBean extends BaseActionBean
     this.htmlPageToEdit = htmlPageToEdit;
   }
 
+  public List<Discipline> getDisciplineList()
+  {
+    return disciplineList;
+  }
+
+  public void setDisciplineId(Integer relatedDisciplineId)
+  {
+    this.disciplineId = relatedDisciplineId;
+  }
+
   @DefaultHandler
   @DontValidate
   public Resolution view() throws Exception
   {
+    disciplineList = XmlDisciplineDao.getInstance().selectAll();
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
     setHtmlPageToEdit(loadPage(htmlPageFileName));
     return new ForwardResolution(FORM);
@@ -96,6 +114,7 @@ public class HtmlPageActionBean extends BaseActionBean
   {
     System.out.println(System.getenv("OPENSHIFT_DATA_DIR"));
     backupPage(htmlPageFileName);
+    htmlPageToEdit.setRelatedDisciplineId(disciplineId);
     savePage(htmlPageToEdit, htmlPageFileName);
     return new RedirectResolution(HtmlPageListActionBean.class);
   }

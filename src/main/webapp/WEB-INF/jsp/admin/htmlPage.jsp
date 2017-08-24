@@ -49,6 +49,15 @@
       </tr>
       <tr>
         <td>
+        <s:label for="discipline" /><br />
+        <s:select name="disciplineId" id="discipline" value="${actionBean.htmlPageToEdit.relatedDisciplineId}">
+          <s:option value="">-----</s:option>
+          <s:options-collection collection="${actionBean.disciplineList}" value="id" sort="displayOrder" />
+        </s:select> 
+        </td>
+      </tr>
+      <tr>
+        <td>
           <s:submit name="save" value="Save"  />
           <s:submit name="cancel" value="Cancel"  />
         <c:if test="${actionBean.htmlPageFileName!=null}">

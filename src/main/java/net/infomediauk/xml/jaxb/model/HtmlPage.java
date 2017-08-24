@@ -6,13 +6,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
-@XmlType(propOrder = { "title", "metaDescription", "metaKeywords", "body" })
+@XmlType(propOrder = { "title", "metaDescription", "metaKeywords", "body", "relatedDisciplineId" })
 public class HtmlPage
 {
   private String title;
   private String metaDescription;
   private String metaKeywords;
   private String body;
+  private Integer relatedDisciplineId;
   /**
    * @return the title
    */
@@ -73,22 +74,19 @@ public class HtmlPage
     this.body = body;
   }
 
+  public Integer getRelatedDisciplineId()
+  {
+    return relatedDisciplineId;
+  }
+  
+  public void setRelatedDisciplineId(Integer relatedDisciplineId)
+  {
+    this.relatedDisciplineId = relatedDisciplineId;
+  }
+  @Override
   public String toString()
   {
-    StringBuilder output = new StringBuilder();
-    output.append("title=[");
-    output.append(title);
-    output.append("]\n");
-    output.append("metaDescription=[");
-    output.append(metaDescription);
-    output.append("]\n");
-    output.append("metaKeywords=[");
-    output.append(metaKeywords);
-    output.append("]\n");
-    output.append("body=[");
-    output.append(body);
-    output.append("]\n");
-    return output.toString();
+    return "HtmlPage [title=" + title + ", metaDescription=" + metaDescription + ", metaKeywords=" + metaKeywords + ", body=" + body + ", relatedDisciplineId=" + relatedDisciplineId + "]";
   }
   
 }
