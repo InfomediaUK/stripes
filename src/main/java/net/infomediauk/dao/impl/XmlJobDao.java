@@ -74,7 +74,6 @@ public class XmlJobDao extends BaseDao implements Dao<Job>
     database.deleteData();
   }
   
-  @Override
   public List<Job> selectAll()
   {
     List<Job> list = new ArrayList<Job>();
@@ -91,7 +90,26 @@ public class XmlJobDao extends BaseDao implements Dao<Job>
     return list;
   }
 
-  @Override
+  public List<Job> selectForDiscipline(Integer disciplineId)
+  {
+    List<Job> list = new ArrayList<Job>();
+    Job job = null;
+    if (database != null)
+    {
+      for (JobRecord jobRecord : database.getRecords())
+      {
+        if (jobRecord.getDisciplineId().equals(disciplineId))
+        {
+          // Job is for this Discipline, add it to the list.
+          job = new Job();
+          fillJob(job, jobRecord);
+          list.add(job);
+        }
+      }
+    }
+    return list;
+  }
+
   public Job select(Integer id)
   {
     Job job = new Job();

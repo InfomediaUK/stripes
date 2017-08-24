@@ -24,7 +24,7 @@ public class JobActionBean extends BaseActionBean
   private Integer id;
   // List
   private List<Discipline> disciplineList;
-  // The values returned from the List.
+  // The value returned from the List.
   private Integer disciplineId;
 
   public JobActionBean()

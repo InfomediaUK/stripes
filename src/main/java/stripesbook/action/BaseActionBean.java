@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -179,7 +180,7 @@ public abstract class BaseActionBean implements ActionBean
     Path destinationPath = Paths.get(backupFullFileName);
     try
     {
-      Files.copy(sourcePath, destinationPath);
+      Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
     }
     catch (IOException e)
     {
