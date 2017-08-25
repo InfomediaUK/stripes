@@ -14,19 +14,3 @@
     </div>
   </div>
 </div>
-<c:if test="${actionBean.class.simpleName != 'RegistrationFormActionBean'}">
-  <c:if test="${not empty actionBean.jobList}">
-<div class="box">
-  <div class="holder">
-    <div class="frame">
-      <div class="content">
-        Jobs For You!
-        <c:forEach var="job" items="${actionBean.jobList}" >
-          <p>${job.name}&nbsp;${job.location}&nbsp;start&nbsp;${job.startDate}
-        </c:forEach>
-      </div>
-    </div>
-  </div>
-</div>
-  </c:if>
-</c:if>
