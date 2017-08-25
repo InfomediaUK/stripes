@@ -14,7 +14,7 @@
     </s:link>
     <table>
       <tr>
-        <th align="left">Page</th>
+        <th align="left">Page (ActionBean)</th>
         <th align="left">Title - Description - Keywords</th>
       </tr>
       <tbody>
