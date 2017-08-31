@@ -14,6 +14,7 @@
     </div>
   </div>
 </div>
+<%--  
 <c:if test="${actionBean.class.simpleName != 'RegistrationFormActionBean'}">
   <c:if test="${not empty actionBean.jobList}">
 <div class="box">
@@ -30,3 +31,4 @@
 </div>
   </c:if>
 </c:if>
+--%>

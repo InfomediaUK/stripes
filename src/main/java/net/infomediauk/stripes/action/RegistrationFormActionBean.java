@@ -63,10 +63,12 @@ public class RegistrationFormActionBean extends BaseActionBean
   public RegistrationFormActionBean()
   {
     super();
+    // Load lists.
     passportList     = XmlPassportDao.getInstance().selectAll();
     disciplineList   = XmlDisciplineDao.getInstance().selectAll();
     lengthOfStayList = XmlLengthOfStayDao.getInstance().selectAll();
     visaList         = XmlVisaDao.getInstance().selectAll();
+    //Load required System Settings.
     SystemSettings systemSettings = XmlSystemSettingsDao.getInstance().select();
     maxFileUploadSize = systemSettings.getMaxFileUploadSize();
   }
