@@ -67,6 +67,8 @@ public class RegistrationFormActionBean extends BaseActionBean
     disciplineList   = XmlDisciplineDao.getInstance().selectAll();
     lengthOfStayList = XmlLengthOfStayDao.getInstance().selectAll();
     visaList         = XmlVisaDao.getInstance().selectAll();
+    SystemSettings systemSettings = XmlSystemSettingsDao.getInstance().select();
+    maxFileUploadSize = systemSettings.getMaxFileUploadSize();
   }
 
   public Prospect getProspect()
@@ -200,8 +202,6 @@ public class RegistrationFormActionBean extends BaseActionBean
   public Resolution view() throws Exception
   {
     Locale locale    = getContext().getLocale();
-    SystemSettings systemSettings = XmlSystemSettingsDao.getInstance().select();
-    maxFileUploadSize = systemSettings.getMaxFileUploadSize();
     System.out.println(locale);
     return new ForwardResolution("/WEB-INF/jsp/" + getView().toLowerCase() + "/registration.jsp");
   }
