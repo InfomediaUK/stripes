@@ -1,4 +1,4 @@
-package stripesbook.action;
+package net.infomediauk.stripes.action;
 
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
@@ -142,7 +142,6 @@ public abstract class BaseActionBean implements ActionBean
         JAXBContext jaxbContext = JAXBContext.newInstance(HtmlPage.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         HtmlPage page = (HtmlPage) jaxbUnmarshaller.unmarshal(file);
-        System.out.println(page.toString());
         return page;
       }
       catch (JAXBException e)
@@ -163,7 +162,6 @@ public abstract class BaseActionBean implements ActionBean
       // output pretty printed
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
       jaxbMarshaller.marshal(htmlPage, file);
-      jaxbMarshaller.marshal(htmlPage, System.out);
     }
     catch (JAXBException e)
     {
@@ -175,16 +173,24 @@ public abstract class BaseActionBean implements ActionBean
   protected void backupPage(String fileName)
   {
     String fullFileName = getHtmlPageFilesFolder() + "/" + fileName;
-    String backupFullFileName = fullFileName + ".bak";
     Path sourcePath = Paths.get(fullFileName);
-    Path destinationPath = Paths.get(backupFullFileName);
-    try
+    if (Files.exists(sourcePath))
     {
-      Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+      // The file exists, so back it up.
+      String backupFullFileName = fullFileName + ".bak";
+      Path destinationPath = Paths.get(backupFullFileName);
+      try
+      {
+        Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      } 
     }
-    catch (IOException e)
+    else
     {
-      e.printStackTrace();
+      // The file does not exist. It is a NEW page yet to be saved.
     }
   }
 

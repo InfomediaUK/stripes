@@ -1,6 +1,6 @@
 package net.infomediauk.stripes.action.admin;
 
-import stripesbook.action.BaseActionBean;
+import net.infomediauk.stripes.action.BaseActionBean;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;

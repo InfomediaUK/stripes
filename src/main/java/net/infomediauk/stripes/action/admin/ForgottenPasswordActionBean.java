@@ -1,11 +1,10 @@
 package net.infomediauk.stripes.action.admin;
 
-import stripesbook.action.BaseActionBean;
-import microsoft.exchange.webservices.data.autodiscover.exception.AutodiscoverLocalException;
 import net.infomediauk.dao.impl.XmlSystemSettingsDao;
 import net.infomediauk.dao.impl.XmlUserDao;
 import net.infomediauk.mail.MailHandler;
 import net.infomediauk.model.User;
+import net.infomediauk.stripes.action.BaseActionBean;
 import net.infomediauk.xml.jaxb.model.SystemSettings;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;

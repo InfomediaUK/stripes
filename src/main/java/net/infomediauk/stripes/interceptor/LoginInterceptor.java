@@ -1,6 +1,6 @@
 package net.infomediauk.stripes.interceptor;
 
-import stripesbook.action.BaseActionBean;
+import net.infomediauk.stripes.action.BaseActionBean;
 import net.infomediauk.stripes.action.admin.LoginActionBean;
 import net.infomediauk.stripes.ext.SessionActionBeanContext;
 import net.sourceforge.stripes.action.RedirectResolution;
@@ -24,7 +24,6 @@ public class LoginInterceptor implements Interceptor
     Resolution resolution = executionContext.proceed();
     BaseActionBean actionBean = (BaseActionBean)executionContext.getActionBean();
     String actionBeanClass = actionBean.getClass().toString();
-    System.out.println(actionBeanClass);
     if (actionBeanClass.contains("admin"))
     {
       // Admin action requested.

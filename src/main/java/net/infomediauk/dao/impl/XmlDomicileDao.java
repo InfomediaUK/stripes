@@ -168,7 +168,6 @@ public class XmlDomicileDao extends BaseDao implements Dao<Domicile>
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
       jaxbMarshaller.marshal(database, file);
-      jaxbMarshaller.marshal(database, System.out);
     }
     catch (JAXBException e)
     {

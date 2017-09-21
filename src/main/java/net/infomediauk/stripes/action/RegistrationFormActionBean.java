@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import stripesbook.action.BaseActionBean;
 import net.infomediauk.dao.impl.XmlDisciplineDao;
 import net.infomediauk.dao.impl.XmlPassportDao;
 import net.infomediauk.dao.impl.XmlLengthOfStayDao;
@@ -204,7 +203,6 @@ public class RegistrationFormActionBean extends BaseActionBean
   public Resolution view() throws Exception
   {
     Locale locale    = getContext().getLocale();
-    System.out.println(locale);
     return new ForwardResolution("/WEB-INF/jsp/" + getView().toLowerCase() + "/registration.jsp");
   }
 
@@ -226,7 +224,6 @@ public class RegistrationFormActionBean extends BaseActionBean
     prospect.setVisaId(visa);
     prospect.setLengthOfStayId(lengthOfStay);
     prospect.setAvailableForWork(sdf.format(availableForWork));
-    System.out.println(prospect.getAvailableForWork());
     if (fileBean == null)
     {
       prospect.setDocumentFileName("");
@@ -234,9 +231,9 @@ public class RegistrationFormActionBean extends BaseActionBean
     else
     {
       String fileName = fileBean.getFileName();
-      System.out.println(fileName);
-      System.out.println(fileBean.getContentType());
-      System.out.println(fileBean.getSize());
+//      System.out.println(fileName);
+//      System.out.println(fileBean.getContentType());
+//      System.out.println(fileBean.getSize());
       String newFileName = prospect.getEmail() + fileName.substring(fileName.lastIndexOf("."));
       String newFullFileName = XmlProspectDao.getInstance().getProspectFilesFolder() + "/" + newFileName; 
       try

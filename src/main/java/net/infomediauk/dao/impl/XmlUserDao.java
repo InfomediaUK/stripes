@@ -223,7 +223,6 @@ public class XmlUserDao extends BaseDao implements Dao<User>
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
       jaxbMarshaller.marshal(database, file);
-      jaxbMarshaller.marshal(database, System.out);
     }
     catch (JAXBException e)
     {

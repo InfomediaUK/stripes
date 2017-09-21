@@ -193,7 +193,6 @@ public class XmlPassportDao extends BaseDao implements Dao<Passport>
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
       jaxbMarshaller.marshal(database, file);
-      jaxbMarshaller.marshal(database, System.out);
     }
     catch (JAXBException e)
     {
@@ -215,7 +214,6 @@ public class XmlPassportDao extends BaseDao implements Dao<Passport>
         throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
       }
       InputStream inputStream = response.getEntityInputStream();
-      System.out.println("Output from Server .... \n");
       JAXBContext context = JAXBContext.newInstance(PassportTypes.class);
       Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
       PassportTypes passportTypes = (PassportTypes)jaxbUnmarshaller.unmarshal(inputStream);

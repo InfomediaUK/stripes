@@ -1,11 +1,11 @@
 package net.infomediauk.stripes.action.admin;
 
-import stripesbook.action.BaseActionBean;
 import net.infomediauk.dao.impl.XmlRoleDao;
 import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Title;
 import net.infomediauk.model.Visa;
+import net.infomediauk.stripes.action.BaseActionBean;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.ForwardResolution;

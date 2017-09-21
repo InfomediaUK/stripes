@@ -1,8 +1,8 @@
 package net.infomediauk.stripes.action.admin;
 
-import stripesbook.action.BaseActionBean;
 import net.infomediauk.dao.impl.XmlUserDao;
 import net.infomediauk.model.User;
+import net.infomediauk.stripes.action.BaseActionBean;
 import net.infomediauk.stripes.ext.SessionActionBeanContext;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
@@ -55,7 +55,6 @@ public class LoginActionBean extends BaseActionBean
   
   public Resolution login() throws Exception
   {
-    System.out.println("In Login...");
     SessionActionBeanContext sessionActionBeanContext = getContext();
     sessionActionBeanContext.setUser(user);
     if (interceptedUrl != null)
@@ -80,7 +79,6 @@ public class LoginActionBean extends BaseActionBean
       if (user.getPassword().equals(encryptedPassword))
       {
         // Password is good. Continue with login.
-        System.out.println("Password is GOOD!");
       }
       else
       {

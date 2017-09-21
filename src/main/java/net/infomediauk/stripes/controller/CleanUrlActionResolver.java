@@ -18,7 +18,6 @@ public class CleanUrlActionResolver extends NameBasedActionResolver
   {
     ActionBean actionBean = super.handleActionBeanNotFound(context, urlBinding);
     Configuration configuration = getConfiguration();
-    System.out.println(configuration.toString());
     return actionBean;
   }
 }

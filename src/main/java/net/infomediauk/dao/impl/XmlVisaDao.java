@@ -192,7 +192,6 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
       jaxbMarshaller.marshal(database, file);
-      jaxbMarshaller.marshal(database, System.out);
     }
     catch (JAXBException e)
     {
@@ -214,7 +213,6 @@ public class XmlVisaDao extends BaseDao implements Dao<Visa>
         throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
       }
       InputStream inputStream = response.getEntityInputStream();
-      System.out.println("Output from Server .... \n");
       JAXBContext context = JAXBContext.newInstance(VisaTypes.class);
       Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
       VisaTypes visaTypes = (VisaTypes)jaxbUnmarshaller.unmarshal(inputStream);

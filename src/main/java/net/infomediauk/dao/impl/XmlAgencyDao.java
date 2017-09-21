@@ -187,7 +187,6 @@ public class XmlAgencyDao extends BaseDao implements Dao<Agency>
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
       jaxbMarshaller.marshal(database, file);
-      jaxbMarshaller.marshal(database, System.out);
     }
     catch (JAXBException e)
     {
@@ -209,7 +208,6 @@ public class XmlAgencyDao extends BaseDao implements Dao<Agency>
         throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
       }
       InputStream inputStream = response.getEntityInputStream();
-      System.out.println("Output from Server .... \n");
       JAXBContext context = JAXBContext.newInstance(Agencies.class);
       Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
       Agencies agencyTypes = (Agencies)jaxbUnmarshaller.unmarshal(inputStream);

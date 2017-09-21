@@ -134,7 +134,6 @@ public class XmlProspectDao
         JAXBContext jaxbContext = JAXBContext.newInstance(Prospect.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         Prospect prospect = (Prospect) jaxbUnmarshaller.unmarshal(file);
-        System.out.println(prospect.toString());
         return prospect;
       }
       catch (JAXBException e)
@@ -164,13 +163,11 @@ public class XmlProspectDao
       // output pretty printed
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
       jaxbMarshaller.marshal(prospect, file);
-      jaxbMarshaller.marshal(prospect, System.out);
     }
     catch (JAXBException e)
     {
       e.printStackTrace();
     }
-    System.out.println(file.getName());
   }
   
   public void backupProspect(Prospect prospect)

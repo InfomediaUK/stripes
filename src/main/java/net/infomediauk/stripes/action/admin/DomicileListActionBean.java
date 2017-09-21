@@ -5,11 +5,11 @@ import java.util.List;
 
 import net.infomediauk.dao.impl.XmlDomicileDao;
 import net.infomediauk.model.Domicile;
+import net.infomediauk.stripes.action.BaseActionBean;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.StreamingResolution;
-import stripesbook.action.BaseActionBean;
 
 public class DomicileListActionBean extends BaseActionBean
 {

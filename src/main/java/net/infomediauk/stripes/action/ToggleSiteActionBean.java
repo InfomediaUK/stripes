@@ -2,7 +2,6 @@ package net.infomediauk.stripes.action;
 
 import javax.servlet.http.HttpSession;
 
-import stripesbook.action.BaseActionBean;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;

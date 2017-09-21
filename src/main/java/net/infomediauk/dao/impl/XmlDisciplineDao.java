@@ -210,7 +210,6 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
       jaxbMarshaller.marshal(database, file);
-      jaxbMarshaller.marshal(database, System.out);
     }
     catch (JAXBException e)
     {
@@ -232,7 +231,6 @@ public class XmlDisciplineDao extends BaseDao implements Dao<Discipline>
         throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
       }
       InputStream inputStream = response.getEntityInputStream();
-      System.out.println("Output from Server .... \n");
       JAXBContext context = JAXBContext.newInstance(DisciplineCategories.class);
       Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
       DisciplineCategories disciplineCategories = (DisciplineCategories)jaxbUnmarshaller.unmarshal(inputStream);

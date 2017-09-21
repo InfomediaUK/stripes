@@ -2,7 +2,6 @@ package net.infomediauk.stripes.action;
 
 import java.util.List;
 
-import stripesbook.action.BaseActionBean;
 import net.infomediauk.model.Job;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;

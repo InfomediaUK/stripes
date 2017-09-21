@@ -1,8 +1,8 @@
 package net.infomediauk.stripes.action.admin;
 
-import stripesbook.action.BaseActionBean;
 import net.infomediauk.dao.impl.XmlDomicileDao;
 import net.infomediauk.model.Domicile;
+import net.infomediauk.stripes.action.BaseActionBean;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.ForwardResolution;

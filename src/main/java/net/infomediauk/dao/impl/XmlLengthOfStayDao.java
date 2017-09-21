@@ -168,7 +168,6 @@ public class XmlLengthOfStayDao extends BaseDao implements Dao<LengthOfStay>
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
       jaxbMarshaller.marshal(database, file);
-      jaxbMarshaller.marshal(database, System.out);
     }
     catch (JAXBException e)
     {
