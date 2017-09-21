@@ -19,6 +19,7 @@
         </c:when>
         <c:otherwise>
           ${actionBean.htmlPageFileName}
+          <s:hidden name="htmlPageFileName" />
         </c:otherwise>
       </c:choose>
         </td>
@@ -68,7 +69,6 @@
         </td>
       </tr>
     </table>
-    <s:hidden name="htmlPageFileName" />
   </s:form>
   </s:layout-component>
 </s:layout-render>
