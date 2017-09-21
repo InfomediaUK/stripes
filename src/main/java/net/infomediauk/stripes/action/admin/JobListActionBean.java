@@ -5,11 +5,11 @@ import java.util.List;
 
 import net.infomediauk.dao.impl.XmlJobDao;
 import net.infomediauk.model.Job;
+import net.infomediauk.stripes.action.BaseActionBean;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.StreamingResolution;
-import stripesbook.action.BaseActionBean;
 
 public class JobListActionBean extends BaseActionBean
 {
@@ -30,6 +30,7 @@ public class JobListActionBean extends BaseActionBean
   public Resolution view() throws Exception
   {
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
+    getHtmlPage().setTitle("Jobs");
     jobList = XmlJobDao.getInstance().selectAll();
     return new ForwardResolution(LIST);
   }  

@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.sun.jersey.api.client.ClientResponse;
 
-import stripesbook.action.BaseActionBean;
 import net.infomediauk.dao.impl.XmlAgencyDao;
 import net.infomediauk.dao.impl.XmlDisciplineDao;
 import net.infomediauk.dao.impl.XmlPassportDao;
@@ -20,6 +19,7 @@ import net.infomediauk.model.Passport;
 import net.infomediauk.model.LengthOfStay;
 import net.infomediauk.model.Title;
 import net.infomediauk.model.Visa;
+import net.infomediauk.stripes.action.BaseActionBean;
 import net.infomediauk.xml.jaxb.model.Prospect;
 import net.infomediauk.xml.jaxb.model.ProspectFile;
 import net.sourceforge.stripes.action.DefaultHandler;
@@ -158,6 +158,7 @@ public class ProspectActionBean extends BaseActionBean
   public Resolution view() throws Exception
   {
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
+    getHtmlPage().setTitle("Prospect");
     prospectUploadBaseUrl = XmlSystemSettingsDao.getInstance().select().getProspectUploadBaseUrl();
     ProspectFile prospectFile = XmlProspectDao.getInstance().select(prospectFileName);
     prospect = prospectFile.getProspect();
@@ -243,7 +244,6 @@ public class ProspectActionBean extends BaseActionBean
 //  values.add("visaId", prospect.getVisaId());
 //  values.add("documentFileName", prospect.getDocumentFileName());
 //  ClientResponse response = webResource.type(MediaType.APPLICATION_FORM_URLENCODED).post(ClientResponse.class, values);
-//  System.out.println("Response Status : " + response.getEntity(String.class));
 //  return new RedirectResolution(ProspectListActionBean.class);
 //}
 //

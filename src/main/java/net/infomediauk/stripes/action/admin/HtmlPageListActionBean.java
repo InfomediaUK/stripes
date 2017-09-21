@@ -4,11 +4,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.infomediauk.stripes.action.BaseActionBean;
 import net.infomediauk.xml.jaxb.model.HtmlPageFile;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
-import stripesbook.action.BaseActionBean;
 
 public class HtmlPageListActionBean extends BaseActionBean
 {
@@ -29,6 +29,7 @@ public class HtmlPageListActionBean extends BaseActionBean
   public Resolution view() throws Exception
   {
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
+    getHtmlPage().setTitle("HTML Pages");
     String folderName = getHtmlPageFilesFolder();
     File folder = new File(folderName);
     if (!folder.exists())

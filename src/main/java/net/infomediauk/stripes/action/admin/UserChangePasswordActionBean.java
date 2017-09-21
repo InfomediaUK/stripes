@@ -73,6 +73,7 @@ public class UserChangePasswordActionBean extends UserActionBean
   public Resolution view() throws Exception
   {
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
+    getHtmlPage().setTitle("Change Password");
     setUser(XmlUserDao.getInstance().select(getUser().getId()));
     return new ForwardResolution(FORM);
   }

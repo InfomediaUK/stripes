@@ -1,8 +1,8 @@
 package net.infomediauk.stripes.action.admin;
 
-import stripesbook.action.BaseActionBean;
 import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Visa;
+import net.infomediauk.stripes.action.BaseActionBean;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -49,6 +49,7 @@ public class VisaActionBean extends BaseActionBean
   public Resolution view() throws Exception
   {
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
+    getHtmlPage().setTitle("Visa");
     visa = XmlVisaDao.getInstance().select(id);
     return new ForwardResolution(FORM);
   }

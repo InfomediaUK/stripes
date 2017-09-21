@@ -2,11 +2,11 @@ package net.infomediauk.stripes.action.admin;
 
 import java.util.List;
 
-import stripesbook.action.BaseActionBean;
 import net.infomediauk.dao.impl.XmlDisciplineDao;
 import net.infomediauk.dao.impl.XmlJobDao;
 import net.infomediauk.model.Discipline;
 import net.infomediauk.model.Job;
+import net.infomediauk.stripes.action.BaseActionBean;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -73,6 +73,7 @@ public class JobActionBean extends BaseActionBean
   public Resolution view() throws Exception
   {
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
+    getHtmlPage().setTitle("Job");
     job = XmlJobDao.getInstance().select(id);
     return new ForwardResolution(FORM);
   }

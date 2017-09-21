@@ -5,12 +5,12 @@ import java.util.List;
 
 import net.infomediauk.dao.impl.XmlDisciplineDao;
 import net.infomediauk.model.Discipline;
+import net.infomediauk.stripes.action.BaseActionBean;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.StreamingResolution;
-import stripesbook.action.BaseActionBean;
 
 public class DisciplineListActionBean extends BaseActionBean
 {
@@ -31,6 +31,7 @@ public class DisciplineListActionBean extends BaseActionBean
   public Resolution view() throws Exception
   {
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
+    getHtmlPage().setTitle("Disciplines");
     disciplineList = XmlDisciplineDao.getInstance().selectAll();
     return new ForwardResolution(LIST);
   }  

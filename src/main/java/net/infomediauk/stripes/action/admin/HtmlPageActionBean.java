@@ -5,9 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import stripesbook.action.BaseActionBean;
 import net.infomediauk.dao.impl.XmlDisciplineDao;
 import net.infomediauk.model.Discipline;
+import net.infomediauk.stripes.action.BaseActionBean;
 import net.infomediauk.xml.jaxb.model.HtmlPage;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
@@ -69,6 +69,7 @@ public class HtmlPageActionBean extends BaseActionBean
   {
     disciplineList = XmlDisciplineDao.getInstance().selectAll();
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
+    getHtmlPage().setTitle("HTML Page");
     setHtmlPageToEdit(loadPage(htmlPageFileName));
     return new ForwardResolution(FORM);
   }
@@ -112,7 +113,6 @@ public class HtmlPageActionBean extends BaseActionBean
   
   public Resolution save()
   {
-    System.out.println(System.getenv("OPENSHIFT_DATA_DIR"));
     backupPage(htmlPageFileName);
     htmlPageToEdit.setRelatedDisciplineId(disciplineId);
     savePage(htmlPageToEdit, htmlPageFileName);

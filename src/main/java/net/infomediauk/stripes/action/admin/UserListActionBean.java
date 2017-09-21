@@ -5,11 +5,11 @@ import java.util.List;
 
 import net.infomediauk.dao.impl.XmlUserDao;
 import net.infomediauk.model.User;
+import net.infomediauk.stripes.action.BaseActionBean;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.StreamingResolution;
-import stripesbook.action.BaseActionBean;
 
 public class UserListActionBean extends BaseActionBean
 {
@@ -30,6 +30,7 @@ public class UserListActionBean extends BaseActionBean
   public Resolution view() throws Exception
   {
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
+    getHtmlPage().setTitle("Users");
     userList = XmlUserDao.getInstance().selectAll();
     return new ForwardResolution(LIST);
   }  

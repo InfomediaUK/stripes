@@ -61,6 +61,7 @@ public class UserNewActionBean extends UserActionBean
   public Resolution view() throws Exception
   {
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
+    getHtmlPage().setTitle("New User");
     return new ForwardResolution(FORM);
   }
   

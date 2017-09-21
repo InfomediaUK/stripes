@@ -25,6 +25,7 @@ public class UserEditActionBean extends UserActionBean
   public Resolution view() throws Exception
   {
     setHtmlPage(loadPage(this.getClass().getSimpleName() + ".xml"));
+    getHtmlPage().setTitle("Edit User");
     setUser(XmlUserDao.getInstance().select(getUser().getId()));
     return new ForwardResolution(FORM);
   }
