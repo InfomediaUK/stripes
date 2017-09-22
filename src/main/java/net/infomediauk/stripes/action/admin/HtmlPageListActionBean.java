@@ -2,8 +2,10 @@ package net.infomediauk.stripes.action.admin;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import net.infomediauk.stripes.Comparator.HtmlPageFileComparator;
 import net.infomediauk.stripes.action.BaseActionBean;
 import net.infomediauk.xml.jaxb.model.HtmlPageFile;
 import net.sourceforge.stripes.action.DefaultHandler;
@@ -58,6 +60,7 @@ public class HtmlPageListActionBean extends BaseActionBean
         }
       }
     }
+    Collections.sort(htmlPageFileList, new HtmlPageFileComparator());
     return new ForwardResolution(LIST);
   }  
 
