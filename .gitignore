@@ -1,6 +1,13 @@
+*.class
+
+*.jar
+*.war
+*.ear
+
 /target/
 target
 .settings/*
 !.settings/.jsdtscope
 .project
 .classpath
+.DS_Store
