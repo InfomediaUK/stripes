@@ -3,6 +3,7 @@ package net.infomediauk.stripes.interceptor;
 import net.infomediauk.stripes.action.BaseActionBean;
 import net.infomediauk.stripes.action.admin.LoginActionBean;
 import net.infomediauk.stripes.ext.SessionActionBeanContext;
+import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.RedirectResolution;
 import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.controller.ExecutionContext;
@@ -21,30 +22,38 @@ public class LoginInterceptor implements Interceptor
 {
   public Resolution intercept(ExecutionContext executionContext) throws Exception
   {
-    Resolution resolution = executionContext.proceed();
-    BaseActionBean actionBean = (BaseActionBean)executionContext.getActionBean();
-    String actionBeanClass = actionBean.getClass().toString();
-    if (actionBeanClass.contains("admin"))
+    Resolution resolution;
+    try
     {
-      // Admin action requested.
-      if (actionBeanClass.contains("LoginActionBean") || actionBeanClass.contains("ForgottenPasswordActionBean"))
+      resolution = executionContext.proceed();
+      BaseActionBean actionBean = (BaseActionBean)executionContext.getActionBean();
+      String actionBeanClass = actionBean.getClass().toString();
+      if (actionBeanClass.contains("admin"))
       {
-        // Going to Login or ForgottenPassword. Just let it continue...
-      }
-      else
-      {
-        // Going to an admin action. Check user is logged in etc.
-        SessionActionBeanContext sessionActionBeanContext = (SessionActionBeanContext)executionContext.getActionBeanContext();
-        if (sessionActionBeanContext.getUser() == null)
+        // Admin action requested.
+        if (actionBeanClass.contains("LoginActionBean") || actionBeanClass.contains("ForgottenPasswordActionBean"))
         {
-          // User not logged in yet. Redirect to Login page.
-          resolution = new RedirectResolution(LoginActionBean.class);
-          if (sessionActionBeanContext.getRequest().getMethod().equalsIgnoreCase("GET"))
+          // Going to Login or ForgottenPassword. Just let it continue...
+        }
+        else
+        {
+          // Going to an admin action. Check user is logged in etc.
+          SessionActionBeanContext sessionActionBeanContext = (SessionActionBeanContext)executionContext.getActionBeanContext();
+          if (sessionActionBeanContext.getUser() == null)
           {
-            ((RedirectResolution)resolution).addParameter("interceptedUrl", actionBean.getLastUrl());
+            // User not logged in yet. Redirect to Login page.
+            resolution = new RedirectResolution(LoginActionBean.class);
+            if (sessionActionBeanContext.getRequest().getMethod().equalsIgnoreCase("GET"))
+            {
+              ((RedirectResolution)resolution).addParameter("interceptedUrl", actionBean.getLastUrl());
+            }
           }
         }
       }
+    }
+    catch (Exception e)
+    {
+      return new ForwardResolution("/WEB-INF/jsp/common/pagenotfound.jsp");
     }
     return resolution;
   }
