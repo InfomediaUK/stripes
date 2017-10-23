@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
 @XmlType(propOrder = { "firstName", "lastName", "gender", "mobileTelephone", "email", "profession", "availableForWork", 
-                       "documentFileName", "disciplineId", "passportId", "visaId", "lengthOfStayId"})
+                       "documentFileName", "disciplineId", "idDocumentId", "visaId", "lengthOfStayId"})
 public class Prospect
 {
   private String firstName;
@@ -17,7 +17,7 @@ public class Prospect
   private String availableForWork;
   private String documentFileName;
   private Integer disciplineId;
-  private Integer passportId;
+  private Integer idDocumentId;
   private Integer visaId;
   private Integer lengthOfStayId;
   
@@ -101,14 +101,14 @@ public class Prospect
     this.disciplineId = discipline;
   }
 
-  public Integer getPassportId()
+  public Integer getIdDocumentId()
   {
-    return passportId;
+    return idDocumentId;
   }
 
-  public void setPassportId(Integer domicleId)
+  public void setIdDocumentId(Integer domicleId)
   {
-    this.passportId = domicleId;
+    this.idDocumentId = domicleId;
   }
 
   public Integer getVisaId()
@@ -150,7 +150,7 @@ public class Prospect
   public String toString()
   {
     return "Prospect [firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender + ", mobileTelephone=" + mobileTelephone + ", email=" + email + ", profession=" + profession
-        + ", availableForWork=" + availableForWork + ", documentFileName=" + documentFileName + ", disciplineId=" + disciplineId + ", passportId=" + passportId + ", visaId=" + visaId
+        + ", availableForWork=" + availableForWork + ", documentFileName=" + documentFileName + ", disciplineId=" + disciplineId + ", idDocumentId=" + idDocumentId + ", visaId=" + visaId
         + ", lengthOfStayId=" + lengthOfStayId + "]";
   }
   

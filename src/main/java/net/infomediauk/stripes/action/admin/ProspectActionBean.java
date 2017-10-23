@@ -7,7 +7,7 @@ import com.sun.jersey.api.client.ClientResponse;
 
 import net.infomediauk.dao.impl.XmlAgencyDao;
 import net.infomediauk.dao.impl.XmlDisciplineDao;
-import net.infomediauk.dao.impl.XmlPassportDao;
+import net.infomediauk.dao.impl.XmlIdDocumentDao;
 import net.infomediauk.dao.impl.XmlLengthOfStayDao;
 import net.infomediauk.dao.impl.XmlProspectDao;
 import net.infomediauk.dao.impl.XmlSystemSettingsDao;
@@ -15,7 +15,7 @@ import net.infomediauk.dao.impl.XmlTitleDao;
 import net.infomediauk.dao.impl.XmlVisaDao;
 import net.infomediauk.model.Agency;
 import net.infomediauk.model.Discipline;
-import net.infomediauk.model.Passport;
+import net.infomediauk.model.IdDocument;
 import net.infomediauk.model.LengthOfStay;
 import net.infomediauk.model.Title;
 import net.infomediauk.model.Visa;
@@ -37,7 +37,7 @@ public class ProspectActionBean extends BaseActionBean
   private Prospect prospect;
   private String prospectFileName;
   // Lists
-  private List<Passport> passportList;
+  private List<IdDocument> idDocumentList;
   private List<LengthOfStay> lengthOfStayList;
   private List<Discipline> disciplineList;
   private List<Agency> agencyList;
@@ -45,7 +45,7 @@ public class ProspectActionBean extends BaseActionBean
   private List<Title> titleList;
   // The values returned from the Lists.
   private Integer agencyId;
-  private Integer passportId;
+  private Integer idDocumentId;
   private Integer disciplineId;
   private Integer lengthOfStayId;
   private Integer visaId;
@@ -56,7 +56,7 @@ public class ProspectActionBean extends BaseActionBean
   {
     super();
     agencyList       = XmlAgencyDao.getInstance().selectAll();
-    passportList     = XmlPassportDao.getInstance().selectAll();
+    idDocumentList     = XmlIdDocumentDao.getInstance().selectAll();
     disciplineList   = XmlDisciplineDao.getInstance().selectAll();
     lengthOfStayList = XmlLengthOfStayDao.getInstance().selectAll();
     visaList         = XmlVisaDao.getInstance().selectAll();
@@ -83,9 +83,9 @@ public class ProspectActionBean extends BaseActionBean
     this.prospect = prospectFile;
   }
 
-  public List<Passport> getPassportList()
+  public List<IdDocument> getIdDocumentList()
   {
-    return passportList;
+    return idDocumentList;
   }
 
   public List<LengthOfStay> getLengthOfStayList()
@@ -123,9 +123,9 @@ public class ProspectActionBean extends BaseActionBean
     return titleList;
   }
 
-  public void setPassportId(Integer passportId)
+  public void setIdDocumentId(Integer idDocumentId)
   {
-    this.passportId = passportId;
+    this.idDocumentId = idDocumentId;
   }
 
   public void setDisciplineId(Integer disciplineId)
@@ -184,7 +184,7 @@ public class ProspectActionBean extends BaseActionBean
   {
     XmlProspectDao.getInstance().backupProspect(prospect);
     // Update Prospect from values returned from the lists.
-    prospect.setPassportId(passportId);
+    prospect.setIdDocumentId(idDocumentId);
     prospect.setDisciplineId(disciplineId);
     prospect.setVisaId(visaId);
     prospect.setLengthOfStayId(lengthOfStayId);
@@ -238,7 +238,7 @@ public class ProspectActionBean extends BaseActionBean
 //  values.add("profession", prospect.getProfession());
 //  values.add("availableForWork", prospect.getAvailableForWork());
 //  values.add("disciplineId", prospect.getDisciplineId());
-//  values.add("passport", prospectFile.getPassportName());
+//  values.add("idDocument", prospectFile.getIdDocumentName());
 //  values.add("visaId", prospect.getVisaId());
 //  values.add("lengthOfStay", prospectFile.getLengthOfStayName());
 //  values.add("visaId", prospect.getVisaId());

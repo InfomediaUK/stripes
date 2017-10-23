@@ -28,7 +28,7 @@ import com.sun.jersey.multipart.BodyPart;
 import com.sun.jersey.multipart.MultiPart;
 
 import net.infomediauk.model.Discipline;
-import net.infomediauk.model.Passport;
+import net.infomediauk.model.IdDocument;
 import net.infomediauk.model.LengthOfStay;
 import net.infomediauk.model.Visa;
 import net.infomediauk.xml.jaxb.model.Prospect;
@@ -111,10 +111,10 @@ public class XmlProspectDao
       Discipline discipline = XmlDisciplineDao.getInstance().select(prospect.getDisciplineId());
       prospectFile.setDisciplineName(discipline.getName());
     }
-    if (prospect.getPassportId() != null)
+    if (prospect.getIdDocumentId() != null)
     {
-      Passport passport = XmlPassportDao.getInstance().select(prospect.getPassportId());
-      prospectFile.setPassportName(passport.getName());
+      IdDocument idDocument = XmlIdDocumentDao.getInstance().select(prospect.getIdDocumentId());
+      prospectFile.setIdDocumentName(idDocument.getName());
     }
     if (prospect.getLengthOfStayId() != null)
     {
@@ -238,12 +238,12 @@ public class XmlProspectDao
     return false;
   }
   
-  public Boolean passportInProspect(Integer id)
+  public Boolean idDocumentInProspect(Integer id)
   {
     List<ProspectFile> prospectFileList = selectAll();
     for (ProspectFile prospectFile : prospectFileList)
     {
-      if (prospectFile.getProspect().getPassportId().equals(id))
+      if (prospectFile.getProspect().getIdDocumentId().equals(id))
       {
         return true;
       }

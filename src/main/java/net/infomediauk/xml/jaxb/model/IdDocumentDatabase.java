@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement()
-public class PassportDatabase extends BaseDatabase<PassportRecord>
+public class IdDocumentDatabase extends BaseDatabase<IdDocumentRecord>
 {
   // XmLElementWrapper generates a wrapper element around XML representation
   @XmlElementWrapper(name = "list")
@@ -17,7 +17,7 @@ public class PassportDatabase extends BaseDatabase<PassportRecord>
    * This is needed for the JAXB 
    */
   @Override
-  public ArrayList<PassportRecord> getRecords()
+  public ArrayList<IdDocumentRecord> getRecords()
   {
     return super.getRecords();
   } 

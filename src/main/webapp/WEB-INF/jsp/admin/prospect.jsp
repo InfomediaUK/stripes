@@ -100,18 +100,18 @@
         <td>
           <s:select name="disciplineId" id="prospect.discipline" value="${actionBean.prospect.disciplineId}" class="wide">
             <s:option value="">-----</s:option>
-            <s:options-collection collection="${actionBean.disciplineList}" value="id" sort="displayOrder" />
+            <s:options-collection collection="${actionBean.disciplineList}" value="id" label="name" sort="displayOrder" />
           </s:select> 
         </td>
       </tr>
       <tr>
         <td>
-          <s:label for="prospect.passport" />
+          <s:label for="prospect.idDocument" />
         </td>
         <td>
-          <s:select name="passportId" id="prospect.passport" value="${actionBean.prospect.passportId}" class="wide">
+          <s:select name="idDocumentId" id="prospect.idDocument" value="${actionBean.prospect.idDocumentId}" class="wide">
             <s:option value="">-----</s:option>
-            <s:options-collection collection="${actionBean.passportList}" value="id" sort="displayOrder" />
+            <s:options-collection collection="${actionBean.idDocumentList}" value="id" label="name" sort="displayOrder" />
           </s:select> 
         </td>
       </tr>
@@ -122,7 +122,7 @@
         <td>
           <s:select name="visaId" id="prospect.visa" value="${actionBean.prospect.visaId}" class="wide">
             <s:option value="">-----</s:option>
-            <s:options-collection collection="${actionBean.visaList}" value="id" sort="displayOrder" />
+            <s:options-collection collection="${actionBean.visaList}" value="id" label="name" sort="displayOrder" />
           </s:select> 
         </td>
       </tr>
@@ -132,7 +132,7 @@
         </td>
         <td>
           <s:select name="lengthOfStayId" id="prospect.lengthOfStay" value="${actionBean.prospect.lengthOfStayId}" class="wide">
-            <s:options-collection collection="${actionBean.lengthOfStayList}" value="id" sort="displayOrder" />
+            <s:options-collection collection="${actionBean.lengthOfStayList}" value="id" label="name" sort="displayOrder" />
           </s:select> 
         </td>
       </tr>

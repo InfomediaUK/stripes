@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement()
 @XmlType(propOrder = { "id", "code", "name", "displayOrder" })
-public class PassportType
+public class IdDocumentType
 {
   private Integer id;
   private String code;

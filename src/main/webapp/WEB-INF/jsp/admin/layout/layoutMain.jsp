@@ -31,8 +31,8 @@
               Disciplines
             </s:link>
             &nbsp;
-            <s:link beanclass="net.infomediauk.stripes.action.admin.PassportListActionBean">
-              Passports
+            <s:link beanclass="net.infomediauk.stripes.action.admin.IdDocumentListActionBean">
+              ID Documents
             </s:link>
             &nbsp;
             <s:link beanclass="net.infomediauk.stripes.action.admin.VisaListActionBean">

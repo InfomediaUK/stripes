@@ -15,7 +15,7 @@ import net.infomediauk.xml.jaxb.model.ProspectFile;
  */
 @XmlRootElement(name="prospect")
 @XmlType(propOrder = { "agencyId", "firstName", "lastName", "gender", "mobileTelephone", "email", "profession", "availableForWork", 
-    "disciplineId", "passportId", "visaId", "lengthOfStay", "documentFileName"})
+    "disciplineId", "idDocumentId", "visaId", "lengthOfStay", "documentFileName"})
 public class ProspectApplicant
 {
   private Integer agencyId;
@@ -27,7 +27,7 @@ public class ProspectApplicant
   private String profession;
   private String availableForWork;
   private Integer disciplineId;
-  private Integer passportId;
+  private Integer idDocumentId;
   private Integer visaId;
   private String lengthOfStay;
   private String documentFileName;
@@ -50,7 +50,7 @@ public class ProspectApplicant
     this.setDocumentFileName(prospect.getDocumentFileName());
     this.setProfession(prospect.getProfession());
     this.setDisciplineId(prospect.getDisciplineId());
-    this.setPassportId(prospect.getPassportId());
+    this.setIdDocumentId(prospect.getIdDocumentId());
     this.setVisaId(prospect.getVisaId());
     this.setLengthOfStay(prospectFile.getLengthOfStayName());
   }
@@ -145,14 +145,14 @@ public class ProspectApplicant
     this.disciplineId = discipline;
   }
 
-  public Integer getPassportId()
+  public Integer getIdDocumentId()
   {
-    return passportId;
+    return idDocumentId;
   }
 
-  public void setPassportId(Integer passportId)
+  public void setIdDocumentId(Integer idDocumentId)
   {
-    this.passportId = passportId;
+    this.idDocumentId = idDocumentId;
   }
 
   public Integer getVisaId()
@@ -227,8 +227,8 @@ public class ProspectApplicant
     stringBuilder.append("disciplineId=[");
     stringBuilder.append(disciplineId);
     stringBuilder.append("], ");
-    stringBuilder.append("passportId=[");
-    stringBuilder.append(passportId);
+    stringBuilder.append("idDocumentId=[");
+    stringBuilder.append(idDocumentId);
     stringBuilder.append("]");
     stringBuilder.append("visaId=[");
     stringBuilder.append(visaId);

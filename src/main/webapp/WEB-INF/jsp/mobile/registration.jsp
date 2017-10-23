@@ -62,11 +62,11 @@
          </s:select> 
       </li>
       <li>
-         <s:errors field="prospect.passport"/> 
-         <s:label for="prospect.passport" /> 
-         <s:select name="passport" id="prospect.passport">
+         <s:errors field="prospect.idDocument"/> 
+         <s:label for="prospect.idDocument" /> 
+         <s:select name="idDocument" id="prospect.idDocument">
            <s:option value="">-----</s:option>
-           <s:options-collection collection="${actionBean.passportList}" value="id" sort="displayOrder" />
+           <s:options-collection collection="${actionBean.idDocumentList}" value="id" sort="displayOrder" />
          </s:select> 
       </li>
       <li>

@@ -6,7 +6,7 @@ public class ProspectFile
   private String fileName;
   private String visaName;
   private String disciplineName;
-  private String passportName;
+  private String idDocumentName;
   private String lengthOfStayName;
 
   public ProspectFile()
@@ -54,14 +54,14 @@ public class ProspectFile
     this.disciplineName = disciplineName;
   }
 
-  public String getPassportName()
+  public String getIdDocumentName()
   {
-    return passportName;
+    return idDocumentName;
   }
 
-  public void setPassportName(String passportName)
+  public void setIdDocumentName(String idDocumentName)
   {
-    this.passportName = passportName;
+    this.idDocumentName = idDocumentName;
   }
 
   public Prospect getProspect()
