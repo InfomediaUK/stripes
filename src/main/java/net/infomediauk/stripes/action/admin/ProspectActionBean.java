@@ -122,9 +122,19 @@ public class ProspectActionBean extends BaseActionBean
     return titleList;
   }
 
+  public Integer getIdDocumentId()
+  {
+    return idDocumentId;
+  }
+
   public void setIdDocumentId(Integer idDocumentId)
   {
     this.idDocumentId = idDocumentId;
+  }
+
+  public Integer getDisciplineId()
+  {
+    return disciplineId;
   }
 
   public void setDisciplineId(Integer disciplineId)
@@ -132,14 +142,29 @@ public class ProspectActionBean extends BaseActionBean
     this.disciplineId = disciplineId;
   }
 
+  public Integer getLengthOfStayId()
+  {
+    return lengthOfStayId;
+  }
+
   public void setLengthOfStayId(Integer lengthOfStayId)
   {
     this.lengthOfStayId = lengthOfStayId;
   }
 
+  public Integer getAgencyId()
+  {
+    return agencyId;
+  }
+
   public void setAgencyId(Integer agencyId)
   {
     this.agencyId = agencyId;
+  }
+
+  public Integer getVisaId()
+  {
+    return visaId;
   }
 
   public void setVisaId(Integer visaId)
