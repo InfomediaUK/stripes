@@ -228,7 +228,7 @@ public class ProspectActionBean extends BaseActionBean
       return new RedirectResolution(ProspectListActionBean.class);      
     }
     ValidationErrors validationErrors = getContext().getValidationErrors();
-    validationErrors.add("prospect", new SimpleError("Unable to send {0} to MMJ. Reason: {1} {2}", prospect.toString(), status.getStatusCode(), status.getReasonPhrase()));
+    validationErrors.add("prospect", new SimpleError(String.format("Unable to send %s to MMJ. Reason: %s %s", prospect.toString(), status.getStatusCode(), status.getReasonPhrase())));
     return new ForwardResolution(FORM);    
   }
   
