@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.util.List;
 
 import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.ClientResponse.Status;
 
 import net.infomediauk.dao.impl.XmlAgencyDao;
 import net.infomediauk.dao.impl.XmlDisciplineDao;
@@ -210,7 +211,8 @@ public class ProspectActionBean extends BaseActionBean
     System.out.println(prospect);
     ClientResponse response = XmlProspectDao.getInstance().sendMultiPartToMmj(agencyId, prospectFileName);
     System.out.println("Back in ProspectActionBean");
-    if (response.getClientResponseStatus() == ClientResponse.Status.ACCEPTED)
+    Status status = response.getClientResponseStatus();
+    if (status == ClientResponse.Status.ACCEPTED)
     {
 // Maybe best NOT to delete Prospect.      XmlProspectDao.getInstance().delete(prospectFileName, prospect.getDocumentFileName());
       String agencyName = null;
@@ -226,7 +228,7 @@ public class ProspectActionBean extends BaseActionBean
       return new RedirectResolution(ProspectListActionBean.class);      
     }
     ValidationErrors validationErrors = getContext().getValidationErrors();
-    validationErrors.add("prospect", new SimpleError("Unable to send {2} to MMJ. Reason: {3}", prospect.toString(), response.getEntity(String.class)));
+    validationErrors.add("prospect", new SimpleError("Unable to send {0} to MMJ. Reason: {1} {2}", prospect.toString(), status.getStatusCode(), status.getReasonPhrase()));
     return new ForwardResolution(FORM);    
   }
   
