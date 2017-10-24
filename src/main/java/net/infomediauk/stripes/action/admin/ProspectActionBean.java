@@ -212,8 +212,17 @@ public class ProspectActionBean extends BaseActionBean
     System.out.println("Back in ProspectActionBean");
     if (response.getClientResponseStatus() == ClientResponse.Status.ACCEPTED)
     {
-      XmlProspectDao.getInstance().delete(prospectFileName, prospect.getDocumentFileName());
-      getContext().getMessages().add(new SimpleMessage("Sent {0} to MMJ.", prospect.toString()));
+// Maybe best NOT to delete Prospect.      XmlProspectDao.getInstance().delete(prospectFileName, prospect.getDocumentFileName());
+      String agencyName = null;
+      for (Agency agency : agencyList)
+      {
+        if (agency.getId().equals(agencyId))
+        {
+          agencyName = agency.getName();
+          break;
+        }
+      }
+      getContext().getMessages().add(new SimpleMessage("Sent {0} to MMJ for Agency {1}.", prospect.getFullName(), agencyName));
       return new RedirectResolution(ProspectListActionBean.class);      
     }
     ValidationErrors validationErrors = getContext().getValidationErrors();
