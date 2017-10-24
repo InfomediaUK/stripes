@@ -24,15 +24,18 @@ import org.apache.commons.lang.StringUtils;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.ClientResponse.Status;
 import com.sun.jersey.multipart.BodyPart;
 import com.sun.jersey.multipart.MultiPart;
 
+import net.infomediauk.model.Agency;
 import net.infomediauk.model.Discipline;
 import net.infomediauk.model.IdDocument;
 import net.infomediauk.model.LengthOfStay;
 import net.infomediauk.model.Visa;
 import net.infomediauk.xml.jaxb.model.Prospect;
 import net.infomediauk.xml.jaxb.model.ProspectFile;
+import net.infomediauk.xml.jaxb.model.RestStatus;
 import net.infomediauk.xml.jaxb.model.mmj.ProspectApplicant;
 
 /**
@@ -277,10 +280,10 @@ public class XmlProspectDao
     return false;
   }
   
-  public ClientResponse sendMultiPartToMmj(Integer agencyId, String prospectFileName)
+  public RestStatus sendMultiPartToMmj(Agency agency, String prospectFileName)
   {
     ProspectFile prospectFile = select(prospectFileName);
-    ProspectApplicant prospectApplicant = new ProspectApplicant(agencyId, prospectFile);
+    ProspectApplicant prospectApplicant = new ProspectApplicant(agency.getId(), prospectFile);
     Client client = Client.create();
     String BASE_URI = XmlSystemSettingsDao.getInstance().select().getProspectUploadBaseUrl();
     // http://localhost:8080/jersey/rest/
@@ -302,10 +305,13 @@ public class XmlProspectDao
         e.printStackTrace();
       }
     }
+    RestStatus restStatus = new RestStatus();
     System.out.println("Sending to jersey...");
-    ClientResponse response = webResource.path("/prospect").type("multipart/mixed").post(ClientResponse.class, multiPart);
-    System.out.println("Response Status : " + response.getEntity(String.class));
-    return response;
+    ClientResponse clientResponse = webResource.path("/prospect").type("multipart/mixed").post(ClientResponse.class, multiPart);
+    Status status = clientResponse.getClientResponseStatus();
+    restStatus.setSuccess(status == ClientResponse.Status.ACCEPTED);
+    restStatus.setMessage(clientResponse.getEntity(String.class));
+    return restStatus;
   }
   
   private File getProspectDocumentFile(String documentFileName)

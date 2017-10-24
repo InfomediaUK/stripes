@@ -3,9 +3,6 @@ package net.infomediauk.stripes.action.admin;
 import java.net.MalformedURLException;
 import java.util.List;
 
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.ClientResponse.Status;
-
 import net.infomediauk.dao.impl.XmlAgencyDao;
 import net.infomediauk.dao.impl.XmlDisciplineDao;
 import net.infomediauk.dao.impl.XmlIdDocumentDao;
@@ -23,6 +20,7 @@ import net.infomediauk.model.Visa;
 import net.infomediauk.stripes.action.BaseActionBean;
 import net.infomediauk.xml.jaxb.model.Prospect;
 import net.infomediauk.xml.jaxb.model.ProspectFile;
+import net.infomediauk.xml.jaxb.model.RestStatus;
 import net.sourceforge.stripes.action.DefaultHandler;
 import net.sourceforge.stripes.action.DontValidate;
 import net.sourceforge.stripes.action.ForwardResolution;
@@ -208,27 +206,16 @@ public class ProspectActionBean extends BaseActionBean
 
   public Resolution sendMultiPartToMmj() throws MalformedURLException
   {
+    Agency agency = XmlAgencyDao.getInstance().select(agencyId); 
     System.out.println(prospect);
-    ClientResponse response = XmlProspectDao.getInstance().sendMultiPartToMmj(agencyId, prospectFileName);
-    System.out.println("Back in ProspectActionBean");
-    Status status = response.getClientResponseStatus();
-    if (status == ClientResponse.Status.ACCEPTED)
+    RestStatus restStatus = XmlProspectDao.getInstance().sendMultiPartToMmj(agency, prospectFileName);
+    if (restStatus.getSuccess())
     {
-// Maybe best NOT to delete Prospect.      XmlProspectDao.getInstance().delete(prospectFileName, prospect.getDocumentFileName());
-      String agencyName = null;
-      for (Agency agency : agencyList)
-      {
-        if (agency.getId().equals(agencyId))
-        {
-          agencyName = agency.getName();
-          break;
-        }
-      }
-      getContext().getMessages().add(new SimpleMessage("Sent {0} to MMJ for Agency {1}.", prospect.getFullName(), agencyName));
+      getContext().getMessages().add(new SimpleMessage("Sent {0} to MMJ for Agency {1}.", prospect.getFullName(), agency.getName()));
       return new RedirectResolution(ProspectListActionBean.class);      
     }
     ValidationErrors validationErrors = getContext().getValidationErrors();
-    validationErrors.add("prospect", new SimpleError(String.format("Unable to send %s to MMJ. Reason: %s %s", prospect.toString(), status.getStatusCode(), status.getReasonPhrase())));
+    validationErrors.add("prospect", new SimpleError(String.format("Unable to send %s to MMJ. Reason: %s", prospect.getFullName(), restStatus.getMessage())));
     return new ForwardResolution(FORM);    
   }
   
