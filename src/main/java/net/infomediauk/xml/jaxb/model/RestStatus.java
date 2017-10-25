@@ -5,6 +5,12 @@ public class RestStatus
   private Boolean success;
   private String message;
 
+  public RestStatus()
+  {
+    super();
+    success = false;
+  }
+
   public Boolean getSuccess()
   {
     return success;

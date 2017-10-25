@@ -282,6 +282,8 @@ public class XmlProspectDao
   
   public RestStatus sendMultiPartToMmj(Agency agency, String prospectFileName)
   {
+    RestStatus restStatus = new RestStatus();
+    restStatus.setMessage("In sendMultiPartToMmj method.");
     ProspectFile prospectFile = select(prospectFileName);
     ProspectApplicant prospectApplicant = new ProspectApplicant(agency.getId(), prospectFile);
     Client client = Client.create();
@@ -302,10 +304,10 @@ public class XmlProspectDao
       }
       catch (FileNotFoundException e)
       {
+        restStatus.setMessage("Document problem:- " + e.getMessage());
         e.printStackTrace();
       }
     }
-    RestStatus restStatus = new RestStatus();
     System.out.println("Sending to jersey...");
     ClientResponse clientResponse = webResource.path("/prospect").type("multipart/mixed").post(ClientResponse.class, multiPart);
     Status status = clientResponse.getClientResponseStatus();
