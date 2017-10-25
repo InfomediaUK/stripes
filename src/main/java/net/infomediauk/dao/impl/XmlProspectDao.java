@@ -9,6 +9,8 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+
 import static java.nio.file.StandardCopyOption.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -182,7 +184,7 @@ public class XmlProspectDao
     Path destinationPath = Paths.get(backupFullFileName);
     try
     {
-      Files.copy(sourcePath, destinationPath);
+      Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
     }
     catch (IOException e)
     {
