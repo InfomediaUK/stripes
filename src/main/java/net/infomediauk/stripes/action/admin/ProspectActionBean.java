@@ -241,6 +241,7 @@ public class ProspectActionBean extends BaseActionBean
     }
     ValidationErrors validationErrors = getContext().getValidationErrors();
     validationErrors.add("prospect", new SimpleError(String.format("Unable to send %s to MMJ. Reason: %s", prospect.getFullName(), restStatus.getMessage())));
+    prospectUploadBaseUrl = XmlSystemSettingsDao.getInstance().select().getProspectUploadBaseUrl();
     return new ForwardResolution(FORM);    
   }
   
