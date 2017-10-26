@@ -295,7 +295,7 @@ public class XmlProspectDao
     WebResource webResource = client.resource(BASE_URI);
     MultiPart multiPart = new MultiPart();
     multiPart.getBodyParts().add(new BodyPart(prospectApplicant, MediaType.APPLICATION_XML_TYPE));
-    if (prospectFile.getProspect().getDocumentFileName() != null && !prospectFile.getProspect().getDocumentFileName().equals(""))
+    if (StringUtils.isNotEmpty(prospectFile.getProspect().getDocumentFileName()))
     {
       File file = getProspectDocumentFile(prospectFile.getProspect().getDocumentFileName());
       InputStream inputStream = null;
