@@ -6,19 +6,19 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement()
-public class IdDocumentTypes
+public class IdDocuments
 {
-  @XmlElement(name = "idDocumentType")
-  private ArrayList<IdDocumentType> idDocumentTypeList;
+  @XmlElement(name = "idDocument")
+  private ArrayList<IdDocument> idDocumentList;
 
-  public ArrayList<IdDocumentType> getIdDocumentTypes()
+  public ArrayList<IdDocument> getIdDocuments()
   {
-    return idDocumentTypeList;
+    return idDocumentList;
   }
 
-  public void setIdDocumentTypes(ArrayList<IdDocumentType> idDocumentTypeList)
+  public void setIdDocuments(ArrayList<IdDocument> idDocumentList)
   {
-    this.idDocumentTypeList = idDocumentTypeList;
+    this.idDocumentList = idDocumentList;
   }
 
 }
