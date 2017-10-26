@@ -20,8 +20,7 @@ import net.infomediauk.dao.Dao;
 import net.infomediauk.model.IdDocument;
 import net.infomediauk.xml.jaxb.model.IdDocumentDatabase;
 import net.infomediauk.xml.jaxb.model.IdDocumentRecord;
-import net.infomediauk.xml.jaxb.model.mmj.IdDocumentTypes;
-import net.infomediauk.xml.jaxb.model.mmj.IdDocumentType;
+import net.infomediauk.xml.jaxb.model.mmj.IdDocuments;
 
 /**
  * Single file DAO for IdDocument Types. That is, there is ONLY ONE file.
@@ -210,7 +209,7 @@ public class XmlIdDocumentDao extends BaseDao implements Dao<IdDocument>
     try
     {
       Client client = Client.create();
-      String resource = XmlSystemSettingsDao.getInstance().select().getMatchMyJobRestBaseUrl() + "idDocuments";
+      String resource = XmlSystemSettingsDao.getInstance().select().getMatchMyJobRestBaseUrl() + "iddocuments";
       WebResource webResource = client.resource(resource);
       ClientResponse response = webResource.accept(MediaType.APPLICATION_XML).get(ClientResponse.class);
       if (response.getStatus() != 200)
@@ -218,14 +217,14 @@ public class XmlIdDocumentDao extends BaseDao implements Dao<IdDocument>
         throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
       }
       InputStream inputStream = response.getEntityInputStream();
-      JAXBContext context = JAXBContext.newInstance(IdDocumentTypes.class);
+      JAXBContext context = JAXBContext.newInstance(IdDocuments.class);
       Unmarshaller jaxbUnmarshaller = context.createUnmarshaller();
-      IdDocumentTypes idDocumentTypes = (IdDocumentTypes)jaxbUnmarshaller.unmarshal(inputStream);
-      IdDocument idDocument = null;
+      IdDocuments idDocuments = (IdDocuments)jaxbUnmarshaller.unmarshal(inputStream);
+      net.infomediauk.model.IdDocument idDocument = null;
       Integer id = null;
-      for (IdDocumentType idDocumentType : idDocumentTypes.getIdDocumentTypes())
+      for (net.infomediauk.xml.jaxb.model.mmj.IdDocument jaxbIdDocument : idDocuments.getIdDocuments())
       {
-        id = idDocumentType.getId();
+        id = jaxbIdDocument.getId();
         idDocument = XmlIdDocumentDao.getInstance().select(id);
         if (idDocument == null)
         {
@@ -233,9 +232,11 @@ public class XmlIdDocumentDao extends BaseDao implements Dao<IdDocument>
           idDocument = new IdDocument();
           idDocument.setId(id);
         }
-        idDocument.setCode(idDocumentType.getCode());
-        idDocument.setName(idDocumentType.getName());
-        idDocument.setDisplayOrder(idDocumentType.getDisplayOrder());
+        idDocument.setCode(jaxbIdDocument.getCode());
+        idDocument.setName(jaxbIdDocument.getName());
+        idDocument.setIdDocumentType(jaxbIdDocument.getIdDocumentType());
+        idDocument.setRequiresVisa(jaxbIdDocument.getRequiresVisa());
+        idDocument.setDisplayOrder(jaxbIdDocument.getDisplayOrder());
         XmlIdDocumentDao.getInstance().update(idDocument);
       }
     }
