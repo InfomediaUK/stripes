@@ -21,7 +21,7 @@
       </tr>
       <tr>
         <td>
-          <s:label for="agency" />
+          <s:label for="prospectAdminForm.uploadToAgency" />
         </td>
         <td>
           <s:select name="agencyId" id="agency" class="wide">
@@ -134,6 +134,14 @@
           <s:select name="lengthOfStayId" id="prospect.lengthOfStay" value="${actionBean.prospect.lengthOfStayId}" class="wide">
             <s:options-collection collection="${actionBean.lengthOfStayList}" value="id" label="name" sort="displayOrder" />
           </s:select> 
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <s:label for="prospectAdminForm.cvAttached" />
+        </td>
+        <td>
+          ${actionBean.prospect.hasDocumentFile}
         </td>
       </tr>
       <tr>

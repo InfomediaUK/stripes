@@ -3,6 +3,8 @@ package net.infomediauk.xml.jaxb.model;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.apache.commons.lang3.StringUtils;
+
 @XmlRootElement
 @XmlType(propOrder = { "firstName", "lastName", "gender", "mobileTelephone", "email", "profession", "availableForWork", 
                        "documentFileName", "disciplineId", "idDocumentId", "visaId", "lengthOfStayId"})
@@ -146,6 +148,11 @@ public class Prospect
     return String.format("%s %s", firstName, lastName);
   }
 
+  public Boolean getHasDocumentFile()
+  {
+    return StringUtils.isNotEmpty(documentFileName);
+  }
+  
   @Override
   public String toString()
   {
