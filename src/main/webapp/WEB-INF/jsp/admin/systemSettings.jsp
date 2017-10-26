@@ -83,6 +83,8 @@
     </fieldset>
     <div>
       <s:submit name="save" value="Save"  />
+      <s:hidden name="originalProspectUploadBaseUrl" />
+      <s:hidden name="originalMatchMyJobRestBaseUrl" />
     </div>
   </s:form>
   </s:layout-component>
