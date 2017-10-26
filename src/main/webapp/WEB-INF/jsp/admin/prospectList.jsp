@@ -27,7 +27,8 @@
       <d:column title="Visa" property="visaName" sortable="true" />
       <d:column title="Discipline" property="disciplineName" sortable="true" />
       <d:column title="IdDocument" property="idDocumentName" sortable="true" />
-      <d:column title="Length of Stay" property="lengthOfStayName" sortable="true" />
+      <d:column title="Stay" property="lengthOfStayName" sortable="true" />
+      <d:column title="CV" property="hasDocumentFile" sortable="true" />
     </d:table>
   </s:layout-component>
 </s:layout-render>
