@@ -31,6 +31,11 @@ public class RestStatus
     this.message = message;
   }
 
+  public Boolean getFailed()
+  {
+    return !success;
+  }
+
   @Override
   public String toString()
   {
