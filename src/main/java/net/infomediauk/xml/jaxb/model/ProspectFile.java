@@ -1,5 +1,7 @@
 package net.infomediauk.xml.jaxb.model;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class ProspectFile
 {
   private Prospect prospect;
@@ -79,6 +81,11 @@ public class ProspectFile
     return prospect.getFullName();
   }
 
+  public Boolean getHasDocumentFile()
+  {
+    return getProspect().getHasDocumentFile();
+  }
+  
   @Override
   public String toString()
   {
