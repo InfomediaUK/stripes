@@ -2,12 +2,18 @@ package net.infomediauk.dao.impl;
 
 import java.io.File;
 
+import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+
 import net.infomediauk.dao.BaseDao;
+import net.infomediauk.xml.jaxb.model.RestStatus;
 import net.infomediauk.xml.jaxb.model.SystemSettings;
 
 /**
@@ -96,6 +102,18 @@ public class XmlSystemSettingsDao extends BaseDao
       e.printStackTrace();
     }
 
+  }
+  
+  public RestStatus validateRestUrl(String restUrl)
+  {
+    RestStatus restStatus = new RestStatus();
+    restStatus.setMessage("In XmlSystemSettingsDao.validateRestUrl method.");
+    Client client = Client.create();
+    WebResource webResource = client.resource(restUrl);
+    ClientResponse response = webResource.accept(MediaType.TEXT_PLAIN).get(ClientResponse.class);
+    restStatus.setSuccess(response.getStatus() == 200);
+    restStatus.setMessage("URL: (" + restUrl + ") - HTTP code : " + response.getStatus());
+    return restStatus;
   }
   
   @Override
